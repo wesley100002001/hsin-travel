@@ -1,17 +1,24 @@
-<div id="all">
-  <h1 class="ltitle">【沃草網站管理後台】</h1>
-    <div id="login">
-      <h1>帳號</h1>
-    <p>
-      <input id="admin_id" name="admin_id" type="text"
-        maxlength="50" ng-model="login.username" autofocus>
-    </p>
-    <h1>密碼</h1>
-    <p>
-      <input id="admin_pw" name="admin_pw" type="password"
-        maxlength="50" ng-model="login.password">
-    </p>
-    <div ng-if="login.isLoginFail">登入不成功。請檢查帳號密碼。</div>
-    <img ng-src="{{login.loginBtnImg}}" width="81" height="35" id="login_btn" ng-click="login.verifyUser()">
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+      <div class="signin">
+        <form>
+          <h2 class="signin-heading">【沃草訂單管理後台】</h2>
+          <input id="username" name="username" type="text"
+            class="form-control" maxlength="50" placeholder="帳號"
+            ng-model="login.username" autofocus>
+          <input id="password" name="password" type="password"
+            class="form-control" maxlength="50" placeholder="密碼"
+            ng-model="login.password">
+          <button class="btn btn-danger btn-block" ng-click="login.verifyUser()">登入</button>
+          <!-- <div ng-show="">登入中～請稍候</div> -->
+          <div ng-show="login.isLoginFail">登入不成功。請檢查帳號密碼。</div>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-4">
+    </div>
   </div>
 </div>
