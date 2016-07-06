@@ -3,31 +3,29 @@
     <h1 class="padding-down">匯出訂單或標籤</h1>
     <table class="table table-striped table-bordered">
       <tr>
-        <th colspan="2">快速匯出</th>
+        <th colspan="4">快速匯出</th>
       </tr>
       <tr>
-        <td colspan="2">
+        <td colspan="4">
           <button type="button" class="btn btn-default">匯出未出貨訂單</button>
           <button type="button" class="btn btn-default">匯出全部訂單</button>
           <button type="button" class="btn btn-default">匯出未出貨標籤 PDF</button>
         </td>
       </tr>
       <tr>
-        <th colspan="2">訂單匯出：其他匯出設定</th>
+        <th colspan="4">訂單匯出：其他匯出設定</th>
       </tr>
       <tr>
         <th>付款狀態</th>
-        <td>
+        <td colspan="3">
           <label class="checkbox-inline"><input type="checkbox" value="">成功</label>
           <label class="checkbox-inline"><input type="checkbox" value="">等待</label>
           <label class="checkbox-inline"><input type="checkbox" value="">失敗</label>
         </td>
       </tr>
       <tr>
-        <th>
-          出貨狀態
-        </th>
-        <td>
+        <th>出貨狀態</th>
+        <td colspan="3">
           <label class="checkbox-inline"><input type="checkbox" value="">無</label>
           <label class="checkbox-inline"><input type="checkbox" value="">未出貨</label>
           <label class="checkbox-inline"><input type="checkbox" value="">已出貨</label>
@@ -36,53 +34,62 @@
         </td>
       </tr>
       <tr>
-        <th align="center">付款時間日期區間</th>
-        <td colspan="-1"><p>
-          <select name="select" id="select">
-            <option>2016</option>
-          </select>
-          年
-          <select name="select2" id="select2">
-            <option>10</option>
-          </select>
-          月
-          <select name="select3" id="select3">
-            <option>10</option>
-          </select>
-          日~
-          <select name="select4" id="select4">
-            <option>2016</option>
-          </select>
-          年
-          <select name="select4" id="select5">
-            <option>10</option>
-          </select>
-          月
-          <select name="select4" id="select6">
-            <option>10</option>
-          </select>
-          日<br />
-        </p>
+        <th>付款時間日期區間</th>
+        <td width="25%">
+            <label for="start_time">開始日期</label>
+            <div class="input-group">
+              <input type="text" class="form-control"
+              id="start_time" name="start_time"
+              uib-datepicker-popup="yyyy-MM-dd"
+              show-button-bar="false"
+              ng-model="startTime"
+              max-date="orderexport.timeOption.max"
+              is-open="orderexport.startOpened" close-text="Close" readonly>
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default"
+                ng-click="orderexport.startOpen($event)">
+                  <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+              </span>
+            </div>
+            <label for="start_time">結束日期</label>
+            <div class="input-group">
+              <input type="text" class="form-control"
+              id="end_time" name="end_time"
+              uib-datepicker-popup="yyyy-MM-dd"
+              show-button-bar="false"
+              ng-model="orderexport.endTime"
+              max-date="orderexport.timeOption.max"
+              is-open="orderexport.endOpened" close-text="Close" readonly>
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default"
+                ng-click="orderexport.endOpen($event)">
+                  <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+              </span>
+            </div>
+        </td>
+        <td colspan="2" width="50%">
         </td>
       </tr>
       <tr>
-        <td colspan="2" class="text-center">
+        <td colspan="4" class="text-center">
           <button type="button" class="btn btn-default">匯出訂單 Excel</button>
         </td>
       </tr>
       <tr>
-        <th colspan="2">標籤匯出：其他匯出設定</th>
+        <th colspan="s">標籤匯出：其他匯出設定</th>
       </tr>
       <tr>
         <th>出貨狀態</th>
-        <td colspan="-1">
+        <td colspan="3">
           <label class="checkbox-inline"><input type="checkbox" value="">尚未出貨</label>
           <label class="checkbox-inline"><input type="checkbox" value="">已出貨</label>
           <label class="checkbox-inline"><input type="checkbox" value="">無</label>
         </td>
       </tr>
       <tr>
-        <td colspan="2" class="text-center">
+        <td colspan="4" class="text-center">
           <button type="button" class="btn btn-default">匯出標籤 PDF</button>
         </td>
       </tr>
