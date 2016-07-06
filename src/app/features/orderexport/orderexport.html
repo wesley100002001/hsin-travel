@@ -1,47 +1,43 @@
-<div id="content_wrap">
-  <div id="main" class="inner">
-    <h1>匯出訂單或標籤</h1>
-    <table width="100%" border="1" cellpadding="5" class="ifree index_table">
+<div class="container">
+  <div class="row">
+    <h1 class="padding-down">匯出訂單或標籤</h1>
+    <table class="table table-striped table-bordered">
       <tr>
-        <th colspan="2" align="center">快速匯出</th>
+        <th colspan="2">快速匯出</th>
       </tr>
       <tr>
-        <td colspan="2" align="center"> <input type="submit" name="button2" id="button2" value="匯出未出貨訂單" />
-           <input type="submit" name="button3" id="button3" value="匯出全部訂單" />
-           <input type="submit" name="button2" id="button2" value="匯出未出貨標籤pdf" /></td>
-      </tr>
-      <tr>
-        <th colspan="2" align="center">訂單匯出：其他匯出設定</th>
-      </tr>
-      <tr>
-        <th align="center">付款狀態</th>
-        <td colspan="-1"><input type="checkbox" name="checkbox10" id="checkbox10" />
-          成功
-          <input type="checkbox" name="checkbox6" id="checkbox11" />
-          等待
-          <input type="checkbox" name="checkbox7" id="checkbox12" />
-          失敗
+        <td colspan="2">
+          <button type="button" class="btn btn-default">匯出未出貨訂單</button>
+          <button type="button" class="btn btn-default">匯出全部訂單</button>
+          <button type="button" class="btn btn-default">匯出未出貨標籤 PDF</button>
         </td>
       </tr>
       <tr>
-        <th align="center">
+        <th colspan="2">訂單匯出：其他匯出設定</th>
+      </tr>
+      <tr>
+        <th>付款狀態</th>
+        <td>
+          <label class="checkbox-inline"><input type="checkbox" value="">成功</label>
+          <label class="checkbox-inline"><input type="checkbox" value="">等待</label>
+          <label class="checkbox-inline"><input type="checkbox" value="">失敗</label>
+        </td>
+      </tr>
+      <tr>
+        <th>
           出貨狀態
         </th>
-        <td colspan="-1"><input type="checkbox" name="checkbox" id="checkbox" />
-          無
-          <input type="checkbox" name="checkbox" id="checkbox2" />
-          未出貨
-          <input type="checkbox" name="checkbox" id="checkbox3" />
-          已出貨
-          <input type="checkbox" name="checkbox2" id="checkbox4" />
-          取消出貨
-          <input type="checkbox" name="checkbox3" id="checkbox5" />
-          狀態有問題
+        <td>
+          <label class="checkbox-inline"><input type="checkbox" value="">無</label>
+          <label class="checkbox-inline"><input type="checkbox" value="">未出貨</label>
+          <label class="checkbox-inline"><input type="checkbox" value="">已出貨</label>
+          <label class="checkbox-inline"><input type="checkbox" value="">取消出貨</label>
+          <label class="checkbox-inline"><input type="checkbox" value="">狀態有問題</label>
         </td>
       </tr>
       <tr>
         <th align="center">付款時間日期區間</th>
-        <td width="68%" colspan="-1"><p>
+        <td colspan="-1"><p>
           <select name="select" id="select">
             <option>2016</option>
           </select>
@@ -66,27 +62,29 @@
             <option>10</option>
           </select>
           日<br />
-          (日期選擇如果有其他比較好套的套件，可以直接改。只要可以選出時間區間即可)</p>
+        </p>
         </td>
       </tr>
       <tr>
-        <td colspan="2" align="center"><input type="button" name="button" id="button" value="匯出訂單excel" /></td>
-      </tr>
-      <tr>
-        <th colspan="2" align="center">標籤匯出：其他匯出設定</th>
-      </tr>
-      <tr>
-        <th align="center">出貨狀態</th>
-        <td colspan="-1"><input type="checkbox" name="checkbox5" id="checkbox7" />
-          <label for="checkbox7">尚未出貨
-          <input type="checkbox" name="checkbox5" id="checkbox8" />
-          已出貨
-          <input type="checkbox" name="checkbox5" id="checkbox9" />
-          無</label>
+        <td colspan="2" class="text-center">
+          <button type="button" class="btn btn-default">匯出訂單 Excel</button>
         </td>
       </tr>
       <tr>
-        <td colspan="2" align="center"><input type="button" name="button4" id="button4" value="匯出標籤pdf" /></td>
+        <th colspan="2">標籤匯出：其他匯出設定</th>
+      </tr>
+      <tr>
+        <th>出貨狀態</th>
+        <td colspan="-1">
+          <label class="checkbox-inline"><input type="checkbox" value="">尚未出貨</label>
+          <label class="checkbox-inline"><input type="checkbox" value="">已出貨</label>
+          <label class="checkbox-inline"><input type="checkbox" value="">無</label>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" class="text-center">
+          <button type="button" class="btn btn-default">匯出標籤 PDF</button>
+        </td>
       </tr>
     </table>
   </div>
