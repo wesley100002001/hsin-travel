@@ -7,8 +7,6 @@ export default class LoginController {
     if (acl.checkStatus(this.cookies.get('status'))) {
       this.state.go('home');
     }
-
-    this.loginBtnImg = require('../../../assets/imgs/login_btn.gif');
   }
 
   verifyUser () {
