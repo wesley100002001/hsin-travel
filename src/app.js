@@ -1,5 +1,3 @@
-import './style/reset.css';
-import './style/style.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import angular from 'angular';
