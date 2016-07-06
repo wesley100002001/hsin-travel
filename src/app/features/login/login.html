@@ -4,12 +4,12 @@
       <h1>帳號</h1>
     <p>
       <input id="admin_id" name="admin_id" type="text"
-        class="form-control" maxlength="50" ng-model="login.username" autofocus>
+        maxlength="50" ng-model="login.username" autofocus>
     </p>
     <h1>密碼</h1>
     <p>
       <input id="admin_pw" name="admin_pw" type="password"
-        class="form-control" maxlength="50" ng-model="login.password">
+        maxlength="50" ng-model="login.password">
     </p>
     <div ng-if="login.isLoginFail">登入不成功。請檢查帳號密碼。</div>
     <img ng-src="{{login.loginBtnImg}}" width="81" height="35" id="login_btn" ng-click="login.verifyUser()">
