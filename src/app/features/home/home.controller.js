@@ -1,7 +1,7 @@
 export default class HomeController {
   constructor ($state, $stateParams, $cookies, acl, $http, $scope) {
     var scope = this;
-    
+
     if (!acl.checkStatus($cookies.get('status'))) {
       $state.go('login');
     }

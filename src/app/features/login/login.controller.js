@@ -1,10 +1,5 @@
 export default class LoginController {
-  constructor ($state, $cookies, acl, restful) {
-    // Mock user
-    this.user = {
-      username: 'admin',
-      password: '1234'
-    };
+  constructor ($state, $cookies, acl, restful, $scope) {
     this.state = $state;
     this.cookies = $cookies;
     this.restful = restful;
@@ -20,7 +15,7 @@ export default class LoginController {
     var cookies = this.cookies;
     var state = this.state;
     this.restful.getAdmin(this.username, this.password)
-    .then(function (passed) {
+    .then(passed => {
       if (passed) {
         cookies.put('status', 'user');
         state.go('home');
@@ -31,4 +26,4 @@ export default class LoginController {
   }
 }
 
-LoginController.$inject = ['$state', '$cookies', 'acl', 'restful'];
+LoginController.$inject = ['$state', '$cookies', 'acl', 'restful', '$scope'];
