@@ -12,7 +12,7 @@ export default function routes ($stateProvider) {
         content: {
           template: require('./orderexport.html'),
           controller: 'OrderExportController',
-          controllerAs: 'orderemport'
+          controllerAs: 'orderexport'
         },
         footer: {
           template: require('../../../components/footer/footer.html'),
