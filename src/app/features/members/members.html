@@ -1,57 +1,51 @@
-<div id="content_wrap">
-  <div id="main" class="inner">
+<div class="container">
+  <div class="row">
     <h1>贊助者名單管理</h1>
-    <div id="search_bar" class="search_bar_fix">
-      <div id="search_bar_inner">
-        <div class="form-group">
+    <div class="col-md-6">
+      <form class="form form-inline">
+        <div class="form-group padding-down">
           <label for="search">搜尋</label>
-          <input type="text" class="form-control" name="search" id="search" placeholder="請輸入關鍵字"
-                 ng-model="members.searchText">
+          <input type="text" class="form-control" name="search" id="search"
+                 placeholder="請輸入關鍵字" ng-model="members.searchText">
         </div>
-      </div>
+      </form>
     </div>
-    <div style="margin:0 0 10px 0;">
-      <input type="submit" name="button9" id="button9" value="匯出所有贊助者資料" />
+    <div class="col-md-6">
+      <button type="button" class="btn btn-default pull-right">匯出所有贊助者資料</button>
     </div>
-    <table width="100%" border="1" cellpadding="5" class="ifree">
-      <tr>
-        <th width="14%">贊助者姓名</th>
-        <th width="24%">贊助者email</th>
-        <th width="20%">收件者電話</th>
-        <th width="16%">所在國家</th>
-        <th width="13%">居住城市</th>
-        <th width="13%">郵遞區號</th>
+    <div>
+      <table class="table table-striped table-bordered">
+        <tr>
+          <th>贊助者姓名</th>
+          <th>贊助者email</th>
+          <th>收件者電話</th>
+          <th>所在國家</th>
+          <th>居住城市</th>
+          <th>郵遞區號</th>
+          <th>收件者姓名</th>
+          <th>收件者email</th>
+          <th>收件者地址</th>
         </tr>
-      <tr>
-        <th>收件者姓名</th>
-        <th>收件者email</th>
-        <th colspan="4">收件者地址</th>
+        <tr ng-repeat="member in (members.currentMemberList | limitTo: members.pageSize)">
+          <td>{{member.sponsor_name}}</td>
+          <td>{{member.sponsor_email}}</td>
+          <td>{{member.receiver_phone}}</td>
+          <td>{{member.nation}}</td>
+          <td>{{member.city}}</td>
+          <td>{{member.postcode}}</td>
+          <td>{{member.receiver_name}}</td>
+          <td>{{member.receiver_email}}</td>
+          <td>{{member.address}}</td>
         </tr>
       </table>
-    <table ng-repeat="member in (members.currentMemberList | limitTo: members.pageSize)"
-           width="100%" border="1" cellpadding="5" class="ifree">
-      <tr>
-        <th width="13%">{{member.sponsor_name}}</th>
-        <td width="26%">{{member.sponsor_email}}</td>
-        <td width="20%">{{member.receiver_phone}}</td>
-        <td width="23%">{{member.nation}}</td>
-        <td width="10%">{{member.city}}</td>
-        <td width="8%">{{member.postcode}}</td>
-      </tr>
-      <tr>
-        <th>{{member.receiver_name}}</th>
-        <td>{{member.receiver_email}}</td>
-        <td colspan="4">{{member.address}}</td>
-      </tr>
-    </table>
-    <uib-pagination
-      class="pagination-sm"
-      total-items="members.list.length"
-      items-per-page="members.pageSize"
-      max-size="members.maxSize"
-      boundary-links="true"
-      ng-model="members.currentPage">
-    </uib-pagination>
-
+      <uib-pagination
+        class="pagination-sm"
+        total-items="members.list.length"
+        items-per-page="members.pageSize"
+        max-size="members.maxSize"
+        boundary-links="true"
+        ng-model="members.currentPage">
+      </uib-pagination>
+    </div>
   </div>
 </div>
