@@ -13,7 +13,7 @@
             class="form-control" maxlength="50" placeholder="密碼"
             ng-model="login.password">
           <button class="btn btn-danger btn-block" ng-click="login.verifyUser()">登入</button>
-          <!-- <div ng-show="">登入中～請稍候</div> -->
+          <div ng-show="login.logging">登入中～請稍候</div>
           <div ng-show="login.isLoginFail">登入不成功。請檢查帳號密碼。</div>
         </form>
       </div>

@@ -12,6 +12,7 @@ export default class LoginController {
   }
 
   verifyUser () {
+    this.logging = true;
     var cookies = this.cookies;
     var state = this.state;
     this.restful.getAdmin(this.username, this.password)
@@ -20,6 +21,7 @@ export default class LoginController {
         cookies.put('status', 'user');
         state.go('home');
       } else {
+        this.logging = false;
         this.isLoginFail = true;
       }
     });
