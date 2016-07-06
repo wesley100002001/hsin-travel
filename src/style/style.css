@@ -209,9 +209,9 @@ em.top{
 	font-size:26px;
 	letter-spacing:4px;
 	color:#999;}
-#login h1{
+/*#login h1{
 	text-indent:-4000px;
-	}
+	}*/
 
 #login{
 	overflow:hidden;
@@ -278,13 +278,13 @@ table td th{
 	border:none;
 	border-bottom:3px solid #fff;}
 
-.inner h1{
+/*.inner h1{
 	font-size:30px;
 	background:url(../assets/imgs/hbg.gif) no-repeat;
 	padding:0 0 20px 40px;
 	margin:0px;
 	font-family:新細明體;
-	}
+	}*/
 
 .btn{
 	text-align:right;
