@@ -1,18 +1,19 @@
 <div class="navbar navbar-default navbar-static-top">
   <div class="container">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Watchout</a>
+      <a class="navbar-brand">Watchout</a>
     </div>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
       <!-- Here you can see ui-sref in action again. Also notice the use of $state.includes, which
            will set the links to 'active' if, for example on the first link, 'contacts' or any of
            its descendant states are activated. -->
-       <li ui-sref-active="active"><a ui-sref="members">贊助者名單管理</a></li>
-       <li ui-sref-active="active"><a ui-sref="orders">訂單管理</a></li>
-       <li ui-sref-active="active"><a ui-sref="orderexport">匯出訂單</a></li>
-       <li ui-sref-active="active"><a ui-sref="orderimport">匯入訂單</a></li>
-       <li ui-sref-active="active"><a ui-sref="password">管理員密碼設定</a></li>
+        <li ui-sref-active="active"><a ui-sref="members">首頁</a></li>
+        <li ui-sref-active="active"><a ui-sref="members">贊助者名單管理</a></li>
+        <li ui-sref-active="active"><a ui-sref="orders">訂單管理</a></li>
+        <li ui-sref-active="active"><a ui-sref="orderexport">匯出訂單</a></li>
+        <li ui-sref-active="active"><a ui-sref="orderimport">匯入訂單</a></li>
+        <li ui-sref-active="active"><a ui-sref="password">管理員密碼設定</a></li>
       </ul>
       <button type="button" class="btn btn-default navbar-btn navbar-right"
               ng-click="navbar.logout()" ng-show="navbar.isLoggedIn">登出</button>
