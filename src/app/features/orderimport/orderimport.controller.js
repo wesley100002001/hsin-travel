@@ -1,55 +1,33 @@
 export default class OrderImportController {
-  constructor ($state, $cookies, acl, $http, restful) {
+  constructor ($state, $cookies, acl, $http, restful, xlsxReader) {
     var scope = this;
     scope.state = $state;
     scope.cookies = $cookies;
-
-    var mockMembers = [
-      {
-        sponsor_name: "王大頭",
-        sponsor_email: "eowifjwoeifsldhf@gmail.com",
-        receiver_name: "王小頭",
-        receiver_phone: "0912345671",
-        receiver_email: "eowifjwoeifsldhf@gmail.com",
-        nation: "Taiwan",
-        city: "台北市",
-        postcode: "104",
-        address: "松江路46巷15號"
-      },
-      {
-        sponsor_name: "王大頭",
-        sponsor_email: "eowifjwoeifsldhf@gmail.com",
-        receiver_name: "王小頭",
-        receiver_phone: "0912345671",
-        receiver_email: "eowifjwoeifsldhf@gmail.com",
-        nation: "Taiwan",
-        city: "台北市",
-        postcode: "104",
-        address: "松江路46巷15號"
-      },
-      {
-        sponsor_name: "王大頭",
-        sponsor_email: "eowifjwoeifsldhf@gmail.com",
-        receiver_name: "王小頭",
-        receiver_phone: "0912345671",
-        receiver_email: "eowifjwoeifsldhf@gmail.com",
-        nation: "Taiwan",
-        city: "台北市",
-        postcode: "104",
-        address: "松江路46巷15號"
-      }
-    ];
+    scope.xlsxReader = xlsxReader;
 
     if (!acl.checkStatus(this.cookies.get('status'))) {
       this.state.go('login');
     }
 
-    restful.getAttrs().then(function (response) {
-      scope.list = response.data.attractions;
-    }, function (response) {});
+	  scope.showPreview = false;        //以表格預覽
+    scope.showJSONPreview = true;     //以json預覽
+    scope.items = [];   //存放資料物件之陣列，一列為一個物件，key為欄名
+    scope.sheets = [];  //工作表 array
+  }
 
-    this.list = mockMembers;
+  fileChanged (files) {
+    this.sheets = [];   //工作表 array
+    this.excelFile = files[0];        //選擇之excel檔(.xlsx格式)
+    this.xlsxReader.readFile(this.excelFile, this.showPreview, this.showJSONPreview)
+    .then(xlsxData => {
+      this.sheets = xlsxData.sheets;
+    });
+  }
+
+  updateItems () {
+    this.items = this.sheets[this.selectedSheetName];
   }
 }
 
-OrderImportController.$inject = ['$state', '$cookies', 'acl', '$http', 'restful'];
+OrderImportController.$inject = ['$state', '$cookies', 'acl', '$http',
+  'restful', 'xlsxReader'];

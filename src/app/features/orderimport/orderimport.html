@@ -3,10 +3,24 @@
     <h1 class="padding-down">匯入訂單</h1>
     <div class="col-md-6">
       <div class="form-group">
-        <label for="fileField">選擇檔案</label>
-        <input type="file" name="fileField" id="fileField">
+        <label for="importexcel">選擇檔案</label>
+        <input type="file" accept=".xlsx,.xls" name="importexcel"
+               onchange="angular.element(this).scope().orderimport.fileChanged(this.files);">
       </div>
-      <button type="button" class="btn btn-default">匯入訂單 Excel</button>
+      <div class="form-group">
+        <label for="importexcel">選擇工作表</label>
+        <select class="form-control"
+                ng-change="orderimport.updateItems()"
+        	      ng-model="orderimport.selectedSheetName"
+                ng-options="sheetName as sheetName for (sheetName, sheetData) in orderimport.sheets">
+          <option value="">-----------</option>
+        </select>
+      </div>
+    	<ul>
+        <li ng-repeat="item in orderimport.items">
+          {{ item | json }}
+        </li>
+    	</ul>
     </div>
   </div>
 </div>

@@ -10,8 +10,10 @@ import OrderImportController from './orderimport.controller';
 import NavbarController from '../../../components/navbar/navbar.controller';
 import acl from '../../services/acl.service';
 import restful from '../../services/restful.service';
+import xlsxReader from '../../services/xlsxReader.service';
 
-export default angular.module('app.orderimport', [acl, uibootstrap, uirouter, restful])
+
+export default angular.module('app.orderimport', [acl, uibootstrap, uirouter, restful, xlsxReader])
   .config(routing)
   .controller('OrderImportController', OrderImportController)
   .controller('NavbarController', NavbarController)

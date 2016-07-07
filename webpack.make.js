@@ -20,7 +20,19 @@ module.exports = function makeWebpackConfig (options) {
    * Reference: http://webpack.github.io/docs/configuration.html
    * This is the object where all configuration gets set
    */
-  var config = {};
+  var config = {
+    node: {
+      fs: 'empty'
+    },
+    externals: [
+      {
+        './cptable': 'var cptable'
+      },
+      {
+        './jszip': 'jszip'
+      }
+    ]
+  };
 
   /**
    * Entry
