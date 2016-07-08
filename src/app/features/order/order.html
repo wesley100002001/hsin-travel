@@ -1,19 +1,19 @@
-<div id="content_wrap">
-  <div id="main" class="inner">
-    <h1>訂單內容</h1>
-    <table width="100%" border="1" cellpadding="5" class="ifree">
+<div class="container">
+  <div class="row">
+    <h1 class="padding-down">訂單內容</h1>
+    <table class="table table-striped table-bordered">
       <tr>
-        <th width="19%">金流單號</th>
-        <td width="32%">146379563061648</td>
-        <th width="15%">付款狀態</th>
-        <td width="34%">成功</td>
-        </tr>
+        <th>金流單號</th>
+        <td>146379563061648</td>
+        <th>付款狀態</th>
+        <td>成功</td>
+      </tr>
       <tr>
         <th>總金額</th>
         <td>1000</td>
         <th>付款方式</th>
         <td>信用卡</td>
-        </tr>
+      </tr>
       <tr>
         <th>贊助者姓名</th>
         <td>吳金玉</td>
@@ -21,150 +21,129 @@
         <td>2016-06-04 16:40:43 +0800</td>
       </tr>
       <tr>
-        <th>贊助者id</th>
-        <td valign="top">65678</td>
-        <th valign="top">付款時間</th>
-        <td valign="top">2016-06-04 16:40:43 +0800</td>
+        <th>贊助者 ID</th>
+        <td>65678</td>
+        <th>付款時間</th>
+        <td>2016-06-04 16:40:43 +0800</td>
       </tr>
       <tr>
-        <th>贊助者email</th>
-        <td valign="top">chinyuhwu@gmail.com</td>
-        <th valign="top">退款時間</th>
-        <td valign="top">&nbsp;</td>
+        <th>贊助者 E-Mail</th>
+        <td>chinyuhwu@gmail.com</td>
+        <th>退款時間</th>
+        <td></td>
       </tr>
       <tr>
         <th colspan="4">出貨記錄</th>
       </tr>
       <tr>
         <th>出貨狀態</th>
-        <td colspan="3" valign="top"><p>
-          <label for="radio3">
-            <input type="radio" name="radio" id="radio" value="radio" />
-            無</label>
-          <label for="radio2">
-            <input type="radio" name="radio" id="radio2" value="radio" />
-            未出貨</label>
-          <label for="radio4">
-            <input type="radio" name="radio" id="radio3" value="radio" />
-            已出貨
-            <input type="radio" name="radio" id="radio4" value="radio" />
-            取消出貨
-            <input type="radio" name="radio" id="radio5" value="radio" />
-            狀態有問題</label>
-        </p></td>
+        <td colspan="3">
+          <label class="radio-inline"><input type="radio" name="optradio">無</label>
+          <label class="radio-inline"><input type="radio" name="optradio">未出貨</label>
+          <label class="radio-inline"><input type="radio" name="optradio">已出貨</label>
+          <label class="radio-inline"><input type="radio" name="optradio">取消出貨</label>
+          <label class="radio-inline"><input type="radio" name="optradio">狀態有問題</label>
+        </td>
       </tr>
       <tr>
         <th>寄出出貨通知時間</th>
-        <td colspan="3" valign="top">2016-06-04 16:40:43 +0800</td>
+        <td colspan="3">2016-06-04 16:40:43 +0800</td>
       </tr>
       <tr>
         <th>宅配 / 掛號單號：</th>
-        <td colspan="3" valign="top"><input name="textfield3" type="text" id="textfield3" value="04209424304918 " />
+        <td colspan="3"><input name="textfield3" type="text" id="textfield3" value="04209424304918 " />
           </td>
       </tr>
       <tr>
         <th>發票號碼</th>
-        <td colspan="3" valign="top"><input type="text" name="textfield" id="textfield" /></td>
+        <td colspan="3"><input type="text" name="textfield" id="textfield" /></td>
       </tr>
       <tr>
         <th>發票捐贈</th>
-        <td colspan="3" valign="top"><input type="checkbox" name="checkbox" id="checkbox" />
-          <label for="checkbox">捐出去了 </label></td>
+        <td colspan="3">
+          <label class="checkbox-inline"><input type="checkbox" value="">捐出去了</label>
+        </td>
       </tr>
       <tr>
         <th>客服備註</th>
-        <td colspan="3" valign="top"><textarea name="textarea" id="textarea" cols="45" rows="5"></textarea></td>
+        <td colspan="3">
+          <textarea class="form-control" rows="5" name="notes"></textarea>
+        </td>
       </tr>
       <tr>
-        <td colspan="4" align="center"><input type="submit" name="button4" id="button4" value="儲存資料" /></td>
+        <td colspan="4" class="text-center">
+          <button type="button" class="btn btn-info">儲存資料</button>
+        </td>
       </tr>
       <tr>
-        <th colspan="4">出貨資訊</th>
+        <th colspan="4" class="text-center">出貨資訊</th>
       </tr>
       <tr>
-        <td colspan="4"><table width="100%" cellpadding="3">
-          <tr>
-            <th width="15%">收件者姓名</th>
-            <td width="35%">曾雅彤</td>
-            <th>所在國家</th>
-            <td>Taiwan, Republic Of China</td>
-            </tr>
-          <tr>
-            <th>收件者Mail</th>
-            <td>jodie_tseng300@yahoo.com.tw</td>
-            <th width="16%">居住城市</th>
-            <td width="34%">嘉義市</td>
-            </tr>
-          <tr>
-            <th>收件者電話</th>
-            <td>+886921345678</td>
-            <th>居住區域</th>
-            <td>西區 </td>
-            </tr>
-          <tr>
-            <th>想說的話</th>
-            <td>加油！！</td>
-            <th>郵遞區號</th>
-            <td>600</td>
-            </tr>
-          <tr>
-            <th>&nbsp;</th>
-            <td>&nbsp;</td>
-            <th>收件者地址</th>
-            <td>金鼎路338號</td>
-            </tr>
-        </table></td>
-        </tr>
-      <tr>
-        <th>贊助細節</th>
-        <td colspan="3" valign="top"><table width="100%" cellpadding="3">
-          <tr>
-            <th width="18%">專案</th>
-            <td width="82%">沃草給我錢計畫</td>
-            </tr>
-          <tr>
-            <th>回饋項目</th>
-            <td>棒球紀念組</td>
-            </tr>
-          <tr>
-            <th>數量</th>
-            <td>1</td>
-          </tr>
-          <tr>
-            <th>回饋價格</th>
-            <td>500</td>
-          </tr>
-          <tr>
-            <th>額外贊助</th>
-            <td>0</td>
-          </tr>
-          <tr>
-            <th>總金額</th>
-            <td>500</td>
-          </tr>
-        </table></td>
+        <th>收件者姓名</th>
+        <td>曾雅彤</td>
+        <th>所在國家</th>
+        <td>Taiwan</td>
       </tr>
       <tr>
-        <th>自訂欄位(選項)</th>
-        <td colspan="3" valign="top"><table width="100%" cellpadding="3">
-          <tr>
-            <th width="18%">自訂欄位1</th>
-            <td width="82%">暱</td>
-          </tr>
-          <tr>
-            <th>自訂欄位2</th>
-            <td>電腦</td>
-          </tr>
-          <tr>
-            <th>自訂欄位3</th>
-            <td>政治</td>
-          </tr>
-          <tr>
-            <th>自訂欄位4</th>
-            <td>要捐發票</td>
-          </tr>
-        </table></td>
+        <th>收件者 E-Mail</th>
+        <td>jodie_tseng300@yahoo.com.tw</td>
+        <th>居住城市</th>
+        <td>嘉義市</td>
       </tr>
-      </table>
+      <tr>
+        <th>收件者電話</th>
+        <td>0921345678</td>
+        <th>居住區域</th>
+        <td>西區</td>
+      </tr>
+      <tr>
+        <th>想說的話</th>
+        <td>加油！！</td>
+        <th>郵遞區號</th>
+        <td>600</td>
+      </tr>
+      <tr>
+        <th></th>
+        <td></td>
+        <th>收件者地址</th>
+        <td>金鼎路338號</td>
+      </tr>
+      <tr>
+        <th colspan="4" class="text-center">贊助細節</th>
+      </tr>
+      <tr>
+        <th>專案</th>
+        <td>沃草給我錢計畫</td>
+        <th>回饋項目</th>
+        <td>棒球紀念組</td>
+      </tr>
+      <tr>
+        <th>數量</th>
+        <td>1</td>
+        <th>回饋價格</th>
+        <td>500</td>
+      </tr>
+      <tr>
+        <th>額外贊助</th>
+        <td>0</td>
+        <th>總金額</th>
+        <td>500</td>
+      </tr>
+      <tr>
+        <th colspan="4" class="text-center">自訂欄位</th>
+      </tr>
+      <tr>
+        <th>自訂欄位 1</th>
+        <td>暱</td>
+        <th>自訂欄位 2</th>
+        <td>人生勝利組</td>
+      </tr>
+      <tr>
+        <th>自訂欄位 3</th>
+        <td>我不知道</td>
+        <th>自訂欄位4</th>
+        <td>要捐發票</td>
+      </tr>
+    </table>
   </div>
 </div>
