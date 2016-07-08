@@ -16,11 +16,9 @@
           <option value="">-----------</option>
         </select>
       </div>
-    	<ul>
-        <li ng-repeat="item in orderimport.items">
-          {{ item | json }}
-        </li>
-    	</ul>
+      <button type="button" class="btn btn-default"
+              ng-click="orderimport.uploadSheet()">同步至資料庫</button>
+      <h3 ng-show="orderimport.uploading">同步中，請稍候～</h3>
     </div>
   </div>
 </div>

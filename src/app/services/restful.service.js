@@ -40,10 +40,27 @@ class Restful {
 
   getAdmin (account, pwd) {
     return this.$q(function (resolve, reject) {
-      firebase.database().ref('admin/').on('value', function(snapshot) {
+      firebase.database().ref('admin/').on('value', function (snapshot) {
         resolve(snapshot.val().account === account && snapshot.val().password === pwd);
       });
     });
+  }
+
+  updateOrder (orderId, order) {
+    return this.$q(function (resolve, reject) {
+      firebase.database().ref('order/' + orderId).set(order)
+      .then(function () {
+        resolve('Success');
+      })
+    });
+  }
+
+  getOrders () {
+    return this.$q(function (resolve, reject) {
+      firebase.database().ref('order/').on('value', function (snapshot) {
+        resolve(snapshot.val());
+      });
+    })
   }
 
   getSites () {
