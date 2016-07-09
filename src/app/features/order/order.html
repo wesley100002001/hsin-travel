@@ -38,41 +38,64 @@
       <tr>
         <th>出貨狀態</th>
         <td colspan="3">
-          <label class="radio-inline"><input type="radio" name="optradio">無</label>
-          <label class="radio-inline"><input type="radio" name="optradio">未出貨</label>
-          <label class="radio-inline"><input type="radio" name="optradio">已出貨</label>
-          <label class="radio-inline"><input type="radio" name="optradio">取消出貨</label>
-          <label class="radio-inline"><input type="radio" name="optradio">狀態有問題</label>
+          <label class="radio-inline">
+            <input type="radio" ng-model="order.info.ship_status" value="stateless">
+            無
+          </label>
+          <label class="radio-inline">
+            <input type="radio" ng-model="order.info.ship_status" value="notyet">
+            未出貨
+          </label>
+          <label class="radio-inline">
+            <input type="radio" ng-model="order.info.ship_status" value="shipped">
+            已出貨
+          </label>
+          <label class="radio-inline">
+            <input type="radio" ng-model="order.info.ship_status" value="canceled">
+            取消出貨
+          </label>
+          <label class="radio-inline">
+            <input type="radio" ng-model="order.info.ship_status" value="error">
+            狀態有問題
+          </label>
         </td>
       </tr>
       <tr>
         <th>寄出出貨通知時間</th>
-        <td colspan="3">2016-06-04 16:40:43 +0800</td>
+        <td colspan="3">如何決定？</td>
       </tr>
       <tr>
         <th>宅配 / 掛號單號：</th>
-        <td colspan="3"><input name="textfield3" type="text" id="textfield3" value="04209424304918 " />
-          </td>
+        <td>
+          <input type="text" class="form-control"
+                 ng-model="order.info.ship_id" placeholder="請輸入單號">
+        </td>
+        <td colspan="2"></td>
       </tr>
       <tr>
         <th>發票號碼</th>
-        <td colspan="3"><input type="text" name="textfield" id="textfield" /></td>
+        <td>
+          <input type="text" class="form-control"
+                 ng-model="order.info.receipt_id" placeholder="請輸入發票號碼">
+        </td>
+        <td colspan="2"></td>
       </tr>
       <tr>
         <th>發票捐贈</th>
         <td colspan="3">
-          <label class="checkbox-inline"><input type="checkbox" value="">捐出去了</label>
+          <label class="checkbox-inline">
+            <input type="checkbox" ng-model="order.info.donated">捐出去了</label>
         </td>
       </tr>
       <tr>
         <th>客服備註</th>
         <td colspan="3">
-          <textarea class="form-control" rows="5" name="notes"></textarea>
+          <textarea class="form-control" rows="5" ng-model="order.info.ship_notes"></textarea>
         </td>
       </tr>
       <tr>
         <td colspan="4" class="text-center">
-          <button type="button" class="btn btn-info">儲存資料</button>
+          <button type="button" class="btn btn-info" ng-click="order.save()">儲存資料</button>
         </td>
       </tr>
       <tr>
