@@ -33,8 +33,7 @@ class Restful {
 
   setAdminPwd (pwd) {
     return this.$q(function (resolve, reject) {
-      firebase.database().ref('admin/').set({
-        account: 'admin',
+      firebase.database().ref('admin/').update({
         password: pwd
       }).then(function () {
         resolve('Success');
