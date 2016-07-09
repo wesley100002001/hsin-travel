@@ -32,7 +32,7 @@ export default class MembersController {
     $scope.$watch(angular.bind(this, function () {
       return this.currentPage;
     }), function (newVal) {
-      if (!!newVal && !!scope.list) {
+      if (!!scope.list) {
         createCurPage();
       }
     });
@@ -40,7 +40,7 @@ export default class MembersController {
     $scope.$watch(angular.bind(this, function () {
       return this.searchText;
     }), function (newVal) {
-      if (!!newVal) {
+      if (!!scope.list) {
         createCurPage();
       }
     });
