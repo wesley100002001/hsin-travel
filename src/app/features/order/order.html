@@ -4,33 +4,33 @@
     <table class="table table-striped table-bordered">
       <tr>
         <th>金流單號</th>
-        <td>146379563061648</td>
+        <td>{{order.info.id}}</td>
         <th>付款狀態</th>
-        <td>成功</td>
+        <td>{{order.info.status}}</td>
       </tr>
       <tr>
         <th>總金額</th>
-        <td>1000</td>
+        <td>{{order.info.cost}}</td>
         <th>付款方式</th>
-        <td>信用卡</td>
+        <td>{{order.info.pay_method}}</td>
       </tr>
       <tr>
         <th>贊助者姓名</th>
-        <td>吳金玉</td>
+        <td>{{order.info.sponsor_name}}</td>
         <th>訂單建立時間</th>
-        <td>2016-06-04 16:40:43 +0800</td>
+        <td>{{order.info.create_time}}</td>
       </tr>
       <tr>
         <th>贊助者 ID</th>
-        <td>65678</td>
+        <td>{{order.info.sponsor_id}}</td>
         <th>付款時間</th>
-        <td>2016-06-04 16:40:43 +0800</td>
+        <td>{{order.info.pay_time}}</td>
       </tr>
       <tr>
         <th>贊助者 E-Mail</th>
-        <td>chinyuhwu@gmail.com</td>
+        <td>{{order.info.sponsor_email}}</td>
         <th>退款時間</th>
-        <td></td>
+        <td>{{order.info.refund_time}}</td>
       </tr>
       <tr>
         <th colspan="4">出貨記錄</th>
@@ -80,33 +80,33 @@
       </tr>
       <tr>
         <th>收件者姓名</th>
-        <td>曾雅彤</td>
+        <td>{{order.info.receiver_name}}</td>
         <th>所在國家</th>
-        <td>Taiwan</td>
+        <td>{{order.info.country}}</td>
       </tr>
       <tr>
         <th>收件者 E-Mail</th>
-        <td>jodie_tseng300@yahoo.com.tw</td>
+        <td>{{order.info.receiver_email}}</td>
         <th>居住城市</th>
-        <td>嘉義市</td>
+        <td>{{order.info.city}}</td>
       </tr>
       <tr>
         <th>收件者電話</th>
-        <td>0921345678</td>
+        <td>{{order.info.receiver_phone}}</td>
         <th>居住區域</th>
-        <td>西區</td>
+        <td>{{order.info.area}}</td>
       </tr>
       <tr>
         <th>想說的話</th>
-        <td>加油！！</td>
+        <td>{{order.info.wanttosay}}</td>
         <th>郵遞區號</th>
-        <td>600</td>
+        <td>{{order.info.postcode}}</td>
       </tr>
       <tr>
         <th></th>
         <td></td>
         <th>收件者地址</th>
-        <td>金鼎路338號</td>
+        <td>{{order.info.receiver_address}}</td>
       </tr>
       <tr>
         <th colspan="4" class="text-center">贊助細節</th>
@@ -119,15 +119,15 @@
       </tr>
       <tr>
         <th>數量</th>
-        <td>1</td>
+        <td>{{order.info.amount}}</td>
         <th>回饋價格</th>
         <td>500</td>
       </tr>
       <tr>
         <th>額外贊助</th>
-        <td>0</td>
+        <td>{{order.info.extra}}</td>
         <th>總金額</th>
-        <td>500</td>
+        <td>{{order.info.cost}}</td>
       </tr>
       <tr>
         <th colspan="4" class="text-center">自訂欄位</th>

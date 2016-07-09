@@ -63,6 +63,14 @@ class Restful {
     })
   }
 
+  getOrder (orderId) {
+    return this.$q(function (resolve, reject) {
+      firebase.database().ref('order/' + orderId).on('value', function (snapshot) {
+        resolve(snapshot.val());
+      });
+    })
+  }
+
   getSites () {
     return this.http({
       method: 'GET',
