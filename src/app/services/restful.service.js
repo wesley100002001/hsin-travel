@@ -66,6 +66,15 @@ class Restful {
     })
   }
 
+  updateOrder (orderId, obj) {
+    return this.$q(function (resolve, reject) {
+      firebase.database().ref('order/' + orderId).update(obj)
+      .then(function () {
+        resolve('Success');
+      })
+    });
+  }
+
   getLastUpdateTime () {
     return this.$q(function (resolve, reject) {
       firebase.database().ref('lastupdate/').on('value', function(snapshot) {
