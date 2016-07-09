@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export default class OrdersController {
   constructor ($state, $cookies, acl, $http, restful, $filter, $scope, $q) {
     var scope = this;
@@ -13,6 +15,7 @@ export default class OrdersController {
     scope.restful.getOrders()
     .then(orders => {
       angular.forEach(orders, function (value, key) {
+        value.pay_time = value.pay_time === '無' ? '無' : moment(value.pay_time).format('YYYY 年 MM 月 DD 日 HH:mm:ss');
         list.push(value);
       });
       scope.list = list;
