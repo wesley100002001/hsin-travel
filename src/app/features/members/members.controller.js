@@ -4,35 +4,22 @@ export default class MembersController {
     this.$scope = $scope;
     scope.state = $state;
     scope.cookies = $cookies;
-
-    var mockMembers = [
-      { sponsor_name: "Wesley Chia Wei Lin", sponsor_email: "eowifjwoeifsldhf@gmail.com", receiver_name: "王小頭", receiver_phone: "0912345671", receiver_email: "eowifjwoeifsldhf@gmail.com", nation: "Taiwan", city: "台北市", postcode: "104", address: "松江路46巷15號" },
-      { sponsor_name: "王大頭", sponsor_email: "eowifjwoeifsldhf@gmail.com", receiver_name: "王小頭", receiver_phone: "0912345671", receiver_email: "eowifjwoeifsldhf@gmail.com", nation: "Taiwan", city: "台北市", postcode: "104", address: "松江路46巷15號" },
-      { sponsor_name: "王大頭", sponsor_email: "eowifjwoeifsldhf@gmail.com", receiver_name: "王小頭", receiver_phone: "0912345671", receiver_email: "eowifjwoeifsldhf@gmail.com", nation: "Taiwan", city: "台北市", postcode: "104", address: "松江路46巷15號" },
-      { sponsor_name: "王大頭", sponsor_email: "eowifjwoeifsldhf@gmail.com", receiver_name: "王小頭", receiver_phone: "0912345671", receiver_email: "eowifjwoeifsldhf@gmail.com", nation: "Taiwan", city: "台北市", postcode: "104", address: "松江路46巷15號" },
-      { sponsor_name: "王大頭", sponsor_email: "eowifjwoeifsldhf@gmail.com", receiver_name: "王小頭", receiver_phone: "0912345671", receiver_email: "eowifjwoeifsldhf@gmail.com", nation: "Taiwan", city: "台北市", postcode: "104", address: "松江路46巷15號" },
-      { sponsor_name: "王大頭", sponsor_email: "eowifjwoeifsldhf@gmail.com", receiver_name: "王小頭", receiver_phone: "0912345671", receiver_email: "eowifjwoeifsldhf@gmail.com", nation: "Taiwan", city: "台北市", postcode: "104", address: "松江路46巷15號" },
-      { sponsor_name: "王大頭", sponsor_email: "eowifjwoeifsldhf@gmail.com", receiver_name: "王小頭", receiver_phone: "0912345671", receiver_email: "eowifjwoeifsldhf@gmail.com", nation: "Taiwan", city: "台北市", postcode: "104", address: "松江路46巷15號" },
-      { sponsor_name: "王大頭", sponsor_email: "eowifjwoeifsldhf@gmail.com", receiver_name: "王小頭", receiver_phone: "0912345671", receiver_email: "eowifjwoeifsldhf@gmail.com", nation: "Taiwan", city: "台北市", postcode: "104", address: "松江路46巷15號" },
-      { sponsor_name: "王大頭", sponsor_email: "eowifjwoeifsldhf@gmail.com", receiver_name: "王小頭", receiver_phone: "0912345671", receiver_email: "eowifjwoeifsldhf@gmail.com", nation: "Taiwan", city: "台北市", postcode: "104", address: "松江路46巷15號" },
-      { sponsor_name: "大頭", sponsor_email: "eowifjwoeifsldhf@gmail.com", receiver_name: "王小頭", receiver_phone: "0912345671", receiver_email: "eowifjwoeifsldhf@gmail.com", nation: "Taiwan", city: "台北市", postcode: "104", address: "松江路46巷15號" },
-      { sponsor_name: "大頭", sponsor_email: "eowifjwoeifsldhf@gmail.com", receiver_name: "王小頭", receiver_phone: "0912345671", receiver_email: "eowifjwoeifsldhf@gmail.com", nation: "Taiwan", city: "台北市", postcode: "104", address: "松江路46巷15號" },
-      { sponsor_name: "大頭", sponsor_email: "eowifjwoeifsldhf@gmail.com", receiver_name: "王小頭", receiver_phone: "0912345671", receiver_email: "eowifjwoeifsldhf@gmail.com", nation: "Taiwan", city: "台北市", postcode: "104", address: "松江路46巷15號" },
-      { sponsor_name: "大頭", sponsor_email: "eowifjwoeifsldhf@gmail.com", receiver_name: "王小頭", receiver_phone: "0912345671", receiver_email: "eowifjwoeifsldhf@gmail.com", nation: "Taiwan", city: "台北市", postcode: "104", address: "松江路46巷15號" },
-      { sponsor_name: "大頭", sponsor_email: "eowifjwoeifsldhf@gmail.com", receiver_name: "王小頭", receiver_phone: "0912345671", receiver_email: "eowifjwoeifsldhf@gmail.com", nation: "Taiwan", city: "台北市", postcode: "104", address: "松江路46巷15號" },
-      { sponsor_name: "大頭", sponsor_email: "eowifjwoeifsldhf@gmail.com", receiver_name: "王小頭", receiver_phone: "0912345671", receiver_email: "eowifjwoeifsldhf@gmail.com", nation: "Taiwan", city: "台北市", postcode: "104", address: "松江路46巷15號" },
-      { sponsor_name: "大頭", sponsor_email: "eowifjwoeifsldhf@gmail.com", receiver_name: "王小頭", receiver_phone: "0912345671", receiver_email: "eowifjwoeifsldhf@gmail.com", nation: "Taiwan", city: "台北市", postcode: "104", address: "松江路46巷15號" }
-    ];
+    scope.restful = restful;
 
     if (!acl.checkStatus(this.cookies.get('status'))) {
       this.state.go('login');
     }
 
-    // restful.getAttrs().then(function (response) {
-    //   scope.list = response.data.attractions;
-    // }, function (response) {});
+    var list = [];
+    scope.restful.getOrders()
+    .then(orders => {
+      angular.forEach(orders, function (value, key) {
+        list.push(value);
+      });
+      scope.list = list;
+      createCurPage();
+    });
 
-    scope.list = mockMembers;
     scope.pageSize = 10;
     scope.maxSize = 10;
     scope.currentPage = 1;
@@ -41,18 +28,21 @@ export default class MembersController {
         $filter('filter')(scope.list, scope.searchText)
         .slice((scope.currentPage - 1) * scope.pageSize);
     };
-    createCurPage();
 
     $scope.$watch(angular.bind(this, function () {
       return this.currentPage;
     }), function (newVal) {
-      createCurPage();
+      if (!!newVal && !!scope.list) {
+        createCurPage();
+      }
     });
 
     $scope.$watch(angular.bind(this, function () {
       return this.searchText;
     }), function (newVal) {
-      createCurPage();
+      if (!!newVal) {
+        createCurPage();
+      }
     });
   }
 }
