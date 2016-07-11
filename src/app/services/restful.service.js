@@ -41,6 +41,28 @@ class Restful {
     });
   }
 
+  getLastUpdateTime () {
+    return this.$q(function (resolve, reject) {
+      firebase.database().ref('lastupdate/').on('value', function(snapshot) {
+        if (!snapshot.val()) {
+          resolve(moment().format('YYYY 年 MM 月 DD 日 HH:mm:ss'));
+        } else {
+          resolve(moment(snapshot.val().time).format('YYYY 年 MM 月 DD 日 HH:mm:ss'));
+        }
+      });
+    });
+  }
+
+  updateLastUpdateTime () {
+    return this.$q(function (resolve, reject) {
+      firebase.database().ref('lastupdate/').update({
+        time: moment().format()
+      }).then(function () {
+        resolve('Success');
+      });
+    })
+  }
+
   getOrders () {
     return this.$q(function (resolve, reject) {
       firebase.database().ref('order/').on('value', function (snapshot) {
@@ -63,18 +85,6 @@ class Restful {
       .then(function () {
         resolve('Success');
       })
-    });
-  }
-
-  getLastUpdateTime () {
-    return this.$q(function (resolve, reject) {
-      firebase.database().ref('lastupdate/').on('value', function(snapshot) {
-        if (!snapshot.val()) {
-          resolve(moment().format('YYYY 年 MM 月 DD 日 HH:mm:ss'));
-        } else {
-          resolve(snapshot.val());
-        }
-      });
     });
   }
 }

@@ -67,8 +67,10 @@ export default class OrderImportController {
       orderlist.push(this.restful.updateOrder(normalizedOrder.id, normalizedOrder));
     });
     this.$q.all(orderlist).then(response => {
+      return this.restful.updateLastUpdateTime();
+    }).then(response => {
       this.uploading = false;
-      alert('成功同步');
+      alert('同步完成');
     });
   }
 }
