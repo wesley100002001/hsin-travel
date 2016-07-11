@@ -41,15 +41,6 @@ class Restful {
     });
   }
 
-  updateOrder (orderId, order) {
-    return this.$q(function (resolve, reject) {
-      firebase.database().ref('order/' + orderId).set(order)
-      .then(function () {
-        resolve('Success');
-      })
-    });
-  }
-
   getOrders () {
     return this.$q(function (resolve, reject) {
       firebase.database().ref('order/').on('value', function (snapshot) {
