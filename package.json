@@ -1,7 +1,7 @@
 {
-  "name": "4free-dashboard",
+  "name": "watchout-backme",
   "version": "1.0.0",
-  "description": "4FRee Wifi Dashboard",
+  "description": "Watchout Backme Logistic System",
   "scripts": {
     "build": "webpack --config webpack.build.js --bail -p",
     "dev": "node node_modules/.bin/webpack-dev-server --history-api-fallback --hot --inline --progress",
