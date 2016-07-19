@@ -21,7 +21,7 @@ export default class OrdersController {
     scope.maxSize = 10;
     scope.currentPage = 1;
     var createCurPage = function () {
-      scope.currentMemberList =
+      scope.currentOrderList =
         $filter('filter')(scope.list, scope.searchText)
         .slice((scope.currentPage - 1) * scope.pageSize);
     };

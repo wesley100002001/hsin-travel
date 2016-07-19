@@ -27,7 +27,7 @@
         <th>出貨狀態</th>
         <th>付款時間</th>
       </tr>
-      <tr ng-repeat="order in (orders.currentMemberList | limitTo: orders.pageSize)">
+      <tr ng-repeat="order in (orders.currentOrderList | limitTo: orders.pageSize)">
         <td><a ui-sref="order({orderId: '{{order.id}}'})">{{order.id}}</a></td>
         <td>{{order.sponsor_name}}</td>
         <td>{{order.sponsor_email}}</td>
