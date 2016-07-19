@@ -5,19 +5,33 @@
       <form class="form form-inline">
         <div class="form-group padding-down">
           <label for="search">搜尋</label>
-          <input type="text" class="form-control" name="search" id="search"
+          <input type="text" class="form-control" name="search"
                  placeholder="請輸入關鍵字" ng-model="orders.searchText">
         </div>
       </form>
     </div>
     <div class="col-md-6 padding-down">
-      <button type="button" class="btn btn-default">全部訂單</button>
-      <button type="button" class="btn btn-default">尚未出貨</button>
-      <button type="button" class="btn btn-default">已出貨</button>
-      <button type="button" class="btn btn-default">付款成功</button>
-      <button type="button" class="btn btn-default">等待付款</button>
-      <button type="button" class="btn btn-default">付款失敗</button>
-  </div>
+      <button type="button" class="btn btn-default"
+              ng-class="{'btn-info': orders.searchObj.ship_status === 'notyet',
+                'btn-default': orders.searchObj.ship_status !== 'notyet'}"
+              ng-click="orders.showUnshippedOrders()">尚未出貨</button>
+      <button type="button" class="btn btn-default"
+              ng-class="{'btn-info': orders.searchObj.ship_status === 'shipped',
+                'btn-default': orders.searchObj.ship_status !== 'shipped'}"
+              ng-click="orders.showShippedOrders()">已出貨</button>
+      <button type="button" class="btn btn-default"
+              ng-class="{'btn-info': orders.searchObj.status === 'success',
+                'btn-default': orders.searchObj.status !== 'success'}"
+              ng-click="orders.showSuccessOrders()">付款成功</button>
+      <button type="button" class="btn btn-default"
+              ng-class="{'btn-info': orders.searchObj.status === 'pending',
+                'btn-default': orders.searchObj.status !== 'pending'}"
+              ng-click="orders.showPendingOrders()">等待付款</button>
+      <button type="button" class="btn btn-default"
+              ng-class="{'btn-info': orders.searchObj.status === 'failed',
+                'btn-default': orders.searchObj.status !== 'failed'}"
+              ng-click="orders.showFailedOrders()">付款失敗</button>
+    </div>
     <table class="table table-striped table-bordered">
       <tr>
         <th>金流單號</th>
@@ -38,7 +52,7 @@
     </table>
     <uib-pagination
       class="pagination-sm"
-      total-items="orders.currentOrderList.length"
+      total-items="orders.list.length"
       items-per-page="orders.pageSize"
       max-size="orders.maxSize"
       boundary-links="true"
