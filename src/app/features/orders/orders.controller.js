@@ -3,23 +3,23 @@ import moment from 'moment';
 export default class OrdersController {
   constructor ($state, $cookies, acl, $http, restful, $filter, $scope, $q) {
     var scope = this;
-    scope.restful = restful;
-    scope.state = $state;
-    scope.cookies = $cookies;
+    this.restful = restful;
+    this.state = $state;
+    this.cookies = $cookies;
 
     if (!acl.checkStatus(this.cookies.get('status'))) {
       this.state.go('login');
     }
 
-    scope.restful.getOrders()
+    this.restful.getOrders()
     .then(orders => {
-      scope.list = orders;
+      this.list = orders;
       createCurPage();
     });
 
-    scope.pageSize = 10;
-    scope.maxSize = 10;
-    scope.currentPage = 1;
+    this.pageSize = 10;
+    this.maxSize = 10;
+    this.currentPage = 1;
     var createCurPage = function () {
       scope.currentOrderList =
         $filter('filter')(scope.list, scope.searchText)
