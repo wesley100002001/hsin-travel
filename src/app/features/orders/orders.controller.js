@@ -11,14 +11,9 @@ export default class OrdersController {
       this.state.go('login');
     }
 
-    var list = [];
     scope.restful.getOrders()
     .then(orders => {
-      angular.forEach(orders, function (value, key) {
-        value.pay_time = value.pay_time === '無' ? '無' : moment(value.pay_time).format('YYYY 年 MM 月 DD 日 HH:mm:ss');
-        list.push(value);
-      });
-      scope.list = list;
+      scope.list = orders;
       createCurPage();
     });
 
