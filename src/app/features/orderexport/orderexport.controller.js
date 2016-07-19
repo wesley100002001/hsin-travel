@@ -49,6 +49,13 @@ export default class OrderExportController {
       return response;
     });
   }
+
+  exportAll () {
+    return this.restful.getOrders()
+    .then(response => {
+      return response;
+    });
+  }
 }
 
 OrderExportController.$inject = ['$state', '$cookies', 'acl', '$http', 'restful'];
