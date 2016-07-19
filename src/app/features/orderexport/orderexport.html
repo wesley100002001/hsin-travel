@@ -7,8 +7,18 @@
       </tr>
       <tr>
         <td colspan="4">
-          <button type="button" class="btn btn-default">匯出未出貨訂單</button>
-          <button type="button" class="btn btn-default">匯出全部訂單</button>
+          <button type="button" class="btn btn-default" filename="unshipped.csv"
+                  csv-column-order="orderexport.columnOrder"
+                  csv-header="orderexport.columnHead"
+                  ng-csv="orderexport.exportUnshipped()">
+          匯出未出貨訂單
+          </button>
+          <!-- <button type="button" class="btn btn-default" filename="all.csv"
+                  csv-column-order="orderexport.columnOrder"
+                  csv-header="orderexport.columnHead"
+                  ng-csv="orderexport.exportAll()">
+          匯出全部訂單
+          </button> -->
           <button type="button" class="btn btn-default">匯出未出貨標籤 PDF</button>
         </td>
       </tr>

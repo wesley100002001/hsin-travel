@@ -79,6 +79,20 @@ class Restful {
     })
   }
 
+  getUnshippedOrders () {
+    return this.$q(function (resolve, reject) {
+      firebase.database().ref('order/').orderByChild('ship_status').equalTo('notyet')
+      .on('value', function (snapshot) {
+        var orders = [];
+        angular.forEach(snapshot.val(), function (value, key) {
+          value.pay_time = value.pay_time === '無' ? '無' : moment(value.pay_time).format('YYYY 年 MM 月 DD 日 HH:mm:ss');
+          orders.push(value);
+        });
+        resolve(orders);
+      });
+    })
+  }
+
   updateOrder (orderId, obj) {
     return this.$q(function (resolve, reject) {
       firebase.database().ref('order/' + orderId).update(obj)
