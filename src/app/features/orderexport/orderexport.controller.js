@@ -1,4 +1,5 @@
 import moment from 'moment';
+import jsPDF from '../../../assets/js/jspdf';
 
 export default class OrderExportController {
   constructor ($state, $cookies, acl, $http, restful) {
@@ -55,6 +56,12 @@ export default class OrderExportController {
     .then(response => {
       return response;
     });
+  }
+
+  test () {
+    var doc = new jsPDF();
+    doc.text(10, 10, 'Hello world.                      Hello world.');
+    doc.save('Test.pdf');
   }
 }
 
