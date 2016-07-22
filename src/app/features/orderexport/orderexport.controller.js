@@ -1,5 +1,8 @@
 import moment from 'moment';
 
+require('script!../../../assets/js/pdfmake');
+require('../../../assets/js/vfs_fonts');
+
 export default class OrderExportController {
   constructor ($state, $cookies, acl, $http, restful) {
     this.state = $state;
@@ -57,22 +60,24 @@ export default class OrderExportController {
     });
   }
 
-  // test () {
-  //   return this.restful.getLabels()
-  //   .then(response => {
-  //     var doc = new jsPDF();
-  //     var height = 10;
-  //     console.log(response);
-  //     response.forEach(label => {
-  //       doc.text(10, height, label.receiver_name);
-  //       height += 10;
-  //       doc.text(10, height, label.receiver_phone);
-  //       height += 10;
-  //       doc.text(10, height, label.receiver_address);
-  //     });
-  //     doc.save('Test.pdf');
-  //   });
-  // }
+  test () {
+    // return this.restful.getLabels()
+    // .then(response => {
+    //   var doc = new jsPDF();
+    //   var height = 10;
+    //   console.log(response);
+    //   response.forEach(label => {
+    //     doc.text(10, height, label.receiver_name);
+    //     height += 10;
+    //     doc.text(10, height, label.receiver_phone);
+    //     height += 10;
+    //     doc.text(10, height, label.receiver_address);
+    //   });
+    //   doc.save('Test.pdf');
+    // });
+    var docDefinition = { content: 'This is an sample PDF printed with pdfMake' };
+    pdfMake.createPdf(docDefinition).download();
+  }
 }
 
 OrderExportController.$inject = ['$state', '$cookies', 'acl', '$http', 'restful'];

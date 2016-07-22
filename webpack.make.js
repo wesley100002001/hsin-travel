@@ -105,7 +105,10 @@ module.exports = function makeWebpackConfig (options) {
       // Compiles ES6 and ES7 into ES5 code
       test: /\.js$/,
       loader: 'babel',
-      exclude: /node_modules/
+      exclude: [
+        /node_modules/,
+        /pdfmake\.js$/
+      ]
     }, {
       // ASSET LOADER
       // Reference: https://github.com/webpack/file-loader
