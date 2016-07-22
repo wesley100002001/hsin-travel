@@ -1,5 +1,4 @@
 import moment from 'moment';
-import jsPDF from '../../../assets/js/jspdf';
 
 export default class OrderExportController {
   constructor ($state, $cookies, acl, $http, restful) {
@@ -58,11 +57,22 @@ export default class OrderExportController {
     });
   }
 
-  test () {
-    var doc = new jsPDF();
-    doc.text(10, 10, 'Hello world.                      Hello world.');
-    doc.save('Test.pdf');
-  }
+  // test () {
+  //   return this.restful.getLabels()
+  //   .then(response => {
+  //     var doc = new jsPDF();
+  //     var height = 10;
+  //     console.log(response);
+  //     response.forEach(label => {
+  //       doc.text(10, height, label.receiver_name);
+  //       height += 10;
+  //       doc.text(10, height, label.receiver_phone);
+  //       height += 10;
+  //       doc.text(10, height, label.receiver_address);
+  //     });
+  //     doc.save('Test.pdf');
+  //   });
+  // }
 }
 
 OrderExportController.$inject = ['$state', '$cookies', 'acl', '$http', 'restful'];
