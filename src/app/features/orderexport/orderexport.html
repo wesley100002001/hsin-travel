@@ -19,7 +19,10 @@
                   ng-csv="orderexport.exportAll()">
           匯出全部訂單
           </button>
-          <button type="button" class="btn btn-default" ng-click="orderexport.test()">匯出未出貨標籤 PDF</button>
+          <button type="button" class="btn btn-default"
+                  ng-click="orderexport.exportUnshippedPDF()">
+          匯出未出貨標籤 PDF
+          </button>
         </td>
       </tr>
       <tr>

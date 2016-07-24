@@ -60,14 +60,34 @@ export default class OrderExportController {
     });
   }
 
-  test () {
+  exportUnshippedPDF () {
     return this.restful.getLabels()
     .then(response => {
       var docDefinition = { defaultStyle: { font: 'wt002' } };
+      var left = true;
+      var column = [];
+      docDefinition.content = [];
       response.forEach(label => {
-        docDefinition.content += label.receiver_name + '\n';
-        docDefinition.content += label.receiver_phone + '\n';
-        docDefinition.content += label.receiver_address + '\n';
+        if (left) {
+          column = {
+            columns: [
+              {
+                text: label.receiver_name + '\n' + label.receiver_phone + '\n' + label.receiver_address,
+                width: '50%',
+                margin: [50, 0, 0, 80]
+              }
+            ]
+          };
+        } else {
+          column.columns.push({
+            text: label.receiver_name + '\n' + label.receiver_phone + '\n' + label.receiver_address,
+            width: '50%',
+            margin: [50, 0, 0, 80]
+          });
+          docDefinition.content.push(column);
+          column = [];
+        }
+        left = !left;
       });
       pdfMake.fonts = {
          wt002: {
