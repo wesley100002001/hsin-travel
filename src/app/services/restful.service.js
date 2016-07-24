@@ -60,7 +60,23 @@ class Restful {
       }).then(function () {
         resolve('Success');
       });
-    })
+    });
+  }
+
+  getLabels () {
+    return this.$q(function (resolve, reject) {
+      firebase.database().ref('order/').on('value', function (snapshot) {
+        var labels = [];
+        angular.forEach(snapshot.val(), function (value, key) {
+          labels.push({
+            receiver_name: value.receiver_name,
+            receiver_phone: value.receiver_phone,
+            receiver_address: value.receiver_address
+          });
+        });
+        resolve(labels);
+      });
+    });
   }
 
   getOrders () {
@@ -73,7 +89,7 @@ class Restful {
         });
         resolve(orders);
       });
-    })
+    });
   }
 
   getOrder (orderId) {
@@ -81,7 +97,7 @@ class Restful {
       firebase.database().ref('order/' + orderId).on('value', function (snapshot) {
         resolve(snapshot.val());
       });
-    })
+    });
   }
 
   getUnshippedOrders () {
@@ -95,7 +111,7 @@ class Restful {
         });
         resolve(orders);
       });
-    })
+    });
   }
 
   updateOrder (orderId, obj) {

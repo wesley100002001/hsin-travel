@@ -61,22 +61,24 @@ export default class OrderExportController {
   }
 
   test () {
-    // return this.restful.getLabels()
-    // .then(response => {
-    //   var doc = new jsPDF();
-    //   var height = 10;
-    //   console.log(response);
-    //   response.forEach(label => {
-    //     doc.text(10, height, label.receiver_name);
-    //     height += 10;
-    //     doc.text(10, height, label.receiver_phone);
-    //     height += 10;
-    //     doc.text(10, height, label.receiver_address);
-    //   });
-    //   doc.save('Test.pdf');
-    // });
-    var docDefinition = { content: 'This is an sample PDF printed with pdfMake' };
-    pdfMake.createPdf(docDefinition).download();
+    return this.restful.getLabels()
+    .then(response => {
+      var docDefinition = { defaultStyle: { font: 'wt002' } };
+      response.forEach(label => {
+        docDefinition.content += label.receiver_name + '\n';
+        docDefinition.content += label.receiver_phone + '\n';
+        docDefinition.content += label.receiver_address + '\n';
+      });
+      pdfMake.fonts = {
+         wt002: {
+           normal: 'wt002.ttf',
+           bold: 'wt002.ttf',
+           italics: 'wt002.ttf',
+           bolditalics: 'wt002.ttf'
+         }
+      }
+      pdfMake.createPdf(docDefinition).download();
+    });
   }
 }
 
