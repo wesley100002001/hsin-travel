@@ -23,12 +23,16 @@
                   ng-click="orderexport.exportUnshippedPDF()">
           匯出未出貨標籤 PDF
           </button>
+          <button type="button" class="btn btn-default"
+                  ng-click="orderexport.exportErrorPDF()">
+          匯出有問題出貨標籤 PDF
+          </button>
         </td>
       </tr>
       <tr>
         <th colspan="4">訂單匯出：其他匯出設定</th>
       </tr>
-      <tr>
+      <!-- <tr>
         <th>付款狀態</th>
         <td colspan="3">
           <label class="checkbox-inline"><input type="checkbox" value="">成功</label>
@@ -45,7 +49,7 @@
           <label class="checkbox-inline"><input type="checkbox" value="">取消出貨</label>
           <label class="checkbox-inline"><input type="checkbox" value="">狀態有問題</label>
         </td>
-      </tr>
+      </tr> -->
       <tr>
         <th>付款時間日期區間</th>
         <td width="25%">
@@ -55,7 +59,7 @@
               id="start_time" name="start_time"
               uib-datepicker-popup="yyyy-MM-dd"
               show-button-bar="false"
-              ng-model="startTime"
+              ng-model="orderexport.startTime"
               max-date="orderexport.timeOption.max"
               is-open="orderexport.startOpened" close-text="Close" readonly>
               <span class="input-group-btn">
@@ -87,23 +91,12 @@
       </tr>
       <tr>
         <td colspan="4" class="text-center">
-          <button type="button" class="btn btn-default">匯出訂單 Excel</button>
-        </td>
-      </tr>
-      <tr>
-        <th colspan="s">標籤匯出：其他匯出設定</th>
-      </tr>
-      <tr>
-        <th>出貨狀態</th>
-        <td colspan="3">
-          <label class="checkbox-inline"><input type="checkbox" value="">尚未出貨</label>
-          <label class="checkbox-inline"><input type="checkbox" value="">已出貨</label>
-          <label class="checkbox-inline"><input type="checkbox" value="">無</label>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="4" class="text-center">
-          <button type="button" class="btn btn-default">匯出標籤 PDF</button>
+          <button type="button" class="btn btn-default" filename="custom.csv"
+                  csv-column-order="orderexport.columnOrder"
+                  csv-header="orderexport.columnHead"
+                  ng-csv="orderexport.exportCustom()">
+          匯出訂單 Excel
+          </button>
         </td>
       </tr>
     </table>

@@ -60,6 +60,65 @@ export default class OrderExportController {
     });
   }
 
+  exportCustom () {
+    var query = {};
+    if (!this.startTime || !this.endTime) {
+      alert('請選擇時間區間');
+    } else {
+      query.startTime = this.startTime;
+      query.endTime = this.endTime;
+      return this.restful.queryOrders(query)
+      .then(response => {
+        return response;
+      });
+    }
+  }
+
+  exportErrorPDF () {
+    return this.restful.getErrorLabels()
+    .then(response => {
+      var docDefinition = { defaultStyle: { font: 'wt002' } };
+      var left = true;
+      var column = [];
+      docDefinition.content = [];
+      response.forEach(label => {
+        if (left) {
+          column = {
+            columns: [
+              {
+                text: label.receiver_name + ' 先生/小姐 收' + '\n' + label.receiver_phone + '\n' + label.receiver_address,
+                width: '50%',
+                margin: [50, 0, 0, 80]
+              }
+            ]
+          };
+        } else {
+          column.columns.push({
+            text: label.receiver_name + ' 先生/小姐 收' + '\n' + label.receiver_phone + '\n' + label.receiver_address,
+            width: '50%',
+            margin: [50, 0, 0, 80]
+          });
+          docDefinition.content.push(column);
+          column = [];
+        }
+        left = !left;
+      });
+      if (!left) {
+        docDefinition.content.push(column);
+      }
+      pdfMake.fonts = {
+         wt002: {
+           normal: 'wt002.ttf',
+           bold: 'wt002.ttf',
+           italics: 'wt002.ttf',
+           bolditalics: 'wt002.ttf'
+         }
+      }
+
+      pdfMake.createPdf(docDefinition).download();
+    });
+  }
+
   exportUnshippedPDF () {
     return this.restful.getUnshippedLabels()
     .then(response => {

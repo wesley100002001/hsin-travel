@@ -80,6 +80,23 @@ class Restful {
     });
   }
 
+  getErrorLabels () {
+    return this.$q(function (resolve, reject) {
+      firebase.database().ref('order/').orderByChild('ship_status')
+      .equalTo('error').once('value', function (snapshot) {
+        var labels = [];
+        angular.forEach(snapshot.val(), function (value, key) {
+          labels.push({
+            receiver_name: value.receiver_name,
+            receiver_phone: value.receiver_phone,
+            receiver_address: value.receiver_address
+          });
+        });
+        resolve(labels);
+      });
+    });
+  }
+
   getOrders () {
     return this.$q(function (resolve, reject) {
       firebase.database().ref('order/').on('value', function (snapshot) {
@@ -98,6 +115,23 @@ class Restful {
       firebase.database().ref('order/' + orderId).on('value', function (snapshot) {
         resolve(snapshot.val());
       });
+    });
+  }
+
+  queryOrders (query) {
+    return this.$q(function (resolve, reject) {
+      firebase.database().ref('order/')
+      .orderByChild('pay_time')
+      .startAt(moment(query.startTime).format())
+      .endAt(moment(query.endTime).format())
+      .once('value', function (snapshot) {
+        var orders = [];
+        angular.forEach(snapshot.val(), function (value, key) {
+          value.pay_time = value.pay_time === '無' ? '無' : moment(value.pay_time).format('YYYY 年 MM 月 DD 日 HH:mm:ss');
+          orders.push(value);
+        });
+        resolve(orders);
+      })
     });
   }
 
