@@ -13,7 +13,7 @@
     "type": "git",
     "url": ""
   },
-  "author": "John Lee <john.cylee@gmail.com>",
+  "author": "Wesley Lin <wesley100002001@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "angular": "^1.4.8",
