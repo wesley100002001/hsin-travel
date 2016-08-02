@@ -61,7 +61,7 @@ export default class OrderExportController {
   }
 
   exportUnshippedPDF () {
-    return this.restful.getLabels()
+    return this.restful.getUnshippedLabels()
     .then(response => {
       var docDefinition = { defaultStyle: { font: 'wt002' } };
       var left = true;
@@ -72,7 +72,7 @@ export default class OrderExportController {
           column = {
             columns: [
               {
-                text: label.receiver_name + '\n' + label.receiver_phone + '\n' + label.receiver_address,
+                text: label.receiver_name + ' 先生/小姐 收' + '\n' + label.receiver_phone + '\n' + label.receiver_address,
                 width: '50%',
                 margin: [50, 0, 0, 80]
               }
@@ -80,7 +80,7 @@ export default class OrderExportController {
           };
         } else {
           column.columns.push({
-            text: label.receiver_name + '\n' + label.receiver_phone + '\n' + label.receiver_address,
+            text: label.receiver_name + ' 先生/小姐 收' + '\n' + label.receiver_phone + '\n' + label.receiver_address,
             width: '50%',
             margin: [50, 0, 0, 80]
           });
@@ -89,6 +89,9 @@ export default class OrderExportController {
         }
         left = !left;
       });
+      if (!left) {
+        docDefinition.content.push(column);
+      }
       pdfMake.fonts = {
          wt002: {
            normal: 'wt002.ttf',
@@ -97,6 +100,7 @@ export default class OrderExportController {
            bolditalics: 'wt002.ttf'
          }
       }
+
       pdfMake.createPdf(docDefinition).download();
     });
   }

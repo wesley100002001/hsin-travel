@@ -63,9 +63,10 @@ class Restful {
     });
   }
 
-  getLabels () {
+  getUnshippedLabels () {
     return this.$q(function (resolve, reject) {
-      firebase.database().ref('order/').on('value', function (snapshot) {
+      firebase.database().ref('order/').orderByChild('ship_status')
+      .equalTo('notyet').once('value', function (snapshot) {
         var labels = [];
         angular.forEach(snapshot.val(), function (value, key) {
           labels.push({
