@@ -41,6 +41,63 @@ class Restful {
     });
   }
 
+  getUnshippedAmount () {
+    return this.$q(function (resolve, reject) {
+      firebase.database().ref('order/').orderByChild('ship_status')
+      .equalTo('notyet').once('value', function (snapshot) {
+        resolve(Object.keys(snapshot.val()).length);
+      });
+    });
+  }
+
+  getShippedAmount () {
+    return this.$q(function (resolve, reject) {
+      firebase.database().ref('order/').orderByChild('ship_status')
+      .equalTo('shipped').once('value', function (snapshot) {
+        resolve(Object.keys(snapshot.val()).length);
+      });
+    });
+  }
+
+  getSuccessPaidAmount () {
+    return this.$q(function (resolve, reject) {
+      firebase.database().ref('order/').orderByChild('status')
+      .equalTo('success').once('value', function (snapshot) {
+        if (!!snapshot.val()) {
+          resolve(Object.keys(snapshot.val()).length);
+        } else {
+          resolve(0);
+        }
+      });
+    });
+  }
+
+  getFailedPaidAmount () {
+    return this.$q(function (resolve, reject) {
+      firebase.database().ref('order/').orderByChild('status')
+      .equalTo('failed').once('value', function (snapshot) {
+        if (!!snapshot.val()) {
+          resolve(Object.keys(snapshot.val()).length);
+        } else {
+          resolve(0);
+        }
+      });
+    });
+  }
+
+  getRecurringPaidAmount () {
+    return this.$q(function (resolve, reject) {
+      firebase.database().ref('order/').orderByChild('status')
+      .equalTo('recurring').once('value', function (snapshot) {
+        if (!!snapshot.val()) {
+          resolve(Object.keys(snapshot.val()).length);
+        } else {
+          resolve(0);
+        }
+      });
+    });
+  }
+
   getLastUpdateTime () {
     return this.$q(function (resolve, reject) {
       firebase.database().ref('lastupdate/').on('value', function(snapshot) {
