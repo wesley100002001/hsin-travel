@@ -1,22 +1,10 @@
 export default class HomeController {
-  constructor ($state, $stateParams, $cookies, acl, $http, $scope) {
+  constructor ($state, $stateParams, $cookies, acl, $http, $scope, restful) {
     var scope = this;
-
+    this.restful = restful;
     if (!acl.checkStatus($cookies.get('status'))) {
       $state.go('login');
     }
-
-    // Datepicker options
-    scope.startOpened = false;
-    scope.endOpened = false;
-    scope.timeOption = {
-        max: new Date()
-    };
-    scope.dateOptions = {
-      formatYear: 'yy',
-      startingDay: 1
-    };
-    scope.altInputFormats = ['M!/d!/yyyy'];
 
     $http({
       method: 'GET',
@@ -32,15 +20,12 @@ export default class HomeController {
         $scope.infoForm.url.$setDirty();
       }
     }, function (response) {});
-  }
 
-  startOpen () {
-    this.startOpened = !this.startOpened;
-  }
-
-  endOpen () {
-    this.endOpened = !this.endOpened;
+    this.restful.getLastUpdateTime()
+    .then(time => {
+      this.lastImport = time;
+    });
   }
 }
 
-HomeController.$inject = ['$state', '$stateParams', '$cookies', 'acl', '$http', '$scope'];
+HomeController.$inject = ['$state', '$stateParams', '$cookies', 'acl', '$http', '$scope', 'restful'];
