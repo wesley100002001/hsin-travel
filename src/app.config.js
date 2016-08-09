@@ -1,6 +1,11 @@
-routes.$inject = ['$urlRouterProvider', '$locationProvider'];
+import { combineReducers } from 'redux';
+import {requests} from './app/reducers/index';
 
-export default function routes($urlRouterProvider, $locationProvider) {
+routes.$inject = ['$urlRouterProvider', '$locationProvider', '$ngReduxProvider'];
+
+export default function routes($urlRouterProvider, $locationProvider, $ngReduxProvider) {
   $locationProvider.html5Mode(true);
   $urlRouterProvider.otherwise('/');
+  let reducer = combineReducers({requests});
+  console.log(reducer);
 }
