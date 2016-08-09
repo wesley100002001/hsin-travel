@@ -5,6 +5,7 @@ import uirouter from 'angular-ui-router';
 import ngCookies from 'angular-cookies';
 import _firebase from 'firebase';
 import firebase from 'angularfire';
+import ngRedux from 'ng-redux';
 
 import home from './app/features/home';
 import login from './app/features/login';
@@ -16,6 +17,8 @@ import orders from './app/features/orders';
 import password from './app/features/password';
 import routing from './app.config';
 
+
+
 angular.module('app', [firebase, uirouter, ngCookies, home, login, members, order,
-  orderexport, orderimport, orders, password])
+  orderexport, orderimport, orders, password, ngRedux])
   .config(routing);
