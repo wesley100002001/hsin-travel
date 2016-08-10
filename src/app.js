@@ -15,10 +15,11 @@ import orderexport from './app/features/orderexport';
 import orderimport from './app/features/orderimport';
 import orders from './app/features/orders';
 import password from './app/features/password';
+import requests from './app/features/requests';
 import routing from './app.config';
 
 
 
 angular.module('app', [firebase, uirouter, ngCookies, home, login, members, order,
-  orderexport, orderimport, orders, password, ngRedux])
+  orderexport, orderimport, orders, password, ngRedux, requests])
   .config(routing);
