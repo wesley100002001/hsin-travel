@@ -1,14 +1,15 @@
-import * as RequestsActions from '../actions/requests'
+import {CREATE_REQUEST} from '../actions/requests'
 
-function requests(state = [], action) {
+export default function requests(state = [], action) {
   switch (action.type) {
-    case NEW_REQUEST:
+    case CREATE_REQUEST:
     let payload = action.payload
     return [
       ...state,
-      {
         payload
-      }
-    ]
+    ];
+
+    default:
+    return state;
   }
 }

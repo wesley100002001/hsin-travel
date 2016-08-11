@@ -9,7 +9,7 @@ class Restful {
     var init = {
       apiKey: 'config.firebase.apiKey',
       authDomain: 'config.firebase.authDomain',
-      databaseURL: 'config.firebase.databaseURL',
+      databaseURL: 'config.firebaseio.com',
       storageBucket: 'config.firebase.storageBucket',
     };
     firebase.initializeApp(init);

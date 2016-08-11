@@ -1,12 +1,12 @@
 /* action types */
 
-export const NEW_REQUEST = 'NEW_REQUEST';
+export const CREATE_REQUEST = 'CREATE_REQUEST';
 
 /* action creators */
 
-export function newRequest(data) {
+export function createRequest() {
   return {
-    type: NEW_REQUEST,
-    payload: data
+    type: CREATE_REQUEST,
+    payload: {a: 'x', b: 'y', c: 'z'}
   };
 }
