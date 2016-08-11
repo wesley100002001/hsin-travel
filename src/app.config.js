@@ -7,5 +7,5 @@ export default function routes($urlRouterProvider, $locationProvider, $ngReduxPr
   $locationProvider.html5Mode(true);
   $urlRouterProvider.otherwise('/');
   let reducer = combineReducers({requests});
-  console.log(reducer);
+  //$ngReduxProvider.createStoreWith(reducer, []);
 }
