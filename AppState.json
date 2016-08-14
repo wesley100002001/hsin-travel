@@ -1,0 +1,62 @@
+state: {
+  inventories: {
+    room_types: [
+      {
+        rm_type_id:
+        rm_type_label:
+        hotel: {
+
+        }
+        num_person:
+        description:
+        photos: []
+      }
+    ],
+    room_avail_fare: [
+      {
+        rm_type_id:
+        availability: [
+          {
+            date:
+            availability:
+            fare:
+          }
+          /**
+          還沒想透: 這好像需要時時跟server sync, 所以該有個物件定時發action嗎?
+          可是應該無法預測使用者到底要查哪天。如果是使用者按了才去找 server 要的話 好像會變成
+          發 action -> payload_state 變成 loading -> load 回來了 -> payload_state 變成 loaded -> 此時 payload 才可相信
+          */
+      ]
+      }
+    ]
+    /* Near future
+    restaurants: [],
+    transportations: [],
+    point_of_interests: [],
+    */
+
+  },
+
+  requests: [
+    stage: /* some enum */,
+    start_date:
+    end_date:
+    accommodations: [
+      {
+        date:
+        fare:
+        room_type:
+        num_rooms:
+        confirmed: /*(?)*/
+        deposit: /* (?) */
+
+      },
+      {
+
+      }
+    ]
+  ],
+
+  /* Not Yet */
+  notifications: []
+}
