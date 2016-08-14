@@ -4,3 +4,4 @@ build
 npm-debug.log
 config.json
 config.js
+.DS_Store
