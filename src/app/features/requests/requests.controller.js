@@ -1,5 +1,10 @@
 import moment from 'moment';
-import * as RequestsActions from '../../actions/requests'
+import * as RequestsActions from '../../actions/requests';
+import { stateGo, stateReload, stateTransitionTo } from 'redux-ui-router';
+
+RequestsActions.stateGo = stateGo;
+RequestsActions.stateReload = stateReload;
+RequestsActions.stateTransitionTo = stateTransitionTo;
 
 export default class RequestsController {
   constructor ($state, $cookies, acl, $stateParams, restful, $ngRedux, $scope) {
@@ -7,10 +12,8 @@ export default class RequestsController {
     if (!acl.checkStatus($cookies.get('status'))) {
       $state.go('login');
     }*/
-
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), RequestsActions)(this);
     $scope.$on('$destroy', unsubscribe);
-
     this.list = [];
 
   }
@@ -18,7 +21,8 @@ export default class RequestsController {
   mapStateToThis(state) {
     console.log(state);
     return {
-      list: state.requests
+      list: state.requests,
+      router: state.router
     };
   }
 }
