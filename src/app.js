@@ -20,5 +20,5 @@ import requests from './app/features/requests';
 import routing from './app.config';
 
 angular.module('app', [firebase, uirouter, ngCookies, home, login, request,
-  request, ngRedux])
+  requests, ngRedux])
   .config(routing);

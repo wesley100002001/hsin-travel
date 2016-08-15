@@ -11,7 +11,7 @@ import NavbarController from '../../../components/navbar/navbar.controller';
 import acl from '../../services/acl.service';
 import restful from '../../services/restful.service';
 
-export default angular.module('app.orderexport', [acl, uibootstrap, uirouter,
+export default angular.module('app.request', [acl, uibootstrap, uirouter,
   restful])
   .config(routing)
   .controller('RequestController', RequestController)

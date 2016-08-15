@@ -1,4 +1,4 @@
-import {CREATE_REQUEST} from '../actions/requests'
+import { CREATE_REQUEST } from '../actions/requests'
 
 export default function requests(state = [], action) {
   switch (action.type) {
