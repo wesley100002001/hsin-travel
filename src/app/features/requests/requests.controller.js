@@ -7,6 +7,7 @@ export default class RequestsController {
     if (!acl.checkStatus($cookies.get('status'))) {
       $state.go('login');
     }*/
+    this.$state = $state;
 
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), RequestsActions)(this);
     $scope.$on('$destroy', unsubscribe);
@@ -20,6 +21,10 @@ export default class RequestsController {
     return {
       list: state.requests
     };
+  }
+
+  createRequest () {
+    this.$state.go('request', {requestId: 0});
   }
 }
 
