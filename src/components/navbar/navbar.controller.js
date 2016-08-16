@@ -2,7 +2,7 @@ export default class NavbarController {
   constructor ($state, $cookies, acl) {
     this.state = $state;
     this.cookies = $cookies;
-    this.isLoggedIn = !!this.cookies.get('status');
+    this.isLoggedIn = /*!!this.cookies.get('status')*/true;
   }
 
   logout () {

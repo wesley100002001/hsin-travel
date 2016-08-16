@@ -5,6 +5,7 @@ import uirouter from 'angular-ui-router';
 import ngCookies from 'angular-cookies';
 import _firebase from 'firebase';
 import firebase from 'angularfire';
+import ngRedux from 'ng-redux';
 
 import home from './app/features/home';
 import login from './app/features/login';
@@ -14,8 +15,10 @@ import login from './app/features/login';
 // import orderimport from './app/features/orderimport';
 // import orders from './app/features/orders';
 // import password from './app/features/password';
+import request from './app/features/request';
 import requests from './app/features/requests';
 import routing from './app.config';
 
-angular.module('app', [firebase, uirouter, ngCookies, home, login, requests])
+angular.module('app', [firebase, uirouter, ngCookies, home, login, request,
+  requests, ngRedux])
   .config(routing);

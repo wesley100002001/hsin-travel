@@ -1,4 +1,4 @@
-import config from '../../../config.json';
+//import config from '../../../config.js';
 import angular from 'angular';
 import moment from 'moment';
 
@@ -7,10 +7,10 @@ class Restful {
     this.http = $http;
     this.$q = $q;
     var init = {
-      apiKey: config.firebase.apiKey,
-      authDomain: config.firebase.authDomain,
-      databaseURL: config.firebase.databaseURL,
-      storageBucket: config.firebase.storageBucket,
+      apiKey: 'config.firebase.apiKey',
+      authDomain: 'config.firebase.authDomain',
+      databaseURL: 'config.firebaseio.com',
+      storageBucket: 'config.firebase.storageBucket',
     };
     firebase.initializeApp(init);
   }
