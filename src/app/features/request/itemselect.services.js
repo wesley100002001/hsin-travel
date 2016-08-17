@@ -2,9 +2,11 @@ services.$inject = ['$stateProvider'];
 
 export default function services ($stateProvider) {
   var provider = this;
+
   this.$get = function () {
     return provider;
   }
+  
   this.state = function (stateName, options) {
     var modalInstance;
     $stateProvider.state(stateName, {
