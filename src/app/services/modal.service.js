@@ -6,7 +6,7 @@ export default function services ($stateProvider) {
   this.$get = function () {
     return provider;
   }
-  
+
   this.state = function (stateName, options) {
     var modalInstance;
     $stateProvider.state(stateName, {
