@@ -9,6 +9,7 @@ import modal from '../../services/modal.service';
 import FooterController from '../../../components/footer/footer.controller';
 import RequestController from './request.controller';
 import NavbarController from '../../../components/navbar/navbar.controller';
+import HotelSelectController from '../hotelselect/hotelselect.controller';
 import acl from '../../services/acl.service';
 import restful from '../../services/restful.service';
 
@@ -19,4 +20,5 @@ export default angular.module('app.request', [acl, uibootstrap, uirouter,
   .controller('RequestController', RequestController)
   .controller('NavbarController', NavbarController)
   .controller('FooterController', FooterController)
+  .controller('HotelSelectController', HotelSelectController)
   .name;

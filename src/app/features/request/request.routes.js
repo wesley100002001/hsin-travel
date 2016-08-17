@@ -22,8 +22,10 @@ export default function routes ($stateProvider, modalStateProvider) {
     }
   });
   modalStateProvider.state('request.itemselect', {
-      url: '/itemselect',
-      template: require('./itemselect.html'),
-      size: 'lg'
+    url: '/itemselect',
+    template: require('./itemselect.html'),
+    size: 'lg',
+    controller: 'HotelSelectController',
+    controllerAs: 'hotelselect'
   });
 }
