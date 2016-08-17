@@ -22,7 +22,8 @@ export default function routes ($stateProvider, modalStateProvider) {
     }
   });
   modalStateProvider.state('request.itemselect', {
-      url: '/request/itemselect',
-      template: require('./itemselect.html')
+      url: '/itemselect',
+      template: require('./itemselect.html'),
+      size: 'lg'
   });
 }
