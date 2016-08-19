@@ -1,0 +1,85 @@
+<div class="modal-header">
+  <label>Hotel 1</label>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-md-6">
+      <h4 class="padding-down">飯店資訊</h4>
+      <div class="form-group">
+        <img name="cover" ng-src="{{hotelconfirm.cover}}" width="300" />
+      </div>
+      <div class="form-group">
+        <label>地址</label>
+        <p>{{hotelconfirm.address}}</p>
+      </div>
+      <div class="form-group">
+        <label>電話</label>
+        <p>{{hotelconfirm.phone}}</p>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h4 class="padding-down">選擇房型、日期</h4>
+      <div class="form-group">
+        <label>房型選擇</label>
+        <div class="radio">
+          <label>
+            <input type="radio" name="optionsRadios" value="option1" checked>
+            單人房
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="optionsRadios" value="option2">
+            雙人房
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="optionsRadios" value="option3">
+            家庭房
+          </label>
+        </div>
+      </div>
+      <label for="start_time">開始日期</label>
+      <div class="input-group">
+        <input type="text" class="form-control"
+        id="start_time" name="start_time"
+        uib-datepicker-popup="yyyy-MM-dd"
+        show-button-bar="false"
+        ng-model="hotelconfirm.startTime"
+        max-date="hotelconfirm.timeOption.max"
+        is-open="hotelconfirm.startOpened" close-text="Close" readonly>
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default"
+          ng-click="hotelconfirm.startOpen($event)">
+            <i class="glyphicon glyphicon-calendar"></i>
+          </button>
+        </span>
+      </div>
+      <label for="start_time">結束日期</label>
+      <div class="input-group">
+        <input type="text" class="form-control"
+        id="end_time" name="end_time"
+        uib-datepicker-popup="yyyy-MM-dd"
+        show-button-bar="false"
+        ng-model="hotelconfirm.endTime"
+        max-date="hotelconfirm.timeOption.max"
+        is-open="hotelconfirm.endOpened" close-text="Close" readonly>
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default"
+          ng-click="hotelconfirm.endOpen($event)">
+            <i class="glyphicon glyphicon-calendar"></i>
+          </button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-default" ng-click="$dismiss()">
+    取消
+  </button>
+  <button class="btn btn-primary" ng-click="$close()">
+    確認
+  </button>
+</div>

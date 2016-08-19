@@ -4,9 +4,9 @@ export default class HotelSelectController {
     this.cookies = $cookies;
     this.restful = restful;
     this.hotels = [
-      { name: 'Hotel 1', address: 'None' },
-      { name: 'Hotel 2', address: 'None' },
-      { name: 'Hotel 3', address: 'None' }
+      { id: 1, name: 'Hotel 1', address: '台北市中山北路二段50號' },
+      { id: 2, name: 'Hotel 2', address: '台北市中山北路二段50號' },
+      { id: 3, name: 'Hotel 3', address: '台北市中山北路二段50號' }
     ];
   }
 }
