@@ -13,23 +13,11 @@
             <th>房型</th>
             <th>數量</th>
           </tr>
-          <tr>
-            <td>7/24</td>
-            <td>國賓大飯店</td>
-            <td>雙人房</td>
-            <td>20</td>
-          </tr>
-          <tr>
-            <td>7/24</td>
-            <td>國賓大飯店</td>
-            <td>單人房</td>
-            <td>4</td>
-          </tr>
-          <tr>
-            <td>7/25</td>
-            <td>國賓大飯店</td>
-            <td>雙人房</td>
-            <td>22</td>
+          <tr ng-repeat="item in request.items">
+            <td>{{item.date}}</td>
+            <td>{{item.hotel}}</td>
+            <td>{{item.roomType}}</td>
+            <td>{{item.quantity}}</td>
           </tr>
         </table>
         <button class="btn btn-success" ui-sref="request.itemselect">新增飯店</button>

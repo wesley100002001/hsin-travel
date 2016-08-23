@@ -1,5 +1,3 @@
-services.$inject = ['$stateProvider'];
-
 export default function services ($stateProvider) {
   var provider = this;
 
@@ -13,7 +11,7 @@ export default function services ($stateProvider) {
       url: options.url,
       onEnter: function($uibModal, $state) {
         modalInstance = $uibModal.open(options);
-        modalInstance.result['finally'](function() {
+        modalInstance.result.then(function () {
           modalInstance = null;
           if ($state.$current.name === stateName) {
               $state.go('^');
@@ -28,3 +26,5 @@ export default function services ($stateProvider) {
     });
   };
 }
+
+services.$inject = ['$stateProvider'];
