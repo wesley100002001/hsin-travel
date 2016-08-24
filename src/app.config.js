@@ -19,7 +19,8 @@ export default function routes($urlRouterProvider, $locationProvider, $ngReduxPr
 
   $translateProvider.translations('tw', tw)
   .preferredLanguage('tw');
-  
+
+
   let reducer = combineReducers({request, requests});
 
   $ngReduxProvider.createStoreWith(reducer, []);
