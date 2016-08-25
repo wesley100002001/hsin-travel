@@ -11,15 +11,12 @@ export default class RequestsController {
 
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), RequestsActions)(this);
     $scope.$on('$destroy', unsubscribe);
-
-    this.list = [];
-
   }
 
-  mapStateToThis(state) {
+  mapStateToThis (state) {
     console.log(state);
     return {
-      list: state.requests
+      list: state.requests,
     };
   }
 

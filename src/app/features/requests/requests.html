@@ -13,23 +13,16 @@
         </div>
       </form> -->
     </div>
-    <!-- Redux action sample button -->
-    <!-- <button ng-click='requests.createTestRequest()'>+</button> -->
-    <table class="table table-striped table-bordered">
+    <table class="table table-striped">
       <tr>
-        <th>Column 1</th>
-        <th>Column 2</th>
-        <th>Column 3</th>
+        <th>需求編號</th>
+        <th>需求發起人</th>
+        <th>建立時間</th>
       </tr>
-      <!-- <tr ng-repeat="order in (orders.currentOrderList | limitTo: orders.pageSize)">
-        <td><a ui-sref="order({orderId: '{{order.id}}'})">{{order.id}}</a></td>
-        <td>{{order.sponsor_name}}</td>
-        <td>{{order.sponsor_email}}</td>
-      </tr> -->
       <tr ng-repeat="req in requests.list">
-        <td>{{req.a}}</td>
-        <td>{{req.b}}</td>
-        <td>{{req.c}}</td>
+        <td>{{req.requestId}}</td>
+        <td>{{req.requester}}</td>
+        <td>{{req.createTime}}</td>
       </tr>
     </table>
     <!-- <uib-pagination

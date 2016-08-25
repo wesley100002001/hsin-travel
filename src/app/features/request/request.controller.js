@@ -4,6 +4,7 @@ import * as RequestActions from '../../actions/request';
 export default class RequestController {
   constructor ($state, $cookies, acl, $stateParams, restful, $ngRedux, $scope) {
     this.restful = restful;
+    this.$state = $state;
     /*
     if (!acl.checkStatus($cookies.get('status'))) {
       $state.go('login');
@@ -13,14 +14,18 @@ export default class RequestController {
     $scope.$on('$destroy', unsubscribe);
 
     this.items = [];
-
   }
 
-  mapStateToThis(state) {
+  mapStateToThis (state) {
     console.log(state);
     return {
       items: state.request
     };
+  }
+
+  confirm () {
+    this.addRequest({});
+    this.$state.go('requests');
   }
 }
 
