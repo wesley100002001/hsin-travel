@@ -24,7 +24,15 @@ export default class RequestController {
   }
 
   confirm () {
-    this.addRequest({});
+    if (this.items.length < 1) {
+      alert('尚未新增任何項目');
+    } else {
+      this.addRequest({});
+      this.$state.go('requests');
+    }
+  }
+
+  cancel () {
     this.$state.go('requests');
   }
 }
