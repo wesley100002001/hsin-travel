@@ -50,6 +50,7 @@ export default function routes ($stateProvider, modalStateProvider) {
     url: '/itemselect',
     template: require('./itemselect.html'),
     size: 'lg',
+    backdrop: 'static',
     controller: 'HotelSelectController',
     controllerAs: 'hotelselect'
   });
@@ -57,6 +58,7 @@ export default function routes ($stateProvider, modalStateProvider) {
     url: '/itemconfirm',
     template: require('./itemconfirm.html'),
     size: 'lg',
+    backdrop: 'static',
     controller: 'HotelConfirmController',
     controllerAs: 'hotelconfirm'
   });
