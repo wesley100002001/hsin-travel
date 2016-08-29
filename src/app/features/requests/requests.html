@@ -2,7 +2,7 @@
   <div class="row">
     <h1 class="padding-down">需求列表</h1>
     <p>
-      <button class="btn btn-default" ng-click='requests.createRequest()'>新增</button>
+      <button class="btn btn-success" ng-click='requests.createRequest()'>新增</button>
     </p>
     <table class="table table-striped">
       <tr>
@@ -11,7 +11,7 @@
         <th>建立時間</th>
       </tr>
       <tr ng-repeat="req in requests.list">
-        <td>{{req.requestId}}</td>
+        <td><a ui-sref="request({requestId: '{{req.requestId}}'})">{{req.requestId}}</a></td>
         <td>{{req.requester}}</td>
         <td>{{req.createTime}}</td>
       </tr>

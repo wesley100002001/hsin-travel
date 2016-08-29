@@ -6,6 +6,7 @@ import uibootstrap from 'angular-ui-bootstrap';
 
 import routing from './request.routes';
 import modal from '../../services/modal.service';
+import DiscussController from '../discuss/discuss.controller';
 import FooterController from '../../../components/footer/footer.controller';
 import RequestController from './request.controller';
 import NavbarController from '../../../components/navbar/navbar.controller';
@@ -23,4 +24,5 @@ export default angular.module('app.request', [acl, uibootstrap, uirouter,
   .controller('FooterController', FooterController)
   .controller('HotelSelectController', HotelSelectController)
   .controller('HotelConfirmController', HotelConfirmController)
+  .controller('DiscussController', DiscussController)
   .name;
