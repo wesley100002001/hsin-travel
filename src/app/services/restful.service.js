@@ -220,6 +220,17 @@ class Restful {
       resolve(true);
     });
   }
+
+  getMockHotels () {
+    return this.$q(function (resolve, reject) {
+      var hotels = [
+        { id: 1, name: 'Hotel 1', address: '台北市中山北路二段50號' },
+        { id: 2, name: 'Hotel 2', address: '台北市延平南路三段243號' },
+        { id: 3, name: 'Hotel 3', address: '新北市板橋區懷德街390號' }
+      ];
+      resolve(hotels);
+    });
+  }
 }
 
 export default angular.module('services.restful', ['firebase'])
