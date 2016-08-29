@@ -214,6 +214,12 @@ class Restful {
       })
     });
   }
+
+  getMockAdmin () {
+    return this.$q(function (resolve, reject) {
+      resolve(true);
+    });
+  }
 }
 
 export default angular.module('services.restful', ['firebase'])
