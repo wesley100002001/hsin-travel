@@ -8,9 +8,15 @@ export default class RequestsController {
       $state.go('login');
     }
     this.$state = $state;
+    this.restful = restful;
 
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), RequestsActions)(this);
     $scope.$on('$destroy', unsubscribe);
+
+    this.restful.getMockRequests()
+    .then(reqs => {
+      this.list = reqs;
+    });
   }
 
   mapStateToThis (state) {
