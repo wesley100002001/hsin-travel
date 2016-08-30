@@ -1,6 +1,4 @@
-import { combineReducers } from 'redux';
-import request from './app/reducers/index';
-import requests from './app/reducers/index';
+import appReducer from './app/reducers/index';
 //!! Not Sure how to load these objects yet
 import en from './translations/en';
 import jp from './translations/jp'
@@ -20,8 +18,5 @@ export default function routes($urlRouterProvider, $locationProvider, $ngReduxPr
   $translateProvider.translations('tw', tw)
   .preferredLanguage('tw');
 
-
-  let reducer = combineReducers({request, requests});
-
-  $ngReduxProvider.createStoreWith(reducer, []);
+  $ngReduxProvider.createStoreWith(appReducer, []);
 }

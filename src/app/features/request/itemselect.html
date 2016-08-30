@@ -2,27 +2,27 @@
   <label>請選擇飯店</label>
 </div>
 <div class="modal-body">
-  <form class="form form-inline">
+  <!-- <form class="form form-inline">
     <div class="form-group">
       <label for="search">搜尋</label>
       <input type="text" class="form-control" name="search"
              placeholder="請輸入關鍵字" ng-model="searchText">
     </div>
-  </form>
+  </form> -->
   <br>
   <table class="table table-hover">
-    <tr>
+    <tr class="info">
       <th>飯店</th>
       <th>地址</th>
     </tr>
     <tr ng-repeat="hotel in hotelselect.hotels">
-      <td><a ui-sref="request.itemconfirm({hotelId: '{{hotel.id}}'})">{{hotel.name}}</a></td>
+      <td><a ui-sref="requestCreate.itemconfirm({hotelId: '{{hotel.id}}'})">{{hotel.name}}</a></td>
       <td>{{hotel.address}}</td>
     </tr>
   </table>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-default" ng-click="$dismiss()">
+  <button class="btn btn-default" ng-click="hotelselect.cancel()">
     關閉
   </button>
 </div>

@@ -214,6 +214,51 @@ class Restful {
       })
     });
   }
+
+  getMockAdmin () {
+    return this.$q(function (resolve, reject) {
+      resolve(true);
+    });
+  }
+
+  getMockHotels () {
+    return this.$q(function (resolve, reject) {
+      var hotels = [
+        { id: 1, name: 'Hotel 1', address: '台北市中山北路二段50號' },
+        { id: 2, name: 'Hotel 2', address: '台北市延平南路三段243號' },
+        { id: 3, name: 'Hotel 3', address: '新北市板橋區懷德街390號' },
+        { id: 4, name: 'Hotel 4', address: '台北市中山北路二段50號' },
+        { id: 5, name: 'Hotel 5', address: '新北市板橋區懷德街390號' },
+        { id: 6, name: 'Hotel 6', address: '台北市中山北路二段50號' },
+        { id: 7, name: 'Hotel 7', address: '新北市板橋區懷德街390號' },
+        { id: 8, name: 'Hotel 8', address: '新北市板橋區懷德街390號' },
+        { id: 9, name: 'Hotel 9', address: '台北市中山北路二段50號' },
+        { id: 10, name: 'Hotel 10', address: '新北市板橋區懷德街390號' },
+        { id: 11, name: 'Hotel 11', address: '新北市板橋區懷德街390號' },
+        { id: 12, name: 'Hotel 12', address: '台北市中山北路二段50號' },
+        { id: 13, name: 'Hotel 13', address: '新北市板橋區懷德街390號' }
+      ];
+      resolve(hotels);
+    });
+  }
+
+  getMockRequests () {
+    return this.$q(function (resolve, reject) {
+      var requests = [
+        { requestId: 'A001', requester: 'Wesley', createTime: '2016/08/10' },
+        { requestId: 'A002', requester: 'Christine', createTime: '2016/08/11' },
+        { requestId: 'A003', requester: 'Christine', createTime: '2016/08/13' },
+        { requestId: 'A004', requester: 'Christine', createTime: '2016/08/13' },
+        { requestId: 'A005', requester: 'Wesley', createTime: '2016/08/16' },
+        { requestId: 'A006', requester: 'Kevin', createTime: '2016/08/17' },
+        { requestId: 'A007', requester: 'Wesley', createTime: '2016/08/21' },
+        { requestId: 'A008', requester: 'Kevin', createTime: '2016/08/22' },
+        { requestId: 'A009', requester: 'Wesley', createTime: '2016/08/23' },
+        { requestId: 'A010', requester: 'John', createTime: '2016/08/29' }
+      ];
+      resolve(requests);
+    });
+  }
 }
 
 export default angular.module('services.restful', ['firebase'])

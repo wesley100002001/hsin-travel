@@ -2,17 +2,8 @@
   <div class="row">
     <h1 class="padding-down">需求列表</h1>
     <p>
-      <button class="btn btn-default" ng-click='requests.createRequest()'>新增</button>
+      <button class="btn btn-success" ng-click='requests.createRequest()'>新增</button>
     </p>
-    <div class="col-md-6">
-      <!-- <form class="form form-inline">
-        <div class="form-group padding-down">
-          <label for="search">搜尋</label>
-          <input type="text" class="form-control" name="search"
-                 placeholder="請輸入關鍵字" ng-model="orders.searchText">
-        </div>
-      </form> -->
-    </div>
     <table class="table table-striped">
       <tr>
         <th>需求編號</th>
@@ -20,7 +11,7 @@
         <th>建立時間</th>
       </tr>
       <tr ng-repeat="req in requests.list">
-        <td>{{req.requestId}}</td>
+        <td><a ui-sref="request({requestId: '{{req.requestId}}'})">{{req.requestId}}</a></td>
         <td>{{req.requester}}</td>
         <td>{{req.createTime}}</td>
       </tr>

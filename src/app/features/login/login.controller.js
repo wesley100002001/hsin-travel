@@ -13,11 +13,12 @@ export default class LoginController {
     this.logging = true;
     var cookies = this.cookies;
     var state = this.state;
-    this.restful.getAdmin(this.username, this.password)
+    // this.restful.getAdmin(this.username, this.password)
+    this.restful.getMockAdmin()
     .then(passed => {
       if (passed) {
         cookies.put('status', 'user');
-        state.go('home');
+        state.go('requests');
       } else {
         this.logging = false;
         this.isLoginFail = true;

@@ -3,14 +3,20 @@ import * as RequestsActions from '../../actions/requests'
 
 export default class RequestsController {
   constructor ($state, $cookies, acl, $stateParams, restful, $ngRedux, $scope) {
-    /*
+
     if (!acl.checkStatus($cookies.get('status'))) {
       $state.go('login');
-    }*/
+    }
     this.$state = $state;
+    this.restful = restful;
 
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), RequestsActions)(this);
     $scope.$on('$destroy', unsubscribe);
+
+    this.restful.getMockRequests()
+    .then(reqs => {
+      this.list = reqs;
+    });
   }
 
   mapStateToThis (state) {
@@ -21,7 +27,7 @@ export default class RequestsController {
   }
 
   createRequest () {
-    this.$state.go('request', {requestId: 0});
+    this.$state.go('requestCreate', {requestId: 0});
   }
 }
 

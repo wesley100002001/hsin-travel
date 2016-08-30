@@ -50,6 +50,10 @@ export default class HotelConfirmController {
     this.addItem({roomId: 1});
     this.uibModal.close();
   }
+
+  cancel () {
+    this.uibModal.close();
+  }
 }
 
 HotelConfirmController.$inject = ['$state', '$cookies', 'acl', 'restful',

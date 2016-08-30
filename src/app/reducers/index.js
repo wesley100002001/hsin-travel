@@ -1,7 +1,8 @@
+import { combineReducers } from 'redux';
 import { CREATE_TEST_REQUEST } from '../actions/requests';
 import { ADD_ITEM, ADD_REQUEST } from '../actions/request';
 
-export default function requests (state = [], action) {
+function requests (state = [], action) {
   switch (action.type) {
     case CREATE_TEST_REQUEST:
     var req = action.req;
@@ -22,7 +23,7 @@ export default function requests (state = [], action) {
   }
 }
 
-export function request (state = [], action) {
+function request (state = [], action) {
   switch (action.type) {
     case ADD_ITEM:
     let payload = action.payload;
@@ -35,3 +36,10 @@ export function request (state = [], action) {
     return state;
   }
 }
+
+let appReducer = combineReducers({
+  request,
+  requests
+});
+
+export default appReducer;
