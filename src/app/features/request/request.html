@@ -3,23 +3,82 @@
     <h1 class="padding-down">新增需求</h1>
     <div class="panel panel-default">
       <div class="panel-heading">
+        <h3 class="panel-title">基本資訊</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="title">團名</label>
+              <input class="form-control" name="title" type="text" placeholder="請輸入團名">
+            </div>
+            <div class="form-group">
+              <label for="people">人數</label>
+              <input class="form-control" name="people" type="text" placeholder="團員人數">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="start_time">開始日期</label>
+              <div class="input-group">
+                <input type="text" class="form-control"
+                id="start_time" name="start_time"
+                uib-datepicker-popup="yyyy-MM-dd"
+                show-button-bar="false"
+                ng-model="request.startTime"
+                max-date="request.timeOption.max"
+                is-open="request.startOpened" close-text="Close" readonly>
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default"
+                  ng-click="request.startOpen($event)">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                  </button>
+                </span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="start_time">結束日期</label>
+              <div class="input-group">
+                <input type="text" class="form-control"
+                id="end_time" name="end_time"
+                uib-datepicker-popup="yyyy-MM-dd"
+                show-button-bar="false"
+                ng-model="request.endTime"
+                max-date="request.timeOption.max"
+                is-open="request.endOpened" close-text="Close" readonly>
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default"
+                  ng-click="request.endOpen($event)">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                  </button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
         <h3 class="panel-title">Hotel</h3>
       </div>
       <div class="panel-body">
-        <table class="table table-striped">
-          <tr>
-            <th>日期</th>
-            <th>飯店</th>
-            <th>房型</th>
-            <th>數量</th>
-          </tr>
-          <tr ng-repeat="item in request.items">
-            <td>{{item.date}}</td>
-            <td>{{item.hotel}}</td>
-            <td>{{item.roomType}}</td>
-            <td>{{item.quantity}}</td>
-          </tr>
-        </table>
+        <div class="form-group">
+          <table class="table table-striped">
+            <tr>
+              <th>日期</th>
+              <th>飯店</th>
+              <th>房型</th>
+              <th>數量</th>
+            </tr>
+            <tr ng-repeat="item in request.items">
+              <td>{{item.date}}</td>
+              <td>{{item.hotel}}</td>
+              <td>{{item.roomType}}</td>
+              <td>{{item.quantity}}</td>
+            </tr>
+          </table>
+        </div>
         <button class="btn btn-success" ui-sref="requestCreate.itemselect">新增飯店</button>
       </div>
     </div>
