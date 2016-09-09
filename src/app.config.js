@@ -1,7 +1,7 @@
 import appReducer from './app/reducers/index';
 //!! Not Sure how to load these objects yet
-import en from './translations/tw.json';
-import jp from './translations/jp'
+import tw from './translations/tw.json';
+import jp from './translations/jp.json'
 
 routes.$inject = ['$urlRouterProvider', '$locationProvider', '$ngReduxProvider', '$translateProvider'];
 
