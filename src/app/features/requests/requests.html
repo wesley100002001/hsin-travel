@@ -6,14 +6,18 @@
     </p>
     <table class="table table-striped">
       <tr>
-        <th>需求編號</th>
+        <th>團名</th>
+        <th>人數</th>
+        <th>出發日期</th>
+        <th>回程日期</th>
         <th>需求發起人</th>
-        <th>建立時間</th>
       </tr>
       <tr ng-repeat="req in requests.list">
-        <td><a ui-sref="request({requestId: '{{req.requestId}}'})">{{req.requestId}}</a></td>
+        <td><a ui-sref="request({requestId: '{{req.requestId}}'})">{{req.title}}</a></td>
+        <td>{{req.people}}</td>
+        <td>{{req.startTime}}</td>
+        <td>{{req.endTime}}</td>
         <td>{{req.requester}}</td>
-        <td>{{req.createTime}}</td>
       </tr>
     </table>
     <!-- <uib-pagination

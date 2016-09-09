@@ -5,7 +5,7 @@ export default class RequestController {
   constructor ($state, $cookies, acl, $stateParams, restful, $ngRedux, $scope) {
     this.restful = restful;
     this.$state = $state;
-    
+
     if (!acl.checkStatus($cookies.get('status'))) {
       $state.go('login');
     }
@@ -13,6 +13,12 @@ export default class RequestController {
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), RequestActions)(this);
     $scope.$on('$destroy', unsubscribe);
 
+    this.startOpened = false;
+    this.endOpened = false;
+    this.timeOption = {
+      max: moment().subtract(1, 'days').format()
+    };
+    
     this.items = [];
   }
 
@@ -22,6 +28,18 @@ export default class RequestController {
       items: state.request
     };
   }
+
+  startOpen ($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+    this.startOpened = !this.startOpened;
+  };
+
+  endOpen ($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+    this.endOpened = !this.endOpened;
+  };
 
   confirm () {
     if (this.items.length < 1) {
