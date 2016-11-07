@@ -4,8 +4,8 @@ export default class DiscussController {
     this.cookies = $cookies;
     this.restful = restful;
 
-    if (acl.checkStatus(this.cookies.get('status'))) {
-      this.state.go('home');
+    if (!acl.checkStatus(this.cookies.get('status'))) {
+      this.state.go('login');
     }
 
     this.restful.getMockHotels()
