@@ -16,8 +16,12 @@
         <li ui-sref-active="active"><a ui-sref="orderimport">匯入訂單</a></li>
         <li ui-sref-active="active"><a ui-sref="password">管理員密碼設定</a></li> -->
       </ul>
-      <button type="button" class="btn btn-default navbar-btn navbar-right"
-              ng-click="navbar.logout()" ng-show="navbar.isLoggedIn">登出</button>
+      <ul class="nav navbar-nav navbar-right" ng-show="navbar.isLoggedIn">
+        <li><a><span class="glyphicon glyphicon-user"></span> {{navbar.userID}}</a></li>
+        <li><a href ng-click="navbar.logout()"><span class="glyphicon glyphicon-log-out"></span> 登出</a></li>
+      </ul>
+      <!-- <button type="button" class="btn btn-default navbar-btn navbar-right"
+              ng-click="navbar.logout()" ng-show="navbar.isLoggedIn">登出</button> -->
     </div>
   </div>
 </div>

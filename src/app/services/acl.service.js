@@ -3,8 +3,8 @@ import angular from 'angular';
 class ACL {
   constructor () {}
 
-  checkStatus (cookies) {
-    return cookies === 'user';
+  checkStatus (status) {
+    return status === 'loggedin';
   }
 }
 

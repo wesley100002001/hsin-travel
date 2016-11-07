@@ -14,16 +14,21 @@ export default class LoginController {
     var cookies = this.cookies;
     var state = this.state;
     // this.restful.getAdmin(this.username, this.password)
-    this.restful.getMockAdmin()
-    .then(passed => {
-      if (passed) {
-        cookies.put('status', 'user');
-        state.go('requests');
-      } else {
-        this.logging = false;
-        this.isLoginFail = true;
-      }
-    });
+    if (!!this.username && !!this.password) {
+      this.restful.getMockAdmin()
+      .then(passed => {
+        if (passed) {
+          cookies.put('status', 'loggedin');
+          cookies.put('id', this.username);
+          state.go('requests');
+        } else {
+          this.logging = false;
+          this.isLoginFail = true;
+        }
+      });
+    } else {
+      alert('請輸入帳號密碼');
+    }
   }
 }
 
