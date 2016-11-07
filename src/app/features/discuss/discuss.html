@@ -19,18 +19,18 @@
             <th>留言</th>
             <th>時間</th>
           </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
+          <tr ng-repeat="com in discuss.conversation">
+            <td>{{com.id}}</td>
+            <td>{{com.comment}}</td>
+            <td>{{com.timestamp}}</td>
           </tr>
         </table>
         <div class="col-md-6">
           <div class="form-group">
             <label for="comment">回覆</label>
-            <textarea class="form-control" rows="2" id="comment"></textarea>
+            <textarea class="form-control" rows="2" id="comment" ng-model="discuss.newComment"></textarea>
           </div>
-          <button class="btn btn-success">送出</button>
+          <button class="btn btn-success" ng-click="discuss.addComment()">送出</button>
         </div>
       </div>
     </div>
