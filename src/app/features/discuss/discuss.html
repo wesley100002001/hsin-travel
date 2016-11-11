@@ -9,11 +9,11 @@
         <th>房型</th>
         <th>數量</th>
       </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+      <tr ng-repeat="hotel in discuss.request.hotel">
+        <td>{{hotel.date}}</td>
+        <td>{{hotel.hotelName}}</td>
+        <td>{{hotel.roomTitle}}</td>
+        <td>{{hotel.quantity}}</td>
       </tr>
     </table>
     <div class="panel panel-default">

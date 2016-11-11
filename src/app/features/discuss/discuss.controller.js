@@ -13,9 +13,9 @@ export default class DiscussController {
       this.userID = this.cookies.get('id');
     }
 
-    this.restful.getMockHotels()
-    .then(hotels => {
-      this.hotels = hotels;
+    this.restful.getMockRequest()
+    .then(req => {
+      this.request = req;
     });
   }
 

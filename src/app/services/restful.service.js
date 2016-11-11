@@ -85,6 +85,19 @@ class Restful {
       resolve(requests);
     });
   }
+
+  getMockRequest () {
+    return this.$q(function (resolve, reject) {
+      var request = {
+        hotel: [
+          { date: '2016/09/20', hotelId: 'H003', hotelName: '國賓大飯店', roomId: 13, roomTitle: '雙人房', quantity: 20 },
+          { date: '2016/09/21', hotelId: 'H003', hotelName: '國賓大飯店', roomId: 13, roomTitle: '雙人房', quantity: 20 },
+          { date: '2016/09/22', hotelId: 'H003', hotelName: '國賓大飯店', roomId: 13, roomTitle: '雙人房', quantity: 20 }
+        ]
+      };
+      resolve(request);
+    });
+  }
 }
 
 export default angular.module('services.restful', ['firebase'])
