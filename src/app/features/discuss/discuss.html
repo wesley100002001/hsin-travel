@@ -1,46 +1,37 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <h1 class="padding-down">需求討論</h1>
-    <h3 class="padding-down">飯店</h3>
-    <table class="table">
-      <tr>
-        <th>日期</th>
-        <th>飯店</th>
-        <th>房型</th>
-        <th>數量</th>
-      </tr>
-      <tr ng-repeat="hotel in discuss.request.hotel">
-        <td>{{hotel.date}}</td>
-        <td>{{hotel.hotelName}}</td>
-        <td>{{hotel.roomTitle}}</td>
-        <td>{{hotel.quantity}}</td>
-      </tr>
-    </table>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">討論區</h3>
+    <div class="col-md-3 well scrollable">
+      <p ng-show="discuss.conversation < 1" class="text-center">
+        目前沒有任何留言唷！
+      </p>
+      <div ng-repeat="com in discuss.conversation">
+        <span>{{com.id}}:</span><br>
+        <span>{{com.comment}}</span>
+        <p class="text-right">{{com.timestamp}}</p>
       </div>
-      <div class="panel-body">
-        <table class="table table-striped">
-          <tr>
-            <th>留言人</th>
-            <th>留言</th>
-            <th>時間</th>
-          </tr>
-          <tr ng-repeat="com in discuss.conversation">
-            <td>{{com.id}}</td>
-            <td>{{com.comment}}</td>
-            <td>{{com.timestamp}}</td>
-          </tr>
-        </table>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="comment">回覆</label>
-            <textarea class="form-control" rows="2" id="comment" ng-model="discuss.newComment"></textarea>
-          </div>
-          <button class="btn btn-success" ng-click="discuss.addComment()">送出</button>
-        </div>
+      <div class="form-group">
+        <label for="comment">留言</label>
+        <textarea class="form-control" rows="2" id="comment" ng-model="discuss.newComment"></textarea>
       </div>
+      <button class="btn btn-success" ng-click="discuss.addComment()">送出</button>
+    </div>
+    <div class="col-md-9 scrollable">
+      <h1 class="padding-down">需求討論</h1>
+      <h3 class="padding-down">飯店</h3>
+      <table class="table">
+        <tr>
+          <th>日期</th>
+          <th>飯店</th>
+          <th>房型</th>
+          <th>數量</th>
+        </tr>
+        <tr ng-repeat="hotel in discuss.request.hotel">
+          <td>{{hotel.date}}</td>
+          <td>{{hotel.hotelName}}</td>
+          <td>{{hotel.roomTitle}}</td>
+          <td>{{hotel.quantity}}</td>
+        </tr>
+      </table>
     </div>
   </div>
 </div>
