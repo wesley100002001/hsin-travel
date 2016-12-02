@@ -21,7 +21,6 @@ export default class DiscussController {
 
   // 一個 Request 裡應該要有一個 Conversation Array 來存所有的留言
   addComment () {
-    // this.restful.getHerokuHotel();
     if (!!this.newComment) {
       this.conversation.push({
         id: this.userID,

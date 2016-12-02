@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-3 well scrollable">
+    <div class="col-xs-3 col-sm-3 col-md-3 well scrollable">
       <p ng-show="discuss.conversation < 1" class="text-center">
         目前沒有任何留言唷！
       </p>
@@ -15,7 +15,7 @@
       </div>
       <button class="btn btn-success" ng-click="discuss.addComment()">送出</button>
     </div>
-    <div class="col-md-9 scrollable">
+    <div class="col-xs-3 col-sm-9 col-md-9 scrollable">
       <h1 class="padding-down">需求討論</h1>
       <h3 class="padding-down">飯店</h3>
       <table class="table">
@@ -24,12 +24,14 @@
           <th>飯店</th>
           <th>房型</th>
           <th>數量</th>
+          <th></th>
         </tr>
         <tr ng-repeat="hotel in discuss.request.hotel">
           <td>{{hotel.date}}</td>
           <td>{{hotel.hotelName}}</td>
           <td>{{hotel.roomTitle}}</td>
           <td>{{hotel.quantity}}</td>
+          <td><button class="btn btn-info" ng-click="discuss.editRequest(hotel.id)">編輯</button></td>
         </tr>
       </table>
     </div>
