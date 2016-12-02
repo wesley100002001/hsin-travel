@@ -102,14 +102,33 @@ class Restful {
     });
   }
 
+  getHerokuLogin () {
+    return this.http({
+      method: 'POST',
+      url: 'https://intense-brook-59902.herokuapp.com/login',
+      data: {
+        username: 'user_j',
+        password: 'auth_j'
+      }
+    }).then(function (res) {
+      console.log(res);
+      return res.data;
+    }, function (err) {
+      console.log(err);
+      return err.data;
+    });
+  }
+
   getHerokuHotel () {
     return this.http({
       method: 'GET',
       url: 'https://intense-brook-59902.herokuapp.com/order'
     }).then(function (res) {
       console.log(res);
-    }, function (res) {
-      console.log(res);
+      return res.data;
+    }, function (err) {
+      console.log(err);
+      return err.data;
     });
   }
 }
