@@ -11,6 +11,7 @@ export default class DiscussController {
       this.state.go('login');
     } else {
       this.userID = this.cookies.get('id');
+      this.editable = this.cookies.get('isAdmin') === 'true';
     }
 
     this.restful.getMockRequest()

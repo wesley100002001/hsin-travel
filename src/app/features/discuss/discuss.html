@@ -24,14 +24,16 @@
           <th>飯店</th>
           <th>房型</th>
           <th>數量</th>
-          <th></th>
+          <th ng-show="discuss.editable"></th>
         </tr>
         <tr ng-repeat="hotel in discuss.request.hotel">
           <td>{{hotel.date}}</td>
           <td>{{hotel.hotelName}}</td>
           <td>{{hotel.roomTitle}}</td>
           <td>{{hotel.quantity}}</td>
-          <td><button class="btn btn-info" ng-click="discuss.editRequest(hotel.id)">編輯</button></td>
+          <td ng-show="discuss.editable">
+            <button class="btn btn-info" ng-click="discuss.editRequest(hotel.id)">編輯</button>
+          </td>
         </tr>
       </table>
     </div>
