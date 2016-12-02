@@ -15,11 +15,12 @@ export default class LoginController {
     var state = this.state;
     // this.restful.getAdmin(this.username, this.password)
     if (!!this.username && !!this.password) {
-      this.restful.getMockAdmin()
-      .then(passed => {
-        if (passed) {
-          cookies.put('status', 'loggedin');
-          cookies.put('id', this.username);
+      this.restful.getMockAdmin(this.username, this.password)
+      .then(response => {
+        if (response.status === 'loggedin') {
+          cookies.put('status', response.status);
+          cookies.put('id', response.id);
+          cookies.put('isAdmin', response.isAdmin);
           state.go('requests');
         } else {
           this.logging = false;

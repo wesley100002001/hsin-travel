@@ -41,9 +41,21 @@ class Restful {
     });
   }
 
-  getMockAdmin () {
+  getMockAdmin (username, pwd) {
     return this.$q(function (resolve, reject) {
-      resolve(true);
+      if (username === 'admin') {
+        resolve({
+          status: 'loggedin',
+          id: username,
+          isAdmin: true
+        });
+      } else {
+        resolve({
+          status: 'loggedin',
+          id: username,
+          isAdmin: false
+        });
+      }
     });
   }
 
