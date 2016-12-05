@@ -31,6 +31,10 @@ export default class DiscussController {
       this.newComment = '';
     }
   }
+
+  editRequest (id) {
+    alert(id);
+  }
 }
 
 DiscussController.$inject = ['$state', '$cookies', 'acl', 'restful', '$scope'];
