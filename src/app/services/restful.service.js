@@ -102,6 +102,7 @@ class Restful {
     return this.$q(function (resolve, reject) {
       var request = {
         title: '花東縱谷七天六夜',
+        people: 20,
         hotel: [
           { date: '2016/09/20', hotelId: 'H003', hotelName: '國賓大飯店', roomId: 13, roomTitle: '雙人房', quantity: 20 },
           { date: '2016/09/21', hotelId: 'H003', hotelName: '國賓大飯店', roomId: 13, roomTitle: '雙人房', quantity: 20 },
