@@ -9,8 +9,9 @@ export default function routes($urlRouterProvider, $locationProvider, $ngReduxPr
   $locationProvider.html5Mode(true);
   $urlRouterProvider.otherwise('/');
 
-  $translateProvider.translations('tw', tw)
-  .preferredLanguage('tw');
+  $translateProvider.translations('tw', tw);
+  $translateProvider.translations('jp', jp);
+  $translateProvider.preferredLanguage('tw');
 
   $ngReduxProvider.createStoreWith(appReducer, []);
 }

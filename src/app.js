@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css';
 
 import angular from 'angular';
+import bootstrap from 'bootstrap';
 import uirouter from 'angular-ui-router';
 import ngCookies from 'angular-cookies';
 import _firebase from 'firebase';
