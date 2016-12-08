@@ -116,6 +116,17 @@ class Restful {
     });
   }
 
+  getMockNotification () {
+    return this.$q(function (resolve, reject) {
+      var notification = [
+        { requestID: 'A001', message: 'Wesley 在花東七天六夜中留言' },
+        { requestID: 'A003', message: '花蓮七天六夜 改名為 花東七天六夜' },
+        { requestID: 'A005', message: '9/21 國賓大飯店雙人房20間 改為 9/21 國賓大飯店雙人房19間' },
+      ];
+      resolve(notification);
+    });
+  }
+
   getHerokuLogin () {
     return this.http({
       method: 'POST',
