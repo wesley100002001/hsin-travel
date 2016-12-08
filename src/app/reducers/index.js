@@ -1,6 +1,21 @@
 import { combineReducers } from 'redux';
 import { CREATE_TEST_REQUEST } from '../actions/requests';
 import { ADD_ITEM, ADD_REQUEST } from '../actions/request';
+import { ADD_COMMENT } from '../actions/discuss';
+
+function discuss (state = [], action) {
+  switch (action.type) {
+    case ADD_COMMENT:
+    let comment = action.comment;
+    return [
+      ...state,
+        comment
+    ];
+
+    default:
+    return state;
+  }
+}
 
 function requests (state = [], action) {
   switch (action.type) {
@@ -38,6 +53,7 @@ function request (state = [], action) {
 }
 
 let appReducer = combineReducers({
+  discuss,
   request,
   requests
 });

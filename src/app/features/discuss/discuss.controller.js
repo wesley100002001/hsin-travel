@@ -1,7 +1,8 @@
 import moment from 'moment';
+import * as DiscussActions from '../../actions/discuss';
 
 export default class DiscussController {
-  constructor ($state, $cookies, acl, restful, $scope) {
+  constructor ($state, $cookies, acl, restful, $scope, $ngRedux) {
     this.state = $state;
     this.cookies = $cookies;
     this.restful = restful;
@@ -14,16 +15,26 @@ export default class DiscussController {
       this.editable = this.cookies.get('isAdmin') === 'true';
     }
 
+    const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), DiscussActions)(this);
+    $scope.$on('$destroy', unsubscribe);
+
     this.restful.getMockRequest()
     .then(req => {
       this.request = req;
     });
   }
 
+  mapStateToThis (state) {
+    console.log(state);
+    return {
+      conversation: state.discuss,
+    };
+  }
+
   // 一個 Request 裡應該要有一個 Conversation Array 來存所有的留言
-  addComment () {
+  leaveComment () {
     if (!!this.newComment) {
-      this.conversation.push({
+      this.addComment({
         id: this.userID,
         comment: this.newComment,
         timestamp: moment().format('YYYY 年 MM 月 DD 日 HH:mm:ss')
@@ -37,4 +48,4 @@ export default class DiscussController {
   }
 }
 
-DiscussController.$inject = ['$state', '$cookies', 'acl', 'restful', '$scope'];
+DiscussController.$inject = ['$state', '$cookies', 'acl', 'restful', '$scope', '$ngRedux'];
