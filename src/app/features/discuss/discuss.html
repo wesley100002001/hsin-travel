@@ -33,8 +33,25 @@
           <td>{{hotel.roomTitle}}</td>
           <td>{{hotel.quantity}}</td>
           <td ng-show="discuss.editable">
-            <button class="btn btn-info" ng-click="discuss.editRequest(hotel.hotelId)">編輯</button>
+            <a href ng-click="discuss.editRequest(hotel.hotelId)">
+              <span class="glyphicon glyphicon-pencil"></span>
+            </a>
+            &nbsp;&nbsp;
+            <a href ng-click="discuss.editRequest(hotel.hotelId)">
+              <span class="glyphicon glyphicon-trash"></span>
+            </a>
           </td>
+        </tr>
+        <tr>
+          <td>
+            <a href ng-click="discuss.editRequest(hotel.hotelId)">
+              <span class="glyphicon glyphicon-plus-sign"></span>
+            </a>
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
         </tr>
       </table>
     </div>
