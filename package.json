@@ -1,7 +1,7 @@
 {
   "name": "Hsin-Ia",
   "version": "1.0.0",
-  "description": "Hsin-Ia travling management system",
+  "description": "Hsin-Ia traveling management system",
   "scripts": {
     "build": "webpack --config webpack.config.js --bail -p",
     "dev": "node node_modules/.bin/webpack-dev-server --history-api-fallback --hot --inline --progress",
