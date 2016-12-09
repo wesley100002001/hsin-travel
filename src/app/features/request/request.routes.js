@@ -48,7 +48,7 @@ export default function routes ($stateProvider, modalStateProvider) {
   });
   modalStateProvider.state('requestCreate.itemselect', {
     url: '/itemselect',
-    template: require('./itemselect.html'),
+    template: require('../hotelselect/itemselect.html'),
     size: 'lg',
     backdrop: 'static',
     controller: 'HotelSelectController',
@@ -56,7 +56,7 @@ export default function routes ($stateProvider, modalStateProvider) {
   });
   modalStateProvider.state('requestCreate.itemconfirm', {
     url: '/itemconfirm',
-    template: require('./itemconfirm.html'),
+    template: require('../hotelconfirm/itemconfirm.html'),
     size: 'lg',
     backdrop: 'static',
     controller: 'HotelConfirmController',
@@ -64,7 +64,7 @@ export default function routes ($stateProvider, modalStateProvider) {
   });
   modalStateProvider.state('request.itemselect', {
     url: '/itemselect',
-    template: require('./itemselect.html'),
+    template: require('../hotelselect/itemselect.html'),
     size: 'lg',
     backdrop: 'static',
     controller: 'FrozenController',
@@ -72,7 +72,7 @@ export default function routes ($stateProvider, modalStateProvider) {
   });
   modalStateProvider.state('request.itemconfirm', {
     url: '/itemconfirm',
-    template: require('./itemconfirm.html'),
+    template: require('../hotelconfirm/itemconfirm.html'),
     size: 'lg',
     backdrop: 'static',
     controller: 'HotelConfirmController',
