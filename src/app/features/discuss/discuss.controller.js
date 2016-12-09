@@ -43,6 +43,10 @@ export default class DiscussController {
     }
   }
 
+  editHotel (hotel) {
+    this.state.go('request.itemconfirm', hotel);
+  }
+
   editRequest (id) {
     alert(id);
   }
