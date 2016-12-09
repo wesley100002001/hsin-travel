@@ -62,4 +62,20 @@ export default function routes ($stateProvider, modalStateProvider) {
     controller: 'HotelConfirmController',
     controllerAs: 'hotelconfirm'
   });
+  modalStateProvider.state('request.itemselect', {
+    url: '/itemselect',
+    template: require('./itemselect.html'),
+    size: 'lg',
+    backdrop: 'static',
+    controller: 'FrozenController',
+    controllerAs: 'hotelselect'
+  });
+  modalStateProvider.state('request.itemconfirm', {
+    url: '/itemconfirm',
+    template: require('./itemconfirm.html'),
+    size: 'lg',
+    backdrop: 'static',
+    controller: 'HotelConfirmController',
+    controllerAs: 'hotelconfirm'
+  });
 }

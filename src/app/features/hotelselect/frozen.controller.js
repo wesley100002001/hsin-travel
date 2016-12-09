@@ -1,4 +1,4 @@
-export default class HotelSelectController {
+export default class FrozenController {
   constructor ($state, $cookies, acl, restful, $scope, $uibModalInstance) {
     this.state = $state;
     this.cookies = $cookies;
@@ -11,7 +11,7 @@ export default class HotelSelectController {
   }
 
   pickItem (id) {
-    this.state.go('requestCreate.itemconfirm', { hotelId: id });
+    this.state.go('request.itemconfirm', { hotelId: id });
   }
 
   cancel () {
@@ -19,5 +19,5 @@ export default class HotelSelectController {
   }
 }
 
-HotelSelectController.$inject = ['$state', '$cookies', 'acl', 'restful',
+FrozenController.$inject = ['$state', '$cookies', 'acl', 'restful',
 '$scope', '$uibModalInstance'];

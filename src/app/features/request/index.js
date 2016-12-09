@@ -8,6 +8,7 @@ import routing from './request.routes';
 import modal from '../../services/modal.service';
 import DiscussController from '../discuss/discuss.controller';
 import FooterController from '../../../components/footer/footer.controller';
+import FrozenController from '../hotelselect/frozen.controller';
 import RequestController from './request.controller';
 import NavbarController from '../../../components/navbar/navbar.controller';
 import HotelSelectController from '../hotelselect/hotelselect.controller';
@@ -22,6 +23,7 @@ export default angular.module('app.request', [acl, uibootstrap, uirouter,
   .controller('RequestController', RequestController)
   .controller('NavbarController', NavbarController)
   .controller('FooterController', FooterController)
+  .controller('FrozenController', FrozenController)
   .controller('HotelSelectController', HotelSelectController)
   .controller('HotelConfirmController', HotelConfirmController)
   .controller('DiscussController', DiscussController)
