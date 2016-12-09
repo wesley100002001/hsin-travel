@@ -75,7 +75,7 @@ export default function routes ($stateProvider, modalStateProvider) {
     template: require('../hotelconfirm/itemconfirm.html'),
     size: 'lg',
     backdrop: 'static',
-    controller: 'HotelConfirmController',
+    controller: 'RapunzelController',
     controllerAs: 'hotelconfirm'
   });
 }

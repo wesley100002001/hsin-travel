@@ -2,7 +2,7 @@ import ambassador from '../../../assets/imgs/ambassador.jpg';
 import moment from 'moment';
 import * as RequestActions from '../../actions/request';
 
-export default class HotelConfirmController {
+export default class RapunzelController {
   constructor ($state, $cookies, acl, restful, $scope, $uibModalInstance,
     $ngRedux) {
     this.state = $state;
@@ -18,7 +18,7 @@ export default class HotelConfirmController {
     this.cover = ambassador;
     this.address = '台北市中山北路二段50號';
     this.phone = '02-2918-9403';
-    this.isOneDay = false;
+    this.isOneDay = true;
 
     this.startOpened = false;
     this.endOpened = false;
@@ -64,5 +64,5 @@ export default class HotelConfirmController {
   }
 }
 
-HotelConfirmController.$inject = ['$state', '$cookies', 'acl', 'restful',
+RapunzelController.$inject = ['$state', '$cookies', 'acl', 'restful',
   '$scope', '$uibModalInstance', '$ngRedux'];
