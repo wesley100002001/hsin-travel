@@ -20,7 +20,7 @@ export default class DiscussController {
 
     this.restful.getMockRequest()
     .then(req => {
-      this.request = req;
+      this.loadRequest(req);
     });
   }
 
@@ -28,6 +28,7 @@ export default class DiscussController {
     console.log(state);
     return {
       conversation: state.discuss,
+      request: state.requestToBeEdit
     };
   }
 
@@ -47,8 +48,8 @@ export default class DiscussController {
     this.state.go('request.itemconfirm', hotel);
   }
 
-  editRequest (id) {
-    alert(id);
+  deleteHotel (id) {
+
   }
 }
 

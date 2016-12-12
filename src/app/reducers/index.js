@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
-import { CREATE_TEST_REQUEST } from '../actions/requests';
+import { LOAD_REQUESTS } from '../actions/requests';
 import { ADD_ITEM, ADD_REQUEST } from '../actions/request';
-import { ADD_COMMENT } from '../actions/discuss';
+import { ADD_COMMENT, LOAD_REQUEST } from '../actions/discuss';
+import { LOAD_HOTELS } from '../actions/itemselect';
 
 function discuss (state = [], action) {
   switch (action.type) {
@@ -17,14 +18,22 @@ function discuss (state = [], action) {
   }
 }
 
+function requestToBeEdit (state = {}, action) {
+  switch (action.type) {
+    case LOAD_REQUEST:
+    let loadedRequest = action.loadedRequest;
+    return loadedRequest;
+
+    default:
+    return state;
+  }
+}
+
 function requests (state = [], action) {
   switch (action.type) {
-    case CREATE_TEST_REQUEST:
-    var req = action.req;
-    return [
-      ...state,
-        req
-    ];
+    case LOAD_REQUESTS:
+    let reqs = action.requests;
+    return reqs;
 
     case ADD_REQUEST:
     var req = action.req;
@@ -52,10 +61,23 @@ function request (state = [], action) {
   }
 }
 
+function itemselect (state = [], action) {
+  switch (action.type) {
+    case LOAD_HOTELS:
+    let hotels = action.hotels;
+    return hotels;
+
+    default:
+    return state;
+  }
+}
+
 let appReducer = combineReducers({
   discuss,
+  itemselect,
   request,
-  requests
+  requests,
+  requestToBeEdit
 });
 
 export default appReducer;

@@ -15,7 +15,7 @@ export default class RequestsController {
 
     this.restful.getMockRequests()
     .then(reqs => {
-      this.list = reqs;
+      this.loadRequests(reqs);
     });
   }
 

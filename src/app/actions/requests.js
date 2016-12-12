@@ -1,16 +1,8 @@
-/* action types */
+export const LOAD_REQUESTS = 'LOAD_REQUESTS';
 
-export const CREATE_TEST_REQUEST = 'CREATE_TEST_REQUEST';
-
-/* action creators */
-
-export function createTestRequest () {
+export function loadRequests (requests) {
   return {
-    type: CREATE_TEST_REQUEST,
-    req: {
-      requestId: 'x',
-      requester: 'y',
-      createTime: 'z'
-    }
+    type: LOAD_REQUESTS,
+    requests: requests
   };
 }
