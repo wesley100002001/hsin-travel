@@ -14,7 +14,7 @@ export function addItem (item) {
       roomType: '雙人房',
       quantity: 22
     }
-  }
+  };
 }
 
 export function addRequest (req) {
@@ -25,5 +25,5 @@ export function addRequest (req) {
       requester: 'USER001',
       createTime: '2016/05/20'
     }
-  }
+  };
 }

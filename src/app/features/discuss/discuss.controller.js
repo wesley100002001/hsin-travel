@@ -48,8 +48,10 @@ export default class DiscussController {
     this.state.go('request.itemconfirm', hotel);
   }
 
-  deleteHotel (id) {
-
+  deleteHotel (hotelBook) {
+    // var newHotelBooks = this.request.hotel.filter(obj => {
+    //   return !angular.equals(hotelBook, obj);
+    // });
   }
 }
 
