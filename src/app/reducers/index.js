@@ -3,6 +3,7 @@ import { LOAD_REQUESTS } from '../actions/requests';
 import { ADD_ITEM, ADD_REQUEST } from '../actions/request';
 import { ADD_COMMENT, LOAD_REQUEST } from '../actions/discuss';
 import { LOAD_HOTELS } from '../actions/itemselect';
+import * as restful from '../lib/restful';
 
 function discuss (state = [], action) {
   switch (action.type) {
@@ -64,6 +65,12 @@ function request (state = [], action) {
 function itemselect (state = [], action) {
   switch (action.type) {
     case LOAD_HOTELS:
+    restful.getMockHotels()
+    .then(function (hotels) {
+      return hotels;
+    }).catch(function (err) {
+      console.log(err);
+    });
     let hotels = action.hotels;
     return hotels;
 
