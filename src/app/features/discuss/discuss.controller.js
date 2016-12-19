@@ -2,7 +2,7 @@ import moment from 'moment';
 import * as DiscussActions from '../../actions/discuss';
 
 export default class DiscussController {
-  constructor ($state, $cookies, acl, restful, $scope, $ngRedux) {
+  constructor ($state, $cookies, acl, restful, $scope, $ngRedux, $stateParams) {
     this.state = $state;
     this.cookies = $cookies;
     this.restful = restful;
@@ -55,4 +55,5 @@ export default class DiscussController {
   }
 }
 
-DiscussController.$inject = ['$state', '$cookies', 'acl', 'restful', '$scope', '$ngRedux'];
+DiscussController.$inject = ['$state', '$cookies', 'acl', 'restful', '$scope',
+'$ngRedux', '$stateParams'];
