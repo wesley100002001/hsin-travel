@@ -1,4 +1,7 @@
 import appReducer from './app/reducers/index';
+import promiseMiddleware from 'redux-promise-middleware';
+import thunk from 'redux-thunk';
+
 //!! Not Sure how to load these objects yet
 import tw from './translations/tw.json';
 import jp from './translations/jp.json'
@@ -13,5 +16,5 @@ export default function routes($urlRouterProvider, $locationProvider, $ngReduxPr
   $translateProvider.translations('jp', jp);
   $translateProvider.preferredLanguage('tw');
 
-  $ngReduxProvider.createStoreWith(appReducer, []);
+  $ngReduxProvider.createStoreWith(appReducer, [thunk, promiseMiddleware()]);
 }
