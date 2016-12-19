@@ -18,10 +18,7 @@ export default class DiscussController {
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), DiscussActions)(this);
     $scope.$on('$destroy', unsubscribe);
 
-    this.restful.getMockRequest()
-    .then(req => {
-      this.loadRequest(req);
-    });
+    this.fetchRequest($stateParams.requestId);
   }
 
   mapStateToThis (state) {

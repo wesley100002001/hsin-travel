@@ -13,10 +13,7 @@ export default class RequestsController {
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), RequestsActions)(this);
     $scope.$on('$destroy', unsubscribe);
 
-    this.restful.getMockRequests()
-    .then(reqs => {
-      this.loadRequests(reqs);
-    });
+    this.fetchRequests();
   }
 
   mapStateToThis (state) {

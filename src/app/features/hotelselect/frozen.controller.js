@@ -11,10 +11,7 @@ export default class FrozenController {
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), ItemSelectActions)(this);
     $scope.$on('$destroy', unsubscribe);
 
-    this.restful.getMockHotels()
-    .then(hotels => {
-      this.loadHotels(hotels);
-    });
+    this.fetchHotels();
   }
 
   mapStateToThis (state) {

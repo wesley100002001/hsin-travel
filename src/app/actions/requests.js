@@ -1,8 +1,14 @@
-export const LOAD_REQUESTS = 'LOAD_REQUESTS';
+import * as restful from '../lib/restful';
 
-export function loadRequests (requests) {
+export const LOAD_REQUESTS = 'LOAD_REQUESTS';
+export const FETCH_REQUESTS = 'FETCH_REQUESTS';
+
+export function fetchRequests () {
   return {
-    type: LOAD_REQUESTS,
-    requests: requests
+    type: FETCH_REQUESTS,
+    payload: restful.getMockRequests()
+      .then(function (response) {
+        return response;
+      })
   };
 }

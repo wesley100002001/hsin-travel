@@ -1,8 +1,13 @@
-export const LOAD_HOTELS = 'LOAD_HOTELS';
+import * as restful from '../lib/restful';
 
-export function loadHotels (hotels) {
+export const FETCH_HOTELS = 'FETCH_HOTELS';
+
+export function fetchHotels () {
   return {
-    type: LOAD_HOTELS,
-    hotels: hotels
+    type: FETCH_HOTELS,
+    payload: restful.getMockHotels()
+      .then(function (response) {
+        return response;
+      })
   };
 }

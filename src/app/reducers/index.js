@@ -1,17 +1,19 @@
 import { combineReducers } from 'redux';
-import { LOAD_REQUESTS } from '../actions/requests';
+import { FETCH_REQUESTS } from '../actions/requests';
 import { ADD_ITEM, ADD_REQUEST } from '../actions/request';
-import { ADD_COMMENT, LOAD_REQUEST } from '../actions/discuss';
-import { LOAD_HOTELS } from '../actions/itemselect';
-import * as restful from '../lib/restful';
+import { ADD_COMMENT, FETCH_REQUEST } from '../actions/discuss';
+import { FETCH_HOTELS } from '../actions/itemselect';
+import { FETCH_NOTIFICATIONS } from '../actions/navbar';
+
+const FULFILLED = '_FULFILLED';
+const PENDING = '_PENDING';
 
 function discuss (state = [], action) {
   switch (action.type) {
-    case ADD_COMMENT:
-    let comment = action.comment;
+    case `${ADD_COMMENT}${FULFILLED}`:
     return [
       ...state,
-        comment
+      action.payload
     ];
 
     default:
@@ -21,9 +23,8 @@ function discuss (state = [], action) {
 
 function requestToBeEdit (state = {}, action) {
   switch (action.type) {
-    case LOAD_REQUEST:
-    let loadedRequest = action.loadedRequest;
-    return loadedRequest;
+    case `${FETCH_REQUEST}${FULFILLED}`:
+    return action.payload;
 
     default:
     return state;
@@ -32,9 +33,8 @@ function requestToBeEdit (state = {}, action) {
 
 function requests (state = [], action) {
   switch (action.type) {
-    case LOAD_REQUESTS:
-    let reqs = action.requests;
-    return reqs;
+    case `${FETCH_REQUESTS}${FULFILLED}`:
+    return action.payload;
 
     case ADD_REQUEST:
     var req = action.req;
@@ -64,15 +64,21 @@ function request (state = [], action) {
 
 function itemselect (state = [], action) {
   switch (action.type) {
-    case LOAD_HOTELS:
-    restful.getMockHotels()
-    .then(function (hotels) {
-      return hotels;
-    }).catch(function (err) {
-      console.log(err);
-    });
-    let hotels = action.hotels;
-    return hotels;
+    case FETCH_HOTELS:
+    return action.payload;
+
+    case `${FETCH_HOTELS}${FULFILLED}`:
+    return action.payload;
+
+    default:
+    return state;
+  }
+}
+
+function navbar (state = [], action) {
+  switch (action.type) {
+    case `${FETCH_NOTIFICATIONS}${FULFILLED}`:
+    return action.payload;
 
     default:
     return state;
@@ -82,6 +88,7 @@ function itemselect (state = [], action) {
 let appReducer = combineReducers({
   discuss,
   itemselect,
+  navbar,
   request,
   requests,
   requestToBeEdit

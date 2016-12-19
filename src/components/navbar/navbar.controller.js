@@ -1,6 +1,8 @@
+import * as NavbarActions from '../../app/actions/navbar';
+
 export default class NavbarController {
-  constructor ($state, $cookies, acl, $translate, restful) {
-    this.state = $state;
+  constructor ($scope, $state, $cookies, acl, $translate, restful, $ngRedux) {
+    this.$state = $state;
     this.cookies = $cookies;
     this.restful = restful;
     this.translate = $translate;
@@ -10,15 +12,22 @@ export default class NavbarController {
       this.userID = this.cookies.get('id');
     }
 
-    this.restful.getMockNotification()
-    .then(res => {
-      this.notification = res;
-    });
+    const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), NavbarActions)(this);
+    $scope.$on('$destroy', unsubscribe);
+
+    this.fetchNotifications();
+  }
+
+  mapStateToThis (state) {
+    console.log(state);
+    return {
+      notifications: state.navbar,
+    };
   }
 
   logout () {
     this.cookies.remove('status');
-    this.state.go('login');
+    this.$state.go('login');
   }
 
   changeLang (langKey) {
@@ -26,4 +35,5 @@ export default class NavbarController {
   }
 }
 
-NavbarController.$inject = ['$state', '$cookies', 'acl', '$translate', 'restful'];
+NavbarController.$inject = ['$scope', '$state', '$cookies', 'acl', '$translate',
+'restful', '$ngRedux'];
