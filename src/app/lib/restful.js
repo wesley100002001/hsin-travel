@@ -1,5 +1,6 @@
 require('es6-promise').polyfill();
 import fetch from 'isomorphic-fetch';
+import config from '../../../config.json';
 
 export function getMockHotels () {
   return new Promise(function (resolve, reject) {
@@ -73,4 +74,11 @@ export function addComment (comment) {
   return new Promise(function (resolve, reject) {
     resolve(comment);
   })
+}
+
+export function getGreetings () {
+  return fetch(config.heroku_host + '/greetings/show')
+  .then(response => {
+    return response.json();
+  });
 }

@@ -1,12 +1,25 @@
 import { combineReducers } from 'redux';
 import { FETCH_REQUESTS } from '../actions/requests';
 import { ADD_ITEM, ADD_REQUEST } from '../actions/request';
-import { ADD_COMMENT, FETCH_REQUEST } from '../actions/discuss';
+import { ADD_COMMENT, FETCH_REQUEST, FETCH_GREETINGS } from '../actions/discuss';
 import { FETCH_HOTELS } from '../actions/itemselect';
 import { FETCH_NOTIFICATIONS } from '../actions/navbar';
 
 const FULFILLED = '_FULFILLED';
 const PENDING = '_PENDING';
+
+function greetings (state = [], action) {
+  switch (action.type) {
+    case `${FETCH_GREETINGS}${FULFILLED}`:
+    return [
+      ...state,
+      action.payload
+    ];
+
+    default:
+    return state;
+  }
+}
 
 function discuss (state = [], action) {
   switch (action.type) {
@@ -87,6 +100,7 @@ function navbar (state = [], action) {
 
 let appReducer = combineReducers({
   discuss,
+  greetings,
   itemselect,
   navbar,
   request,

@@ -19,13 +19,15 @@ export default class DiscussController {
     $scope.$on('$destroy', unsubscribe);
 
     this.fetchRequest($stateParams.requestId);
+    this.fetchGreetings();
   }
 
   mapStateToThis (state) {
     console.log(state);
     return {
       conversation: state.discuss,
-      request: state.requestToBeEdit
+      request: state.requestToBeEdit,
+      greetings: state.greetings
     };
   }
 
