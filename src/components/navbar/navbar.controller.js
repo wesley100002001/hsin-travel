@@ -1,8 +1,10 @@
 import * as NavbarActions from '../../app/actions/navbar';
+import * as RouterActions from 'redux-ui-router';
+
+const combinedActions = Object.assign({}, NavbarActions, RouterActions);
 
 export default class NavbarController {
-  constructor ($scope, $state, $cookies, acl, $translate, restful, $ngRedux) {
-    this.$state = $state;
+  constructor ($scope, $cookies, acl, $translate, restful, $ngRedux) {
     this.cookies = $cookies;
     this.restful = restful;
     this.translate = $translate;
@@ -12,7 +14,7 @@ export default class NavbarController {
       this.userID = this.cookies.get('id');
     }
 
-    const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), NavbarActions)(this);
+    const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), combinedActions)(this);
     $scope.$on('$destroy', unsubscribe);
 
     this.fetchNotifications();
@@ -27,7 +29,7 @@ export default class NavbarController {
 
   logout () {
     this.cookies.remove('status');
-    this.$state.go('login');
+    this.stateGo('login');
   }
 
   changeLang (langKey) {
@@ -35,5 +37,5 @@ export default class NavbarController {
   }
 }
 
-NavbarController.$inject = ['$scope', '$state', '$cookies', 'acl', '$translate',
+NavbarController.$inject = ['$scope', '$cookies', 'acl', '$translate',
 'restful', '$ngRedux'];

@@ -7,6 +7,7 @@ import ngCookies from 'angular-cookies';
 import _firebase from 'firebase';
 import firebase from 'angularfire';
 import ngRedux from 'ng-redux';
+import ngReduxUiRouter from 'redux-ui-router';
 import 'angular-translate';
 
 import home from './app/features/home';
@@ -17,5 +18,5 @@ import requests from './app/features/requests';
 import routing from './app.config';
 
 angular.module('app', [firebase, uirouter, ngCookies, home, login, request,
-  requests, ngRedux, 'pascalprecht.translate'])
+  requests, ngRedux, ngReduxUiRouter, 'pascalprecht.translate'])
   .config(routing);

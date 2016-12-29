@@ -1,16 +1,17 @@
 import moment from 'moment';
-import * as RequestsActions from '../../actions/requests'
+import * as RequestsActions from '../../actions/requests';
+import * as RouterActions from 'redux-ui-router';
+
+const combinedActions = Object.assign({}, RequestsActions, RouterActions);
 
 export default class RequestsController {
-  constructor ($state, $cookies, acl, $stateParams, restful, $ngRedux, $scope) {
-
+  constructor ($cookies, acl, $stateParams, restful, $ngRedux, $scope) {
     if (!acl.checkStatus($cookies.get('status'))) {
-      $state.go('login');
+      this.stateGo('login');
     }
-    this.$state = $state;
     this.restful = restful;
 
-    const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), RequestsActions)(this);
+    const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), combinedActions)(this);
     $scope.$on('$destroy', unsubscribe);
 
     this.fetchRequests();
@@ -19,13 +20,10 @@ export default class RequestsController {
   mapStateToThis (state) {
     console.log(state);
     return {
-      list: state.requests,
+      list: state.requests
     };
-  }
-
-  createRequest () {
-    this.$state.go('requestCreate', {requestId: 0});
   }
 }
 
-RequestsController.$inject = ['$state', '$cookies', 'acl', '$stateParams', 'restful', '$ngRedux', '$scope'];
+RequestsController.$inject = ['$cookies', 'acl', '$stateParams', 'restful',
+'$ngRedux', '$scope'];

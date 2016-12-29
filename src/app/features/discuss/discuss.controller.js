@@ -1,21 +1,23 @@
 import moment from 'moment';
 import * as DiscussActions from '../../actions/discuss';
+import * as RouterActions from 'redux-ui-router';
+
+const combinedActions = Object.assign({}, DiscussActions, RouterActions);
 
 export default class DiscussController {
-  constructor ($state, $cookies, acl, restful, $scope, $ngRedux, $stateParams) {
-    this.state = $state;
+  constructor ($cookies, acl, restful, $scope, $ngRedux, $stateParams) {
     this.cookies = $cookies;
     this.restful = restful;
     this.conversation = [];
 
     if (!acl.checkStatus(this.cookies.get('status'))) {
-      this.state.go('login');
+      this.stateGo('login');
     } else {
       this.userID = this.cookies.get('id');
       this.editable = this.cookies.get('isAdmin') === 'true';
     }
 
-    const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), DiscussActions)(this);
+    const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), combinedActions)(this);
     $scope.$on('$destroy', unsubscribe);
 
     this.fetchRequest($stateParams.requestId);
@@ -44,7 +46,7 @@ export default class DiscussController {
   }
 
   editHotel (hotel) {
-    this.state.go('request.itemconfirm', hotel);
+    this.stateGo('request.itemconfirm', hotel);
   }
 
   deleteHotel (hotelBook) {
@@ -54,5 +56,5 @@ export default class DiscussController {
   }
 }
 
-DiscussController.$inject = ['$state', '$cookies', 'acl', 'restful', '$scope',
+DiscussController.$inject = ['$cookies', 'acl', 'restful', '$scope',
 '$ngRedux', '$stateParams'];

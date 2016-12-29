@@ -1,14 +1,16 @@
 import * as ItemSelectActions from '../../actions/itemselect';
+import * as RouterActions from 'redux-ui-router';
+
+const combinedActions = Object.assign({}, ItemSelectActions, RouterActions);
 
 export default class HotelSelectController {
-  constructor ($state, $cookies, acl, restful, $scope, $uibModalInstance,
+  constructor ($cookies, acl, restful, $scope, $uibModalInstance,
     $ngRedux) {
-    this.state = $state;
     this.cookies = $cookies;
     this.restful = restful;
     this.uibModal = $uibModalInstance;
 
-    const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), ItemSelectActions)(this);
+    const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), combinedActions)(this);
     $scope.$on('$destroy', unsubscribe);
 
     this.fetchHotels();
@@ -22,7 +24,7 @@ export default class HotelSelectController {
   }
 
   pickItem (id) {
-    this.state.go('requestCreate.itemconfirm', { hotelId: id });
+    this.stateGo('requestCreate.itemconfirm', { hotelId: id });
   }
 
   cancel () {
@@ -30,5 +32,5 @@ export default class HotelSelectController {
   }
 }
 
-HotelSelectController.$inject = ['$state', '$cookies', 'acl', 'restful',
-'$scope', '$uibModalInstance', '$ngRedux'];
+HotelSelectController.$inject = ['$cookies', 'acl', 'restful', '$scope',
+'$uibModalInstance', '$ngRedux'];

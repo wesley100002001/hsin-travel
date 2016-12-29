@@ -1,18 +1,26 @@
+import * as RouterActions from 'redux-ui-router';
+
 export default class LoginController {
-  constructor ($state, $cookies, acl, restful, $scope) {
-    this.state = $state;
+  constructor ($cookies, acl, restful, $scope, $ngRedux) {
     this.cookies = $cookies;
     this.restful = restful;
 
     if (acl.checkStatus(this.cookies.get('status'))) {
-      this.state.go('home');
+      this.stateGo('home');
     }
+
+    const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), RouterActions)(this);
+    $scope.$on('$destroy', unsubscribe);
+  }
+
+  mapStateToThis (state) {
+    console.log(state);
+    return {};
   }
 
   verifyUser () {
     this.logging = true;
     var cookies = this.cookies;
-    var state = this.state;
     // this.restful.getAdmin(this.username, this.password)
     if (!!this.username && !!this.password) {
       this.restful.getMockAdmin(this.username, this.password)
@@ -21,7 +29,7 @@ export default class LoginController {
           cookies.put('status', response.status);
           cookies.put('id', response.id);
           cookies.put('isAdmin', response.isAdmin);
-          state.go('requests');
+          this.stateGo('requests');
         } else {
           this.logging = false;
           this.isLoginFail = true;
@@ -33,4 +41,4 @@ export default class LoginController {
   }
 }
 
-LoginController.$inject = ['$state', '$cookies', 'acl', 'restful', '$scope'];
+LoginController.$inject = ['$cookies', 'acl', 'restful', '$scope', '$ngRedux'];

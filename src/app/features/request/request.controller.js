@@ -1,16 +1,18 @@
 import moment from 'moment';
 import * as RequestActions from '../../actions/request';
+import * as RouterActions from 'redux-ui-router';
+
+const combinedActions = Object.assign({}, RequestActions, RouterActions);
 
 export default class RequestController {
-  constructor ($state, $cookies, acl, $stateParams, restful, $ngRedux, $scope) {
+  constructor ($cookies, acl, $stateParams, restful, $ngRedux, $scope) {
     this.restful = restful;
-    this.$state = $state;
 
     if (!acl.checkStatus($cookies.get('status'))) {
-      $state.go('login');
+      this.stateGo('login');
     }
 
-    const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), RequestActions)(this);
+    const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), combinedActions)(this);
     $scope.$on('$destroy', unsubscribe);
 
     this.startOpened = false;
@@ -18,7 +20,7 @@ export default class RequestController {
     this.timeOption = {
       max: moment().subtract(1, 'days').format()
     };
-    
+
     this.items = [];
   }
 
@@ -46,13 +48,10 @@ export default class RequestController {
       alert('尚未新增任何項目');
     } else {
       this.addRequest({});
-      this.$state.go('requests');
+      this.stateGo('requests');
     }
-  }
-
-  cancel () {
-    this.$state.go('requests');
   }
 }
 
-RequestController.$inject = ['$state', '$cookies', 'acl', '$stateParams', 'restful', '$ngRedux', '$scope'];
+RequestController.$inject = ['$cookies', 'acl', '$stateParams', 'restful',
+'$ngRedux', '$scope'];

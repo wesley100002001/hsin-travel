@@ -6,9 +6,11 @@ import thunk from 'redux-thunk';
 import tw from './translations/tw.json';
 import jp from './translations/jp.json'
 
-routes.$inject = ['$urlRouterProvider', '$locationProvider', '$ngReduxProvider', '$translateProvider'];
+routes.$inject = ['$urlRouterProvider', '$locationProvider',
+  '$ngReduxProvider', '$translateProvider'];
 
-export default function routes($urlRouterProvider, $locationProvider, $ngReduxProvider, $translateProvider) {
+export default function routes($urlRouterProvider, $locationProvider,
+  $ngReduxProvider, $translateProvider) {
   $locationProvider.html5Mode(true);
   $urlRouterProvider.otherwise('/');
 
@@ -16,5 +18,6 @@ export default function routes($urlRouterProvider, $locationProvider, $ngReduxPr
   $translateProvider.translations('jp', jp);
   $translateProvider.preferredLanguage('tw');
 
-  $ngReduxProvider.createStoreWith(appReducer, [thunk, promiseMiddleware()]);
+  $ngReduxProvider.createStoreWith(appReducer, ['ngUiRouterMiddleware',
+    thunk, promiseMiddleware()]);
 }

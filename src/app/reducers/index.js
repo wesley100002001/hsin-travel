@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { router } from 'redux-ui-router';
 import { FETCH_REQUESTS } from '../actions/requests';
 import { ADD_ITEM, ADD_REQUEST } from '../actions/request';
 import { ADD_COMMENT, FETCH_REQUEST, FETCH_GREETINGS } from '../actions/discuss';
@@ -105,7 +106,8 @@ let appReducer = combineReducers({
   navbar,
   request,
   requests,
-  requestToBeEdit
+  requestToBeEdit,
+  router
 });
 
 export default appReducer;
