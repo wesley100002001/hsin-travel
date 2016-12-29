@@ -82,3 +82,29 @@ export function getGreetings () {
     return response.json();
   });
 }
+
+export function postUserAuth (username, password) {
+  return fetch(config.heroku_host + '/users/authenticate', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      username: username,
+      password: password,
+    })
+  }).then(response => {
+    return response.json();
+  });
+}
+
+export function getOrders (token) {
+  return fetch(config.heroku_host + '/orders', {
+    method: 'GET',
+    headers: {
+      'Authorization': 'Bearer ' + token.id_token
+    }
+  }).then(response => {
+    return response.json();
+  });
+}

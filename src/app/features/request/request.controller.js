@@ -8,9 +8,9 @@ export default class RequestController {
   constructor ($cookies, acl, $stateParams, restful, $ngRedux, $scope) {
     this.restful = restful;
 
-    if (!acl.checkStatus($cookies.get('status'))) {
-      this.stateGo('login');
-    }
+    // if (!acl.checkStatus($cookies.get('status'))) {
+    //   this.stateGo('login');
+    // }
 
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), combinedActions)(this);
     $scope.$on('$destroy', unsubscribe);

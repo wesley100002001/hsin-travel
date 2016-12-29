@@ -6,9 +6,10 @@ const combinedActions = Object.assign({}, RequestsActions, RouterActions);
 
 export default class RequestsController {
   constructor ($cookies, acl, $stateParams, restful, $ngRedux, $scope) {
-    if (!acl.checkStatus($cookies.get('status'))) {
-      this.stateGo('login');
-    }
+    // TODO: 用 state.isLoggedIn 來做
+    // if (!acl.checkStatus($cookies.get('status'))) {
+    //   this.stateGo('login');
+    // }
     this.restful = restful;
 
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), combinedActions)(this);

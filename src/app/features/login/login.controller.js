@@ -1,15 +1,17 @@
+import * as LoginActions from '../../actions/login';
 import * as RouterActions from 'redux-ui-router';
+
+const combinedActions = Object.assign({}, LoginActions, RouterActions);
 
 export default class LoginController {
   constructor ($cookies, acl, restful, $scope, $ngRedux) {
     this.cookies = $cookies;
-    this.restful = restful;
 
     if (acl.checkStatus(this.cookies.get('status'))) {
       this.stateGo('home');
     }
 
-    const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), RouterActions)(this);
+    const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), combinedActions)(this);
     $scope.$on('$destroy', unsubscribe);
   }
 
@@ -21,20 +23,8 @@ export default class LoginController {
   verifyUser () {
     this.logging = true;
     var cookies = this.cookies;
-    // this.restful.getAdmin(this.username, this.password)
     if (!!this.username && !!this.password) {
-      this.restful.getMockAdmin(this.username, this.password)
-      .then(response => {
-        if (response.status === 'loggedin') {
-          cookies.put('status', response.status);
-          cookies.put('id', response.id);
-          cookies.put('isAdmin', response.isAdmin);
-          this.stateGo('requests');
-        } else {
-          this.logging = false;
-          this.isLoginFail = true;
-        }
-      });
+      this.login(this.username, this.password);
     } else {
       alert('請輸入帳號密碼');
     }

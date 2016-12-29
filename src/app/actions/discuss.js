@@ -5,7 +5,18 @@ export const ADD_COMMENT = 'ADD_COMMENT';
 export const LOAD_REQUEST = 'LOAD_REQUEST';
 export const FETCH_REQUEST = 'FETCH_REQUEST';
 export const FETCH_GREETINGS = 'FETCH_GREETINGS';
+export const FETCH_ORDERS = 'FETCH_ORDERS';
 // export const REMOVE_HOTEL = 'REMOVE_HOTEL';
+
+export function fetchOrders (token) {
+  return {
+    type: FETCH_ORDERS,
+    payload: restful.getOrders(token)
+      .then(response => {
+        return response;
+      })
+  }
+}
 
 export function addComment (comment) {
   return {

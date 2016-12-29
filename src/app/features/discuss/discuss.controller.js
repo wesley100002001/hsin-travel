@@ -10,12 +10,12 @@ export default class DiscussController {
     this.restful = restful;
     this.conversation = [];
 
-    if (!acl.checkStatus(this.cookies.get('status'))) {
-      this.stateGo('login');
-    } else {
-      this.userID = this.cookies.get('id');
-      this.editable = this.cookies.get('isAdmin') === 'true';
-    }
+    // if (!acl.checkStatus(this.cookies.get('status'))) {
+    //   this.stateGo('login');
+    // } else {
+    //   this.userID = this.cookies.get('id');
+    //   this.editable = this.cookies.get('isAdmin') === 'true';
+    // }
 
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), combinedActions)(this);
     $scope.$on('$destroy', unsubscribe);
@@ -29,7 +29,9 @@ export default class DiscussController {
     return {
       conversation: state.discuss,
       request: state.requestToBeEdit,
-      greetings: state.greetings
+      greetings: state.greetings,
+      token: state.login,
+      orders: state.orders
     };
   }
 
@@ -43,6 +45,11 @@ export default class DiscussController {
       });
       this.newComment = '';
     }
+  }
+
+  test () {
+    console.log(this.token);
+    this.fetchOrders(this.token);
   }
 
   editHotel (hotel) {

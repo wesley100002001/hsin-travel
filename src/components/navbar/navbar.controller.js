@@ -8,11 +8,10 @@ export default class NavbarController {
     this.cookies = $cookies;
     this.restful = restful;
     this.translate = $translate;
-    this.isLoggedIn = acl.checkStatus(this.cookies.get('status'));
 
-    if (!!this.cookies.get('id')) {
-      this.userID = this.cookies.get('id');
-    }
+    // if (!!this.cookies.get('id')) {
+    //   this.userID = this.cookies.get('id');
+    // }
 
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), combinedActions)(this);
     $scope.$on('$destroy', unsubscribe);
@@ -24,11 +23,12 @@ export default class NavbarController {
     console.log(state);
     return {
       notifications: state.navbar,
+      isLoggedIn: state.login.isLoggedIn,
+      userID: state.login.username
     };
   }
 
   logout () {
-    this.cookies.remove('status');
     this.stateGo('login');
   }
 
