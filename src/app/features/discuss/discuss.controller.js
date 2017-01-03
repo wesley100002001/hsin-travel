@@ -10,12 +10,12 @@ export default class DiscussController {
     this.restful = restful;
     this.conversation = [];
 
-    // if (!acl.checkStatus(this.cookies.get('status'))) {
-    //   this.stateGo('login');
-    // } else {
-    //   this.userID = this.cookies.get('id');
-    //   this.editable = this.cookies.get('isAdmin') === 'true';
-    // }
+    if (!localStorage.getItem('token')) {
+      this.stateGo('login');
+    }
+
+    this.userID = localStorage.getItem('username');
+    this.editable = this.userID === 'usert';
 
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), combinedActions)(this);
     $scope.$on('$destroy', unsubscribe);

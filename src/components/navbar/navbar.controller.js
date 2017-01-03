@@ -8,10 +8,9 @@ export default class NavbarController {
     this.cookies = $cookies;
     this.restful = restful;
     this.translate = $translate;
-
-    // if (!!this.cookies.get('id')) {
-    //   this.userID = this.cookies.get('id');
-    // }
+    // TODO: maybe should use redux-persist to handle these
+    this.isLoggedIn = localStorage.getItem('token');
+    this.userID = localStorage.getItem('username');
 
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), combinedActions)(this);
     $scope.$on('$destroy', unsubscribe);
@@ -22,13 +21,14 @@ export default class NavbarController {
   mapStateToThis (state) {
     console.log(state);
     return {
-      notifications: state.navbar,
-      isLoggedIn: state.login.isLoggedIn,
-      userID: state.login.username
+      notifications: state.navbar
     };
   }
 
   logout () {
+    // TODO: maybe should use redux-persist to handle these
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
     this.stateGo('login');
   }
 

@@ -16,11 +16,7 @@ function login (state = [], action) {
     return action.payload;
 
     case SET_LOGGED_IN:
-    return {
-      isLoggedIn: action.isLoggedIn,
-      username: action.username,
-      token: action.token
-    };
+    return state;
 
     default:
     return state;

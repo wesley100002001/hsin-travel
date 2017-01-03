@@ -6,11 +6,10 @@ export const LOGIN = 'LOGIN';
 export const SET_LOGGED_IN = 'SET_LOGGED_IN';
 
 export function setLoggedIn (username, token) {
+  localStorage.setItem('token', token);
+  localStorage.setItem('username', username);
   return {
-    type: SET_LOGGED_IN,
-    isLoggedIn: true,
-    username: username,
-    token: token
+    type: SET_LOGGED_IN
   };
 }
 

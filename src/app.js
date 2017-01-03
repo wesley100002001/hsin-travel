@@ -15,8 +15,8 @@ import login from './app/features/login';
 // import password from './app/features/password';
 import request from './app/features/request';
 import requests from './app/features/requests';
-import routing from './app.config';
+import { routes } from './app.config';
 
 angular.module('app', [firebase, uirouter, ngCookies, home, login, request,
   requests, ngRedux, ngReduxUiRouter, 'pascalprecht.translate'])
-  .config(routing);
+  .config(routes);

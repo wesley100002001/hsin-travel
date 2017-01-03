@@ -7,10 +7,6 @@ export default class LoginController {
   constructor ($cookies, acl, restful, $scope, $ngRedux) {
     this.cookies = $cookies;
 
-    if (acl.checkStatus(this.cookies.get('status'))) {
-      this.stateGo('home');
-    }
-
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), combinedActions)(this);
     $scope.$on('$destroy', unsubscribe);
   }
