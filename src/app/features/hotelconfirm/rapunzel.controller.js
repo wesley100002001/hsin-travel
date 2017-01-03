@@ -3,9 +3,7 @@ import moment from 'moment';
 import * as RequestActions from '../../actions/request';
 
 export default class RapunzelController {
-  constructor ($cookies, acl, $ngRedux, $scope, $uibModalInstance) {
-    this.cookies = $cookies;
-
+  constructor (acl, $ngRedux, $scope, $uibModalInstance) {
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this),
       RequestActions)(this);
     $scope.$on('$destroy', unsubscribe);
@@ -61,5 +59,4 @@ export default class RapunzelController {
   }
 }
 
-RapunzelController.$inject = ['$cookies', 'acl', '$ngRedux', '$scope',
-'$uibModalInstance'];
+RapunzelController.$inject = ['acl', '$ngRedux', '$scope', '$uibModalInstance'];

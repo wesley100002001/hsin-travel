@@ -5,7 +5,7 @@ import * as RouterActions from 'redux-ui-router';
 const combinedActions = Object.assign({}, RequestActions, RouterActions);
 
 export default class RequestController {
-  constructor ($cookies, acl, $stateParams, $ngRedux, $scope) {
+  constructor (acl, $stateParams, $ngRedux, $scope) {
     if (!localStorage.getItem('token')) {
       this.stateGo('login');
     }
@@ -51,5 +51,4 @@ export default class RequestController {
   }
 }
 
-RequestController.$inject = ['$cookies', 'acl', '$stateParams', '$ngRedux',
-'$scope'];
+RequestController.$inject = ['acl', '$stateParams', '$ngRedux', '$scope'];

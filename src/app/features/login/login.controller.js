@@ -4,9 +4,7 @@ import * as RouterActions from 'redux-ui-router';
 const combinedActions = Object.assign({}, LoginActions, RouterActions);
 
 export default class LoginController {
-  constructor ($cookies, acl, $scope, $ngRedux) {
-    this.cookies = $cookies;
-
+  constructor (acl, $scope, $ngRedux) {
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), combinedActions)(this);
     $scope.$on('$destroy', unsubscribe);
   }
@@ -17,8 +15,6 @@ export default class LoginController {
   }
 
   verifyUser () {
-    this.logging = true;
-    var cookies = this.cookies;
     if (!!this.username && !!this.password) {
       this.login(this.username, this.password);
     } else {
@@ -27,4 +23,4 @@ export default class LoginController {
   }
 }
 
-LoginController.$inject = ['$cookies', 'acl', '$scope', '$ngRedux'];
+LoginController.$inject = ['acl', '$scope', '$ngRedux'];

@@ -1,10 +1,10 @@
 import login from './index';
-import ngCookies from 'angular-cookies';
+import ngRedux from 'ng-redux';
 
 describe('Controller: Login', function () {
   let $controller;
 
-  beforeEach(angular.mock.module(login, ngCookies));
+  beforeEach(angular.mock.module(login, ngRedux));
 
   beforeEach(angular.mock.inject(function (_$controller_) {
     $controller = _$controller_;
