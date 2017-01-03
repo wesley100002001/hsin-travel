@@ -3,10 +3,8 @@ import moment from 'moment';
 import * as RequestActions from '../../actions/request';
 
 export default class HotelConfirmController {
-  constructor ($cookies, acl, restful, $scope, $uibModalInstance,
-    $ngRedux) {
+  constructor ($cookies, acl, $scope, $ngRedux, $uibModalInstance) {
     this.cookies = $cookies;
-    this.restful = restful;
 
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this),
       RequestActions)(this);
@@ -63,5 +61,5 @@ export default class HotelConfirmController {
   }
 }
 
-HotelConfirmController.$inject = ['$cookies', 'acl', 'restful', '$scope',
-'$uibModalInstance', '$ngRedux'];
+HotelConfirmController.$inject = ['$cookies', 'acl', '$scope', '$ngRedux',
+'$uibModalInstance'];

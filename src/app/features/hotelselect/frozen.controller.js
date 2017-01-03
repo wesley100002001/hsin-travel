@@ -4,10 +4,9 @@ import * as RouterActions from 'redux-ui-router';
 const combinedActions = Object.assign({}, ItemSelectActions, RouterActions);
 
 export default class FrozenController {
-  constructor ($cookies, acl, restful, $scope, $uibModalInstance,
+  constructor ($cookies, acl, $scope, $uibModalInstance,
     $ngRedux) {
     this.cookies = $cookies;
-    this.restful = restful;
     this.uibModal = $uibModalInstance;
 
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), combinedActions)(this);
@@ -32,5 +31,5 @@ export default class FrozenController {
   }
 }
 
-FrozenController.$inject = ['$cookies', 'acl', 'restful', '$scope',
-'$uibModalInstance', '$ngRedux'];
+FrozenController.$inject = ['$cookies', 'acl', '$scope', '$uibModalInstance',
+'$ngRedux'];

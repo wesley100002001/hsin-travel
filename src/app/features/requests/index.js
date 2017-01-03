@@ -9,10 +9,8 @@ import FooterController from '../../../components/footer/footer.controller';
 import RequestsController from './requests.controller';
 import NavbarController from '../../../components/navbar/navbar.controller';
 import acl from '../../services/acl.service';
-import restful from '../../services/restful.service';
 
-export default angular.module('app.orderexport', [acl, uibootstrap, uirouter,
-  restful])
+export default angular.module('app.orderexport', [acl, uibootstrap, uirouter])
   .config(routing)
   .controller('RequestsController', RequestsController)
   .controller('NavbarController', NavbarController)

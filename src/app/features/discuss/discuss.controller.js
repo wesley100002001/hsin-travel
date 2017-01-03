@@ -5,9 +5,8 @@ import * as RouterActions from 'redux-ui-router';
 const combinedActions = Object.assign({}, DiscussActions, RouterActions);
 
 export default class DiscussController {
-  constructor ($cookies, acl, restful, $scope, $ngRedux, $stateParams) {
+  constructor ($cookies, acl, $ngRedux, $scope, $stateParams) {
     this.cookies = $cookies;
-    this.restful = restful;
     this.conversation = [];
 
     if (!localStorage.getItem('token')) {
@@ -63,5 +62,5 @@ export default class DiscussController {
   }
 }
 
-DiscussController.$inject = ['$cookies', 'acl', 'restful', '$scope',
-'$ngRedux', '$stateParams'];
+DiscussController.$inject = ['$cookies', 'acl', '$ngRedux', '$scope',
+'$stateParams'];

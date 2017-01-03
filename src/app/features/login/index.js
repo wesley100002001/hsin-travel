@@ -10,9 +10,8 @@ import FooterController from '../../../components/footer/footer.controller';
 import LoginController from './login.controller';
 import NavbarController from '../../../components/navbar/navbar.controller';
 import acl from '../../services/acl.service';
-import restful from '../../services/restful.service';
 
-export default angular.module('app.login', [uirouter, acl, restful, firebase])
+export default angular.module('app.login', [uirouter, acl, firebase])
   .config(routing)
   .controller('LoginController', LoginController)
   .controller('NavbarController', NavbarController)

@@ -15,10 +15,8 @@ import NavbarController from '../../../components/navbar/navbar.controller';
 import HotelSelectController from '../hotelselect/hotelselect.controller';
 import HotelConfirmController from '../hotelconfirm/hotelconfirm.controller';
 import acl from '../../services/acl.service';
-import restful from '../../services/restful.service';
 
-export default angular.module('app.request', [acl, uibootstrap, uirouter,
-  restful])
+export default angular.module('app.request', [acl, uibootstrap, uirouter])
   .config(routing)
   .provider('modalState', modal)
   .controller('DiscussController', DiscussController)
