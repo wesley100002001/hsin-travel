@@ -94,6 +94,9 @@ export function postUserAuth (username, password) {
       password: password,
     })
   }).then(response => {
+    if (response.status >= 400) {
+      throw new Error('Bad response from server');
+    }
     return response.json();
   });
 }

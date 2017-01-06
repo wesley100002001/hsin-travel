@@ -7,11 +7,18 @@ export default class LoginController {
   constructor (acl, $scope, $ngRedux) {
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), combinedActions)(this);
     $scope.$on('$destroy', unsubscribe);
+
+    if (!!localStorage.getItem('token') && !!localStorage.getItem('username')) {
+      this.stateGo('requests');
+    }
   }
 
   mapStateToThis (state) {
     console.log(state);
-    return {};
+    return {
+      logging: state.login.isLogging,
+      failed: state.login.failed
+    };
   }
 
   verifyUser () {

@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { router } from 'redux-ui-router';
-import { LOGIN, SET_LOGGED_IN } from '../actions/login';
+import { LOGIN_FAILED, SET_LOGGED_IN, SET_LOGGING } from '../actions/login';
 import { FETCH_REQUESTS } from '../actions/requests';
 import { ADD_ITEM, ADD_REQUEST } from '../actions/request';
 import { ADD_COMMENT, FETCH_REQUEST, FETCH_GREETINGS, FETCH_ORDERS } from '../actions/discuss';
@@ -10,13 +10,16 @@ import { FETCH_NOTIFICATIONS } from '../actions/navbar';
 const FULFILLED = '_FULFILLED';
 const PENDING = '_PENDING';
 
-function login (state = [], action) {
+function login (state = {}, action) {
   switch (action.type) {
-    case `${LOGIN}${FULFILLED}`:
+    case SET_LOGGING:
     return action.payload;
 
     case SET_LOGGED_IN:
     return state;
+
+    case LOGIN_FAILED:
+    return action.payload;
 
     default:
     return state;

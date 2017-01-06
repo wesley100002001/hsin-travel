@@ -14,7 +14,7 @@
             ng-model="login.password">
           <button class="btn btn-danger btn-block" ng-click="login.verifyUser()" translate>Login</button>
           <div ng-show="login.logging">登入中～請稍候</div>
-          <div ng-show="login.isLoginFail">登入不成功。請檢查帳號密碼。</div>
+          <div ng-show="login.failed">登入不成功。請檢查帳號密碼。</div>
         </form>
       </div>
     </div>
