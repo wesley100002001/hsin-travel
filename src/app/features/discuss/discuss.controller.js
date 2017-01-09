@@ -19,7 +19,7 @@ export default class DiscussController {
     $scope.$on('$destroy', unsubscribe);
 
     this.fetchRequest($stateParams.requestId);
-    this.fetchGreetings();
+    // this.fetchGreetings();
   }
 
   mapStateToThis (state) {
@@ -54,10 +54,9 @@ export default class DiscussController {
     this.stateGo('request.itemconfirm', hotel);
   }
 
-  deleteHotel (hotelBook) {
-    // var newHotelBooks = this.request.hotel.filter(obj => {
-    //   return !angular.equals(hotelBook, obj);
-    // });
+  deleteAccomodation (acco) {
+    // for now is just a mock
+    this.removeAccomodation(acco);
   }
 }
 

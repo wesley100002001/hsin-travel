@@ -23,15 +23,16 @@ export function getMockHotels () {
   });
 }
 
-export function getMockRequest () {
+export function getMockRequest (requestId) {
   return new Promise(function (resolve, reject) {
     var request = {
+      requestId: 'R745',
       title: '花東縱谷七天六夜',
       people: 20,
-      hotel: [
-        { date: '2016/09/20', hotelId: 'H003', hotelName: '國賓大飯店', roomId: 13, roomTitle: '雙人房', quantity: 20 },
-        { date: '2016/09/21', hotelId: 'H003', hotelName: '國賓大飯店', roomId: 13, roomTitle: '雙人房', quantity: 20 },
-        { date: '2016/09/22', hotelId: 'H003', hotelName: '國賓大飯店', roomId: 13, roomTitle: '雙人房', quantity: 20 }
+      accomodation: [
+        { accoId: 'aco01', date: '2016/09/20', hotelId: 'H003', hotelName: '國賓大飯店', roomId: 13, roomTitle: '雙人房', quantity: 20 },
+        { accoId: 'aco02', date: '2016/09/21', hotelId: 'H003', hotelName: '國賓大飯店', roomId: 13, roomTitle: '雙人房', quantity: 20 },
+        { accoId: 'aco03', date: '2016/09/22', hotelId: 'H003', hotelName: '國賓大飯店', roomId: 13, roomTitle: '雙人房', quantity: 20 }
       ],
       comments: [
 
@@ -74,6 +75,10 @@ export function addComment (comment) {
   return new Promise(function (resolve, reject) {
     resolve(comment);
   })
+}
+
+export function updateRequest () {
+
 }
 
 export function getGreetings () {

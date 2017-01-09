@@ -27,17 +27,17 @@
           <th>數量</th>
           <th ng-show="discuss.editable"></th>
         </tr>
-        <tr ng-repeat="hotel in discuss.request.hotel">
-          <td>{{hotel.date}}</td>
-          <td>{{hotel.hotelName}}</td>
-          <td>{{hotel.roomTitle}}</td>
-          <td>{{hotel.quantity}}</td>
+        <tr ng-repeat="acco in discuss.request.accomodation">
+          <td>{{acco.date}}</td>
+          <td>{{acco.hotelName}}</td>
+          <td>{{acco.roomTitle}}</td>
+          <td>{{acco.quantity}}</td>
           <td ng-show="discuss.editable">
-            <a href ng-click="discuss.editHotel(hotel)">
+            <a href ng-click="discuss.editHotel(acco)">
               <span class="glyphicon glyphicon-pencil"></span>
             </a>
-            &nbsp;&nbsp;
-            <a href ng-click="discuss.deleteHotel(hotel)">
+            ｜
+            <a href ng-click="discuss.deleteAccomodation(acco)">
               <span class="glyphicon glyphicon-trash"></span>
             </a>
           </td>

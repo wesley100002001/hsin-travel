@@ -3,7 +3,8 @@ import { router } from 'redux-ui-router';
 import { LOGIN_FAILED, SET_LOGGED_IN, SET_LOGGING } from '../actions/login';
 import { FETCH_REQUESTS } from '../actions/requests';
 import { ADD_ITEM, ADD_REQUEST } from '../actions/request';
-import { ADD_COMMENT, FETCH_REQUEST, FETCH_GREETINGS, FETCH_ORDERS } from '../actions/discuss';
+import { ADD_COMMENT, FETCH_REQUEST, FETCH_GREETINGS, FETCH_ORDERS,
+  REMOVE_ACCOMODATION } from '../actions/discuss';
 import { FETCH_HOTELS } from '../actions/itemselect';
 import { FETCH_NOTIFICATIONS } from '../actions/navbar';
 
@@ -66,8 +67,12 @@ function discuss (state = [], action) {
 }
 
 function requestToBeEdit (state = {}, action) {
+  console.log(action);
   switch (action.type) {
     case `${FETCH_REQUEST}${FULFILLED}`:
+    return action.payload;
+
+    case `${REMOVE_ACCOMODATION}${FULFILLED}`:
     return action.payload;
 
     default:

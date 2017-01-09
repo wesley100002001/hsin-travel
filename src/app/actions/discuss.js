@@ -6,7 +6,7 @@ export const LOAD_REQUEST = 'LOAD_REQUEST';
 export const FETCH_REQUEST = 'FETCH_REQUEST';
 export const FETCH_GREETINGS = 'FETCH_GREETINGS';
 export const FETCH_ORDERS = 'FETCH_ORDERS';
-// export const REMOVE_HOTEL = 'REMOVE_HOTEL';
+export const REMOVE_ACCOMODATION = 'REMOVE_ACCOMODATION';
 
 export function fetchOrders (token) {
   return {
@@ -38,7 +38,7 @@ export function fetchRequest (requestId) {
 }
 
 export function fetchGreetings () {
-  return{
+  return {
     type: FETCH_GREETINGS,
     payload: restful.getGreetings()
       .then(response => {
@@ -47,9 +47,13 @@ export function fetchGreetings () {
   }
 }
 
-// export function removeHotel (hotel) {
-//   return {
-//     type: REMOVE_HOTEL,
-//     hotel: hotel
-//   };
-// }
+export function removeAccomodation (hotel) {
+  return {
+    type: REMOVE_ACCOMODATION,
+    payload: restful.getMockRequest(0)
+      .then(response => {
+        response.accomodation = response.accomodation.slice(1);
+        return response;
+      })
+  };
+}
