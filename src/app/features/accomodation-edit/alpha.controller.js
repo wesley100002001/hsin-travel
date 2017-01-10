@@ -2,7 +2,7 @@ import ambassador from '../../../assets/imgs/ambassador.jpg';
 import moment from 'moment';
 import * as RequestActions from '../../actions/request';
 
-export default class HotelConfirmController {
+export default class AlphaController {
   constructor (acl, $scope, $ngRedux, $uibModalInstance) {
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this),
       RequestActions)(this);
@@ -59,4 +59,4 @@ export default class HotelConfirmController {
   }
 }
 
-HotelConfirmController.$inject = ['acl', '$scope', '$ngRedux', '$uibModalInstance'];
+AlphaController.$inject = ['acl', '$scope', '$ngRedux', '$uibModalInstance'];

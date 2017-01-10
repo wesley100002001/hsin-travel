@@ -5,14 +5,14 @@ import * as ItemConfirmActions from '../../actions/itemconfirm';
 
 const combinedActions = Object.assign({}, RequestActions, ItemConfirmActions);
 
-export default class RapunzelController {
+export default class BetaController {
   constructor (acl, $ngRedux, $scope, $uibModalInstance, $stateParams) {
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this),
       combinedActions)(this);
     $scope.$on('$destroy', unsubscribe);
 
     this.uibModal = $uibModalInstance;
-
+    this.requestId = $stateParams.requestId;
     this.cover = ambassador;
     this.address = '台北市中山北路二段50號';
     this.phone = '02-2918-9403';
@@ -55,7 +55,7 @@ export default class RapunzelController {
   };
 
   confirm () {
-    this.addItem({roomId: 1});
+    this.submitAccomodation(this.accomodation, this.requestId);
     this.uibModal.close();
   }
 
@@ -64,4 +64,4 @@ export default class RapunzelController {
   }
 }
 
-RapunzelController.$inject = ['acl', '$ngRedux', '$scope', '$uibModalInstance', '$stateParams'];
+BetaController.$inject = ['acl', '$ngRedux', '$scope', '$uibModalInstance', '$stateParams'];

@@ -51,7 +51,7 @@ export default class DiscussController {
   }
 
   editHotel (acco) {
-    this.stateGo('request.itemconfirm', {
+    this.stateGo('request.acco-edit', {
       hotelId: acco.hotelId,
       accoId: acco.accoId
     });

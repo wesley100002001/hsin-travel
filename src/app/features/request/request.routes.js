@@ -46,36 +46,36 @@ export default function routes ($stateProvider, modalStateProvider) {
       }
     }
   });
-  modalStateProvider.state('requestCreate.itemselect', {
-    url: '/itemselect',
-    template: require('../hotelselect/itemselect.html'),
+  modalStateProvider.state('requestCreate.acco-list', {
+    url: '/acco-list',
+    template: require('../accomodation-list/accomodation-list.html'),
     size: 'lg',
     backdrop: 'static',
-    controller: 'HotelSelectController',
-    controllerAs: 'hotelselect'
+    controller: 'PhantomController',
+    controllerAs: 'accolist'
   });
-  modalStateProvider.state('requestCreate.itemconfirm', {
-    url: '/itemconfirm',
-    template: require('../hotelconfirm/itemconfirm.html'),
+  modalStateProvider.state('requestCreate.acco-edit', {
+    url: '/acco-edit',
+    template: require('../accomodation-edit/accomodation-edit.html'),
     size: 'lg',
     backdrop: 'static',
-    controller: 'HotelConfirmController',
-    controllerAs: 'hotelconfirm'
+    controller: 'AlphaController',
+    controllerAs: 'accoedit'
   });
-  modalStateProvider.state('request.itemselect', {
-    url: '/itemselect',
-    template: require('../hotelselect/itemselect.html'),
+  modalStateProvider.state('request.acco-list', {
+    url: '/acco-list',
+    template: require('../accomodation-list/accomodation-list.html'),
     size: 'lg',
     backdrop: 'static',
     controller: 'FrozenController',
-    controllerAs: 'hotelselect'
+    controllerAs: 'accolist'
   });
-  modalStateProvider.state('request.itemconfirm', {
-    url: '/itemconfirm/:hotelId/:accoId',
-    template: require('../hotelconfirm/itemconfirm.html'),
+  modalStateProvider.state('request.acco-edit', {
+    url: '/acco-edit/:hotelId/:accoId',
+    template: require('../accomodation-edit/accomodation-edit.html'),
     size: 'lg',
     backdrop: 'static',
-    controller: 'RapunzelController',
-    controllerAs: 'hotelconfirm'
+    controller: 'BetaController',
+    controllerAs: 'accoedit'
   });
 }

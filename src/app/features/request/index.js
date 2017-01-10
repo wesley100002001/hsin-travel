@@ -6,25 +6,25 @@ import uibootstrap from 'angular-ui-bootstrap';
 
 import routing from './request.routes';
 import modal from '../../services/modal.service';
+import AlphaController from '../accomodation-edit/alpha.controller';
+import BetaController from '../accomodation-edit/beta.controller';
 import DiscussController from '../discuss/discuss.controller';
 import FooterController from '../../../components/footer/footer.controller';
-import FrozenController from '../hotelselect/frozen.controller';
-import RapunzelController from '../hotelconfirm/rapunzel.controller';
+import FrozenController from '../accomodation-list/frozen.controller';
 import RequestController from './request.controller';
 import NavbarController from '../../../components/navbar/navbar.controller';
-import HotelSelectController from '../hotelselect/hotelselect.controller';
-import HotelConfirmController from '../hotelconfirm/hotelconfirm.controller';
+import PhantomController from '../accomodation-list/phantom.controller';
 import acl from '../../services/acl.service';
 
 export default angular.module('app.request', [acl, uibootstrap, uirouter])
   .config(routing)
   .provider('modalState', modal)
+  .controller('AlphaController', AlphaController)
+  .controller('BetaController', BetaController)
   .controller('DiscussController', DiscussController)
   .controller('FooterController', FooterController)
   .controller('FrozenController', FrozenController)
-  .controller('HotelConfirmController', HotelConfirmController)
-  .controller('HotelSelectController', HotelSelectController)
+  .controller('PhantomController', PhantomController)
   .controller('NavbarController', NavbarController)
-  .controller('RapunzelController', RapunzelController)
   .controller('RequestController', RequestController)
   .name;

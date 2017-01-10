@@ -3,7 +3,7 @@ import * as RouterActions from 'redux-ui-router';
 
 const combinedActions = Object.assign({}, ItemSelectActions, RouterActions);
 
-export default class HotelSelectController {
+export default class FrozenController {
   constructor (acl, $scope, $uibModalInstance, $ngRedux) {
     this.uibModal = $uibModalInstance;
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), combinedActions)(this);
@@ -20,7 +20,7 @@ export default class HotelSelectController {
   }
 
   pickItem (id) {
-    this.stateGo('requestCreate.itemconfirm', { hotelId: id });
+    this.stateGo('request.acco-edit', { hotelId: id });
   }
 
   cancel () {
@@ -28,4 +28,4 @@ export default class HotelSelectController {
   }
 }
 
-HotelSelectController.$inject = ['acl', '$scope', '$uibModalInstance', '$ngRedux'];
+FrozenController.$inject = ['acl', '$scope', '$uibModalInstance', '$ngRedux'];
