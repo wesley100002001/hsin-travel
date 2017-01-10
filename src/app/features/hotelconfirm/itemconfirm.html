@@ -24,26 +24,26 @@
           <label>房型選擇</label>
           <div class="radio">
             <label style="color:red;">
-              <input type="radio" ng-model="hotelconfirm.roomType" value="單人房">
+              <input type="radio" ng-model="hotelconfirm.accomodation.roomTitle" value="單人房">
               單人房
             </label>
           </div>
           <div class="radio">
             <label>
-              <input type="radio" ng-model="hotelconfirm.roomType" value="雙人房">
+              <input type="radio" ng-model="hotelconfirm.accomodation.roomTitle" value="雙人房">
               雙人房
             </label>
           </div>
           <div class="radio">
             <label>
-              <input type="radio" ng-model="hotelconfirm.roomType" value="家庭房">
+              <input type="radio" ng-model="hotelconfirm.accomodation.roomTitle" value="家庭房">
               家庭房
             </label>
           </div>
         </div>
         <div class="form-group">
           <label for="quantity">數量</label>
-          <input type="text" class="form-control" ng-model="hotelconfirm.quantity"
+          <input type="text" class="form-control" ng-model="hotelconfirm.accomodation.quantity"
                  placeholder="請輸入數量">
         </div>
         <div ng-if="!hotelconfirm.isOneDay">
@@ -85,9 +85,9 @@
           <div class="input-group">
             <input type="text" class="form-control"
             id="stay_date" name="stay_date"
-            uib-datepicker-popup="yyyy-MM-dd"
             show-button-bar="false"
-            ng-model="hotelconfirm.stayDate"
+            uib-datepicker-popup="yyyy-MM-dd"
+            ng-model="hotelconfirm.accomodation.date"
             max-date="hotelconfirm.timeOption.max"
             is-open="hotelconfirm.dateOpened" close-text="Close" readonly>
             <span class="input-group-btn">

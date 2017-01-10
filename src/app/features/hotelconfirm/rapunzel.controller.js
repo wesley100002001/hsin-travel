@@ -1,11 +1,14 @@
 import ambassador from '../../../assets/imgs/ambassador.jpg';
 import moment from 'moment';
 import * as RequestActions from '../../actions/request';
+import * as ItemConfirmActions from '../../actions/itemconfirm';
+
+const combinedActions = Object.assign({}, RequestActions, ItemConfirmActions);
 
 export default class RapunzelController {
-  constructor (acl, $ngRedux, $scope, $uibModalInstance) {
+  constructor (acl, $ngRedux, $scope, $uibModalInstance, $stateParams) {
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this),
-      RequestActions)(this);
+      combinedActions)(this);
     $scope.$on('$destroy', unsubscribe);
 
     this.uibModal = $uibModalInstance;
@@ -21,13 +24,15 @@ export default class RapunzelController {
     this.timeOption = {
       max: moment().subtract(1, 'days').format()
     };
-    this.list = [];
+
+    this.fetchAccomodation($stateParams.accoId);
+    // this.fetchHotel($stateParams.hotelId);
   }
 
   mapStateToThis(state) {
     console.log(state);
     return {
-      list: state.requests
+      accomodation: state.accomodation
     };
   }
 
@@ -59,4 +64,4 @@ export default class RapunzelController {
   }
 }
 
-RapunzelController.$inject = ['acl', '$ngRedux', '$scope', '$uibModalInstance'];
+RapunzelController.$inject = ['acl', '$ngRedux', '$scope', '$uibModalInstance', '$stateParams'];

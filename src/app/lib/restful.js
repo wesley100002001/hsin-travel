@@ -116,3 +116,18 @@ export function getOrders (token) {
     return response.json();
   });
 }
+
+export function getAccomodation (accoId) {
+  return new Promise(function (resolve, reject) {
+    var acco = {
+      accoId: 'aco01',
+      date: '2016/09/20',
+      hotelId: 'H003',
+      hotelName: '國賓大飯店',
+      roomId: 13,
+      roomTitle: '雙人房',
+      quantity: 20
+    };
+    resolve(acco);
+  });
+}

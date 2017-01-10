@@ -50,8 +50,11 @@ export default class DiscussController {
     this.fetchOrders(this.token);
   }
 
-  editHotel (hotel) {
-    this.stateGo('request.itemconfirm', hotel);
+  editHotel (acco) {
+    this.stateGo('request.itemconfirm', {
+      hotelId: acco.hotelId,
+      accoId: acco.accoId
+    });
   }
 
   deleteAccomodation (acco) {

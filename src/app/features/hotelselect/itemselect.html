@@ -16,8 +16,7 @@
       <th>地址</th>
     </tr>
     <tr ng-repeat="hotel in hotelselect.hotels">
-      <td><a href ng-click="hotelselect.pickItem('{{hotel.id}}')">{{hotel.name}}</a></td>
-      <!-- <td><a ui-sref="requestCreate.itemconfirm({hotelId: '{{hotel.id}}'})">{{hotel.name}}</a></td> -->
+      <td><a href ng-click="hotelselect.pickItem(hotel.id)">{{hotel.name}}</a></td>
       <td>{{hotel.address}}</td>
     </tr>
   </table>
