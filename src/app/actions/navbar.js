@@ -6,7 +6,7 @@ export function fetchNotifications () {
   return {
     type: FETCH_NOTIFICATIONS,
     payload: restful.getMockNotification()
-      .then(function (response) {
+      .then(response => {
         return response;
       })
   };

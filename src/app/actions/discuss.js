@@ -22,7 +22,7 @@ export function fetchOrders (token) {
 export function addComment (comment) {
   return {
     type: ADD_COMMENT,
-    payload: new Promise(function (resolve, reject) {
+    payload: new Promise((resolve, reject) => {
       resolve(comment);
     })
   };
@@ -32,7 +32,7 @@ export function fetchRequest (requestId) {
   return {
     type: FETCH_REQUEST,
     payload: restful.getMockRequest(requestId)
-      .then(function (response) {
+      .then(response => {
         return response;
       })
   };

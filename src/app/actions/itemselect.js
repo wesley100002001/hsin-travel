@@ -6,7 +6,7 @@ export function fetchHotels () {
   return {
     type: FETCH_HOTELS,
     payload: restful.getMockHotels()
-      .then(function (response) {
+      .then(response => {
         return response;
       })
   };

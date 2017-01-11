@@ -7,7 +7,7 @@ export function fetchRequests () {
   return {
     type: FETCH_REQUESTS,
     payload: restful.getMockRequests()
-      .then(function (response) {
+      .then(response => {
         return response;
       })
   };
