@@ -17,7 +17,7 @@
           </a>
           <ul class="dropdown-menu">
             <li ng-repeat="noti in navbar.notifications">
-              <a href>{{noti.message}}</a>
+              <a ui-sref="request({requestId: '{{noti.requestId}}'})">{{noti.message}}</a>
             </li>
           </ul>
         </li>
