@@ -5,9 +5,6 @@
     </div>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav" ng-show="navbar.isLoggedIn">
-      <!-- Here you can see ui-sref in action again. Also notice the use of $state.includes, which
-           will set the links to 'active' if, for example on the first link, 'contacts' or any of
-           its descendant states are activated. -->
         <li ui-sref-active="active"><a ui-sref="requests" translate>Requests</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right" ng-show="navbar.isLoggedIn">
