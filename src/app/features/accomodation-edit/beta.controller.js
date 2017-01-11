@@ -6,7 +6,7 @@ import * as ItemConfirmActions from '../../actions/itemconfirm';
 const combinedActions = Object.assign({}, RequestActions, ItemConfirmActions);
 
 export default class BetaController {
-  constructor (acl, $ngRedux, $scope, $uibModalInstance, $stateParams) {
+  constructor ($ngRedux, $scope, $uibModalInstance, $stateParams) {
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this),
       combinedActions)(this);
     $scope.$on('$destroy', unsubscribe);
@@ -64,4 +64,4 @@ export default class BetaController {
   }
 }
 
-BetaController.$inject = ['acl', '$ngRedux', '$scope', '$uibModalInstance', '$stateParams'];
+BetaController.$inject = ['$ngRedux', '$scope', '$uibModalInstance', '$stateParams'];

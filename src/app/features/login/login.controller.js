@@ -5,7 +5,7 @@ import * as RouterActions from 'redux-ui-router';
 const combinedActions = Object.assign({}, LoginActions, RouterActions);
 
 export default class LoginController {
-  constructor (acl, $scope, $ngRedux) {
+  constructor ($scope, $ngRedux) {
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), combinedActions)(this);
     $scope.$on('$destroy', unsubscribe);
 
@@ -33,4 +33,4 @@ export default class LoginController {
   }
 }
 
-LoginController.$inject = ['acl', '$scope', '$ngRedux'];
+LoginController.$inject = ['$scope', '$ngRedux'];

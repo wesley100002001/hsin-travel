@@ -14,9 +14,8 @@ import FrozenController from '../accomodation-list/frozen.controller';
 import RequestController from './request.controller';
 import NavbarController from '../../../components/navbar/navbar.controller';
 import PhantomController from '../accomodation-list/phantom.controller';
-import acl from '../../services/acl.service';
 
-export default angular.module('app.request', [acl, uibootstrap, uirouter])
+export default angular.module('app.request', [uibootstrap, uirouter])
   .config(routing)
   .provider('modalState', modal)
   .controller('AlphaController', AlphaController)

@@ -3,7 +3,7 @@ import moment from 'moment';
 import * as RequestActions from '../../actions/request';
 
 export default class AlphaController {
-  constructor (acl, $scope, $ngRedux, $uibModalInstance) {
+  constructor ($scope, $ngRedux, $uibModalInstance) {
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this),
       RequestActions)(this);
     $scope.$on('$destroy', unsubscribe);
@@ -59,4 +59,4 @@ export default class AlphaController {
   }
 }
 
-AlphaController.$inject = ['acl', '$scope', '$ngRedux', '$uibModalInstance'];
+AlphaController.$inject = ['$scope', '$ngRedux', '$uibModalInstance'];

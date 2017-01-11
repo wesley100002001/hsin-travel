@@ -5,7 +5,7 @@ import * as RouterActions from 'redux-ui-router';
 const combinedActions = Object.assign({}, DiscussActions, RouterActions);
 
 export default class DiscussController {
-  constructor (acl, $ngRedux, $scope, $stateParams) {
+  constructor ($ngRedux, $scope, $stateParams) {
     this.conversation = [];
 
     if (!localStorage.getItem('token')) {
@@ -64,4 +64,4 @@ export default class DiscussController {
   }
 }
 
-DiscussController.$inject = ['acl', '$ngRedux', '$scope', '$stateParams'];
+DiscussController.$inject = ['$ngRedux', '$scope', '$stateParams'];

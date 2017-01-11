@@ -4,7 +4,7 @@ import * as RouterActions from 'redux-ui-router';
 const combinedActions = Object.assign({}, NavbarActions, RouterActions);
 
 export default class NavbarController {
-  constructor ($scope, acl, $translate, $ngRedux) {
+  constructor ($scope, $translate, $ngRedux) {
     this.translate = $translate;
     // TODO: maybe should use redux-persist to handle these
     this.isLoggedIn = localStorage.getItem('token');
@@ -35,4 +35,4 @@ export default class NavbarController {
   }
 }
 
-NavbarController.$inject = ['$scope', 'acl', '$translate', '$ngRedux'];
+NavbarController.$inject = ['$scope', '$translate', '$ngRedux'];

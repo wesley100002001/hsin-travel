@@ -4,7 +4,7 @@ import * as RouterActions from 'redux-ui-router';
 const combinedActions = Object.assign({}, ItemSelectActions, RouterActions);
 
 export default class HotelSelectController {
-  constructor (acl, $scope, $uibModalInstance, $ngRedux) {
+  constructor ($scope, $uibModalInstance, $ngRedux) {
     this.uibModal = $uibModalInstance;
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), combinedActions)(this);
     $scope.$on('$destroy', unsubscribe);
@@ -28,4 +28,4 @@ export default class HotelSelectController {
   }
 }
 
-HotelSelectController.$inject = ['acl', '$scope', '$uibModalInstance', '$ngRedux'];
+HotelSelectController.$inject = ['$scope', '$uibModalInstance', '$ngRedux'];

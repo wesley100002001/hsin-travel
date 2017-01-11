@@ -8,9 +8,8 @@ import routing from './requests.routes';
 import FooterController from '../../../components/footer/footer.controller';
 import RequestsController from './requests.controller';
 import NavbarController from '../../../components/navbar/navbar.controller';
-import acl from '../../services/acl.service';
 
-export default angular.module('app.orderexport', [acl, uibootstrap, uirouter])
+export default angular.module('app.orderexport', [uibootstrap, uirouter])
   .config(routing)
   .controller('RequestsController', RequestsController)
   .controller('NavbarController', NavbarController)
