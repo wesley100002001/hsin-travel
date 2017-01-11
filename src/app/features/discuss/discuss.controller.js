@@ -19,6 +19,7 @@ export default class DiscussController {
     $scope.$on('$destroy', unsubscribe);
 
     this.fetchRequest($stateParams.requestId);
+    this.fetchConversation($stateParams.requestId);
     // this.fetchGreetings();
   }
 

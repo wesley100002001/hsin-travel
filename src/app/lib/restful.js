@@ -1,4 +1,5 @@
 require('es6-promise').polyfill();
+import moment from 'moment';
 import fetch from 'isomorphic-fetch';
 import config from '../../../config.json';
 
@@ -33,9 +34,6 @@ export function getMockRequest (requestId) {
         { accoId: 'aco01', date: '2016/09/20', hotelId: 'H003', hotelName: '國賓大飯店', roomId: 13, roomTitle: '雙人房', quantity: 20 },
         { accoId: 'aco02', date: '2016/09/21', hotelId: 'H003', hotelName: '國賓大飯店', roomId: 13, roomTitle: '雙人房', quantity: 20 },
         { accoId: 'aco03', date: '2016/09/22', hotelId: 'H003', hotelName: '國賓大飯店', roomId: 13, roomTitle: '雙人房', quantity: 20 }
-      ],
-      comments: [
-
       ]
     };
     resolve(request);
@@ -68,6 +66,16 @@ export function getMockNotification () {
       { requestId: 'A005', message: '9/21 國賓大飯店雙人房20間 改為 9/21 國賓大飯店雙人房19間' },
     ];
     resolve(notification);
+  });
+}
+
+export function getMockConversation (requestId) {
+  return new Promise(function (resolve, reject) {
+    var conversation = [
+      { id: 'usert', comment: '新需求，再麻煩你們了～', timestamp: moment().format('YYYY 年 MM 月 DD 日 HH:mm:ss')},
+      { id: 'Wesley', comment: '沒問題', timestamp: moment().format('YYYY 年 MM 月 DD 日 HH:mm:ss')}
+    ];
+    resolve(conversation);
   });
 }
 
