@@ -18,6 +18,9 @@ function login (state = {}, action) {
     return action.payload;
 
     case SET_LOGGED_IN:
+    if (!!state.isLogging) {
+      delete state.isLogging;
+    }
     return state;
 
     case LOGIN_FAILED:
