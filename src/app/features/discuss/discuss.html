@@ -2,9 +2,11 @@
   <div class="row">
     <div class="col-xs-3 col-sm-3 col-md-3">
       <button class="btn btn-default btn-tab"
+              ng-show="discuss.editable"
               ng-class="{'btn-info': discuss.channel === 'Taiwan'}"
               ng-click="discuss.switchChannel('Taiwan')">台方討論</button>
       <button class="btn btn-default btn-tab"
+              ng-show="discuss.editable"
               ng-class="{'btn-info': discuss.channel === 'Japan'}"
               ng-click="discuss.switchChannel('Japan')">日方討論</button>
       <div class="well scrollable" ng-show="discuss.channel === 'Taiwan'">
