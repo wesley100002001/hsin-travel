@@ -1,19 +1,42 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-xs-3 col-sm-3 col-md-3 well scrollable">
-      <p ng-show="discuss.conversation < 1" class="text-center">
-        目前沒有任何留言唷！
-      </p>
-      <div ng-repeat="com in discuss.conversation">
-        <span>{{com.id}}:</span><br>
-        <span>{{com.comment}}</span>
-        <p class="text-right">{{com.timestamp}}</p>
+    <div class="col-xs-3 col-sm-3 col-md-3">
+      <button class="btn btn-default btn-tab"
+              ng-class="{'btn-info': discuss.channel === 'Taiwan'}"
+              ng-click="discuss.switchChannel('Taiwan')">台方討論</button>
+      <button class="btn btn-default btn-tab"
+              ng-class="{'btn-info': discuss.channel === 'Japan'}"
+              ng-click="discuss.switchChannel('Japan')">日方討論</button>
+      <div class="well scrollable" ng-show="discuss.channel === 'Taiwan'">
+        <p ng-show="discuss.conversation < 1" class="text-center">
+          目前沒有任何留言唷！
+        </p>
+        <div ng-repeat="com in discuss.conversation">
+          <span>{{com.id}}:</span><br>
+          <span>{{com.comment}}</span>
+          <p class="text-right">{{com.timestamp}}</p>
+        </div>
+        <div class="form-group">
+          <label for="comment">留言</label>
+          <textarea class="form-control" rows="2" id="comment" ng-model="discuss.newComment"></textarea>
+        </div>
+        <button class="btn btn-success" ng-click="discuss.leaveComment()">送出</button>
       </div>
-      <div class="form-group">
-        <label for="comment">留言</label>
-        <textarea class="form-control" rows="2" id="comment" ng-model="discuss.newComment"></textarea>
+      <div class="well scrollable" ng-show="discuss.channel === 'Japan'">
+        <p ng-show="discuss.conversation < 1" class="text-center">
+          目前沒有任何留言唷！
+        </p>
+        <!-- <div ng-repeat="com in discuss.conversation">
+          <span>{{com.id}}:</span><br>
+          <span>{{com.comment}}</span>
+          <p class="text-right">{{com.timestamp}}</p>
+        </div> -->
+        <div class="form-group">
+          <label for="comment">留言</label>
+          <textarea class="form-control" rows="2" id="comment" ng-model="discuss.newComment"></textarea>
+        </div>
+        <button class="btn btn-success" ng-click="discuss.leaveComment()">送出</button>
       </div>
-      <button class="btn btn-success" ng-click="discuss.leaveComment()">送出</button>
     </div>
     <div class="col-xs-3 col-sm-9 col-md-9 scrollable">
       <h1 class="padding-down">{{discuss.request.title}}</h1>

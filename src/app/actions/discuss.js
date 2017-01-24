@@ -8,6 +8,7 @@ export const FETCH_GREETINGS = 'FETCH_GREETINGS';
 export const FETCH_ORDERS = 'FETCH_ORDERS';
 export const FETCH_REQUEST = 'FETCH_REQUEST';
 export const REMOVE_ACCOMODATION = 'REMOVE_ACCOMODATION';
+export const SWITCH_CHANNEL = 'SWITCH_CHANNEL';
 
 export function fetchOrders (token) {
   return {
@@ -66,5 +67,12 @@ export function fetchConversation (requestId) {
       .then(response => {
         return response;
       })
-  }
+  };
+}
+
+export function switchChannel (channel) {
+  return {
+    type: SWITCH_CHANNEL,
+    payload: channel
+  };
 }

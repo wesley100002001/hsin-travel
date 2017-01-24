@@ -4,7 +4,7 @@ import { LOGIN_FAILED, SET_LOGGED_IN, SET_LOGGING } from '../actions/login';
 import { FETCH_REQUESTS } from '../actions/requests';
 import { ADD_ITEM, ADD_REQUEST } from '../actions/request';
 import { ADD_COMMENT, FETCH_CONVERSATION, FETCH_REQUEST, FETCH_GREETINGS,
-  FETCH_ORDERS, REMOVE_ACCOMODATION } from '../actions/discuss';
+  FETCH_ORDERS, REMOVE_ACCOMODATION, SWITCH_CHANNEL } from '../actions/discuss';
 import { FETCH_HOTELS } from '../actions/itemselect';
 import { FETCH_NOTIFICATIONS } from '../actions/navbar';
 import { FETCH_ACCO } from '../actions/itemconfirm';
@@ -51,6 +51,16 @@ function greetings (state = [], action) {
       ...state,
       action.payload
     ];
+
+    default:
+    return state;
+  }
+}
+
+function channel (state = 'Taiwan', action) {
+  switch (action.type) {
+    case SWITCH_CHANNEL:
+    return action.payload;
 
     default:
     return state;
@@ -152,6 +162,7 @@ function navbar (state = [], action) {
 
 let appReducer = combineReducers({
   accomodation,
+  channel,
   discuss,
   greetings,
   itemselect,

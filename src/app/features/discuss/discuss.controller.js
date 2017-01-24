@@ -27,6 +27,7 @@ export default class DiscussController {
     console.log(state);
     return {
       conversation: state.discuss,
+      channel: state.channel,
       request: state.requestToBeEdit,
       greetings: state.greetings,
       token: state.login,
@@ -61,6 +62,10 @@ export default class DiscussController {
   deleteAccomodation (acco) {
     // for now is just a mock
     this.removeAccomodation(acco);
+  }
+
+  switchChannel (channel) {
+    this.switchChannel(channel);
   }
 }
 
