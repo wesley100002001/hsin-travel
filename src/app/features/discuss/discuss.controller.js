@@ -66,10 +66,6 @@ export default class DiscussController {
     // for now is just a mock
     this.removeAccomodation(acco);
   }
-
-  switchChannel (channel) {
-    this.switchChannel(channel);
-  }
 }
 
 DiscussController.$inject = ['$ngRedux', '$scope', '$stateParams'];
