@@ -7,7 +7,7 @@ import { ADD_COMMENT, FETCH_CONVERSATION, FETCH_REQUEST, FETCH_GREETINGS,
   FETCH_ORDERS, REMOVE_ACCOMODATION, SWITCH_CHANNEL } from '../actions/discuss';
 import { FETCH_HOTELS } from '../actions/itemselect';
 import { FETCH_NOTIFICATIONS } from '../actions/navbar';
-import { FETCH_ACCO } from '../actions/itemconfirm';
+import { FETCH_ACCO, FETCH_HOTEL, PATCH_ACCO } from '../actions/itemconfirm';
 
 const FULFILLED = '_FULFILLED';
 const PENDING = '_PENDING';
@@ -140,6 +140,16 @@ function itemselect (state = [], action) {
   }
 }
 
+function accoEdit_Hotel (state = {}, action) {
+  switch (action.type) {
+    case `${FETCH_HOTEL}${FULFILLED}`:
+    return action.payload;
+
+    default:
+    return state;
+  }
+}
+
 function accomodation (state = {}, action) {
   switch (action.type) {
     case `${FETCH_ACCO}${FULFILLED}`:
@@ -161,6 +171,7 @@ function navbar (state = [], action) {
 }
 
 let appReducer = combineReducers({
+  accoEdit_Hotel,
   accomodation,
   channel,
   discuss,

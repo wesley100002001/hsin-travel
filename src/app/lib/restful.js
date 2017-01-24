@@ -24,6 +24,18 @@ export function getMockHotels () {
   });
 }
 
+export function getMockHotel () {
+  return new Promise((resolve, reject) => {
+    var hotel = {
+      name: '國賓大飯店',
+      address: '台北市中山北路二段50號',
+      phone: '02-2918-9403',
+      url: 'http://www.google.com.tw'
+    };
+    resolve(hotel);
+  });
+}
+
 export function getMockRequest (requestId) {
   return new Promise(function (resolve, reject) {
     var request = {

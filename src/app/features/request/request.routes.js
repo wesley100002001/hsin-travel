@@ -55,7 +55,7 @@ export default function routes ($stateProvider, modalStateProvider) {
     controllerAs: 'accolist'
   });
   modalStateProvider.state('requestCreate.acco-edit', {
-    url: '/acco-edit',
+    url: '/acco-edit/:hotelId',
     template: require('../accomodation-edit/accomodation-edit.html'),
     size: 'lg',
     backdrop: 'static',

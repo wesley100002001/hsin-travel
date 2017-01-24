@@ -1,21 +1,18 @@
 import ambassador from '../../../assets/imgs/ambassador.jpg';
 import moment from 'moment';
-import * as RequestActions from '../../actions/request';
 import * as ItemConfirmActions from '../../actions/itemconfirm';
-
-const combinedActions = Object.assign({}, RequestActions, ItemConfirmActions);
 
 export default class BetaController {
   constructor ($ngRedux, $scope, $uibModalInstance, $stateParams) {
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this),
-      combinedActions)(this);
+      ItemConfirmActions)(this);
     $scope.$on('$destroy', unsubscribe);
 
     this.uibModal = $uibModalInstance;
     this.requestId = $stateParams.requestId;
+    this.hotelId = $stateParams.hotelId;
+
     this.cover = ambassador;
-    this.address = '台北市中山北路二段50號';
-    this.phone = '02-2918-9403';
     this.isOneDay = true;
 
     this.startOpened = false;
@@ -26,13 +23,15 @@ export default class BetaController {
     };
 
     this.fetchAccomodation($stateParams.accoId);
-    // this.fetchHotel($stateParams.hotelId);
+    this.fetchHotel($stateParams.hotelId);
   }
 
   mapStateToThis(state) {
     console.log(state);
     return {
-      accomodation: state.accomodation
+      accomodation: state.accomodation,
+      address: state.accoEdit_Hotel.address,
+      phone: state.accoEdit_Hotel.phone
     };
   }
 

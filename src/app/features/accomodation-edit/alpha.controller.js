@@ -1,18 +1,17 @@
 import ambassador from '../../../assets/imgs/ambassador.jpg';
 import moment from 'moment';
-import * as RequestActions from '../../actions/request';
+import * as ItemConfirmActions from '../../actions/itemconfirm';
 
 export default class AlphaController {
-  constructor ($scope, $ngRedux, $uibModalInstance) {
+  constructor ($scope, $ngRedux, $uibModalInstance, $stateParams) {
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this),
-      RequestActions)(this);
+      ItemConfirmActions)(this);
     $scope.$on('$destroy', unsubscribe);
 
     this.uibModal = $uibModalInstance;
+    this.hotelId = $stateParams.hotelId;
 
     this.cover = ambassador;
-    this.address = '台北市中山北路二段50號';
-    this.phone = '02-2918-9403';
     this.isOneDay = false;
 
     this.startOpened = false;
@@ -21,13 +20,15 @@ export default class AlphaController {
     this.timeOption = {
       max: moment().subtract(1, 'days').format()
     };
-    this.list = [];
+
+    this.fetchHotel($stateParams.hotelId);
   }
 
   mapStateToThis(state) {
     console.log(state);
     return {
-      list: state.requests
+      address: state.accoEdit_Hotel.address,
+      phone: state.accoEdit_Hotel.phone
     };
   }
 
@@ -59,4 +60,4 @@ export default class AlphaController {
   }
 }
 
-AlphaController.$inject = ['$scope', '$ngRedux', '$uibModalInstance'];
+AlphaController.$inject = ['$scope', '$ngRedux', '$uibModalInstance', '$stateParams'];
