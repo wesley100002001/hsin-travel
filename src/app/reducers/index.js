@@ -4,7 +4,8 @@ import { LOGIN_FAILED, SET_LOGGED_IN, SET_LOGGING } from '../actions/login';
 import { FETCH_REQUESTS } from '../actions/requests';
 import { ADD_ITEM, ADD_REQUEST } from '../actions/request';
 import { ADD_COMMENT, FETCH_CONVERSATION, FETCH_REQUEST, FETCH_GREETINGS,
-  FETCH_ORDERS, REMOVE_ACCOMODATION, SWITCH_CHANNEL } from '../actions/discuss';
+  FETCH_ORDERS, REMOVE_ACCOMODATION, SWITCH_CHANNEL, ON_EDIT_TITLE,
+  OFF_EDIT_TITLE, ON_EDIT_PEOPLE, OFF_EDIT_PEOPLE } from '../actions/discuss';
 import { FETCH_HOTELS } from '../actions/itemselect';
 import { FETCH_NOTIFICATIONS } from '../actions/navbar';
 import { FETCH_ACCO, FETCH_HOTEL, PATCH_ACCO } from '../actions/itemconfirm';
@@ -76,6 +77,32 @@ function discuss (state = [], action) {
     ];
 
     case `${FETCH_CONVERSATION}${FULFILLED}`:
+    return action.payload;
+
+    default:
+    return state;
+  }
+}
+
+function titleEditable (state = false, action) {
+  switch (action.type) {
+    case ON_EDIT_TITLE:
+    return action.payload;
+
+    case OFF_EDIT_TITLE:
+    return action.payload;
+
+    default:
+    return state;
+  }
+}
+
+function peopleEditable (state = false, action) {
+  switch (action.type) {
+    case ON_EDIT_PEOPLE:
+    return action.payload;
+
+    case OFF_EDIT_PEOPLE:
     return action.payload;
 
     default:
@@ -183,7 +210,9 @@ let appReducer = combineReducers({
   request,
   requests,
   requestToBeEdit,
-  router
+  router,
+  peopleEditable,
+  titleEditable
 });
 
 export default appReducer;

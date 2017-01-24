@@ -7,6 +7,10 @@ export const FETCH_CONVERSATION = 'FETCH_CONVERSATION';
 export const FETCH_GREETINGS = 'FETCH_GREETINGS';
 export const FETCH_ORDERS = 'FETCH_ORDERS';
 export const FETCH_REQUEST = 'FETCH_REQUEST';
+export const ON_EDIT_TITLE = 'ON_EDIT_TITLE';
+export const OFF_EDIT_TITLE = 'OFF_EDIT_TITLE';
+export const ON_EDIT_PEOPLE = 'ON_EDIT_PEOPLE';
+export const OFF_EDIT_PEOPLE = 'OFF_EDIT_PEOPLE';
 export const REMOVE_ACCOMODATION = 'REMOVE_ACCOMODATION';
 export const SWITCH_CHANNEL = 'SWITCH_CHANNEL';
 
@@ -75,5 +79,33 @@ export function switchChannel (channel) {
   return {
     type: SWITCH_CHANNEL,
     payload: channel
+  };
+}
+
+export function onEditTitle () {
+  return {
+    type: ON_EDIT_TITLE,
+    payload: true
+  };
+}
+
+export function offEditTitle () {
+  return {
+    type: OFF_EDIT_TITLE,
+    payload: false
+  };
+}
+
+export function onEditPeople () {
+  return {
+    type: ON_EDIT_PEOPLE,
+    payload: true
+  };
+}
+
+export function offEditPeople () {
+  return {
+    type: OFF_EDIT_PEOPLE,
+    payload: false
   };
 }

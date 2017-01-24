@@ -14,6 +14,7 @@ export default class DiscussController {
 
     this.userID = localStorage.getItem('username');
     this.editable = this.userID === 'usert';
+    this.requestId = $stateParams.requestId;
 
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), combinedActions)(this);
     $scope.$on('$destroy', unsubscribe);
@@ -31,7 +32,9 @@ export default class DiscussController {
       request: state.requestToBeEdit,
       greetings: state.greetings,
       token: state.login,
-      orders: state.orders
+      orders: state.orders,
+      peopleEditable: state.peopleEditable,
+      titleEditable: state.titleEditable
     };
   }
 
