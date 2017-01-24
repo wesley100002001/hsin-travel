@@ -49,6 +49,7 @@ export function fetchGreetings () {
   }
 }
 
+// FIXME: It's a mock now
 export function removeAccomodation (hotel) {
   return {
     type: REMOVE_ACCOMODATION,
