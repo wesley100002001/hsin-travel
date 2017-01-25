@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "Hsin-Ia traveling management system",
   "scripts": {
-    "build": "webpack --config webpack.config.js --bail -p",
+    "build": "webpack --bail -p",
     "dev": "node node_modules/.bin/webpack-dev-server --history-api-fallback --hot --inline --progress",
     "eslint": "eslint src/*.js",
+    "production": "webpack --config webpack.production.js --bail -p",
     "test": "karma start",
     "test:live": "karma start --auto-watch --no-single-run"
   },

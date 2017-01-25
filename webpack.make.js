@@ -13,6 +13,7 @@ module.exports = function makeWebpackConfig (options) {
    * TEST is for generating test builds
    */
   var BUILD = !!options.BUILD;
+  var PRODUCTION = !!options.PRODUCTION;
   var TEST = !!options.TEST;
 
   /**
@@ -73,6 +74,9 @@ module.exports = function makeWebpackConfig (options) {
       // Only adds hash in build mode
       chunkFilename: BUILD ? '[name].[hash].js' : '[name].bundle.js'
     }
+  }
+  if (PRODUCTION) {
+    config.output.publicPath = 'https://wesley100002001.github.io/hsin-travel/';
   }
 
   /**
