@@ -50,18 +50,14 @@ export function fetchGreetings () {
       .then(response => {
         return response;
       })
-  }
+  };
 }
 
-// FIXME: It's a mock now
-export function removeAccomodation (hotel) {
+// FIXME: only remove element from state
+export function removeAccomodation (accoId, index) {
   return {
     type: REMOVE_ACCOMODATION,
-    payload: restful.getMockRequest(0)
-      .then(response => {
-        response.accomodation = response.accomodation.slice(1);
-        return response;
-      })
+    payload: index
   };
 }
 

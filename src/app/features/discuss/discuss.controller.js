@@ -61,11 +61,6 @@ export default class DiscussController {
       accoId: acco.accoId
     });
   }
-
-  deleteAccomodation (acco) {
-    // for now is just a mock
-    this.removeAccomodation(acco);
-  }
 }
 
 DiscussController.$inject = ['$ngRedux', '$scope', '$stateParams'];

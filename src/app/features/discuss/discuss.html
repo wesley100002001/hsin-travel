@@ -86,7 +86,7 @@
           <th>數量</th>
           <th ng-show="discuss.editable"></th>
         </tr>
-        <tr ng-repeat="acco in discuss.request.accomodation">
+        <tr ng-repeat="acco in discuss.request.accomodation track by $index">
           <td>{{acco.date}}</td>
           <td>{{acco.hotelName}}</td>
           <td>{{acco.roomTitle}}</td>
@@ -96,7 +96,7 @@
               <span class="glyphicon glyphicon-pencil"></span>
             </a>
             ｜
-            <a href ng-click="discuss.deleteAccomodation(acco)">
+            <a href ng-click="discuss.removeAccomodation(acco.accoId, $index)">
               <span class="glyphicon glyphicon-trash"></span>
             </a>
           </td>

@@ -115,8 +115,13 @@ function requestToBeEdit (state = {}, action) {
     case `${FETCH_REQUEST}${FULFILLED}`:
     return action.payload;
 
-    case `${REMOVE_ACCOMODATION}${FULFILLED}`:
-    return action.payload;
+    case REMOVE_ACCOMODATION:
+    return Object.assign({}, state, {
+      accomodation: [
+        ...state.accomodation.slice(0, action.payload),
+        ...state.accomodation.slice(action.payload + 1)
+      ]
+    });
 
     default:
     return state;
