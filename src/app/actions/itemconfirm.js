@@ -2,6 +2,7 @@ import moment from 'moment';
 import { fetchRequest } from './discuss';
 import * as restful from '../lib/restful';
 
+export const CREATE_ACCO = 'CREATE_ACCO';
 export const FETCH_ACCO = 'FETCH_ACCO';
 export const FETCH_HOTEL = 'FETCH_HOTEL';
 export const PATCH_ACCO = 'PATCH_ACCO';
@@ -40,6 +41,13 @@ export function submitAccomodation (acco, requestId) {
     }).catch(err => {
       console.log(err);
     });
+  };
+}
+
+export function createAccomodation (acco) {
+  return {
+    type: CREATE_ACCO,
+    payload: acco
   };
 }
 

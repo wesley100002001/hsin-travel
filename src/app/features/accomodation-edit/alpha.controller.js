@@ -27,6 +27,7 @@ export default class AlphaController {
   mapStateToThis(state) {
     console.log(state);
     return {
+      accomodation: state.new_accomodation,
       address: state.accoEdit_Hotel.address,
       phone: state.accoEdit_Hotel.phone
     };
@@ -51,7 +52,15 @@ export default class AlphaController {
   };
 
   confirm () {
-    this.addItem({roomId: 1});
+    if (!this.accomodation.roomTitle || !this.accomodation.startTime ||
+      !this.accomodation.endTime || !this.accomodation.quantity) {
+      alert('資料輸入不完全');
+      return;
+    }
+    this.accomodation.startTime = moment(this.accomodation.startTime).format('YYYY-MM-DD');
+    this.accomodation.endTime = moment(this.accomodation.endTime).format('YYYY-MM-DD');
+    this.accomodation.hotel = '國賓大飯店';
+    this.createAccomodation(this.accomodation);
     this.uibModal.close();
   }
 
@@ -60,4 +69,5 @@ export default class AlphaController {
   }
 }
 
-AlphaController.$inject = ['$scope', '$ngRedux', '$uibModalInstance', '$stateParams'];
+AlphaController.$inject = ['$scope', '$ngRedux', '$uibModalInstance',
+'$stateParams'];
