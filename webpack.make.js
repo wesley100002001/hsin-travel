@@ -64,7 +64,6 @@ module.exports = function makeWebpackConfig (options) {
 
       // Output path from the view of the page
       // Uses webpack-dev-server in development
-      // publicPath: BUILD ? '/' : 'https://wesley100002001.github.io/hsin-travel/',
       publicPath: BUILD ? '/' : 'http://localhost:8080/',
       // Filename for entry points
       // Only adds hash in build mode
