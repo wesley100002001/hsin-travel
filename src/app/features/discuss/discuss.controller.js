@@ -36,7 +36,9 @@ export default class DiscussController {
       japanLogs: state.discuss.japan,
       taiwanLogs: state.discuss.taiwan,
       peopleEditable: state.peopleEditable,
-      titleEditable: state.titleEditable
+      titleEditable: state.titleEditable,
+      tempTitle: state.tempTitle,
+      tempPeople: state.tempPeople
     };
   }
 
@@ -71,6 +73,36 @@ export default class DiscussController {
       hotelId: acco.hotelId,
       accoId: acco.accoId
     });
+  }
+
+  editTitle () {
+    this.setTempTitle(this.request.title);
+    this.onEditTitle();
+  }
+
+  editPeople () {
+    this.setTempPeople(this.request.people);
+    this.onEditPeople();
+  }
+
+  cancelEditTitle () {
+    this.undoTitle(this.tempTitle);
+    this.offEditTitle();
+  }
+
+  cancelEditPeople () {
+    this.undoPeople(this.tempPeople);
+    this.offEditPeople();
+  }
+
+  submitTitle () {
+    this.updateTitle(this.request.title);
+    this.offEditTitle();
+  }
+
+  submitPeople () {
+    this.updatePeople(this.request.people);
+    this.offEditPeople();
   }
 }
 

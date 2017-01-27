@@ -43,7 +43,7 @@
     <div class="col-xs-3 col-sm-9 col-md-9 scrollable">
       <h1 class="padding-down" ng-show="!discuss.titleEditable">
         {{discuss.request.title}}
-        <small ng-show="discuss.editable"><a href ng-click="discuss.onEditTitle()">
+        <small ng-show="discuss.editable"><a href ng-click="discuss.editTitle()">
             <span class="glyphicon glyphicon-pencil"></span></a>
         </small>
       </h1>
@@ -51,17 +51,16 @@
         <h1 class="padding-down" ng-show="discuss.titleEditable">
           團名：<input type="text" class="form-control" ng-model="discuss.request.title">
           <button class="btn btn-success">
-            <!-- TODO: Add submit function here -->
-            <span class="glyphicon glyphicon-ok"></span>
+            <span class="glyphicon glyphicon-ok" ng-click="discuss.submitTitle()"></span>
           </button>
-          <button class="btn btn-danger" ng-click="discuss.offEditTitle()">
+          <button class="btn btn-danger" ng-click="discuss.cancelEditTitle()">
             <span class="glyphicon glyphicon-remove"></span>
           </button>
         </h1>
       </form>
       <h4 class="padding-down" ng-show="!discuss.peopleEditable">
         人數：{{discuss.request.people}}
-        <small ng-show="discuss.editable"><a href ng-click="discuss.onEditPeople()">
+        <small ng-show="discuss.editable"><a href ng-click="discuss.editPeople()">
             <span class="glyphicon glyphicon-pencil"></span></a>
         </small>
       </h4>
@@ -69,10 +68,9 @@
         <h4 class="padding-down" ng-show="discuss.peopleEditable">
           人數：<input type="text" class="form-control" ng-model="discuss.request.people">
           <button class="btn btn-success">
-            <!-- TODO: Add submit function here -->
-            <span class="glyphicon glyphicon-ok"></span>
+            <span class="glyphicon glyphicon-ok" ng-click="discuss.submitPeople()"></span>
           </button>
-          <button class="btn btn-danger" ng-click="discuss.offEditPeople()">
+          <button class="btn btn-danger" ng-click="discuss.cancelEditPeople()">
             <span class="glyphicon glyphicon-remove"></span>
           </button>
         </h4>

@@ -5,7 +5,7 @@ import { FETCH_REQUESTS } from '../actions/requests';
 import { ADD_ITEM, ADD_REQUEST } from '../actions/request';
 import { ADD_JP_COMMENT, ADD_TW_COMMENT, FETCH_JP_CONVERSATION, FETCH_TW_CONVERSATION, FETCH_REQUEST,
   FETCH_GREETINGS, FETCH_ORDERS, REMOVE_ACCOMODATION, SWITCH_CHANNEL,
-  ON_EDIT_TITLE, OFF_EDIT_TITLE, ON_EDIT_PEOPLE, OFF_EDIT_PEOPLE } from '../actions/discuss';
+  ON_EDIT_TITLE, OFF_EDIT_TITLE, ON_EDIT_PEOPLE, OFF_EDIT_PEOPLE, UNDO_PEOPLE, UNDO_TITLE, SET_TEMP_TITLE, SET_TEMP_PEOPLE, UPDATE_TITLE, UPDATE_PEOPLE } from '../actions/discuss';
 import { FETCH_HOTELS } from '../actions/itemselect';
 import { FETCH_NOTIFICATIONS } from '../actions/navbar';
 import { CREATE_ACCO, FETCH_ACCO, FETCH_HOTEL, PATCH_ACCO } from '../actions/itemconfirm';
@@ -127,6 +127,26 @@ function peopleEditable (state = false, action) {
   }
 }
 
+function tempTitle (state = null, action) {
+  switch (action.type) {
+    case SET_TEMP_TITLE:
+    return action.payload;
+
+    default:
+    return state;
+  }
+}
+
+function tempPeople (state = null, action) {
+  switch (action.type) {
+    case SET_TEMP_PEOPLE:
+    return action.payload;
+
+    default:
+    return state;
+  }
+}
+
 function requestToBeEdit (state = {}, action) {
   switch (action.type) {
     case `${FETCH_REQUEST}${FULFILLED}`:
@@ -138,6 +158,26 @@ function requestToBeEdit (state = {}, action) {
         ...state.accomodation.slice(0, action.payload),
         ...state.accomodation.slice(action.payload + 1)
       ]
+    });
+
+    case UNDO_TITLE:
+    return Object.assign({}, state, {
+      title: action.payload
+    });
+
+    case UNDO_PEOPLE:
+    return Object.assign({}, state, {
+      people: action.payload
+    });
+
+    case UPDATE_TITLE:
+    return Object.assign({}, state, {
+      title: action.payload
+    });
+
+    case UPDATE_PEOPLE:
+    return Object.assign({}, state, {
+      people: action.payload
     });
 
     default:
@@ -242,7 +282,9 @@ let appReducer = combineReducers({
   requestToBeEdit,
   router,
   peopleEditable,
-  titleEditable
+  titleEditable,
+  tempTitle,
+  tempPeople
 });
 
 export default appReducer;

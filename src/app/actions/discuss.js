@@ -14,7 +14,13 @@ export const OFF_EDIT_TITLE = 'OFF_EDIT_TITLE';
 export const ON_EDIT_PEOPLE = 'ON_EDIT_PEOPLE';
 export const OFF_EDIT_PEOPLE = 'OFF_EDIT_PEOPLE';
 export const REMOVE_ACCOMODATION = 'REMOVE_ACCOMODATION';
+export const SET_TEMP_PEOPLE = 'SET_TEMP_PEOPLE';
+export const SET_TEMP_TITLE = 'SET_TEMP_TITLE';
 export const SWITCH_CHANNEL = 'SWITCH_CHANNEL';
+export const UNDO_PEOPLE = 'UNDO_PEOPLE';
+export const UNDO_TITLE = 'UNDO_TITLE';
+export const UPDATE_PEOPLE = 'UPDATE_PEOPLE';
+export const UPDATE_TITLE = 'UPDATE_TITLE';
 
 export function fetchOrders (token) {
   return {
@@ -124,5 +130,49 @@ export function offEditPeople () {
   return {
     type: OFF_EDIT_PEOPLE,
     payload: false
+  };
+}
+
+export function setTempTitle (title) {
+  return {
+    type: SET_TEMP_TITLE,
+    payload: title
+  };
+}
+
+export function setTempPeople (people) {
+  return {
+    type: SET_TEMP_PEOPLE,
+    payload: people
+  };
+}
+
+export function undoTitle (title) {
+  return {
+    type: UNDO_TITLE,
+    payload: title
+  };
+}
+
+export function undoPeople (people) {
+  return {
+    type: UNDO_PEOPLE,
+    payload: people
+  };
+}
+
+// FIXME: send restful request
+export function updateTitle (title) {
+  return {
+    type: UPDATE_TITLE,
+    payload: title
+  };
+}
+
+// FIXME: send restful request
+export function updatePeople (people) {
+  return {
+    type: UPDATE_PEOPLE,
+    payload: people
   };
 }
