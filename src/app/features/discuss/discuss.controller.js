@@ -20,32 +20,43 @@ export default class DiscussController {
     $scope.$on('$destroy', unsubscribe);
 
     this.fetchRequest($stateParams.requestId);
-    this.fetchConversation($stateParams.requestId);
+    this.fetchJPConversation($stateParams.requestId);
+    this.fetchTWConversation($stateParams.requestId);
     // this.fetchGreetings();
   }
 
   mapStateToThis (state) {
     console.log(state);
     return {
-      conversation: state.discuss,
       channel: state.channel,
       request: state.requestToBeEdit,
       greetings: state.greetings,
       token: state.login,
       orders: state.orders,
+      japanLogs: state.discuss.japan,
+      taiwanLogs: state.discuss.taiwan,
       peopleEditable: state.peopleEditable,
       titleEditable: state.titleEditable
     };
   }
 
   // 一個 Request 裡應該要有一個 Conversation Array 來存所有的留言
-  leaveComment () {
+  leaveComment (region) {
     if (!!this.newComment) {
-      this.addComment({
-        id: this.userID,
-        comment: this.newComment,
-        timestamp: moment().format('YYYY 年 MM 月 DD 日 HH:mm:ss')
-      });
+      // FIXME: should reduce code redundency here
+      if (region === 'Taiwan') {
+        this.addTWComment({
+          id: this.userID,
+          comment: this.newComment,
+          timestamp: moment().format('YYYY 年 MM 月 DD 日 HH:mm:ss')
+        });
+      } else {
+        this.addJPComment({
+          id: this.userID,
+          comment: this.newComment,
+          timestamp: moment().format('YYYY 年 MM 月 DD 日 HH:mm:ss')
+        });
+      }
       this.newComment = '';
     }
   }

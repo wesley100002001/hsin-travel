@@ -81,11 +81,21 @@ export function getMockNotification () {
   });
 }
 
-export function getMockConversation (requestId) {
+export function getMockTWConversation (requestId) {
   return new Promise(function (resolve, reject) {
     var conversation = [
       { id: 'usert', comment: '新需求，再麻煩你們了～', timestamp: moment().format('YYYY 年 MM 月 DD 日 HH:mm:ss')},
       { id: 'Wesley', comment: '沒問題', timestamp: moment().format('YYYY 年 MM 月 DD 日 HH:mm:ss')}
+    ];
+    resolve(conversation);
+  });
+}
+
+export function getMockJPConversation (requestId) {
+  return new Promise(function (resolve, reject) {
+    var conversation = [
+      { id: 'usert', comment: 'お願いします', timestamp: moment().format('YYYY 年 MM 月 DD 日 HH:mm:ss')},
+      { id: 'Wesley', comment: '大丈夫', timestamp: moment().format('YYYY 年 MM 月 DD 日 HH:mm:ss')}
     ];
     resolve(conversation);
   });

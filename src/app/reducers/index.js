@@ -3,9 +3,9 @@ import { router } from 'redux-ui-router';
 import { LOGIN_FAILED, SET_LOGGED_IN, SET_LOGGING } from '../actions/login';
 import { FETCH_REQUESTS } from '../actions/requests';
 import { ADD_ITEM, ADD_REQUEST } from '../actions/request';
-import { ADD_COMMENT, FETCH_CONVERSATION, FETCH_REQUEST, FETCH_GREETINGS,
-  FETCH_ORDERS, REMOVE_ACCOMODATION, SWITCH_CHANNEL, ON_EDIT_TITLE,
-  OFF_EDIT_TITLE, ON_EDIT_PEOPLE, OFF_EDIT_PEOPLE } from '../actions/discuss';
+import { ADD_JP_COMMENT, ADD_TW_COMMENT, FETCH_JP_CONVERSATION, FETCH_TW_CONVERSATION, FETCH_REQUEST,
+  FETCH_GREETINGS, FETCH_ORDERS, REMOVE_ACCOMODATION, SWITCH_CHANNEL,
+  ON_EDIT_TITLE, OFF_EDIT_TITLE, ON_EDIT_PEOPLE, OFF_EDIT_PEOPLE } from '../actions/discuss';
 import { FETCH_HOTELS } from '../actions/itemselect';
 import { FETCH_NOTIFICATIONS } from '../actions/navbar';
 import { CREATE_ACCO, FETCH_ACCO, FETCH_HOTEL, PATCH_ACCO } from '../actions/itemconfirm';
@@ -58,7 +58,7 @@ function greetings (state = [], action) {
   }
 }
 
-function channel (state = 'Taiwan', action) {
+function channel (state = 'Japan', action) {
   switch (action.type) {
     case SWITCH_CHANNEL:
     return action.payload;
@@ -68,16 +68,33 @@ function channel (state = 'Taiwan', action) {
   }
 }
 
-function discuss (state = [], action) {
+function discuss (state = { taiwan: [], japan: []}, action) {
   switch (action.type) {
-    case `${ADD_COMMENT}${FULFILLED}`:
-    return [
-      ...state,
-      action.payload
-    ];
+    case `${ADD_JP_COMMENT}${FULFILLED}`:
+    return Object.assign({}, state, {
+      japan: [
+        ...state.japan,
+        action.payload
+      ]
+    });
 
-    case `${FETCH_CONVERSATION}${FULFILLED}`:
-    return action.payload;
+    case `${ADD_TW_COMMENT}${FULFILLED}`:
+    return Object.assign({}, state, {
+      taiwan: [
+        ...state.taiwan,
+        action.payload
+      ]
+    });
+
+    case `${FETCH_JP_CONVERSATION}${FULFILLED}`:
+    return Object.assign({}, state, {
+      japan: action.payload
+    });
+
+    case `${FETCH_TW_CONVERSATION}${FULFILLED}`:
+    return Object.assign({}, state, {
+      taiwan: action.payload
+    });
 
     default:
     return state;

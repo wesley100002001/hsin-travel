@@ -1,9 +1,11 @@
 require('es6-promise').polyfill();
 import * as restful from '../lib/restful';
 
-export const ADD_COMMENT = 'ADD_COMMENT';
+export const ADD_JP_COMMENT = 'ADD_JP_COMMENT';
+export const ADD_TW_COMMENT = 'ADD_TW_COMMENT';
 export const LOAD_REQUEST = 'LOAD_REQUEST';
-export const FETCH_CONVERSATION = 'FETCH_CONVERSATION';
+export const FETCH_JP_CONVERSATION = 'FETCH_JP_CONVERSATION';
+export const FETCH_TW_CONVERSATION = 'FETCH_TW_CONVERSATION';
 export const FETCH_GREETINGS = 'FETCH_GREETINGS';
 export const FETCH_ORDERS = 'FETCH_ORDERS';
 export const FETCH_REQUEST = 'FETCH_REQUEST';
@@ -24,9 +26,18 @@ export function fetchOrders (token) {
   }
 }
 
-export function addComment (comment) {
+export function addTWComment (comment) {
   return {
-    type: ADD_COMMENT,
+    type: ADD_TW_COMMENT,
+    payload: new Promise((resolve, reject) => {
+      resolve(comment);
+    })
+  };
+}
+
+export function addJPComment (comment) {
+  return {
+    type: ADD_JP_COMMENT,
     payload: new Promise((resolve, reject) => {
       resolve(comment);
     })
@@ -61,10 +72,20 @@ export function removeAccomodation (accoId, index) {
   };
 }
 
-export function fetchConversation (requestId) {
+export function fetchJPConversation (requestId) {
   return {
-    type: FETCH_CONVERSATION,
-    payload: restful.getMockConversation(requestId)
+    type: FETCH_JP_CONVERSATION,
+    payload: restful.getMockJPConversation(requestId)
+      .then(response => {
+        return response;
+      })
+  };
+}
+
+export function fetchTWConversation (requestId) {
+  return {
+    type: FETCH_TW_CONVERSATION,
+    payload: restful.getMockTWConversation(requestId)
       .then(response => {
         return response;
       })
