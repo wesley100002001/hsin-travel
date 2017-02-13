@@ -69,7 +69,7 @@ export default class DiscussController {
   }
 
   editAccomodation (acco) {
-    this.stateGo('request.acco-edit', {
+    this.stateGo('request.accomodation', {
       hotelId: acco.hotelId,
       accoId: acco.accoId
     });

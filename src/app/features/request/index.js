@@ -6,14 +6,14 @@ import uibootstrap from 'angular-ui-bootstrap';
 
 import routing from './request.routes';
 import modal from '../../services/modal.service';
-import AlphaController from '../accomodation-edit/alpha.controller';
-import BetaController from '../accomodation-edit/beta.controller';
+import AlphaController from '../accomodation/alpha.controller';
+import BetaController from '../accomodation/beta.controller';
 import DiscussController from '../discuss/discuss.controller';
 import FooterController from '../../../components/footer/footer.controller';
-import FrozenController from '../accomodation-list/frozen.controller';
+import FrozenController from '../accomodations/frozen.controller';
 import RequestController from './request.controller';
 import NavbarController from '../../../components/navbar/navbar.controller';
-import PhantomController from '../accomodation-list/phantom.controller';
+import PhantomController from '../accomodations/phantom.controller';
 
 export default angular.module('app.request', [uibootstrap, uirouter])
   .config(routing)

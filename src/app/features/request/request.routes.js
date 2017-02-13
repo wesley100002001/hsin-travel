@@ -46,33 +46,33 @@ export default function routes ($stateProvider, modalStateProvider) {
       }
     }
   });
-  modalStateProvider.state('requestCreate.acco-list', {
-    url: '/acco-list',
-    template: require('../accomodation-list/accomodation-list.html'),
+  modalStateProvider.state('requestCreate.accomodations', {
+    url: '/accomodations',
+    template: require('../accomodations/accomodations.html'),
     size: 'lg',
     backdrop: 'static',
     controller: 'PhantomController',
     controllerAs: 'accolist'
   });
-  modalStateProvider.state('requestCreate.acco-edit', {
-    url: '/acco-edit/:hotelId',
-    template: require('../accomodation-edit/accomodation-edit.html'),
+  modalStateProvider.state('requestCreate.accomodation', {
+    url: '/accomodation/:hotelId',
+    template: require('../accomodation/accomodation.html'),
     size: 'lg',
     backdrop: 'static',
     controller: 'AlphaController',
     controllerAs: 'accoedit'
   });
-  modalStateProvider.state('request.acco-list', {
-    url: '/acco-list',
-    template: require('../accomodation-list/accomodation-list.html'),
+  modalStateProvider.state('request.accomodations', {
+    url: '/accomodations',
+    template: require('../accomodations/accomodations.html'),
     size: 'lg',
     backdrop: 'static',
     controller: 'FrozenController',
     controllerAs: 'accolist'
   });
-  modalStateProvider.state('request.acco-edit', {
-    url: '/acco-edit/:hotelId/:accoId',
-    template: require('../accomodation-edit/accomodation-edit.html'),
+  modalStateProvider.state('request.accomodation', {
+    url: '/accomodation/:hotelId/:accoId',
+    template: require('../accomodation/accomodation.html'),
     size: 'lg',
     backdrop: 'static',
     controller: 'BetaController',
