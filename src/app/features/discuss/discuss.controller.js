@@ -68,7 +68,7 @@ export default class DiscussController {
     this.fetchOrders(this.token);
   }
 
-  editHotel (acco) {
+  editAccomodation (acco) {
     this.stateGo('request.acco-edit', {
       hotelId: acco.hotelId,
       accoId: acco.accoId
