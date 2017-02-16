@@ -55,7 +55,7 @@ function channel (state = 'Japan', action) {
   }
 }
 
-function discuss (state = { taiwan: [], japan: []}, action) {
+function discuss (state = { taiwan: [], japan: [], titleEditable: false, peopleEditable: false, tempTitle: null, tempPeople: null }, action) {
   switch (action.type) {
     case `${ADD_JP_COMMENT}${FULFILLED}`:
     return Object.assign({}, state, {
@@ -83,51 +83,35 @@ function discuss (state = { taiwan: [], japan: []}, action) {
       taiwan: action.payload
     });
 
-    default:
-    return state;
-  }
-}
-
-function titleEditable (state = false, action) {
-  switch (action.type) {
-    case ON_EDIT_TITLE:
-    return action.payload;
-
-    case OFF_EDIT_TITLE:
-    return action.payload;
-
-    default:
-    return state;
-  }
-}
-
-function peopleEditable (state = false, action) {
-  switch (action.type) {
     case ON_EDIT_PEOPLE:
-    return action.payload;
+    return Object.assign({}, state, {
+      peopleEditable: action.payload
+    });
 
     case OFF_EDIT_PEOPLE:
-    return action.payload;
+    return Object.assign({}, state, {
+      peopleEditable: action.payload
+    });
 
-    default:
-    return state;
-  }
-}
+    case ON_EDIT_TITLE:
+    return Object.assign({}, state, {
+      titleEditable: action.payload
+    });
 
-function tempTitle (state = null, action) {
-  switch (action.type) {
+    case OFF_EDIT_TITLE:
+    return Object.assign({}, state, {
+      titleEditable: action.payload
+    });
+
     case SET_TEMP_TITLE:
-    return action.payload;
+    return Object.assign({}, state, {
+      tempTitle: action.payload
+    });
 
-    default:
-    return state;
-  }
-}
-
-function tempPeople (state = null, action) {
-  switch (action.type) {
     case SET_TEMP_PEOPLE:
-    return action.payload;
+    return Object.assign({}, state, {
+      tempPeople: action.payload
+    });
 
     default:
     return state;
@@ -266,11 +250,7 @@ let appReducer = combineReducers({
   request,
   requests,
   requestToBeEdit,
-  router,
-  peopleEditable,
-  titleEditable,
-  tempTitle,
-  tempPeople
+  router
 });
 
 export default appReducer;

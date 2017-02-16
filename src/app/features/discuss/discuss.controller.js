@@ -33,10 +33,10 @@ export default class DiscussController {
       orders: state.orders,
       japanLogs: state.discuss.japan,
       taiwanLogs: state.discuss.taiwan,
-      peopleEditable: state.peopleEditable,
-      titleEditable: state.titleEditable,
-      tempTitle: state.tempTitle,
-      tempPeople: state.tempPeople
+      peopleEditable: state.discuss.peopleEditable,
+      titleEditable: state.discuss.titleEditable,
+      tempTitle: state.discuss.tempTitle,
+      tempPeople: state.discuss.tempPeople
     };
   }
 
