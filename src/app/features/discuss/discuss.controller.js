@@ -6,8 +6,6 @@ const combinedActions = Object.assign({}, DiscussActions, RouterActions);
 
 export default class DiscussController {
   constructor ($ngRedux, $scope, $stateParams) {
-    this.conversation = [];
-
     if (!localStorage.getItem('token')) {
       this.stateGo('login');
     }

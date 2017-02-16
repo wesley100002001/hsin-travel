@@ -90,3 +90,120 @@
     </div>
   </div>
 </div>
+
+<div class="container-fluid" ng-show="!request.isNew">
+  <div class="row">
+    <div class="col-xs-3 col-sm-3 col-md-3">
+      <button class="btn btn-default btn-tab"
+              ng-show="request.editable"
+              ng-class="{'btn-info': request.channel === 'Taiwan'}"
+              ng-click="request.switchChannel('Taiwan')">台方討論</button>
+      <button class="btn btn-default btn-tab"
+              ng-show="request.editable"
+              ng-class="{'btn-info': request.channel === 'Japan'}"
+              ng-click="request.switchChannel('Japan')">日方討論</button>
+      <div class="well scrollable" ng-show="request.channel === 'Taiwan'">
+        <p ng-show="request.taiwanLogs < 1" class="text-center">
+          目前沒有任何留言唷！
+        </p>
+        <div ng-repeat="com in request.taiwanLogs">
+          <span>{{com.id}}:</span><br>
+          <span>{{com.comment}}</span>
+          <p class="text-right">{{com.timestamp}}</p>
+        </div>
+        <div class="form-group">
+          <label for="comment">留言</label>
+          <textarea class="form-control" rows="2" id="comment" ng-model="request.newComment"></textarea>
+        </div>
+        <button class="btn btn-success" ng-click="request.leaveComment('Taiwan')">送出</button>
+      </div>
+      <div class="well scrollable" ng-show="request.channel === 'Japan'">
+        <p ng-show="request.japanLogs < 1" class="text-center">
+          目前沒有任何留言唷！
+        </p>
+        <div ng-repeat="com in request.japanLogs">
+          <span>{{com.id}}:</span><br>
+          <span>{{com.comment}}</span>
+          <p class="text-right">{{com.timestamp}}</p>
+        </div>
+        <div class="form-group">
+          <label for="comment">留言</label>
+          <textarea class="form-control" rows="2" id="comment" ng-model="request.newComment"></textarea>
+        </div>
+        <button class="btn btn-success" ng-click="request.leaveComment('Japan')">送出</button>
+      </div>
+    </div>
+    <div class="col-xs-3 col-sm-9 col-md-9 scrollable">
+      <h1 class="padding-down" ng-show="!request.titleEditable">
+        {{request.detail.title}}
+        <small ng-show="request.editable"><a href ng-click="request.editTitle()">
+            <span class="glyphicon glyphicon-pencil"></span></a>
+        </small>
+      </h1>
+      <form class="form-inline">
+        <h1 class="padding-down" ng-show="request.titleEditable">
+          團名：<input type="text" class="form-control" ng-model="request.detail.title">
+          <button class="btn btn-success">
+            <span class="glyphicon glyphicon-ok" ng-click="request.submitTitle()"></span>
+          </button>
+          <button class="btn btn-danger" ng-click="request.cancelEditTitle()">
+            <span class="glyphicon glyphicon-remove"></span>
+          </button>
+        </h1>
+      </form>
+      <h4 class="padding-down" ng-show="!request.peopleEditable">
+        人數：{{request.detail.people}}
+        <small ng-show="request.editable"><a href ng-click="request.editPeople()">
+            <span class="glyphicon glyphicon-pencil"></span></a>
+        </small>
+      </h4>
+      <form class="form-inline">
+        <h4 class="padding-down" ng-show="request.peopleEditable">
+          人數：<input type="text" class="form-control" ng-model="request.detail.people">
+          <button class="btn btn-success">
+            <span class="glyphicon glyphicon-ok" ng-click="request.submitPeople()"></span>
+          </button>
+          <button class="btn btn-danger" ng-click="request.cancelEditPeople()">
+            <span class="glyphicon glyphicon-remove"></span>
+          </button>
+        </h4>
+      </form>
+      <h3 class="padding-down">飯店</h3>
+      <table class="table">
+        <tr>
+          <th>日期</th>
+          <th>飯店</th>
+          <th>房型</th>
+          <th>數量</th>
+          <th ng-show="request.editable"></th>
+        </tr>
+        <tr ng-repeat="acco in request.detail.accomodation track by $index">
+          <td>{{acco.date}}</td>
+          <td>{{acco.hotelName}}</td>
+          <td>{{acco.roomTitle}}</td>
+          <td>{{acco.quantity}}</td>
+          <td ng-show="request.editable">
+            <a href ng-click="request.editAccomodation(acco)">
+              <span class="glyphicon glyphicon-pencil"></span>
+            </a>
+            ｜
+            <a href ng-click="request.removeAccomodation(acco.accoId, $index)">
+              <span class="glyphicon glyphicon-trash"></span>
+            </a>
+          </td>
+        </tr>
+        <tr ng-show="request.editable">
+          <td>
+            <a href ui-sref="request.accomodations">
+              <span class="glyphicon glyphicon-plus-sign"></span>
+            </a>
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

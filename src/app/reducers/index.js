@@ -55,7 +55,7 @@ function channel (state = 'Japan', action) {
   }
 }
 
-function discuss (state = { taiwan: [], japan: [], titleEditable: false, peopleEditable: false, tempTitle: null, tempPeople: null }, action) {
+function request (state = { taiwan: [], japan: [], titleEditable: false, peopleEditable: false, tempTitle: null, tempPeople: null, items: [] }, action) {
   switch (action.type) {
     case `${ADD_JP_COMMENT}${FULFILLED}`:
     return Object.assign({}, state, {
@@ -113,12 +113,17 @@ function discuss (state = { taiwan: [], japan: [], titleEditable: false, peopleE
       tempPeople: action.payload
     });
 
+    case CREATE_ACCO:
+    return Object.assign({}, state, {
+      items: action.payload
+    });
+
     default:
     return state;
   }
 }
 
-function requestToBeEdit (state = {}, action) {
+function request_package (state = {}, action) {
   switch (action.type) {
     case `${FETCH_REQUEST}${FULFILLED}`:
     return action.payload;
@@ -166,20 +171,6 @@ function requests (state = [], action) {
     return [
       ...state,
         req
-    ];
-
-    default:
-    return state;
-  }
-}
-
-function request (state = [], action) {
-  switch (action.type) {
-    case CREATE_ACCO:
-    let payload = action.payload;
-    return [
-      ...state,
-        payload
     ];
 
     default:
@@ -241,15 +232,14 @@ let appReducer = combineReducers({
   accoEdit_Hotel,
   accomodation,
   channel,
-  discuss,
   itemselect,
   login,
   orders,
   navbar,
   new_accomodation,
   request,
+  request_package,
   requests,
-  requestToBeEdit,
   router
 });
 
