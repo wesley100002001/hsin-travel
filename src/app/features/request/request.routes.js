@@ -7,17 +7,17 @@ export default function routes ($stateProvider, modalStateProvider) {
       navbar: {
         template: require('../../../components/navbar/navbar.html'),
         controller: 'NavbarController',
-        controllerAs: 'navbar'
+        controllerAs: 'navbarCtrl'
       },
       content: {
         template: require('./request.html'),
         controller: 'RequestController',
-        controllerAs: 'request'
+        controllerAs: 'requestCtrl'
       },
       footer: {
         template: require('../../../components/footer/footer.html'),
         controller: 'FooterController',
-        controllerAs: 'footer'
+        controllerAs: 'footerCtrl'
       }
     }
   });
@@ -27,7 +27,7 @@ export default function routes ($stateProvider, modalStateProvider) {
     size: 'lg',
     backdrop: 'static',
     controller: 'PhantomController',
-    controllerAs: 'accolist'
+    controllerAs: 'accolistCtrl'
   });
   modalStateProvider.state('requestCreate.accomodation', {
     url: '/accomodation/:hotelId',
@@ -35,7 +35,7 @@ export default function routes ($stateProvider, modalStateProvider) {
     size: 'lg',
     backdrop: 'static',
     controller: 'AlphaController',
-    controllerAs: 'accoedit'
+    controllerAs: 'accoeditCtrl'
   });
   modalStateProvider.state('request.accomodations', {
     url: '/accomodations',
@@ -43,7 +43,7 @@ export default function routes ($stateProvider, modalStateProvider) {
     size: 'lg',
     backdrop: 'static',
     controller: 'FrozenController',
-    controllerAs: 'accolist'
+    controllerAs: 'accolistCtrl'
   });
   modalStateProvider.state('request.accomodation', {
     url: '/accomodation/:hotelId/:accoId',
@@ -51,6 +51,6 @@ export default function routes ($stateProvider, modalStateProvider) {
     size: 'lg',
     backdrop: 'static',
     controller: 'BetaController',
-    controllerAs: 'accoedit'
+    controllerAs: 'accoeditCtrl'
   });
 }

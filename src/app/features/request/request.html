@@ -1,4 +1,4 @@
-<div class="container" ng-show="request.isNew">
+<div class="container" ng-show="requestCtrl.isNew">
   <div class="row">
     <h1 class="padding-down">新增需求</h1>
     <div class="panel panel-default">
@@ -25,12 +25,12 @@
                 id="start_time" name="start_time"
                 uib-datepicker-popup="yyyy-MM-dd"
                 show-button-bar="false"
-                ng-model="request.startTime"
-                max-date="request.timeOption.max"
-                is-open="request.startOpened" close-text="Close" readonly>
+                ng-model="requestCtrl.startTime"
+                max-date="requestCtrl.timeOption.max"
+                is-open="requestCtrl.startOpened" close-text="Close" readonly>
                 <span class="input-group-btn">
                   <button type="button" class="btn btn-default"
-                  ng-click="request.startOpen($event)">
+                  ng-click="requestCtrl.startOpen($event)">
                     <i class="glyphicon glyphicon-calendar"></i>
                   </button>
                 </span>
@@ -43,12 +43,12 @@
                 id="end_time" name="end_time"
                 uib-datepicker-popup="yyyy-MM-dd"
                 show-button-bar="false"
-                ng-model="request.endTime"
-                max-date="request.timeOption.max"
-                is-open="request.endOpened" close-text="Close" readonly>
+                ng-model="requestCtrl.endTime"
+                max-date="requestCtrl.timeOption.max"
+                is-open="requestCtrl.endOpened" close-text="Close" readonly>
                 <span class="input-group-btn">
                   <button type="button" class="btn btn-default"
-                  ng-click="request.endOpen($event)">
+                  ng-click="requestCtrl.endOpen($event)">
                     <i class="glyphicon glyphicon-calendar"></i>
                   </button>
                 </span>
@@ -72,7 +72,7 @@
               <th>房型</th>
               <th>數量</th>
             </tr>
-            <tr ng-repeat="item in request.items">
+            <tr ng-repeat="item in requestCtrl.items">
               <td>{{item.startTime}}</td>
               <td>{{item.endTime}}</td>
               <td>{{item.hotel}}</td>
@@ -81,89 +81,89 @@
             </tr>
           </table>
         </div>
-        <button class="btn btn-success" ui-sref="requestCreate.accomodations">新增飯店</button>
+        <button class="btn btn-success" ui-sref="requestCtrlCreate.accomodations">新增飯店</button>
       </div>
     </div>
     <div class="text-center">
-      <button class="btn btn-default" ng-click="request.stateGo('requests')">取消</button>
-      <button class="btn btn-primary" ng-click="request.confirm()">確認</button>
+      <button class="btn btn-default" ng-click="requestCtrl.stateGo('requestCtrls')">取消</button>
+      <button class="btn btn-primary" ng-click="requestCtrl.confirm()">確認</button>
     </div>
   </div>
 </div>
 
-<div class="container-fluid" ng-show="!request.isNew">
+<div class="container-fluid" ng-show="!requestCtrl.isNew">
   <div class="row">
     <div class="col-xs-3 col-sm-3 col-md-3">
       <button class="btn btn-default btn-tab"
-              ng-show="request.editable"
-              ng-class="{'btn-info': request.channel === 'Taiwan'}"
-              ng-click="request.switchChannel('Taiwan')">台方討論</button>
+              ng-show="requestCtrl.editable"
+              ng-class="{'btn-info': requestCtrl.channel === 'Taiwan'}"
+              ng-click="requestCtrl.switchChannel('Taiwan')">台方討論</button>
       <button class="btn btn-default btn-tab"
-              ng-show="request.editable"
-              ng-class="{'btn-info': request.channel === 'Japan'}"
-              ng-click="request.switchChannel('Japan')">日方討論</button>
-      <div class="well scrollable" ng-show="request.channel === 'Taiwan'">
-        <p ng-show="request.taiwanLogs < 1" class="text-center">
+              ng-show="requestCtrl.editable"
+              ng-class="{'btn-info': requestCtrl.channel === 'Japan'}"
+              ng-click="requestCtrl.switchChannel('Japan')">日方討論</button>
+      <div class="well scrollable" ng-show="requestCtrl.channel === 'Taiwan'">
+        <p ng-show="requestCtrl.taiwanLogs < 1" class="text-center">
           目前沒有任何留言唷！
         </p>
-        <div ng-repeat="com in request.taiwanLogs">
+        <div ng-repeat="com in requestCtrl.taiwanLogs">
           <span>{{com.id}}:</span><br>
           <span>{{com.comment}}</span>
           <p class="text-right">{{com.timestamp}}</p>
         </div>
         <div class="form-group">
           <label for="comment">留言</label>
-          <textarea class="form-control" rows="2" id="comment" ng-model="request.newComment"></textarea>
+          <textarea class="form-control" rows="2" id="comment" ng-model="requestCtrl.newComment"></textarea>
         </div>
-        <button class="btn btn-success" ng-click="request.leaveComment('Taiwan')">送出</button>
+        <button class="btn btn-success" ng-click="requestCtrl.leaveComment('Taiwan')">送出</button>
       </div>
-      <div class="well scrollable" ng-show="request.channel === 'Japan'">
-        <p ng-show="request.japanLogs < 1" class="text-center">
+      <div class="well scrollable" ng-show="requestCtrl.channel === 'Japan'">
+        <p ng-show="requestCtrl.japanLogs < 1" class="text-center">
           目前沒有任何留言唷！
         </p>
-        <div ng-repeat="com in request.japanLogs">
+        <div ng-repeat="com in requestCtrl.japanLogs">
           <span>{{com.id}}:</span><br>
           <span>{{com.comment}}</span>
           <p class="text-right">{{com.timestamp}}</p>
         </div>
         <div class="form-group">
           <label for="comment">留言</label>
-          <textarea class="form-control" rows="2" id="comment" ng-model="request.newComment"></textarea>
+          <textarea class="form-control" rows="2" id="comment" ng-model="requestCtrl.newComment"></textarea>
         </div>
-        <button class="btn btn-success" ng-click="request.leaveComment('Japan')">送出</button>
+        <button class="btn btn-success" ng-click="requestCtrl.leaveComment('Japan')">送出</button>
       </div>
     </div>
     <div class="col-xs-3 col-sm-9 col-md-9 scrollable">
-      <h1 class="padding-down" ng-show="!request.titleEditable">
-        {{request.detail.title}}
-        <small ng-show="request.editable"><a href ng-click="request.editTitle()">
+      <h1 class="padding-down" ng-show="!requestCtrl.titleEditable">
+        {{requestCtrl.detail.title}}
+        <small ng-show="requestCtrl.editable"><a href ng-click="requestCtrl.editTitle()">
             <span class="glyphicon glyphicon-pencil"></span></a>
         </small>
       </h1>
       <form class="form-inline">
-        <h1 class="padding-down" ng-show="request.titleEditable">
-          團名：<input type="text" class="form-control" ng-model="request.detail.title">
+        <h1 class="padding-down" ng-show="requestCtrl.titleEditable">
+          團名：<input type="text" class="form-control" ng-model="requestCtrl.detail.title">
           <button class="btn btn-success">
-            <span class="glyphicon glyphicon-ok" ng-click="request.submitTitle()"></span>
+            <span class="glyphicon glyphicon-ok" ng-click="requestCtrl.submitTitle()"></span>
           </button>
-          <button class="btn btn-danger" ng-click="request.cancelEditTitle()">
+          <button class="btn btn-danger" ng-click="requestCtrl.cancelEditTitle()">
             <span class="glyphicon glyphicon-remove"></span>
           </button>
         </h1>
       </form>
-      <h4 class="padding-down" ng-show="!request.peopleEditable">
-        人數：{{request.detail.people}}
-        <small ng-show="request.editable"><a href ng-click="request.editPeople()">
+      <h4 class="padding-down" ng-show="!requestCtrl.peopleEditable">
+        人數：{{requestCtrl.detail.people}}
+        <small ng-show="requestCtrl.editable"><a href ng-click="requestCtrl.editPeople()">
             <span class="glyphicon glyphicon-pencil"></span></a>
         </small>
       </h4>
       <form class="form-inline">
-        <h4 class="padding-down" ng-show="request.peopleEditable">
-          人數：<input type="text" class="form-control" ng-model="request.detail.people">
+        <h4 class="padding-down" ng-show="requestCtrl.peopleEditable">
+          人數：<input type="text" class="form-control" ng-model="requestCtrl.detail.people">
           <button class="btn btn-success">
-            <span class="glyphicon glyphicon-ok" ng-click="request.submitPeople()"></span>
+            <span class="glyphicon glyphicon-ok" ng-click="requestCtrl.submitPeople()"></span>
           </button>
-          <button class="btn btn-danger" ng-click="request.cancelEditPeople()">
+          <button class="btn btn-danger" ng-click="requestCtrl.cancelEditPeople()">
             <span class="glyphicon glyphicon-remove"></span>
           </button>
         </h4>
@@ -175,26 +175,26 @@
           <th>飯店</th>
           <th>房型</th>
           <th>數量</th>
-          <th ng-show="request.editable"></th>
+          <th ng-show="requestCtrl.editable"></th>
         </tr>
-        <tr ng-repeat="acco in request.detail.accomodation track by $index">
+        <tr ng-repeat="acco in requestCtrl.detail.accomodation track by $index">
           <td>{{acco.date}}</td>
           <td>{{acco.hotelName}}</td>
           <td>{{acco.roomTitle}}</td>
           <td>{{acco.quantity}}</td>
-          <td ng-show="request.editable">
-            <a href ng-click="request.editAccomodation(acco)">
+          <td ng-show="requestCtrl.editable">
+            <a href ng-click="requestCtrl.editAccomodation(acco)">
               <span class="glyphicon glyphicon-pencil"></span>
             </a>
             ｜
-            <a href ng-click="request.removeAccomodation(acco.accoId, $index)">
+            <a href ng-click="requestCtrl.removeAccomodation(acco.accoId, $index)">
               <span class="glyphicon glyphicon-trash"></span>
             </a>
           </td>
         </tr>
-        <tr ng-show="request.editable">
+        <tr ng-show="requestCtrl.editable">
           <td>
-            <a href ui-sref="request.accomodations">
+            <a href ui-sref="requestCtrl.accomodations">
               <span class="glyphicon glyphicon-plus-sign"></span>
             </a>
           </td>

@@ -8,18 +8,18 @@
           <h2 class="signin-heading">【新亞旅遊資訊系統】</h2>
           <input id="username" name="username" type="text"
             class="form-control" maxlength="50" placeholder="帳號"
-            ng-model="login.username" autofocus>
+            ng-model="loginCtrl.username" autofocus>
           <input id="password" name="password" type="password"
             class="form-control" maxlength="50" placeholder="密碼"
-            ng-model="login.password">
-          <button class="btn btn-danger btn-block" ng-click="login.verifyUser()" translate>Login</button>
+            ng-model="loginCtrl.password">
+          <button class="btn btn-danger btn-block" ng-click="loginCtrl.verifyUser()" translate>Login</button>
         </form>
       </div>
-      <div ng-show="login.failed" class="alert alert-danger" role="alert">
+      <div ng-show="loginCtrl.failed" class="alert alert-danger" role="alert">
         <strong>登入失敗：</strong>請檢查帳號密碼是否正確。
       </div>
       <div class="text-center">
-        <img name="loading" ng-show="login.logging" ng-src="{{login.loading}}" />
+        <img name="loading" ng-show="loginCtrl.logging" ng-src="{{loginCtrl.loading}}" />
       </div>
     </div>
     <div class="col-md-4">

@@ -9,17 +9,17 @@ export default function routes ($stateProvider) {
         navbar: {
           template: require('../../../components/navbar/navbar.html'),
           controller: 'NavbarController',
-          controllerAs: 'navbar'
+          controllerAs: 'navbarCtrl'
         },
         content: {
           template: require('./login.html'),
           controller: 'LoginController',
-          controllerAs: 'login'
+          controllerAs: 'loginCtrl'
         },
         footer: {
           template: require('../../../components/footer/footer.html'),
           controller: 'FooterController',
-          controllerAs: 'footer'
+          controllerAs: 'footerCtrl'
         }
       }
     });

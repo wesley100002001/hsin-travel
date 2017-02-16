@@ -4,16 +4,16 @@
       <a class="navbar-brand">新亞旅遊</a>
     </div>
     <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav" ng-show="navbar.isLoggedIn">
+      <ul class="nav navbar-nav" ng-show="navbarCtrl.isLoggedIn">
         <li ui-sref-active="active"><a ui-sref="requests" translate>Requests</a></li>
       </ul>
-      <ul class="nav navbar-nav navbar-right" ng-show="navbar.isLoggedIn">
+      <ul class="nav navbar-nav navbar-right" ng-show="navbarCtrl.isLoggedIn">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <span class="badge">{{navbar.notifications.length}}</span>&nbsp;<span class="caret"></span>
+            <span class="badge">{{navbarCtrl.notifications.length}}</span>&nbsp;<span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
-            <li ng-repeat="noti in navbar.notifications">
+            <li ng-repeat="noti in navbarCtrl.notifications">
               <a ui-sref="request({requestId: '{{noti.requestId}}'})">{{noti.message}}</a>
             </li>
           </ul>
@@ -21,12 +21,12 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">語言&nbsp;<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href ng-click="navbar.changeLang('tw')">{{ 'Chinese' | translate }}</a></li>
-            <li><a href ng-click="navbar.changeLang('jp')">{{ 'Japanese' | translate }}</a></li>
+            <li><a href ng-click="navbarCtrl.changeLang('tw')">{{ 'Chinese' | translate }}</a></li>
+            <li><a href ng-click="navbarCtrl.changeLang('jp')">{{ 'Japanese' | translate }}</a></li>
           </ul>
         </li>
-        <li><a><span class="glyphicon glyphicon-user"></span> {{navbar.userID}}</a></li>
-        <li><a href ng-click="navbar.logout()"><span class="glyphicon glyphicon-log-out"></span> 登出</a></li>
+        <li><a><span class="glyphicon glyphicon-user"></span> {{navbarCtrl.userID}}</a></li>
+        <li><a href ng-click="navbarCtrl.logout()"><span class="glyphicon glyphicon-log-out"></span> 登出</a></li>
       </ul>
     </div>
   </div>

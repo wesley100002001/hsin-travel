@@ -15,14 +15,14 @@
       <th>飯店</th>
       <th>地址</th>
     </tr>
-    <tr ng-repeat="hotel in accolist.hotels">
-      <td><a href ng-click="accolist.pickItem(hotel.id)">{{hotel.name}}</a></td>
+    <tr ng-repeat="hotel in accolistCtrl.hotels">
+      <td><a href ng-click="accolistCtrl.pickItem(hotel.id)">{{hotel.name}}</a></td>
       <td>{{hotel.address}}</td>
     </tr>
   </table>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-default" ng-click="accolist.cancel()">
+  <button class="btn btn-default" ng-click="accolistCtrl.cancel()">
     關閉
   </button>
 </div>
