@@ -19,6 +19,7 @@ export default class RequestController {
       max: moment().subtract(1, 'days').format()
     };
 
+    this.isNew = !$stateParams.requestId;
     this.items = [];
   }
 
