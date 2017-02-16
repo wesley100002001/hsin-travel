@@ -27,7 +27,7 @@ export default function routes ($stateProvider, modalStateProvider) {
     size: 'lg',
     backdrop: 'static',
     controller: 'PhantomController',
-    controllerAs: 'accolistCtrl'
+    controllerAs: 'accosCtrl'
   });
   modalStateProvider.state('requestCreate.accomodation', {
     url: '/accomodation/:hotelId',
@@ -35,7 +35,7 @@ export default function routes ($stateProvider, modalStateProvider) {
     size: 'lg',
     backdrop: 'static',
     controller: 'AlphaController',
-    controllerAs: 'accoeditCtrl'
+    controllerAs: 'accoCtrl'
   });
   modalStateProvider.state('request.accomodations', {
     url: '/accomodations',
@@ -43,7 +43,7 @@ export default function routes ($stateProvider, modalStateProvider) {
     size: 'lg',
     backdrop: 'static',
     controller: 'FrozenController',
-    controllerAs: 'accolistCtrl'
+    controllerAs: 'accosCtrl'
   });
   modalStateProvider.state('request.accomodation', {
     url: '/accomodation/:hotelId/:accoId',
@@ -51,6 +51,6 @@ export default function routes ($stateProvider, modalStateProvider) {
     size: 'lg',
     backdrop: 'static',
     controller: 'BetaController',
-    controllerAs: 'accoeditCtrl'
+    controllerAs: 'accoCtrl'
   });
 }

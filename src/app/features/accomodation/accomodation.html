@@ -6,15 +6,15 @@
     <div class="col-md-6">
       <h4 class="padding-down">飯店資訊</h4>
       <div class="form-group">
-        <img name="cover" ng-src="{{accoeditCtrl.cover}}" width="300" />
+        <img name="cover" ng-src="{{accoCtrl.cover}}" width="300" />
       </div>
       <div class="form-group">
         <label>地址</label>
-        <p>{{accoeditCtrl.address}}</p>
+        <p>{{accoCtrl.address}}</p>
       </div>
       <div class="form-group">
         <label>電話</label>
-        <p>{{accoeditCtrl.phone}}</p>
+        <p>{{accoCtrl.phone}}</p>
       </div>
     </div>
     <div class="col-md-6">
@@ -24,41 +24,41 @@
           <label>房型選擇</label>
           <div class="radio">
             <label style="color:red;">
-              <input type="radio" ng-model="accoeditCtrl.accomodation.roomTitle" value="單人房">
+              <input type="radio" ng-model="accoCtrl.accomodation.roomTitle" value="單人房">
               單人房
             </label>
           </div>
           <div class="radio">
             <label>
-              <input type="radio" ng-model="accoeditCtrl.accomodation.roomTitle" value="雙人房">
+              <input type="radio" ng-model="accoCtrl.accomodation.roomTitle" value="雙人房">
               雙人房
             </label>
           </div>
           <div class="radio">
             <label>
-              <input type="radio" ng-model="accoeditCtrl.accomodation.roomTitle" value="家庭房">
+              <input type="radio" ng-model="accoCtrl.accomodation.roomTitle" value="家庭房">
               家庭房
             </label>
           </div>
         </div>
         <div class="form-group">
           <label for="quantity">數量</label>
-          <input type="text" class="form-control" ng-model="accoeditCtrl.accomodation.quantity"
+          <input type="text" class="form-control" ng-model="accoCtrl.accomodation.quantity"
                  placeholder="請輸入數量">
         </div>
-        <div ng-if="!accoeditCtrl.isOneDay">
+        <div ng-if="!accoCtrl.isOneDay">
           <label for="start_time">開始日期</label>
           <div class="input-group">
             <input type="text" class="form-control"
             id="start_time" name="start_time"
             uib-datepicker-popup="yyyy-MM-dd"
             show-button-bar="false"
-            ng-model="accoeditCtrl.accomodation.startTime"
-            max-date="accoeditCtrl.timeOption.max"
-            is-open="accoeditCtrl.startOpened" close-text="Close" readonly>
+            ng-model="accoCtrl.accomodation.startTime"
+            max-date="accoCtrl.timeOption.max"
+            is-open="accoCtrl.startOpened" close-text="Close" readonly>
             <span class="input-group-btn">
               <button type="button" class="btn btn-default"
-              ng-click="accoeditCtrl.startOpen($event)">
+              ng-click="accoCtrl.startOpen($event)">
                 <i class="glyphicon glyphicon-calendar"></i>
               </button>
             </span>
@@ -69,30 +69,30 @@
             id="end_time" name="end_time"
             uib-datepicker-popup="yyyy-MM-dd"
             show-button-bar="false"
-            ng-model="accoeditCtrl.accomodation.endTime"
-            max-date="accoeditCtrl.timeOption.max"
-            is-open="accoeditCtrl.endOpened" close-text="Close" readonly>
+            ng-model="accoCtrl.accomodation.endTime"
+            max-date="accoCtrl.timeOption.max"
+            is-open="accoCtrl.endOpened" close-text="Close" readonly>
             <span class="input-group-btn">
               <button type="button" class="btn btn-default"
-              ng-click="accoeditCtrl.endOpen($event)">
+              ng-click="accoCtrl.endOpen($event)">
                 <i class="glyphicon glyphicon-calendar"></i>
               </button>
             </span>
           </div>
         </div>
-        <div ng-if="accoeditCtrl.isOneDay">
+        <div ng-if="accoCtrl.isOneDay">
           <label for="stay_date">日期</label>
           <div class="input-group">
             <input type="text" class="form-control"
             id="stay_date" name="stay_date"
             show-button-bar="false"
             uib-datepicker-popup="yyyy-MM-dd"
-            ng-model="accoeditCtrl.accomodation.date"
-            max-date="accoeditCtrl.timeOption.max"
-            is-open="accoeditCtrl.dateOpened" close-text="Close" readonly>
+            ng-model="accoCtrl.accomodation.date"
+            max-date="accoCtrl.timeOption.max"
+            is-open="accoCtrl.dateOpened" close-text="Close" readonly>
             <span class="input-group-btn">
               <button type="button" class="btn btn-default"
-              ng-click="accoeditCtrl.dateOpen($event)">
+              ng-click="accoCtrl.dateOpen($event)">
                 <i class="glyphicon glyphicon-calendar"></i>
               </button>
             </span>
@@ -103,10 +103,10 @@
   </div>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-default" ng-click="accoeditCtrl.cancel()">
+  <button class="btn btn-default" ng-click="accoCtrl.cancel()">
     取消
   </button>
-  <button class="btn btn-primary" ng-click="accoeditCtrl.confirm()">
+  <button class="btn btn-primary" ng-click="accoCtrl.confirm()">
     確認
   </button>
 </div>
