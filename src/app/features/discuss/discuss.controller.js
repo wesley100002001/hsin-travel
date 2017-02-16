@@ -22,7 +22,6 @@ export default class DiscussController {
     this.fetchRequest($stateParams.requestId);
     this.fetchJPConversation($stateParams.requestId);
     this.fetchTWConversation($stateParams.requestId);
-    // this.fetchGreetings();
   }
 
   mapStateToThis (state) {
@@ -30,7 +29,6 @@ export default class DiscussController {
     return {
       channel: state.channel,
       request: state.requestToBeEdit,
-      greetings: state.greetings,
       token: state.login,
       orders: state.orders,
       japanLogs: state.discuss.japan,

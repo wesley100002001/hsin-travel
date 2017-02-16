@@ -4,7 +4,7 @@ import { LOGIN_FAILED, SET_LOGGED_IN, SET_LOGGING } from '../actions/login';
 import { FETCH_REQUESTS } from '../actions/requests';
 import { ADD_ITEM, ADD_REQUEST } from '../actions/request';
 import { ADD_JP_COMMENT, ADD_TW_COMMENT, FETCH_JP_CONVERSATION, FETCH_TW_CONVERSATION, FETCH_REQUEST,
-  FETCH_GREETINGS, FETCH_ORDERS, REMOVE_ACCOMODATION, SWITCH_CHANNEL,
+  FETCH_ORDERS, REMOVE_ACCOMODATION, SWITCH_CHANNEL,
   ON_EDIT_TITLE, OFF_EDIT_TITLE, ON_EDIT_PEOPLE, OFF_EDIT_PEOPLE, UNDO_PEOPLE, UNDO_TITLE, SET_TEMP_TITLE, SET_TEMP_PEOPLE, UPDATE_TITLE, UPDATE_PEOPLE } from '../actions/discuss';
 import { FETCH_HOTELS } from '../actions/itemselect';
 import { FETCH_NOTIFICATIONS } from '../actions/navbar';
@@ -35,19 +35,6 @@ function login (state = {}, action) {
 function orders (state = [], action) {
   switch (action.type) {
     case `${FETCH_ORDERS}${FULFILLED}`:
-    return [
-      ...state,
-      action.payload
-    ];
-
-    default:
-    return state;
-  }
-}
-
-function greetings (state = [], action) {
-  switch (action.type) {
-    case `${FETCH_GREETINGS}${FULFILLED}`:
     return [
       ...state,
       action.payload
@@ -271,7 +258,6 @@ let appReducer = combineReducers({
   accomodation,
   channel,
   discuss,
-  greetings,
   itemselect,
   login,
   orders,

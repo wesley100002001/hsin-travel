@@ -111,13 +111,6 @@ export function updateRequest () {
 
 }
 
-export function getGreetings () {
-  return fetch(config.heroku_host + '/greetings/show')
-  .then(response => {
-    return response.json();
-  });
-}
-
 export function postUserAuth (username, password) {
   return fetch(config.heroku_host + '/users/authenticate', {
     method: 'POST',

@@ -6,7 +6,6 @@ export const ADD_TW_COMMENT = 'ADD_TW_COMMENT';
 export const LOAD_REQUEST = 'LOAD_REQUEST';
 export const FETCH_JP_CONVERSATION = 'FETCH_JP_CONVERSATION';
 export const FETCH_TW_CONVERSATION = 'FETCH_TW_CONVERSATION';
-export const FETCH_GREETINGS = 'FETCH_GREETINGS';
 export const FETCH_ORDERS = 'FETCH_ORDERS';
 export const FETCH_REQUEST = 'FETCH_REQUEST';
 export const ON_EDIT_TITLE = 'ON_EDIT_TITLE';
@@ -54,16 +53,6 @@ export function fetchRequest (requestId) {
   return {
     type: FETCH_REQUEST,
     payload: restful.getMockRequest(requestId)
-      .then(response => {
-        return response;
-      })
-  };
-}
-
-export function fetchGreetings () {
-  return {
-    type: FETCH_GREETINGS,
-    payload: restful.getGreetings()
       .then(response => {
         return response;
       })
