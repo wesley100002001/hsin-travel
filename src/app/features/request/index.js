@@ -8,7 +8,6 @@ import routing from './request.routes';
 import modal from '../../services/modal.service';
 import AlphaController from '../accomodation/alpha.controller';
 import BetaController from '../accomodation/beta.controller';
-import DiscussController from '../discuss/discuss.controller';
 import FooterController from '../../../components/footer/footer.controller';
 import FrozenController from '../accomodations/frozen.controller';
 import RequestController from './request.controller';
@@ -20,7 +19,6 @@ export default angular.module('app.request', [uibootstrap, uirouter])
   .provider('modalState', modal)
   .controller('AlphaController', AlphaController)
   .controller('BetaController', BetaController)
-  .controller('DiscussController', DiscussController)
   .controller('FooterController', FooterController)
   .controller('FrozenController', FrozenController)
   .controller('PhantomController', PhantomController)
