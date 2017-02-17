@@ -135,14 +135,14 @@
     </div>
     <div class="col-xs-3 col-sm-9 col-md-9 scrollable">
       <h1 class="padding-down" ng-show="!requestCtrl.titleEditable">
-        {{requestCtrl.detail.title}}
+        {{requestCtrl.tourPackage.title}}
         <small ng-show="requestCtrl.editable"><a href ng-click="requestCtrl.editTitle()">
             <span class="glyphicon glyphicon-pencil"></span></a>
         </small>
       </h1>
       <form class="form-inline">
         <h1 class="padding-down" ng-show="requestCtrl.titleEditable">
-          團名：<input type="text" class="form-control" ng-model="requestCtrl.detail.title">
+          團名：<input type="text" class="form-control" ng-model="requestCtrl.tourPackage.title">
           <button class="btn btn-success">
             <span class="glyphicon glyphicon-ok" ng-click="requestCtrl.submitTitle()"></span>
           </button>
@@ -152,14 +152,14 @@
         </h1>
       </form>
       <h4 class="padding-down" ng-show="!requestCtrl.peopleEditable">
-        人數：{{requestCtrl.detail.people}}
+        人數：{{requestCtrl.tourPackage.people}}
         <small ng-show="requestCtrl.editable"><a href ng-click="requestCtrl.editPeople()">
             <span class="glyphicon glyphicon-pencil"></span></a>
         </small>
       </h4>
       <form class="form-inline">
         <h4 class="padding-down" ng-show="requestCtrl.peopleEditable">
-          人數：<input type="text" class="form-control" ng-model="requestCtrl.detail.people">
+          人數：<input type="text" class="form-control" ng-model="requestCtrl.tourPackage.people">
           <button class="btn btn-success">
             <span class="glyphicon glyphicon-ok" ng-click="requestCtrl.submitPeople()"></span>
           </button>
@@ -177,7 +177,7 @@
           <th>數量</th>
           <th ng-show="requestCtrl.editable"></th>
         </tr>
-        <tr ng-repeat="acco in requestCtrl.detail.accomodation track by $index">
+        <tr ng-repeat="acco in requestCtrl.tourPackage.accomodation track by $index">
           <td>{{acco.date}}</td>
           <td>{{acco.hotelName}}</td>
           <td>{{acco.roomTitle}}</td>

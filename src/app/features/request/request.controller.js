@@ -36,7 +36,7 @@ export default class RequestController {
     return {
       items: state.request.items,
       channel: state.channel,
-      detail: state.request_package,
+      tourPackage: state.tour_package,
       token: state.login,
       orders: state.orders,
       japanLogs: state.request.japan,

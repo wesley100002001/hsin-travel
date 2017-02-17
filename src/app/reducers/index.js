@@ -123,7 +123,7 @@ function request (state = { taiwan: [], japan: [], titleEditable: false, peopleE
   }
 }
 
-function request_package (state = {}, action) {
+function tour_package (state = {}, action) {
   switch (action.type) {
     case `${FETCH_REQUEST}${FULFILLED}`:
     return action.payload;
@@ -238,9 +238,9 @@ let appReducer = combineReducers({
   navbar,
   new_accomodation,
   request,
-  request_package,
   requests,
-  router
+  router,
+  tour_package
 });
 
 export default appReducer;
