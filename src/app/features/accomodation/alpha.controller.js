@@ -28,8 +28,8 @@ export default class AlphaController {
     console.log(state);
     return {
       accomodation: state.new_accomodation,
-      address: state.accoEdit_Hotel.address,
-      phone: state.accoEdit_Hotel.phone
+      address: state.hotel_info.address,
+      phone: state.hotel_info.phone
     };
   }
 

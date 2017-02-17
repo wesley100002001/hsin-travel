@@ -191,7 +191,7 @@ function itemselect (state = [], action) {
   }
 }
 
-function accoEdit_Hotel (state = {}, action) {
+function hotel_info (state = {}, action) {
   switch (action.type) {
     case `${FETCH_HOTEL}${FULFILLED}`:
     return action.payload;
@@ -229,9 +229,9 @@ function navbar (state = [], action) {
 }
 
 let appReducer = combineReducers({
-  accoEdit_Hotel,
   accomodation,
   channel,
+  hotel_info,
   itemselect,
   login,
   orders,
