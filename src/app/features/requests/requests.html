@@ -12,7 +12,7 @@
         <th>回程日期</th>
         <th>需求發起人</th>
       </tr>
-      <tr ng-repeat="req in requestsCtrl.list">
+      <tr ng-repeat="req in requestsCtrl.requests">
         <td><a ui-sref="request({requestId: '{{req.requestId}}'})">{{req.title}}</a></td>
         <td>{{req.people}}</td>
         <td>{{req.startTime}}</td>

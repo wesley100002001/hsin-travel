@@ -19,7 +19,7 @@ export default class RequestsController {
   mapStateToThis (state) {
     console.log(state);
     return {
-      list: state.requests,
+      requests: state.requests,
       isLoggedIn: state.login.isLoggedIn
     };
   }
