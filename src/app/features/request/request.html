@@ -68,25 +68,10 @@
         <h3 class="panel-title">Hotel</h3>
       </div>
       <div class="panel-body">
-        <div class="form-group">
-          <table class="table table-striped">
-            <tr>
-              <th>開始日期</th>
-              <th>結束日期</th>
-              <th>飯店</th>
-              <th>房型</th>
-              <th>數量</th>
-            </tr>
-            <tr ng-repeat="item in requestCtrl.items">
-              <td>{{item.startTime}}</td>
-              <td>{{item.endTime}}</td>
-              <td>{{item.hotel}}</td>
-              <td>{{item.roomTitle}}</td>
-              <td>{{item.quantity}}</td>
-            </tr>
-          </table>
-        </div>
-        <button class="btn btn-success" ui-sref="request.accomodations">新增飯店</button>
+        <h4>目前沒有任何飯店</h4>
+        <a href ui-sref="request.accomodations" class="btn btn-success">
+          <span class="glyphicon glyphicon-plus"></span> 新增飯店
+        </a>
       </div>
     </div>
     <div class="text-center">
