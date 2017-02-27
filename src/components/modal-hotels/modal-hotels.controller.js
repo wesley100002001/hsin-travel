@@ -1,9 +1,9 @@
-import * as ItemSelectActions from '../../actions/itemselect';
+import * as HotelsActions from '../../app/actions/hotels';
 import * as RouterActions from 'redux-ui-router';
 
-const combinedActions = Object.assign({}, ItemSelectActions, RouterActions);
+const combinedActions = Object.assign({}, HotelsActions, RouterActions);
 
-export default class HotelSelectController {
+export default class HotelsController {
   constructor ($scope, $uibModalInstance, $ngRedux) {
     this.uibModal = $uibModalInstance;
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), combinedActions)(this);
@@ -15,12 +15,12 @@ export default class HotelSelectController {
   mapStateToThis (state) {
     console.log(state);
     return {
-      hotels: state.itemselect,
+      hotels: state.hotels
     };
   }
 
   pickItem (id) {
-    this.stateGo('requestCreate.accomodation', { hotelId: id });
+    this.stateGo('request.hotel', { hotelId: id, accoId: 0 });
   }
 
   cancel () {
@@ -28,4 +28,4 @@ export default class HotelSelectController {
   }
 }
 
-HotelSelectController.$inject = ['$scope', '$uibModalInstance', '$ngRedux'];
+HotelsController.$inject = ['$scope', '$uibModalInstance', '$ngRedux'];

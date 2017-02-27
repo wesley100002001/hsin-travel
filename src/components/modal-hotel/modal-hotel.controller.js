@@ -1,15 +1,16 @@
-import ambassador from '../../../assets/imgs/ambassador.jpg';
+import ambassador from '../../assets/imgs/ambassador.jpg';
 import moment from 'moment';
-import * as ItemConfirmActions from '../../actions/itemconfirm';
+import * as HotelActions from '../../app/actions/hotel';
 
-export default class AlphaController {
+export default class HotelController {
   constructor ($scope, $ngRedux, $uibModalInstance, $stateParams) {
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this),
-      ItemConfirmActions)(this);
+      HotelActions)(this);
     $scope.$on('$destroy', unsubscribe);
 
     this.uibModal = $uibModalInstance;
     this.hotelId = $stateParams.hotelId;
+    this.requestId = $stateParams.requestId;
 
     this.cover = ambassador;
     this.isOneDay = false;
@@ -22,14 +23,18 @@ export default class AlphaController {
     };
 
     this.fetchHotel($stateParams.hotelId);
+    if (!this.accoId === 0) {
+      this.fetchAccommodation($stateParams.accoId);
+    }
   }
 
   mapStateToThis(state) {
     console.log(state);
     return {
-      accomodation: state.new_accomodation,
+      accommodation: state.new_accommodation,
       address: state.hotel_info.address,
-      phone: state.hotel_info.phone
+      phone: state.hotel_info.phone,
+      isNewAccommodation: state.request.isNewAccommodation
     };
   }
 
@@ -52,16 +57,19 @@ export default class AlphaController {
   };
 
   confirm () {
-    if (!this.accomodation.roomTitle || !this.accomodation.startTime ||
-      !this.accomodation.endTime || !this.accomodation.quantity) {
-      alert('資料輸入不完全');
-      return;
+    if (this.isNewAccommodation) {
+      if (!this.accommodation.roomTitle || !this.accommodation.date || !this.accommodation.quantity) {
+        alert('資料輸入不完全');
+        return;
+      }
+      this.accommodation.date = moment(this.accommodation.date).format('YYYY-MM-DD');
+      this.accommodation.hotelName = '國賓大飯店';
+      this.createAccommodation(this.accommodation);
+      this.clearAccommodation();
+      this.uibModal.close();
+    } else {
+      // this.submitAccommodation(this.accommodation, this.requestId);
     }
-    this.accomodation.startTime = moment(this.accomodation.startTime).format('YYYY-MM-DD');
-    this.accomodation.endTime = moment(this.accomodation.endTime).format('YYYY-MM-DD');
-    this.accomodation.hotel = '國賓大飯店';
-    this.createAccomodation(this.accomodation);
-    this.uibModal.close();
   }
 
   cancel () {
@@ -69,5 +77,5 @@ export default class AlphaController {
   }
 }
 
-AlphaController.$inject = ['$scope', '$ngRedux', '$uibModalInstance',
+HotelController.$inject = ['$scope', '$ngRedux', '$uibModalInstance',
 '$stateParams'];

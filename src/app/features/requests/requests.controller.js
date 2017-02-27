@@ -23,6 +23,10 @@ export default class RequestsController {
       isLoggedIn: state.login.isLoggedIn
     };
   }
+
+  createRequest () {
+    this.stateGo('request', { requestId: 0 });
+  }
 }
 
 RequestsController.$inject = ['$stateParams', '$ngRedux', '$scope'];

@@ -6,22 +6,18 @@ import uibootstrap from 'angular-ui-bootstrap';
 
 import routing from './request.routes';
 import modal from '../../services/modal.service';
-import AlphaController from '../accomodation/alpha.controller';
-import BetaController from '../accomodation/beta.controller';
 import FooterController from '../../../components/footer/footer.controller';
-import FrozenController from '../accomodations/frozen.controller';
+import HotelController from '../../../components/modal-hotel/modal-hotel.controller';
+import HotelsController from '../../../components/modal-hotels/modal-hotels.controller';
 import RequestController from './request.controller';
 import NavbarController from '../../../components/navbar/navbar.controller';
-import PhantomController from '../accomodations/phantom.controller';
 
 export default angular.module('app.request', [uibootstrap, uirouter])
   .config(routing)
   .provider('modalState', modal)
-  .controller('AlphaController', AlphaController)
-  .controller('BetaController', BetaController)
   .controller('FooterController', FooterController)
-  .controller('FrozenController', FrozenController)
-  .controller('PhantomController', PhantomController)
+  .controller('HotelController', HotelController)
+  .controller('HotelsController', HotelsController)
   .controller('NavbarController', NavbarController)
   .controller('RequestController', RequestController)
   .name;

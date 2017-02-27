@@ -21,36 +21,20 @@ export default function routes ($stateProvider, modalStateProvider) {
       }
     }
   });
-  modalStateProvider.state('requestCreate.accomodations', {
-    url: '/accomodations',
-    template: require('../accomodations/accomodations.html'),
+  modalStateProvider.state('request.hotels', {
+    url: '/hotels',
+    template: require('../../../components/modal-hotels/modal-hotels.html'),
     size: 'lg',
     backdrop: 'static',
-    controller: 'PhantomController',
-    controllerAs: 'accosCtrl'
+    controller: 'HotelsController',
+    controllerAs: 'hotelsCtrl'
   });
-  modalStateProvider.state('requestCreate.accomodation', {
-    url: '/accomodation/:hotelId',
-    template: require('../accomodation/accomodation.html'),
+  modalStateProvider.state('request.hotel', {
+    url: '/hotel/:hotelId/:accoId',
+    template: require('../../../components/modal-hotel/modal-hotel.html'),
     size: 'lg',
     backdrop: 'static',
-    controller: 'AlphaController',
-    controllerAs: 'accoCtrl'
-  });
-  modalStateProvider.state('request.accomodations', {
-    url: '/accomodations',
-    template: require('../accomodations/accomodations.html'),
-    size: 'lg',
-    backdrop: 'static',
-    controller: 'FrozenController',
-    controllerAs: 'accosCtrl'
-  });
-  modalStateProvider.state('request.accomodation', {
-    url: '/accomodation/:hotelId/:accoId',
-    template: require('../accomodation/accomodation.html'),
-    size: 'lg',
-    backdrop: 'static',
-    controller: 'BetaController',
-    controllerAs: 'accoCtrl'
+    controller: 'HotelController',
+    controllerAs: 'hotelCtrl'
   });
 }

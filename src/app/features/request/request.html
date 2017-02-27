@@ -1,83 +1,120 @@
 <div class="container" ng-show="requestCtrl.isNew">
   <div class="row">
-    <h1 class="padding-down">新增需求</h1>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">基本資訊</h3>
-      </div>
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="title">團名</label>
-              <input class="form-control" name="title" type="text" placeholder="請輸入團名">
-            </div>
-            <div class="form-group">
-              <label for="people">人數</label>
-              <input class="form-control" name="people" type="text" placeholder="團員人數">
-              <span class="help-block">例：30名＋1T/C</span>
-            </div>
-            <div class="form-group">
-              <label for="serialNo">旅行團編號</label>
-              <input class="form-control" name="serialNo" type="text" placeholder="請輸入編號">
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="start_time">開始日期</label>
-              <div class="input-group">
-                <input type="text" class="form-control"
-                id="start_time" name="start_time"
-                uib-datepicker-popup="yyyy-MM-dd"
-                show-button-bar="false"
-                ng-model="requestCtrl.startTime"
-                max-date="requestCtrl.timeOption.max"
-                is-open="requestCtrl.startOpened" close-text="Close" readonly>
-                <span class="input-group-btn">
-                  <button type="button" class="btn btn-default"
-                  ng-click="requestCtrl.startOpen($event)">
-                    <i class="glyphicon glyphicon-calendar"></i>
-                  </button>
-                </span>
+    <div ng-show="requestCtrl.isCreated === 'success'" class="alert alert-success" role="alert">
+      <strong>新增成功</strong>
+    </div>
+    <div ng-show="requestCtrl.isCreated === 'fail'" class="alert alert-danger" role="alert">
+      <strong>新增失敗</strong>
+    </div>
+    <form name="reqForm" novalidate>
+      <h1 class="padding-down">新增需求</h1>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">基本資訊</h3>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="title">團名</label>
+                <input class="form-control" name="title" type="text" 
+                      ng-model="requestCtrl.tourPackage.title" placeholder="請輸入團名"
+                      required>
+              </div>
+              <div class="form-group">
+                <label for="people">人數</label>
+                <input class="form-control" name="people" type="text" placeholder="團員人數"
+                       ng-model="requestCtrl.tourPackage.people" required>
+                <span class="help-block">例：30名＋1T/C</span>
+              </div>
+              <div class="form-group">
+                <label for="serialNo">旅行團編號</label>
+                <input class="form-control" name="serialNo" type="text" placeholder="請輸入編號"
+                       ng-model="requestCtrl.tourPackage.serialNo" required>
               </div>
             </div>
-            <div class="form-group">
-              <label for="start_time">結束日期</label>
-              <div class="input-group">
-                <input type="text" class="form-control"
-                id="end_time" name="end_time"
-                uib-datepicker-popup="yyyy-MM-dd"
-                show-button-bar="false"
-                ng-model="requestCtrl.endTime"
-                max-date="requestCtrl.timeOption.max"
-                is-open="requestCtrl.endOpened" close-text="Close" readonly>
-                <span class="input-group-btn">
-                  <button type="button" class="btn btn-default"
-                  ng-click="requestCtrl.endOpen($event)">
-                    <i class="glyphicon glyphicon-calendar"></i>
-                  </button>
-                </span>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="start_date">開始日期</label>
+                <div class="input-group">
+                  <input type="text" class="form-control"
+                  id="start_date" name="start_date"
+                  uib-datepicker-popup="yyyy-MM-dd"
+                  show-button-bar="false"
+                  ng-model="requestCtrl.tourPackage.startsOn"
+                  max-date="requestCtrl.timeOption.max"
+                  is-open="requestCtrl.startOpened" close-text="Close" 
+                  readonly required>
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default"
+                    ng-click="requestCtrl.startOpen($event)">
+                      <i class="glyphicon glyphicon-calendar"></i>
+                    </button>
+                  </span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="end_date">結束日期</label>
+                <div class="input-group">
+                  <input type="text" class="form-control"
+                  id="end_date" name="end_date"
+                  uib-datepicker-popup="yyyy-MM-dd"
+                  show-button-bar="false"
+                  ng-model="requestCtrl.tourPackage.endsOn"
+                  max-date="requestCtrl.timeOption.max"
+                  is-open="requestCtrl.endOpened" close-text="Close" 
+                  readonly required>
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default"
+                    ng-click="requestCtrl.endOpen($event)">
+                      <i class="glyphicon glyphicon-calendar"></i>
+                    </button>
+                  </span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Hotel</h3>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">住宿</h3>
+        </div>
+        <div class="panel-body">
+          <table class="table">
+            <tr>
+              <th>飯店</th>
+              <th>日期</th>
+              <th>房型</th>
+              <th>數量</th>
+            </tr>
+            <tr ng-repeat="acco in requestCtrl.tourPackage.accommodations">
+              <td>{{acco.hotelName}}</td>
+              <td>{{acco.date}}</td>
+              <td>{{acco.roomTitle}}</td>
+              <td>{{acco.quantity}}</td>
+            </tr>
+          </table>
+          <button class="btn btn-success" ng-click="requestCtrl.addAccommodation()">
+            <span class="glyphicon glyphicon-plus"></span> 新增住宿
+          </button>
+          <span class="help-block">若無法確定房型，可以直接於下方詳細內容輸入</span>
+        </div>
       </div>
-      <div class="panel-body">
-        <h4>目前沒有任何飯店</h4>
-        <a href ui-sref="request.accomodations" class="btn btn-success">
-          <span class="glyphicon glyphicon-plus"></span> 新增飯店
-        </a>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">詳細內容</h3>
+        </div>
+        <div class="panel-body">
+          <textarea class="form-control" rows="10" ng-model="requestCtrl.tourPackage.notes" required></textarea>
+        </div>
       </div>
-    </div>
-    <div class="text-center">
-      <button class="btn btn-default" ng-click="requestCtrl.stateGo('requestCtrls')">取消</button>
-      <button class="btn btn-primary" ng-click="requestCtrl.confirm()">確認</button>
-    </div>
+      <div class="text-center">
+        <button class="btn btn-default" ng-click="requestCtrl.stateGo('requests')">取消</button>
+        <button class="btn btn-primary" ng-click="requestCtrl.confirm()" 
+                ng-disabled="!reqForm.$valid" >確認</button>
+      </div>
+    </form>
   </div>
 </div>
 
@@ -158,6 +195,22 @@
           </button>
         </h4>
       </form>
+      <h3>詳細內容</h3>
+      <p>
+        至急ノッキングをお願いします。
+
+        大平様
+        いつも大変お世話になっております！
+        ホテル空き状況の確認をお願い致します。（※見積不要・空き状況のみ）
+        日程：日程表の通り
+        人数：30+1
+        部屋数：16ツイン
+        希望ホテル：シャーウッド・アンバサダー・グロリアプリンス・サントスの4ホテル
+
+        急ぎで大変恐縮ですが・・・2/10（水）中に回答をお願いします。
+
+        小林
+      </p>
       <h3 class="padding-down">飯店</h3>
       <table class="table">
         <tr>
@@ -167,24 +220,24 @@
           <th>數量</th>
           <th ng-show="requestCtrl.editable"></th>
         </tr>
-        <tr ng-repeat="acco in requestCtrl.tourPackage.accomodation track by $index">
+        <tr ng-repeat="acco in requestCtrl.tourPackage.accommodation track by $index">
           <td>{{acco.date}}</td>
           <td>{{acco.hotelName}}</td>
           <td>{{acco.roomTitle}}</td>
           <td>{{acco.quantity}}</td>
           <td ng-show="requestCtrl.editable">
-            <a href ng-click="requestCtrl.editAccomodation(acco)">
+            <a href ng-click="requestCtrl.editAccommodation(acco)">
               <span class="glyphicon glyphicon-pencil"></span>
             </a>
             ｜
-            <a href ng-click="requestCtrl.removeAccomodation(acco.accoId, $index)">
+            <a href ng-click="requestCtrl.removeAccommodation(acco.accoId, $index)">
               <span class="glyphicon glyphicon-trash"></span>
             </a>
           </td>
         </tr>
         <tr ng-show="requestCtrl.editable">
           <td>
-            <a href ui-sref="request.accomodations">
+            <a href ui-sref="request.accommodations">
               <span class="glyphicon glyphicon-plus-sign"></span>
             </a>
           </td>
@@ -194,6 +247,8 @@
           <td></td>
         </tr>
       </table>
+      <h3>其它費用</h3>
+      
     </div>
   </div>
 </div>

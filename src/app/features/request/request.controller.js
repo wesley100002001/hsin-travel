@@ -24,7 +24,9 @@ export default class RequestController {
       max: moment().subtract(1, 'days').format()
     };
 
-    if (!!this.requestId) {
+    if (this.isNew) {
+      this.clearRequest();
+    } else {
       this.fetchRequest(this.requestId);
       this.fetchJPConversation(this.requestId);
       this.fetchTWConversation(this.requestId);
@@ -34,11 +36,11 @@ export default class RequestController {
   mapStateToThis (state) {
     console.log(state);
     return {
-      items: state.request.items,
       channel: state.channel,
       tourPackage: state.tour_package,
       token: state.login,
       orders: state.orders,
+      isCreated: state.request.isCreated,
       japanLogs: state.request.japan,
       taiwanLogs: state.request.taiwan,
       peopleEditable: state.request.peopleEditable,
@@ -61,14 +63,32 @@ export default class RequestController {
   };
 
   confirm () {
-    if (this.items.length < 1) {
-      alert('尚未新增任何項目');
-    } else {
-      alert('yes');
-      // this.addRequest({});
-      // this.stateGo('requests');
+    this.tourPackage.startsOn = moment(this.tourPackage.startsOn).format('YYYY-MM-DD');
+    this.tourPackage.endsOn = moment(this.tourPackage.endsOn).format('YYYY-MM-DD');
+    this.tourPackage.region = 'Osaka';
+    delete this.tourPackage.notes;
+    delete this.tourPackage.serialNo;
+    this.submitRequest(this.tourPackage);
+  }
+
+  addAccommodation () {
+    this.onAddAccommodation();
+    this.stateGo('request.hotels');
+  }
+
+  submitKnockingAcco () {
+    if (!!this.newAccoDate && !!this.newAccoHotel) {
+      var knockingAcco = {
+        date: this.newAccoDate,
+        hotel: this.newAccoHotel
+      };
+      this.addKnockingAcco(knockingAcco);
     }
   }
+
+  /*
+    我是新增 / 編輯的分隔線
+  */
 
   // 一個 Request 裡應該要有一個 Conversation Array 來存所有的留言
   leaveComment (region) {
@@ -96,8 +116,8 @@ export default class RequestController {
     this.fetchOrders(this.token);
   }
 
-  editAccomodation (acco) {
-    this.stateGo('request.accomodation', {
+  editAccommodation (acco) {
+    this.stateGo('request.accommodation', {
       hotelId: acco.hotelId,
       accoId: acco.accoId
     });

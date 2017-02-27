@@ -2,7 +2,7 @@
   <div class="row">
     <h1 class="padding-down">需求列表</h1>
     <p>
-      <button class="btn btn-success" ng-click="requestsCtrl.stateGo('request', {requestId: 0})">新增</button>
+      <button class="btn btn-success" ng-click="requestsCtrl.createRequest()">新增</button>
     </p>
     <table class="table table-striped">
       <tr>
@@ -15,11 +15,11 @@
       </tr>
       <tr ng-repeat="req in requestsCtrl.requests">
         <td><a ui-sref="request({requestId: '{{req.requestId}}'})">{{req.title}}</a></td>
-        <td>{{req.company}}</td>
-        <td>{{req.startTime}}</td>
-        <td>{{req.endTime}}</td>
+        <td>{{req.region}}</td>
+        <td>{{req.startsOn}}</td>
+        <td>{{req.endsOn}}</td>
         <td>{{req.requester}}</td>
-        <td>{{req.createTime}}</td>
+        <td>{{req.createdAt}}</td>
       </tr>
     </table>
     <!-- <uib-pagination

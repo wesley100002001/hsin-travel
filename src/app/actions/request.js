@@ -3,23 +3,27 @@ import * as restful from '../lib/restful';
 
 export const ADD_JP_COMMENT = 'ADD_JP_COMMENT';
 export const ADD_TW_COMMENT = 'ADD_TW_COMMENT';
-export const LOAD_REQUEST = 'LOAD_REQUEST';
+export const ADD_KNOCKING_ACCO = 'ADD_KNOCKING_ACCO';
+export const CLEAR_REQUEST = 'CLEAR_REQUEST';
 export const FETCH_JP_CONVERSATION = 'FETCH_JP_CONVERSATION';
 export const FETCH_TW_CONVERSATION = 'FETCH_TW_CONVERSATION';
 export const FETCH_ORDERS = 'FETCH_ORDERS';
 export const FETCH_REQUEST = 'FETCH_REQUEST';
+export const ON_ADD_ACCOMMODATION = 'ON_ADD_ACCOMMODATION';
 export const ON_EDIT_TITLE = 'ON_EDIT_TITLE';
 export const OFF_EDIT_TITLE = 'OFF_EDIT_TITLE';
 export const ON_EDIT_PEOPLE = 'ON_EDIT_PEOPLE';
 export const OFF_EDIT_PEOPLE = 'OFF_EDIT_PEOPLE';
-export const REMOVE_ACCOMODATION = 'REMOVE_ACCOMODATION';
+export const REMOVE_ACCOMMODATION = 'REMOVE_ACCOMMODATION';
 export const SET_TEMP_PEOPLE = 'SET_TEMP_PEOPLE';
 export const SET_TEMP_TITLE = 'SET_TEMP_TITLE';
+export const SUBMIT_REQUEST = 'SUBMIT_REQUEST';
 export const SWITCH_CHANNEL = 'SWITCH_CHANNEL';
 export const UNDO_PEOPLE = 'UNDO_PEOPLE';
 export const UNDO_TITLE = 'UNDO_TITLE';
 export const UPDATE_PEOPLE = 'UPDATE_PEOPLE';
 export const UPDATE_TITLE = 'UPDATE_TITLE';
+export const VERIFY_CREATED_REQUEST = 'VERIFY_CREATED_REQUEST';
 
 export function fetchOrders (token) {
   return {
@@ -59,10 +63,39 @@ export function fetchRequest (requestId) {
   };
 }
 
-// FIXME: only remove element from state
-export function removeAccomodation (accoId, index) {
+export function clearRequest () {
   return {
-    type: REMOVE_ACCOMODATION,
+    type: CLEAR_REQUEST,
+    payload: {}
+  };
+}
+
+export function submitRequest (req) {
+  return dispatch => {
+    return restful.postRequest(req)
+    .then(response => {
+      if (response.statusCode >= 400) {
+        throw response;
+      }
+      dispatch(verifyCreatedRequest('success'));
+    }).catch(err => {
+      console.log(err);
+      dispatch(verifyCreatedRequest('fail'));
+    });
+  };
+}
+
+export function verifyCreatedRequest(isCreated) {
+  return {
+    type: VERIFY_CREATED_REQUEST,
+    payload: isCreated
+  };
+}
+
+// FIXME: only remove element from state
+export function removeAccommodation (accoId, index) {
+  return {
+    type: REMOVE_ACCOMMODATION,
     payload: index
   };
 }
@@ -163,5 +196,19 @@ export function updatePeople (people) {
   return {
     type: UPDATE_PEOPLE,
     payload: people
+  };
+}
+
+export function addKnockingAcco (acco) {
+  return {
+    type: ADD_KNOCKING_ACCO,
+    payload: acco
+  };
+}
+
+export function onAddAccommodation () {
+  return {
+    type: ON_ADD_ACCOMMODATION,
+    payload: true
   };
 }

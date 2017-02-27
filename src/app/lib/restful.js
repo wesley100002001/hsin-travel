@@ -36,19 +36,44 @@ export function getMockHotel () {
   });
 }
 
+export function postRequest (req) {
+  var token = localStorage.getItem('token');
+  return fetch(config.heroku_host + '/request', {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer ' + token
+    },
+    body: JSON.stringify(req)
+  }).then(response => {
+    return response.json();
+  });
+}
+
 export function getMockRequest (requestId) {
   return new Promise(function (resolve, reject) {
     var request = {
       requestId: 'R745',
       title: '花東縱谷七天六夜',
       people: 20,
-      accomodation: [
+      accommodation: [
         { accoId: 'aco01', date: '2016/09/20', hotelId: 'H003', hotelName: '國賓大飯店', roomId: 13, roomTitle: '雙人房', quantity: 20 },
         { accoId: 'aco02', date: '2016/09/21', hotelId: 'H003', hotelName: '國賓大飯店', roomId: 13, roomTitle: '雙人房', quantity: 20 },
         { accoId: 'aco03', date: '2016/09/22', hotelId: 'H003', hotelName: '國賓大飯店', roomId: 13, roomTitle: '雙人房', quantity: 20 }
       ]
     };
     resolve(request);
+  });
+}
+
+export function getRequests () {
+  var token = localStorage.getItem('token');
+  return fetch(config.heroku_host + '/requestMetas', {
+    method: 'GET',
+    headers: {
+      'Authorization': 'Bearer ' + token
+    }
+  }).then(response => {
+    return response.json();
   });
 }
 
@@ -140,7 +165,7 @@ export function getOrders (token) {
   });
 }
 
-export function getAccomodation (accoId) {
+export function getAccommodation (accoId) {
   return new Promise(function (resolve, reject) {
     var acco = {
       accoId: 'aco01',
