@@ -7,7 +7,7 @@ import { FETCH_REQUESTS } from '../actions/requests';
 import { ADD_ITEM, ADD_REQUEST } from '../actions/request';
 import { ADD_JP_COMMENT, ADD_TW_COMMENT, ADD_KNOCKING_ACCO, FETCH_JP_CONVERSATION, FETCH_TW_CONVERSATION, FETCH_REQUEST,
   FETCH_ORDERS, REMOVE_ACCOMMODATION, SWITCH_CHANNEL, CLEAR_REQUEST, VERIFY_CREATED_REQUEST,
-  ON_ADD_ACCOMMODATION, ON_EDIT_TITLE, OFF_EDIT_TITLE, ON_EDIT_PEOPLE, OFF_EDIT_PEOPLE, UNDO_PEOPLE, UNDO_TITLE, SET_TEMP_TITLE, SET_TEMP_PEOPLE, UPDATE_TITLE, UPDATE_PEOPLE } from '../actions/request';
+  ON_ADD_ACCOMMODATION, UPDATE_REQUEST } from '../actions/request';
 import { FETCH_HOTELS } from '../actions/hotels';
 import { FETCH_NOTIFICATIONS } from '../actions/navbar';
 import { ADD_ACCO, CLEAR_ACCO, FETCH_ACCO, FETCH_HOTEL, PATCH_ACCO } from '../actions/hotel';
@@ -105,36 +105,6 @@ function request (state = { taiwan: [], japan: [], isNewAccommodation: false, ti
       isNewAccommodation: action.payload
     });
 
-    case ON_EDIT_PEOPLE:
-    return Object.assign({}, state, {
-      peopleEditable: action.payload
-    });
-
-    case OFF_EDIT_PEOPLE:
-    return Object.assign({}, state, {
-      peopleEditable: action.payload
-    });
-
-    case ON_EDIT_TITLE:
-    return Object.assign({}, state, {
-      titleEditable: action.payload
-    });
-
-    case OFF_EDIT_TITLE:
-    return Object.assign({}, state, {
-      titleEditable: action.payload
-    });
-
-    case SET_TEMP_TITLE:
-    return Object.assign({}, state, {
-      tempTitle: action.payload
-    });
-
-    case SET_TEMP_PEOPLE:
-    return Object.assign({}, state, {
-      tempPeople: action.payload
-    });
-
     case VERIFY_CREATED_REQUEST:
     return Object.assign({}, state, {
       isCreated: action.payload
@@ -167,26 +137,6 @@ function tour_package (state = {}, action) {
         ...state.accommodations,
         action.payload
       ]
-    });
-
-    case UNDO_TITLE:
-    return Object.assign({}, state, {
-      title: action.payload
-    });
-
-    case UNDO_PEOPLE:
-    return Object.assign({}, state, {
-      people: action.payload
-    });
-
-    case UPDATE_TITLE:
-    return Object.assign({}, state, {
-      title: action.payload
-    });
-
-    case UPDATE_PEOPLE:
-    return Object.assign({}, state, {
-      people: action.payload
     });
 
     default:

@@ -161,92 +161,96 @@
       </div>
     </div>
     <div class="col-xs-3 col-sm-9 col-md-9 scrollable">
-      <h1 class="padding-down" ng-show="!requestCtrl.titleEditable">
+      <h1 ng-show="!requestCtrl.pkgEditable">
         {{requestCtrl.tourPackage.title}}
-        <small ng-show="requestCtrl.editable"><a href ng-click="requestCtrl.editTitle()">
-            <span class="glyphicon glyphicon-pencil"></span></a>
-        </small>
+        <button class="btn btn-primary pull-right" ng-click="requestCtrl.onEditPkg()"
+                ng-show="requestCtrl.editable">編輯</button>
       </h1>
-      <form class="form-inline">
-        <h1 class="padding-down" ng-show="requestCtrl.titleEditable">
-          團名：<input type="text" class="form-control" ng-model="requestCtrl.tourPackage.title">
-          <button class="btn btn-success">
-            <span class="glyphicon glyphicon-ok" ng-click="requestCtrl.submitTitle()"></span>
-          </button>
-          <button class="btn btn-danger" ng-click="requestCtrl.cancelEditTitle()">
-            <span class="glyphicon glyphicon-remove"></span>
-          </button>
-        </h1>
-      </form>
-      <h4 class="padding-down" ng-show="!requestCtrl.peopleEditable">
-        人數：{{requestCtrl.tourPackage.people}}
-        <small ng-show="requestCtrl.editable"><a href ng-click="requestCtrl.editPeople()">
-            <span class="glyphicon glyphicon-pencil"></span></a>
-        </small>
-      </h4>
-      <form class="form-inline">
-        <h4 class="padding-down" ng-show="requestCtrl.peopleEditable">
-          人數：<input type="text" class="form-control" ng-model="requestCtrl.tourPackage.people">
-          <button class="btn btn-success">
-            <span class="glyphicon glyphicon-ok" ng-click="requestCtrl.submitPeople()"></span>
-          </button>
-          <button class="btn btn-danger" ng-click="requestCtrl.cancelEditPeople()">
-            <span class="glyphicon glyphicon-remove"></span>
-          </button>
-        </h4>
-      </form>
-      <h3>詳細內容</h3>
-      <p>
-        至急ノッキングをお願いします。
-
-        大平様
-        いつも大変お世話になっております！
-        ホテル空き状況の確認をお願い致します。（※見積不要・空き状況のみ）
-        日程：日程表の通り
-        人数：30+1
-        部屋数：16ツイン
-        希望ホテル：シャーウッド・アンバサダー・グロリアプリンス・サントスの4ホテル
-
-        急ぎで大変恐縮ですが・・・2/10（水）中に回答をお願いします。
-
-        小林
-      </p>
-      <h3 class="padding-down">飯店</h3>
-      <table class="table">
-        <tr>
-          <th>日期</th>
-          <th>飯店</th>
-          <th>房型</th>
-          <th>數量</th>
-          <th ng-show="requestCtrl.editable"></th>
-        </tr>
-        <tr ng-repeat="acco in requestCtrl.tourPackage.accommodation track by $index">
-          <td>{{acco.date}}</td>
-          <td>{{acco.hotelName}}</td>
-          <td>{{acco.roomTitle}}</td>
-          <td>{{acco.quantity}}</td>
-          <td ng-show="requestCtrl.editable">
-            <a href ng-click="requestCtrl.editAccommodation(acco)">
-              <span class="glyphicon glyphicon-pencil"></span>
+      <h6 ng-show="!requestCtrl.pkgEditable">HCP1020</h6>
+      <h3 ng-show="!requestCtrl.pkgEditable">人數：{{requestCtrl.tourPackage.people}}</h3>
+      <div ng-show="requestCtrl.pkgEditable">
+        <h3>
+          團名：<input type="text" class="form-control" ng-model="requestCtrl.tempPkg.title">
+        </h3>
+        <h3>
+          旅行團編號：<input type="text" class="form-control" ng-model="requestCtrl.tempPkg.serialNo">
+        </h3>
+        <h3>
+          人數：<input type="text" class="form-control" ng-model="requestCtrl.tempPkg.people">
+        </h3>
+        <button class="btn btn-success">
+          <span class="glyphicon glyphicon-ok" ng-click="requestCtrl.submitPkg()"></span>
+        </button>
+        <button class="btn btn-danger" ng-click="requestCtrl.cancelEditPkg()">
+          <span class="glyphicon glyphicon-remove"></span>
+        </button>
+      </div>
+      <hr>
+      <div class="card">
+        <div class="card-header" role="tab" id="headingOne">
+          <h3 class="mb-0">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              詳細內容&nbsp;<small><span class="glyphicon glyphicon-triangle-bottom"></span></small>
             </a>
-            ｜
-            <a href ng-click="requestCtrl.removeAccommodation(acco.accoId, $index)">
-              <span class="glyphicon glyphicon-trash"></span>
-            </a>
-          </td>
-        </tr>
-        <tr ng-show="requestCtrl.editable">
-          <td>
-            <a href ui-sref="request.accommodations">
-              <span class="glyphicon glyphicon-plus-sign"></span>
-            </a>
-          </td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-      </table>
+          </h3>
+        </div>
+        <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="card-block">
+            至急ノッキングをお願いします。
+
+            大平様
+            いつも大変お世話になっております！
+            ホテル空き状況の確認をお願い致します。（※見積不要・空き状況のみ）
+            日程：日程表の通り
+            人数：30+1
+            部屋数：16ツイン
+            希望ホテル：シャーウッド・アンバサダー・グロリアプリンス・サントスの4ホテル
+
+            急ぎで大変恐縮ですが・・・2/10（水）中に回答をお願いします。
+
+            小林
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div>
+        <h3>住宿</h3>
+        <table class="table">
+          <tr>
+            <th>開始日期</th>
+            <th>結束日期</th>
+            <th>飯店</th>
+            <th>房型</th>
+            <th>數量</th>
+            <th ng-show="requestCtrl.editable"></th>
+          </tr>
+          <tr ng-repeat="acco in requestCtrl.tourPackage.accommodations track by $index">
+            <td>{{acco.checkinAt}}</td>
+            <td>{{acco.checkoutAt}}</td>
+            <td>{{acco.hotelName}}</td>
+            <td>{{acco.roomTitle}}</td>
+            <td>{{acco.quantity}}</td>
+            <td ng-show="requestCtrl.editable">
+              <a href ng-click="requestCtrl.removeAccommodation(acco.accoId, $index)">
+                <span class="glyphicon glyphicon-trash"></span>
+              </a>
+            </td>
+          </tr>
+          <tr ng-show="requestCtrl.editable">
+            <td>
+              <a href ui-sref="request.accommodations">
+                <span class="glyphicon glyphicon-plus-sign"></span>
+              </a>
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+      <hr>
       <h3>其它費用</h3>
       
     </div>

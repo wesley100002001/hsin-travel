@@ -43,10 +43,7 @@ export default class RequestController {
       isCreated: state.request.isCreated,
       japanLogs: state.request.japan,
       taiwanLogs: state.request.taiwan,
-      peopleEditable: state.request.peopleEditable,
-      titleEditable: state.request.titleEditable,
-      tempTitle: state.request.tempTitle,
-      tempPeople: state.request.tempPeople
+      tempPkg: state.request.tempPkg
     };
   }
 
@@ -123,34 +120,23 @@ export default class RequestController {
     });
   }
 
-  editTitle () {
-    this.setTempTitle(this.detail.title);
-    this.onEditTitle();
+  onEditPkg () {
+    this.pkgEditable = true;
+    this.tempPkg = {
+      title: this.tourPackage.title,
+      people: this.tourPackage.people,
+      serialNo: this.tourPackage.serialNo
+    };
   }
 
-  editPeople () {
-    this.setTempPeople(this.detail.people);
-    this.onEditPeople();
+  cancelEditPkg () {
+    delete this.tempPkg;
+    this.pkgEditable = false;
   }
 
-  cancelEditTitle () {
-    this.undoTitle(this.tempTitle);
+  submitPkg () {
+    this.updateRequest(this.tourPackage.requestId, this.tempPkg);
     this.offEditTitle();
-  }
-
-  cancelEditPeople () {
-    this.undoPeople(this.tempPeople);
-    this.offEditPeople();
-  }
-
-  submitTitle () {
-    this.updateTitle(this.detail.title);
-    this.offEditTitle();
-  }
-
-  submitPeople () {
-    this.updatePeople(this.detail.people);
-    this.offEditPeople();
   }
 }
 

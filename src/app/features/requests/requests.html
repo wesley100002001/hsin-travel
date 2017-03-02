@@ -14,7 +14,7 @@
         <th>建立日期</th>
       </tr>
       <tr ng-repeat="req in requestsCtrl.requests">
-        <td><a ui-sref="request({requestId: '{{req.requestId}}'})">{{req.title}}</a></td>
+        <td><a ui-sref="request({requestId: '{{req.id}}'})">{{req.title}}</a></td>
         <td>{{req.region}}</td>
         <td>{{req.startsOn}}</td>
         <td>{{req.endsOn}}</td>

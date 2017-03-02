@@ -49,6 +49,18 @@ export function postRequest (req) {
   });
 }
 
+export function getRequest (requestId) {
+  var token = localStorage.getItem('token');
+  return fetch(config.heroku_host.concat('/request/').concat(requestId), {
+    method: 'GET',
+    headers: {
+      'Authorization': 'Bearer ' + token
+    }
+  }).then(response => {
+    return response.json();
+  });
+}
+
 export function getMockRequest (requestId) {
   return new Promise(function (resolve, reject) {
     var request = {
@@ -132,8 +144,11 @@ export function addComment (comment) {
   })
 }
 
-export function updateRequest () {
+export function putRequest (req) {
+  return fetch(config.heroku_host.concat('/request/').concat(requestId), {
+    method: 'PUT',
 
+  });
 }
 
 export function postUserAuth (username, password) {
