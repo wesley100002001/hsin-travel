@@ -120,7 +120,7 @@
 
 <div class="container-fluid" ng-show="!requestCtrl.isNew">
   <div class="row">
-    <div class="col-xs-3 col-sm-3 col-md-3">
+    <div class="hidden-xs col-sm-3 col-md-3">
       <button class="btn btn-default btn-tab"
               ng-show="requestCtrl.editable"
               ng-class="{'btn-info': requestCtrl.channel === 'Taiwan'}"
@@ -129,7 +129,7 @@
               ng-show="requestCtrl.editable"
               ng-class="{'btn-info': requestCtrl.channel === 'Japan'}"
               ng-click="requestCtrl.switchChannel('Japan')">日方討論</button>
-      <div class="well scrollable" ng-show="requestCtrl.channel === 'Taiwan'">
+      <div class="scrollable" ng-show="requestCtrl.channel === 'Taiwan'">
         <p ng-show="requestCtrl.taiwanLogs < 1" class="text-center">
           目前沒有任何留言唷！
         </p>
@@ -160,7 +160,7 @@
         <button class="btn btn-success" ng-click="requestCtrl.leaveComment('Japan')">送出</button>
       </div>
     </div>
-    <div class="col-xs-3 col-sm-9 col-md-9 scrollable">
+    <div class="col-sm-9 col-md-9 scrollable">
       <h1 ng-show="!requestCtrl.pkgEditable">
         {{requestCtrl.tourPackage.title}}
         <button class="btn btn-primary pull-right" ng-click="requestCtrl.onEditPkg()"
