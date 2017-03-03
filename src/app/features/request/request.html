@@ -123,13 +123,13 @@
     <div class="hidden-xs col-sm-3 col-md-3">
       <button class="btn btn-default btn-tab"
               ng-show="requestCtrl.editable"
-              ng-class="{'btn-info': requestCtrl.channel === 'Taiwan'}"
+              ng-class="{'btn-tab-chosen': requestCtrl.channel === 'Taiwan'}"
               ng-click="requestCtrl.switchChannel('Taiwan')">台方討論</button>
       <button class="btn btn-default btn-tab"
               ng-show="requestCtrl.editable"
-              ng-class="{'btn-info': requestCtrl.channel === 'Japan'}"
+              ng-class="{'btn-tab-chosen': requestCtrl.channel === 'Japan'}"
               ng-click="requestCtrl.switchChannel('Japan')">日方討論</button>
-      <div class="scrollable" ng-show="requestCtrl.channel === 'Taiwan'">
+      <div class="well scrollable" ng-show="requestCtrl.channel === 'Taiwan'">
         <p ng-show="requestCtrl.taiwanLogs < 1" class="text-center">
           目前沒有任何留言唷！
         </p>
