@@ -17,7 +17,6 @@ export default class NavbarController {
   }
 
   mapStateToThis (state) {
-    console.log(state);
     return {
       notifications: state.navbar
     };

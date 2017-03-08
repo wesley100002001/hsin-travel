@@ -5,9 +5,9 @@ export const FETCH_HOTELS = 'FETCH_HOTELS';
 export function fetchHotels () {
   return {
     type: FETCH_HOTELS,
-    payload: restful.getMockHotels()
+    payload: restful.getHotels()
       .then(response => {
-        return response;
+        return response.payload;
       })
   };
 }

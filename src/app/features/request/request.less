@@ -8,26 +8,43 @@
 }
 
 .btn-tab {
-  border-radius: 10px 10px 0px 0px
+  display: inline-block;
+  padding: 12px 5px 12px;
+  margin-right: 5px;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+}
+
+.btn-tab:hover {
+  border-bottom: 2px solid transparent;
+  border-bottom-color: #d1d5da;
 }
 
 .btn-tab-chosen {
-  background-color: #c9e6f2;
+  border-bottom: 2px solid transparent;
+  border-bottom-color: #e36209 !important;
 }
 
-table {
+.chatroom {
+  border: 1px solid #d1d5da;
+  background-color: #fafbfc;
+  border-radius: 3px 3px 0 0;
+}
+
+.git-table {
   padding: 0; 
   border-radius: 3px;
 }
 
-table tr {
+.git-table tr {
   border: 1px solid #c9e6f2;;
   background-color: white;
   margin: 0;
   padding: 0; 
 }
 
-table tr th {
+.git-table tr th {
   background-color: #f2f9fc;
   font-weight: bold;
   text-align: left;
@@ -35,16 +52,16 @@ table tr th {
   padding: 6px 13px; 
 }
 
-table tr td {
+.git-table tr td {
   text-align: left;
   margin: 0;
   padding: 6px 13px; 
 }
 
-table tr th :first-child, table tr td :first-child {
+.git-table tr th :first-child, .git-table tr td :first-child {
   margin-top: 0; 
 }
 
-table tr th :last-child, table tr td :last-child {
+.git-table tr th :last-child, .git-table tr td :last-child {
   margin-bottom: 0; 
 }

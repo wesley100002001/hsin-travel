@@ -6,9 +6,10 @@ export const LOGIN_FAILED = 'LOGIN_FAILED';
 export const SET_LOGGED_IN = 'SET_LOGGED_IN';
 export const SET_LOGGING = 'SET_LOGGING';
 
-export function setLoggedIn (username, token) {
+export function setLoggedIn (username, token, region) {
   localStorage.setItem('token', token);
   localStorage.setItem('username', username);
+  localStorage.setItem('region', region);
   return {
     type: SET_LOGGED_IN
   };
@@ -41,7 +42,7 @@ export function login (username, password) {
     }).then(response => {
       if (!!response.id_token) {
         Promise.all([
-          dispatch(setLoggedIn(username, response.id_token)),
+          dispatch(setLoggedIn(username, response.id_token, response.region)),
           dispatch(stateGo('requests'))
         ]);
       }

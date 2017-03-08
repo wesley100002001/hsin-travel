@@ -10,14 +10,12 @@
     </div>
   </form> -->
   <br>
-  <table class="table table-hover">
-    <tr class="info">
+  <table class="table table-hover git-table">
+    <tr>
       <th>飯店</th>
-      <th>地址</th>
     </tr>
     <tr ng-repeat="hotel in hotelsCtrl.hotels">
       <td><a href ng-click="hotelsCtrl.pickItem(hotel.id)">{{hotel.name}}</a></td>
-      <td>{{hotel.address}}</td>
     </tr>
   </table>
 </div>

@@ -17,24 +17,28 @@ export default class HotelController {
 
     this.startOpened = false;
     this.endOpened = false;
-    this.dateOpened = false;
     this.timeOption = {
       max: moment().subtract(1, 'days').format()
     };
 
     this.fetchHotel($stateParams.hotelId);
+    this.fetchHotelRooms($stateParams.hotelId);
     if (!this.accoId === 0) {
       this.fetchAccommodation($stateParams.accoId);
     }
+
+    this.accommodation = {};
   }
 
   mapStateToThis(state) {
+    console.log('modal-hotel');
     console.log(state);
     return {
-      accommodation: state.new_accommodation,
-      address: state.hotel_info.address,
-      phone: state.hotel_info.phone,
-      isNewAccommodation: state.request.isNewAccommodation
+      breakfast: state.hotel_info.breakfast,
+      extraBed: state.hotel_info.extraBed,
+      fare: state.hotel_info.fare,
+      name: state.hotel_info.name,
+      rooms: state.hotel_info.rooms
     };
   }
 
@@ -50,26 +54,47 @@ export default class HotelController {
     this.endOpened = !this.endOpened;
   };
 
-  dateOpen ($event) {
-    $event.preventDefault();
-    $event.stopPropagation();
-    this.dateOpened = !this.dateOpened;
-  };
+  checkPrice () {
+    if (!this.accommodation.roomId || !this.accommodation.checkinAt || !this.accommodation.checkoutAt) {
+      alert('資料輸入不完全');
+      return;
+    }
+    var duration = moment(this.accommodation.checkoutAt).diff(moment(this.accommodation.checkinAt), 'days');
+    var timeFrame = [];
+    for (var i = 0; i <= duration; i++) {
+      timeFrame.push(moment(this.accommodation.checkinAt).add(i, 'days').format('YYYY-MM-DD'));
+    }
+    this.fetchFare(this.accommodation.roomId, timeFrame);
+  }
 
   confirm () {
-    if (this.isNewAccommodation) {
-      if (!this.accommodation.roomTitle || !this.accommodation.date || !this.accommodation.quantity) {
-        alert('資料輸入不完全');
-        return;
-      }
-      this.accommodation.date = moment(this.accommodation.date).format('YYYY-MM-DD');
-      this.accommodation.hotelName = '國賓大飯店';
+    if (!this.accommodation.roomId || !this.accommodation.checkinAt || !this.accommodation.checkoutAt || !this.accommodation.quantity) {
+      alert('資料輸入不完全');
+      return;
+    }
+    this.accommodation.checkinAt = moment(this.accommodation.checkinAt).format('YYYY-MM-DD');
+    this.accommodation.checkoutAt = moment(this.accommodation.checkoutAt).format('YYYY-MM-DD');
+    
+    if (this.requestId === 0) {
+      this.accommodation.roomType = this.rooms.find(room => {
+        return room.roomId = this.accommodation.roomId;
+      }).type;
+      this.accommodation.hotelName = this.name;
       this.createAccommodation(this.accommodation);
       this.clearAccommodation();
-      this.uibModal.close();
     } else {
-      // this.submitAccommodation(this.accommodation, this.requestId);
+      // A dirty hack for now
+      this.accommodation.room = {
+        hotel: {
+          name: this.name
+        },
+        type: this.rooms.find(room => {
+          return room.roomId = this.accommodation.roomId;
+        }).type
+      };
+      this.submitAccommodation(this.requestId, this.accommodation);
     }
+    this.uibModal.close();
   }
 
   cancel () {

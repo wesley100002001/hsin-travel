@@ -26,14 +26,17 @@ export default class RequestController {
 
     if (this.isNew) {
       this.clearRequest();
+      this.newPkg = {};
     } else {
       this.fetchRequest(this.requestId);
       this.fetchJPConversation(this.requestId);
       this.fetchTWConversation(this.requestId);
+      this.fee = [];
     }
   }
 
   mapStateToThis (state) {
+    console.log('request');
     console.log(state);
     return {
       channel: state.channel,
@@ -43,7 +46,8 @@ export default class RequestController {
       isCreated: state.request.isCreated,
       japanLogs: state.request.japan,
       taiwanLogs: state.request.taiwan,
-      tempPkg: state.request.tempPkg
+      tempPkg: state.request.tempPkg,
+      newAccommodation: state.new_accommodation
     };
   }
 
@@ -60,27 +64,23 @@ export default class RequestController {
   };
 
   confirm () {
-    this.tourPackage.startsOn = moment(this.tourPackage.startsOn).format('YYYY-MM-DD');
-    this.tourPackage.endsOn = moment(this.tourPackage.endsOn).format('YYYY-MM-DD');
-    this.tourPackage.region = 'Osaka';
-    delete this.tourPackage.notes;
-    delete this.tourPackage.serialNo;
-    this.submitRequest(this.tourPackage);
+    this.newPkg.startsOn = moment(this.newPkg.startsOn).format('YYYY-MM-DD');
+    this.newPkg.endsOn = moment(this.newPkg.endsOn).format('YYYY-MM-DD');
+    this.newPkg.region = localStorage.getItem('region');
+    this.newPkg.accommodations = this.newAccommodation.map(acco => {
+      var purifiedAcco = {
+        roomId: acco.roomId,
+        checkinAt: acco.checkinAt,
+        checkoutAt: acco.checkoutAt,
+        quantity: acco.quantity
+      };
+      return purifiedAcco;
+    });
+    this.submitRequest(this.newPkg);
   }
 
   addAccommodation () {
-    this.onAddAccommodation();
     this.stateGo('request.hotels');
-  }
-
-  submitKnockingAcco () {
-    if (!!this.newAccoDate && !!this.newAccoHotel) {
-      var knockingAcco = {
-        date: this.newAccoDate,
-        hotel: this.newAccoHotel
-      };
-      this.addKnockingAcco(knockingAcco);
-    }
   }
 
   /*
@@ -108,11 +108,6 @@ export default class RequestController {
     }
   }
 
-  test () {
-    console.log(this.token);
-    this.fetchOrders(this.token);
-  }
-
   editAccommodation (acco) {
     this.stateGo('request.accommodation', {
       hotelId: acco.hotelId,
@@ -124,7 +119,7 @@ export default class RequestController {
     this.pkgEditable = true;
     this.tempPkg = {
       title: this.tourPackage.title,
-      people: this.tourPackage.people,
+      peopleNote: this.tourPackage.peopleNote,
       serialNo: this.tourPackage.serialNo
     };
   }
@@ -137,6 +132,25 @@ export default class RequestController {
   submitPkg () {
     this.updateRequest(this.tourPackage.requestId, this.tempPkg);
     this.offEditTitle();
+  }
+
+  showFeeInput () {
+    this.feeInputVisible = true;
+    this.feeInput = {};
+  }
+
+  submitFee () {
+    this.fee.push({
+      title: this.feeInput.title,
+      amount: this.feeInput.amount
+    });
+    this.feeInputVisible = false;
+    delete this.feeInput;
+  }
+
+  cancelAddFee () {
+    this.feeInputVisible = false;
+    delete this.feeInput;
   }
 }
 

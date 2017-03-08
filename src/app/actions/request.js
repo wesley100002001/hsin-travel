@@ -3,13 +3,11 @@ import * as restful from '../lib/restful';
 
 export const ADD_JP_COMMENT = 'ADD_JP_COMMENT';
 export const ADD_TW_COMMENT = 'ADD_TW_COMMENT';
-export const ADD_KNOCKING_ACCO = 'ADD_KNOCKING_ACCO';
 export const CLEAR_REQUEST = 'CLEAR_REQUEST';
 export const FETCH_JP_CONVERSATION = 'FETCH_JP_CONVERSATION';
 export const FETCH_TW_CONVERSATION = 'FETCH_TW_CONVERSATION';
 export const FETCH_ORDERS = 'FETCH_ORDERS';
 export const FETCH_REQUEST = 'FETCH_REQUEST';
-export const ON_ADD_ACCOMMODATION = 'ON_ADD_ACCOMMODATION';
 export const REMOVE_ACCOMMODATION = 'REMOVE_ACCOMMODATION';
 export const SUBMIT_REQUEST = 'SUBMIT_REQUEST';
 export const SWITCH_CHANNEL = 'SWITCH_CHANNEL';
@@ -84,10 +82,22 @@ export function verifyCreatedRequest(isCreated) {
 }
 
 // FIXME: only remove element from state
-export function removeAccommodation (accoId, index) {
-  return {
-    type: REMOVE_ACCOMMODATION,
-    payload: index
+export function removeAccommodation (requestId, accoId) {
+  return dispatch => {
+    return restful.deleteAccommodation(requestId, accoId)
+    .then(response => {
+      if (response.statusCode >= 400) {
+        throw response;
+      }
+      return new Promise((resolve, reject) => {
+        resolve(dispatch(fetchRequest(requestId)));
+      });
+    }).then(response => {
+      dispatch(addJPComment('successfully removed accommodation'));
+    }).catch(err => {
+      console.log(err);
+      // dispatch(verifyCreatedRequest('fail'));
+    });
   };
 }
 
@@ -125,19 +135,5 @@ export function updateRequest (requestId, request) {
       .then(response => {
         return response;
       })
-  };
-}
-
-export function addKnockingAcco (acco) {
-  return {
-    type: ADD_KNOCKING_ACCO,
-    payload: acco
-  };
-}
-
-export function onAddAccommodation () {
-  return {
-    type: ON_ADD_ACCOMMODATION,
-    payload: true
   };
 }

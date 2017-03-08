@@ -7,7 +7,7 @@ export function fetchRequests () {
     type: FETCH_REQUESTS,
     payload: restful.getRequests()
       .then(response => {
-        return response;
+        return response.payload;
       })
   };
 }

@@ -7,10 +7,10 @@ import { FETCH_REQUESTS } from '../actions/requests';
 import { ADD_ITEM, ADD_REQUEST } from '../actions/request';
 import { ADD_JP_COMMENT, ADD_TW_COMMENT, ADD_KNOCKING_ACCO, FETCH_JP_CONVERSATION, FETCH_TW_CONVERSATION, FETCH_REQUEST,
   FETCH_ORDERS, REMOVE_ACCOMMODATION, SWITCH_CHANNEL, CLEAR_REQUEST, VERIFY_CREATED_REQUEST,
-  ON_ADD_ACCOMMODATION, UPDATE_REQUEST } from '../actions/request';
+  UPDATE_REQUEST } from '../actions/request';
 import { FETCH_HOTELS } from '../actions/hotels';
 import { FETCH_NOTIFICATIONS } from '../actions/navbar';
-import { ADD_ACCO, CLEAR_ACCO, FETCH_ACCO, FETCH_HOTEL, PATCH_ACCO } from '../actions/hotel';
+import { FUCKING_ADD_ACCO, ADD_ACCO, CLEAR_ACCO, FETCH_ACCO, FETCH_FARE, FETCH_HOTEL, FETCH_HOTEL_ROOMS, PATCH_ACCO } from '../actions/hotel';
 
 const FULFILLED = '_FULFILLED';
 const PENDING = '_PENDING';
@@ -57,22 +57,20 @@ function channel (state = 'Japan', action) {
   }
 }
 
-function new_tour_package (state = { acco: [] }, action) {
+function new_accommodation (state = [], action) {
   switch (action.type) {
-    case ADD_KNOCKING_ACCO:
-    return Object.assign({}, state, {
-      acco: [
-        ...state.acco,
+    case ADD_ACCO:
+    return [
+        ...state,
         action.payload
-      ]
-    });
+    ];
 
     default:
     return state;
   }
 }
 
-function request (state = { taiwan: [], japan: [], isNewAccommodation: false, titleEditable: false, peopleEditable: false, tempTitle: null, tempPeople: null, items: [], isCreated: null }, action) {
+function request (state = { taiwan: [], japan: [], titleEditable: false, peopleEditable: false, tempTitle: null, tempPeople: null, items: [], isCreated: null }, action) {
   switch (action.type) {
     case `${ADD_JP_COMMENT}${FULFILLED}`:
     return Object.assign({}, state, {
@@ -100,11 +98,6 @@ function request (state = { taiwan: [], japan: [], isNewAccommodation: false, ti
       taiwan: action.payload
     });
 
-    case ON_ADD_ACCOMMODATION:
-    return Object.assign({}, state, {
-      isNewAccommodation: action.payload
-    });
-
     case VERIFY_CREATED_REQUEST:
     return Object.assign({}, state, {
       isCreated: action.payload
@@ -123,15 +116,7 @@ function tour_package (state = {}, action) {
     case CLEAR_REQUEST:
     return action.payload;
 
-    case REMOVE_ACCOMMODATION:
-    return Object.assign({}, state, {
-      accommodations: [
-        ...state.accommodations.slice(0, action.payload),
-        ...state.accommodations.slice(action.payload + 1)
-      ]
-    });
-
-    case ADD_ACCO:
+    case FUCKING_ADD_ACCO:
     return Object.assign({}, state, {
       accommodations: [
         ...state.accommodations,
@@ -181,7 +166,17 @@ function hotels (state = [], action) {
 function hotel_info (state = {}, action) {
   switch (action.type) {
     case `${FETCH_HOTEL}${FULFILLED}`:
-    return action.payload;
+    return Object.assign({}, state, action.payload);
+
+    case `${FETCH_HOTEL_ROOMS}${FULFILLED}`:
+    return Object.assign({}, state, {
+      rooms: action.payload
+    });
+
+    case `${FETCH_FARE}${FULFILLED}`:
+    return Object.assign({}, state, {
+      fare: action.payload
+    });
 
     default:
     return state;
@@ -191,16 +186,6 @@ function hotel_info (state = {}, action) {
 function accommodation (state = {}, action) {
   switch (action.type) {
     case `${FETCH_ACCO}${FULFILLED}`:
-    return action.payload;
-
-    default:
-    return state;
-  }
-}
-
-function new_accommodation (state = {}, action) {
-  switch (action.type) {
-    case CLEAR_ACCO:
     return action.payload;
 
     default:
@@ -227,7 +212,6 @@ let appReducer = combineReducers({
   orders,
   navbar,
   new_accommodation,
-  new_tour_package,
   request,
   requests,
   router,

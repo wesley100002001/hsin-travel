@@ -17,7 +17,8 @@ export default class LoginController {
   }
 
   mapStateToThis (state) {
-    console.log(state);
+    // console.log('login');
+    // console.log(state);
     return {
       logging: state.login.isLogging,
       failed: state.login.failed

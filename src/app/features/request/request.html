@@ -18,19 +18,19 @@
               <div class="form-group">
                 <label for="title">團名</label>
                 <input class="form-control" name="title" type="text" 
-                      ng-model="requestCtrl.tourPackage.title" placeholder="請輸入團名"
+                      ng-model="requestCtrl.newPkg.title" placeholder="請輸入團名"
                       required>
               </div>
               <div class="form-group">
                 <label for="people">人數</label>
                 <input class="form-control" name="people" type="text" placeholder="團員人數"
-                       ng-model="requestCtrl.tourPackage.people" required>
+                       ng-model="requestCtrl.newPkg.peopleNote" required>
                 <span class="help-block">例：30名＋1T/C</span>
               </div>
               <div class="form-group">
                 <label for="serialNo">旅行團編號</label>
                 <input class="form-control" name="serialNo" type="text" placeholder="請輸入編號"
-                       ng-model="requestCtrl.tourPackage.serialNo" required>
+                       ng-model="requestCtrl.newPkg.serialNo" required>
               </div>
             </div>
             <div class="col-md-6">
@@ -41,7 +41,7 @@
                   id="start_date" name="start_date"
                   uib-datepicker-popup="yyyy-MM-dd"
                   show-button-bar="false"
-                  ng-model="requestCtrl.tourPackage.startsOn"
+                  ng-model="requestCtrl.newPkg.startsOn"
                   max-date="requestCtrl.timeOption.max"
                   is-open="requestCtrl.startOpened" close-text="Close" 
                   readonly required>
@@ -60,7 +60,7 @@
                   id="end_date" name="end_date"
                   uib-datepicker-popup="yyyy-MM-dd"
                   show-button-bar="false"
-                  ng-model="requestCtrl.tourPackage.endsOn"
+                  ng-model="requestCtrl.newPkg.endsOn"
                   max-date="requestCtrl.timeOption.max"
                   is-open="requestCtrl.endOpened" close-text="Close" 
                   readonly required>
@@ -81,17 +81,19 @@
           <h3 class="panel-title">住宿</h3>
         </div>
         <div class="panel-body">
-          <table class="table">
+          <table class="table git-table">
             <tr>
               <th>飯店</th>
-              <th>日期</th>
+              <th>入住日期</th>
+              <th>退房日期</th>
               <th>房型</th>
               <th>數量</th>
             </tr>
-            <tr ng-repeat="acco in requestCtrl.tourPackage.accommodations">
+            <tr ng-repeat="acco in requestCtrl.newAccommodation">
               <td>{{acco.hotelName}}</td>
-              <td>{{acco.date}}</td>
-              <td>{{acco.roomTitle}}</td>
+              <td>{{acco.checkinAt}}</td>
+              <td>{{acco.checkoutAt}}</td>
+              <td>{{acco.roomType}}</td>
               <td>{{acco.quantity}}</td>
             </tr>
           </table>
@@ -106,7 +108,7 @@
           <h3 class="panel-title">詳細內容</h3>
         </div>
         <div class="panel-body">
-          <textarea class="form-control" rows="10" ng-model="requestCtrl.tourPackage.notes" required></textarea>
+          <textarea class="form-control" rows="10" ng-model="requestCtrl.tourPackage.description" required></textarea>
         </div>
       </div>
       <div class="text-center">
@@ -120,16 +122,20 @@
 
 <div class="container-fluid" ng-show="!requestCtrl.isNew">
   <div class="row">
-    <div class="hidden-xs col-sm-3 col-md-3">
-      <button class="btn btn-default btn-tab"
+    <div class="hidden-xs col-sm-3 col-md-3 chatroom scrollable">
+      <button class="btn-tab"
               ng-show="requestCtrl.editable"
               ng-class="{'btn-tab-chosen': requestCtrl.channel === 'Taiwan'}"
               ng-click="requestCtrl.switchChannel('Taiwan')">台方討論</button>
-      <button class="btn btn-default btn-tab"
+      <button class="btn-tab"
               ng-show="requestCtrl.editable"
               ng-class="{'btn-tab-chosen': requestCtrl.channel === 'Japan'}"
               ng-click="requestCtrl.switchChannel('Japan')">日方討論</button>
-      <div class="well scrollable" ng-show="requestCtrl.channel === 'Taiwan'">
+      <hr ng-show="requestCtrl.editable">
+      <div class="btn-tab" ng-show="!requestCtrl.editable">
+        <h3>行程討論</h3>
+      </div>
+      <div ng-show="requestCtrl.channel === 'Taiwan'">
         <p ng-show="requestCtrl.taiwanLogs < 1" class="text-center">
           目前沒有任何留言唷！
         </p>
@@ -144,7 +150,7 @@
         </div>
         <button class="btn btn-success" ng-click="requestCtrl.leaveComment('Taiwan')">送出</button>
       </div>
-      <div class="well scrollable" ng-show="requestCtrl.channel === 'Japan'">
+      <div ng-show="requestCtrl.channel === 'Japan'">
         <p ng-show="requestCtrl.japanLogs < 1" class="text-center">
           目前沒有任何留言唷！
         </p>
@@ -166,8 +172,8 @@
         <button class="btn btn-primary pull-right" ng-click="requestCtrl.onEditPkg()"
                 ng-show="requestCtrl.editable">編輯</button>
       </h1>
-      <h6 ng-show="!requestCtrl.pkgEditable">HCP1020</h6>
-      <h3 ng-show="!requestCtrl.pkgEditable">人數：{{requestCtrl.tourPackage.people}}</h3>
+      <h6 ng-show="!requestCtrl.pkgEditable">{{requestCtrl.tourPackage.serialNo}}</h6>
+      <h3 ng-show="!requestCtrl.pkgEditable">人數：{{requestCtrl.tourPackage.peopleNote}}</h3>
       <div ng-show="requestCtrl.pkgEditable">
         <h3>
           團名：<input type="text" class="form-control" ng-model="requestCtrl.tempPkg.title">
@@ -176,7 +182,7 @@
           旅行團編號：<input type="text" class="form-control" ng-model="requestCtrl.tempPkg.serialNo">
         </h3>
         <h3>
-          人數：<input type="text" class="form-control" ng-model="requestCtrl.tempPkg.people">
+          人數：<input type="text" class="form-control" ng-model="requestCtrl.tempPkg.peopleNote">
         </h3>
         <button class="btn btn-success">
           <span class="glyphicon glyphicon-ok" ng-click="requestCtrl.submitPkg()"></span>
@@ -186,7 +192,7 @@
         </button>
       </div>
       <hr>
-      <div class="card">
+      <div class="card" ng-show="!!requestCtrl.tourPackage.description">
         <div class="card-header" role="tab" id="headingOne">
           <h3 class="mb-0">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -196,26 +202,14 @@
         </div>
         <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
           <div class="card-block">
-            至急ノッキングをお願いします。
-
-            大平様
-            いつも大変お世話になっております！
-            ホテル空き状況の確認をお願い致します。（※見積不要・空き状況のみ）
-            日程：日程表の通り
-            人数：30+1
-            部屋数：16ツイン
-            希望ホテル：シャーウッド・アンバサダー・グロリアプリンス・サントスの4ホテル
-
-            急ぎで大変恐縮ですが・・・2/10（水）中に回答をお願いします。
-
-            小林
+            {{requestCtrl.tourPackage.description}}
           </div>
         </div>
       </div>
-      <hr>
+      <hr ng-show="!!requestCtrl.tourPackage.description">
       <div>
         <h3>住宿</h3>
-        <table class="table">
+        <table class="table git-table">
           <tr>
             <th>開始日期</th>
             <th>結束日期</th>
@@ -227,18 +221,18 @@
           <tr ng-repeat="acco in requestCtrl.tourPackage.accommodations track by $index">
             <td>{{acco.checkinAt}}</td>
             <td>{{acco.checkoutAt}}</td>
-            <td>{{acco.hotelName}}</td>
-            <td>{{acco.roomTitle}}</td>
+            <td>{{acco.room.hotel.name}}</td>
+            <td>{{acco.room.type}}</td>
             <td>{{acco.quantity}}</td>
             <td ng-show="requestCtrl.editable">
-              <a href ng-click="requestCtrl.removeAccommodation(acco.accoId, $index)">
+              <a href ng-click="requestCtrl.removeAccommodation(acco.requestId, acco.id)">
                 <span class="glyphicon glyphicon-trash"></span>
               </a>
             </td>
           </tr>
           <tr ng-show="requestCtrl.editable">
             <td>
-              <a href ui-sref="request.hotels">
+              <a ui-sref="request.hotels">
                 <span class="glyphicon glyphicon-plus-sign"></span>
               </a>
             </td>
@@ -252,7 +246,36 @@
       </div>
       <hr>
       <h3>其它費用</h3>
-      
+      <table class="table git-table" ng-show="requestCtrl.fee.length > 0">
+        <tr>
+          <th>項目</th>
+          <th>金額</th>
+        </tr>
+        <tr ng-repeat="item in requestCtrl.fee track by $index">
+          <td>{{item.title}}</td>
+          <td>{{item.amount}}</td>
+        </tr>
+      </table>
+      <a href ng-show="!requestCtrl.feeInputVisible" ng-click="requestCtrl.showFeeInput()">
+        <span class="glyphicon glyphicon-plus-sign"></span>
+      </a>
+      <div ng-show="requestCtrl.feeInputVisible">
+        <form class="form-inline padding-down">
+          項目&nbsp;&nbsp;
+          <input type="text" class="form-control" ng-model="requestCtrl.feeInput.title">
+          &nbsp;金額&nbsp;&nbsp;
+          <div class="input-group">
+            <span class="input-group-addon">$</span>
+            <input type="number" class="form-control" ng-model="requestCtrl.feeInput.amount" aria-label="Amount (to the nearest dollar)">
+          </div>
+        </form>
+        <button class="btn btn-success">
+          <span class="glyphicon glyphicon-ok" ng-click="requestCtrl.submitFee()"></span>
+        </button>
+        <button class="btn btn-danger" ng-click="requestCtrl.cancelAddFee()">
+          <span class="glyphicon glyphicon-remove"></span>
+        </button>
+      </div>
     </div>
   </div>
 </div>

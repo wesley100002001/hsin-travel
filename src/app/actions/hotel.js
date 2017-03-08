@@ -5,15 +5,29 @@ import * as restful from '../lib/restful';
 export const ADD_ACCO = 'ADD_ACCO';
 export const CLEAR_ACCO = 'CLEAR_ACCO';
 export const FETCH_ACCO = 'FETCH_ACCO';
+export const FETCH_FARE = 'FETCH_FARE';
 export const FETCH_HOTEL = 'FETCH_HOTEL';
+export const FETCH_HOTEL_ROOMS = 'FETCH_HOTEL_ROOMS';
 export const PATCH_ACCO = 'PATCH_ACCO';
+
+export const FUCKING_ADD_ACCO = 'FUCKING_ADD_ACCO';
 
 export function fetchHotel (hotelId) {
   return {
     type: FETCH_HOTEL,
-    payload: restful.getMockHotel(hotelId)
+    payload: restful.getHotel(hotelId)
       .then(response => {
         return response;
+      })
+  };
+}
+
+export function fetchHotelRooms (hotelId) {
+  return {
+    type: FETCH_HOTEL_ROOMS,
+    payload: restful.getHotelRooms(hotelId)
+      .then(response => {
+        return response.payload;
       })
   };
 }
@@ -29,20 +43,34 @@ export function fetchAccommodation (accoId) {
   };
 }
 
-export function submitAccommodation (acco, requestId) {
-  return dispatch => {
-    return new Promise((resolve, reject) => {
-      resolve(dispatch(updateAccommodation(acco)));
-    }).then(response => {
-      // 因為無法在 modal 關掉之後 trigger action 去 fetch request
-      // 所以先 fetch，因為要拿更新過的 request
-      return new Promise((resolve, reject) => {
-        resolve(dispatch(fetchRequest(requestId)));
-      });
-    }).catch(err => {
-      console.log(err);
-    });
+export function fetchFare (roomId, timeFrame) {
+  return {
+    type: FETCH_FARE,
+    payload: restful.getFare(roomId, timeFrame)
+      .then(response => {
+        return response;
+      })
   };
+}
+
+export function submitAccommodation (requestId, acco) {
+  return {
+    type: FUCKING_ADD_ACCO,
+    payload: acco
+  };
+  // return dispatch => {
+  //   return restful.postAccommodation(requestId, acco)
+  //   .then(response => {
+  //     console.log(response);
+  //     // 因為無法在 modal 關掉之後 trigger action 去 fetch request
+  //     // 所以先 fetch，因為要拿更新過的 request
+  //     return new Promise((resolve, reject) => {
+  //       resolve(dispatch(fetchRequest(requestId)));
+  //     });
+  //   }).catch(err => {
+  //     console.log(err);
+  //   });
+  // };
 }
 
 export function clearAccommodation () {
@@ -57,10 +85,4 @@ export function createAccommodation (acco) {
     type: ADD_ACCO,
     payload: acco
   };
-}
-
-export function updateAccommodation (acco) {
-  return {
-    type: PATCH_ACCO,
-  }
 }

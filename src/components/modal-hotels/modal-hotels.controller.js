@@ -13,7 +13,6 @@ export default class HotelsController {
   }
 
   mapStateToThis (state) {
-    console.log(state);
     return {
       hotels: state.hotels
     };
