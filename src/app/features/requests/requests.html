@@ -2,7 +2,7 @@
   <div class="row">
     <h1 class="padding-down">需求列表</h1>
     <p>
-      <button class="btn btn-success" ng-click="requestsCtrl.createRequest()">新增</button>
+      <button class="btn btn-success" ng-show="!requestsCtrl.editable" ng-click="requestsCtrl.createRequest()">新增</button>
     </p>
     <table class="table table-striped">
       <tr>

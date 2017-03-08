@@ -10,6 +10,9 @@ export default class RequestsController {
       this.stateGo('login');
     }
 
+    this.userID = localStorage.getItem('username');
+    this.editable = this.userID === 'usert';
+
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), combinedActions)(this);
     $scope.$on('$destroy', unsubscribe);
 

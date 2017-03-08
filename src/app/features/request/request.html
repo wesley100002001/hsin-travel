@@ -256,7 +256,7 @@
           <td>{{item.amount}}</td>
         </tr>
       </table>
-      <a href ng-show="!requestCtrl.feeInputVisible" ng-click="requestCtrl.showFeeInput()">
+      <a href ng-show="!requestCtrl.feeInputVisible && requestCtrl.editable" ng-click="requestCtrl.showFeeInput()">
         <span class="glyphicon glyphicon-plus-sign"></span>
       </a>
       <div ng-show="requestCtrl.feeInputVisible">

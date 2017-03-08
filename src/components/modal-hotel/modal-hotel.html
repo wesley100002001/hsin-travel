@@ -15,10 +15,12 @@
           <tr>
             <th>日期</th>
             <th>價錢</th>
+            <th>備註</th>
           </tr>
-          <tr ng-repeat="price in hotelCtrl.fare">
-            <td>{{price.date}}</td>
-            <td>{{price.err}}</td>
+          <tr ng-repeat="fare in hotelCtrl.fare">
+            <td>{{fare.date}}</td>
+            <td>{{fare.price.p}}</td>
+            <td>{{fare.err}}</td>
           </tr>
         </table>
       </div>
@@ -31,7 +33,7 @@
           <div class="radio" ng-repeat="room in hotelCtrl.rooms">
             <label>
               <input type="radio" ng-model="hotelCtrl.accommodation.roomId" value="{{room.id}}">
-              {{room.type}}&nbsp;&nbsp;${{room.price}}
+              {{room.type}}
             </label>
           </div>
         </div>

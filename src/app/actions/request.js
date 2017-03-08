@@ -81,7 +81,6 @@ export function verifyCreatedRequest(isCreated) {
   };
 }
 
-// FIXME: only remove element from state
 export function removeAccommodation (requestId, accoId) {
   return dispatch => {
     return restful.deleteAccommodation(requestId, accoId)
@@ -92,8 +91,8 @@ export function removeAccommodation (requestId, accoId) {
       return new Promise((resolve, reject) => {
         resolve(dispatch(fetchRequest(requestId)));
       });
-    }).then(response => {
-      dispatch(addJPComment('successfully removed accommodation'));
+    // }).then(response => {
+    //   dispatch(addJPComment('successfully removed accommodation'));
     }).catch(err => {
       console.log(err);
       // dispatch(verifyCreatedRequest('fail'));
