@@ -61,8 +61,8 @@ function new_accommodation (state = [], action) {
   switch (action.type) {
     case ADD_ACCO:
     return [
-        ...state,
-        action.payload
+      ...state,
+      action.payload
     ];
 
     default:

@@ -74,8 +74,7 @@ export default class HotelController {
     }
     this.accommodation.checkinAt = moment(this.accommodation.checkinAt).format('YYYY-MM-DD');
     this.accommodation.checkoutAt = moment(this.accommodation.checkoutAt).format('YYYY-MM-DD');
-    
-    if (this.requestId === 0) {
+    if (this.requestId === '0') {
       this.accommodation.roomType = this.rooms.find(room => {
         return room.roomId = this.accommodation.roomId;
       }).type;
