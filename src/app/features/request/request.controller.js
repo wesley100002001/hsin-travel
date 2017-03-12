@@ -26,7 +26,9 @@ export default class RequestController {
 
     if (this.isNew) {
       this.clearRequest();
-      this.newPkg = {};
+      this.newPkg = {
+        serialNo: '－－Ｈ'
+      };
     } else {
       this.fetchRequest(this.requestId);
       this.fetchJPConversation(this.requestId);
@@ -95,13 +97,13 @@ export default class RequestController {
         this.addTWComment({
           id: this.userID,
           comment: this.newComment,
-          timestamp: moment().format('YYYY 年 MM 月 DD 日 HH:mm:ss')
+          timestamp: moment()
         });
       } else {
         this.addJPComment({
           id: this.userID,
           comment: this.newComment,
-          timestamp: moment().format('YYYY 年 MM 月 DD 日 HH:mm:ss')
+          timestamp: moment()
         });
       }
       this.newComment = '';

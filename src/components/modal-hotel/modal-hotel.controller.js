@@ -82,15 +82,6 @@ export default class HotelController {
       this.createAccommodation(this.accommodation);
       this.clearAccommodation();
     } else {
-      // A dirty hack for now
-      this.accommodation.room = {
-        hotel: {
-          name: this.name
-        },
-        type: this.rooms.find(room => {
-          return room.roomId = this.accommodation.roomId;
-        }).type
-      };
       this.submitAccommodation(this.requestId, this.accommodation);
     }
     this.uibModal.close();

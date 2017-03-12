@@ -26,61 +26,69 @@
       </div>
     </div>
     <div class="col-md-6">
-      <form name="form" novalidate>
-        <h4 class="padding-down">選擇房型、日期</h4>
-        <div class="form-group">
-          <label>房型選擇</label>
-          <div class="radio" ng-repeat="room in hotelCtrl.rooms">
-            <label>
-              <input type="radio" ng-model="hotelCtrl.accommodation.roomId" value="{{room.id}}">
-              {{room.type}}
-            </label>
+      <h4 class="padding-down">選擇房型、日期</h4>
+      <div class="form-group">
+        <label>房型選擇</label>
+        <div ng-repeat="room in hotelCtrl.rooms">
+          <div class="checkbox">
+            <label><input type="checkbox" ng-model="room.selected">{{room.type}}</label>
           </div>
+          <form class="form-inline" ng-show="room.selected">
+            <input type="text" class="form-control" ng-model="room.quantity"
+                placeholder="請輸入數量">
+            <select class="form-control" ng-model="room.fare">
+              <option value="">請選擇價位</option>
+              <option value="11000">11000</option>
+              <option value="9680">9680</option>
+              <option value="7920">7920</option>
+              <option value="7040">7040</option>
+            </select>
+          </form>
         </div>
-        <div class="form-group">
-          <label for="quantity">數量</label>
-          <input type="text" class="form-control" ng-model="hotelCtrl.accommodation.quantity"
-                 placeholder="請輸入數量">
+      </div>
+      <!--<div class="form-group">
+        <label for="quantity">數量</label>
+        <input type="text" class="form-control" ng-model="hotelCtrl.accommodation.quantity"
+                placeholder="請輸入數量">
+      </div>-->
+      <div class="form-group">
+        <label for="start_date">入住日期</label>
+        <div class="input-group">
+          <input type="text" class="form-control"
+          id="start_date" name="start_date"
+          show-button-bar="false"
+          uib-datepicker-popup="yyyy-MM-dd"
+          ng-model="hotelCtrl.accommodation.checkinAt"
+          max-date="hotelCtrl.timeOption.max"
+          is-open="hotelCtrl.startOpened" close-text="Close" readonly>
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default"
+            ng-click="hotelCtrl.startOpen($event)">
+              <i class="glyphicon glyphicon-calendar"></i>
+            </button>
+          </span>
         </div>
-        <div class="form-group">
-          <label for="start_date">入住日期</label>
-          <div class="input-group">
-            <input type="text" class="form-control"
-            id="start_date" name="start_date"
-            show-button-bar="false"
-            uib-datepicker-popup="yyyy-MM-dd"
-            ng-model="hotelCtrl.accommodation.checkinAt"
-            max-date="hotelCtrl.timeOption.max"
-            is-open="hotelCtrl.startOpened" close-text="Close" readonly>
-            <span class="input-group-btn">
-              <button type="button" class="btn btn-default"
-              ng-click="hotelCtrl.startOpen($event)">
-                <i class="glyphicon glyphicon-calendar"></i>
-              </button>
-            </span>
-          </div>
+      </div>
+      <div class="form-group">
+        <label for="end_date">退房日期</label>
+        <div class="input-group">
+          <input type="text" class="form-control"
+          id="end_date" name="end_date"
+          show-button-bar="false"
+          uib-datepicker-popup="yyyy-MM-dd"
+          ng-model="hotelCtrl.accommodation.checkoutAt"
+          max-date="hotelCtrl.timeOption.max"
+          is-open="hotelCtrl.endOpened" close-text="Close" readonly>
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default"
+            ng-click="hotelCtrl.endOpen($event)">
+              <i class="glyphicon glyphicon-calendar"></i>
+            </button>
+          </span>
         </div>
-        <div class="form-group">
-          <label for="end_date">退房日期</label>
-          <div class="input-group">
-            <input type="text" class="form-control"
-            id="end_date" name="end_date"
-            show-button-bar="false"
-            uib-datepicker-popup="yyyy-MM-dd"
-            ng-model="hotelCtrl.accommodation.checkoutAt"
-            max-date="hotelCtrl.timeOption.max"
-            is-open="hotelCtrl.endOpened" close-text="Close" readonly>
-            <span class="input-group-btn">
-              <button type="button" class="btn btn-default"
-              ng-click="hotelCtrl.endOpen($event)">
-                <i class="glyphicon glyphicon-calendar"></i>
-              </button>
-            </span>
-          </div>
-        </div>
-        <button class="btn btn-default" ng-click="hotelCtrl.checkPrice()">查看價錢</button><br>
-        <small>*&nbsp;先選好房型、時間才能查看</small>
-      </form>
+      </div>
+      <button class="btn btn-default" ng-click="hotelCtrl.checkPrice()">查看價錢</button><br>
+      <small>*&nbsp;先選好房型、時間才能查看</small>
     </div>
   </div>
 </div>

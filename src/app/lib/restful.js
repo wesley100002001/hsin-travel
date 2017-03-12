@@ -1,6 +1,7 @@
 require('es6-promise').polyfill();
-import moment from 'moment';
 import fetch from 'isomorphic-fetch';
+
+import * as common from '../lib/common';
 import config from '../../../config.json';
 
 export function getHotels () {
@@ -76,22 +77,11 @@ export function getRequests () {
   });
 }
 
-export function getMockNotification () {
-  return new Promise(function (resolve, reject) {
-    var notification = [
-      { requestId: 'A001', message: 'Wesley 在花東七天六夜中留言' },
-      { requestId: 'A003', message: '花蓮七天六夜 改名為 花東七天六夜' },
-      { requestId: 'A005', message: '9/21 國賓大飯店雙人房20間 改為 9/21 國賓大飯店雙人房19間' },
-    ];
-    resolve(notification);
-  });
-}
-
 export function getMockTWConversation (requestId) {
   return new Promise(function (resolve, reject) {
     var conversation = [
-      { id: 'usert', comment: '新需求，再麻煩你們了～', timestamp: moment().format('YYYY 年 MM 月 DD 日 HH:mm:ss')},
-      { id: 'Wesley', comment: '沒問題', timestamp: moment().format('YYYY 年 MM 月 DD 日 HH:mm:ss')}
+      { id: 'usert', comment: '新需求，再麻煩你們了～', timestamp: common.getJPDateWithHour(common.getNowTime())},
+      { id: 'Wesley', comment: '沒問題', timestamp: common.getJPDateWithHour(common.getNowTime())}
     ];
     resolve(conversation);
   });
@@ -100,8 +90,8 @@ export function getMockTWConversation (requestId) {
 export function getMockJPConversation (requestId) {
   return new Promise(function (resolve, reject) {
     var conversation = [
-      { id: 'usert', comment: 'お願いします', timestamp: moment().format('YYYY 年 MM 月 DD 日 HH:mm:ss')},
-      { id: 'Wesley', comment: '大丈夫', timestamp: moment().format('YYYY 年 MM 月 DD 日 HH:mm:ss')}
+      { id: 'usert', comment: 'お願いします', timestamp: common.getJPDateWithHour(common.getNowTime())},
+      { id: 'Wesley', comment: '大丈夫', timestamp: common.getJPDateWithHour(common.getNowTime())}
     ];
     resolve(conversation);
   });

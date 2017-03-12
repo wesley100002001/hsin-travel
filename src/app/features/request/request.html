@@ -14,7 +14,7 @@
         </div>
         <div class="panel-body">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <div class="form-group">
                 <label for="title">團名</label>
                 <input class="form-control" name="title" type="text" 
@@ -32,8 +32,6 @@
                 <input class="form-control" name="serialNo" type="text" placeholder="請輸入編號"
                        ng-model="requestCtrl.newPkg.serialNo" required>
               </div>
-            </div>
-            <div class="col-md-6">
               <div class="form-group">
                 <label for="start_date">開始日期</label>
                 <div class="input-group">
@@ -73,6 +71,12 @@
                 </div>
               </div>
             </div>
+            <div class="col-md-8">
+              <div class="form-group">
+                <label for="description">詳細內容</label>
+                <textarea id="description" class="form-control" rows="15" ng-model="requestCtrl.tourPackage.description" required></textarea>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -100,15 +104,7 @@
           <button class="btn btn-success" ng-click="requestCtrl.addAccommodation()">
             <span class="glyphicon glyphicon-plus"></span> 新增住宿
           </button>
-          <span class="help-block">若無法確定房型，可以直接於下方詳細內容輸入</span>
-        </div>
-      </div>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">詳細內容</h3>
-        </div>
-        <div class="panel-body">
-          <textarea class="form-control" rows="10" ng-model="requestCtrl.tourPackage.description" required></textarea>
+          <span class="help-block">若無法確定房型，可以直接於上方詳細內容輸入</span>
         </div>
       </div>
       <div class="text-center">
@@ -140,9 +136,8 @@
           目前沒有任何留言唷！
         </p>
         <div ng-repeat="com in requestCtrl.taiwanLogs">
-          <span>{{com.id}}:</span><br>
-          <span>{{com.comment}}</span>
-          <p class="text-right">{{com.timestamp}}</p>
+          <p><span>{{com.id}}:</span><span class="pull-right">{{com.timestamp}}</span></p>
+          <p class="comment">{{com.comment}}</p>
         </div>
         <div class="form-group">
           <label for="comment">留言</label>
@@ -155,9 +150,8 @@
           目前沒有任何留言唷！
         </p>
         <div ng-repeat="com in requestCtrl.japanLogs">
-          <span>{{com.id}}:</span><br>
-          <span>{{com.comment}}</span>
-          <p class="text-right">{{com.timestamp}}</p>
+          <p><span>{{com.id}}:</span><span class="pull-right">{{com.timestamp}}</span></p>
+          <p class="comment">{{com.comment}}</p>
         </div>
         <div class="form-group">
           <label for="comment">留言</label>
@@ -169,10 +163,11 @@
     <div class="col-sm-9 col-md-9 scrollable">
       <h1 ng-show="!requestCtrl.pkgEditable">
         {{requestCtrl.tourPackage.title}}
+        <small>{{requestCtrl.tourPackage.startsOn}}～{{requestCtrl.tourPackage.endsOn}}</small>
         <button class="btn btn-primary pull-right" ng-click="requestCtrl.onEditPkg()"
                 ng-show="requestCtrl.editable">編輯</button>
       </h1>
-      <h6 ng-show="!requestCtrl.pkgEditable">{{requestCtrl.tourPackage.serialNo}}</h6>
+      <h5 ng-show="!requestCtrl.pkgEditable">{{requestCtrl.tourPackage.serialNo}}</h5>
       <h3 ng-show="!requestCtrl.pkgEditable">人數：{{requestCtrl.tourPackage.peopleNote}}</h3>
       <div ng-show="requestCtrl.pkgEditable">
         <h3>
@@ -211,8 +206,8 @@
         <h3>住宿</h3>
         <table class="table git-table">
           <tr>
-            <th>開始日期</th>
-            <th>結束日期</th>
+            <th>入住日期</th>
+            <th>退房日期</th>
             <th>飯店</th>
             <th>房型</th>
             <th>數量</th>

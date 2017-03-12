@@ -10,8 +10,6 @@ export const FETCH_HOTEL = 'FETCH_HOTEL';
 export const FETCH_HOTEL_ROOMS = 'FETCH_HOTEL_ROOMS';
 export const PATCH_ACCO = 'PATCH_ACCO';
 
-export const FUCKING_ADD_ACCO = 'FUCKING_ADD_ACCO';
-
 export function fetchHotel (hotelId) {
   return {
     type: FETCH_HOTEL,
@@ -54,23 +52,19 @@ export function fetchFare (roomId, timeFrame) {
 }
 
 export function submitAccommodation (requestId, acco) {
-  return {
-    type: FUCKING_ADD_ACCO,
-    payload: acco
+  return dispatch => {
+    return restful.postAccommodation(requestId, acco)
+    .then(response => {
+      console.log(response);
+      // 因為無法在 modal 關掉之後 trigger action 去 fetch request
+      // 所以先 fetch，因為要拿更新過的 request
+      return new Promise((resolve, reject) => {
+        resolve(dispatch(fetchRequest(requestId)));
+      });
+    }).catch(err => {
+      console.log(err);
+    });
   };
-  // return dispatch => {
-  //   return restful.postAccommodation(requestId, acco)
-  //   .then(response => {
-  //     console.log(response);
-  //     // 因為無法在 modal 關掉之後 trigger action 去 fetch request
-  //     // 所以先 fetch，因為要拿更新過的 request
-  //     return new Promise((resolve, reject) => {
-  //       resolve(dispatch(fetchRequest(requestId)));
-  //     });
-  //   }).catch(err => {
-  //     console.log(err);
-  //   });
-  // };
 }
 
 export function clearAccommodation () {

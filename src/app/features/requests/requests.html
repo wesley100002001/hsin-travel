@@ -8,17 +8,17 @@
       <tr>
         <th>團名</th>
         <th>公司</th>
+        <th>會社</th>
         <th>出發日期</th>
-        <th>回程日期</th>
         <th>需求發起人</th>
         <th>建立日期</th>
       </tr>
       <tr ng-repeat="req in requestsCtrl.requests">
         <td><a ui-sref="request({requestId: '{{req.id}}'})">{{req.title}}</a></td>
         <td>{{req.region}}</td>
+        <td></td>
         <td>{{req.startsOn}}</td>
-        <td>{{req.endsOn}}</td>
-        <td>{{req.requester}}</td>
+        <td>{{req.creator.username}}</td>
         <td>{{req.createdAt}}</td>
       </tr>
     </table>

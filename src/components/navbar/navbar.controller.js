@@ -12,8 +12,6 @@ export default class NavbarController {
 
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), combinedActions)(this);
     $scope.$on('$destroy', unsubscribe);
-
-    this.fetchNotifications();
   }
 
   mapStateToThis (state) {

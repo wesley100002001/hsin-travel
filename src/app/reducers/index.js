@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import { router } from 'redux-ui-router';
-import moment from 'moment';
+
+import * as common from '../lib/common';
 
 import { LOGIN_FAILED, SET_LOGGED_IN, SET_LOGGING } from '../actions/login';
 import { FETCH_REQUESTS } from '../actions/requests';
@@ -10,7 +11,7 @@ import { ADD_JP_COMMENT, ADD_TW_COMMENT, ADD_KNOCKING_ACCO, FETCH_JP_CONVERSATIO
   UPDATE_REQUEST } from '../actions/request';
 import { FETCH_HOTELS } from '../actions/hotels';
 import { FETCH_NOTIFICATIONS } from '../actions/navbar';
-import { FUCKING_ADD_ACCO, ADD_ACCO, CLEAR_ACCO, FETCH_ACCO, FETCH_FARE, FETCH_HOTEL, FETCH_HOTEL_ROOMS, PATCH_ACCO } from '../actions/hotel';
+import { ADD_ACCO, CLEAR_ACCO, FETCH_ACCO, FETCH_FARE, FETCH_HOTEL, FETCH_HOTEL_ROOMS, PATCH_ACCO } from '../actions/hotel';
 
 const FULFILLED = '_FULFILLED';
 const PENDING = '_PENDING';
@@ -116,14 +117,6 @@ function tour_package (state = {}, action) {
     case CLEAR_REQUEST:
     return action.payload;
 
-    case FUCKING_ADD_ACCO:
-    return Object.assign({}, state, {
-      accommodations: [
-        ...state.accommodations,
-        action.payload
-      ]
-    });
-
     default:
     return state;
   }
@@ -134,7 +127,7 @@ function requests (state = [], action) {
     case `${FETCH_REQUESTS}${FULFILLED}`:
     return action.payload.map(req => {
       return Object.assign({}, req, {
-        createdAt: moment(req.createdAt).format('YYYY-MM-DD')
+        createdAt: common.getJPDate(req.createdAt)
       });
     });
 
