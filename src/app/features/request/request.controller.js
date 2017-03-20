@@ -1,4 +1,5 @@
 import moment from 'moment';
+import loading from '../../../assets/imgs/loading.gif';
 import * as RequestActions from '../../actions/request';
 import * as RouterActions from 'redux-ui-router';
 
@@ -18,10 +19,12 @@ export default class RequestController {
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), combinedActions)(this);
     $scope.$on('$destroy', unsubscribe);
 
+    this.loading = loading;
     this.startOpened = false;
     this.endOpened = false;
+
     this.timeOption = {
-      max: moment().subtract(1, 'days').format()
+      minDate: new Date()
     };
 
     if (this.isNew) {
@@ -69,20 +72,26 @@ export default class RequestController {
     this.newPkg.startsOn = moment(this.newPkg.startsOn).format('YYYY-MM-DD');
     this.newPkg.endsOn = moment(this.newPkg.endsOn).format('YYYY-MM-DD');
     this.newPkg.region = localStorage.getItem('region');
-    this.newPkg.accommodations = this.newAccommodation.map(acco => {
-      var purifiedAcco = {
-        roomId: acco.roomId,
-        checkinAt: acco.checkinAt,
-        checkoutAt: acco.checkoutAt,
-        quantity: acco.quantity
-      };
-      return purifiedAcco;
-    });
+    this.newPkg.accommodations = this.newAccommodation;
     this.submitRequest(this.newPkg);
   }
 
   addAccommodation () {
+    if (this.isNew) {
+      if (!this.newPkg.startsOn && !this.newPkg.endsOn) {
+        alert('請先選擇開始、結束日期');
+        return;
+      }
+    }
+    var timeFrame = this.isNew ? 
+      { startsOn: this.newPkg.startsOn, endsOn: this.newPkg.endsOn } :
+      { startsOn: this.tourPackage.startsOn, endsOn: this.tourPackage.endsOn };
+    this.setBoundTimeFrame(timeFrame);
     this.stateGo('request.hotels');
+  }
+
+  changeDate (scope) {
+    scope.reqForm.$setValidity('date', !moment(this.newPkg.startsOn).isAfter(this.newPkg.endsOn));
   }
 
   /*
@@ -132,8 +141,8 @@ export default class RequestController {
   }
 
   submitPkg () {
-    this.updateRequest(this.tourPackage.requestId, this.tempPkg);
-    this.offEditTitle();
+    this.updateRequest(this.tourPackage.id, this.tempPkg);
+    this.pkgEditable = false;
   }
 
   showFeeInput () {

@@ -4,6 +4,12 @@ import fetch from 'isomorphic-fetch';
 import * as common from '../lib/common';
 import config from '../../../config.json';
 
+export function postMockAccommodation (requestId, acco) {
+  return new Promise(function (resolve, reject) {
+    resolve(acco);
+  });
+}
+
 export function getHotels () {
   var token = localStorage.getItem('token');
   return fetch(config.heroku_host + '/hotels', {
@@ -48,6 +54,19 @@ export function postRequest (req) {
       'Authorization': 'Bearer ' + token
     },
     body: JSON.stringify(req)
+  }).then(response => {
+    return response.json();
+  });
+}
+
+export function putRequest (requestId, patchObj) {
+  var token = localStorage.getItem('token');
+  return fetch(config.heroku_host.concat('/request/').concat(requestId), {
+    method: 'PUT',
+    headers: {
+      'Authorization': 'Bearer ' + token
+    },
+    body: JSON.stringify(patchObj)
   }).then(response => {
     return response.json();
   });
@@ -101,14 +120,6 @@ export function addComment (comment) {
   return new Promise(function (resolve, reject) {
     resolve(comment);
   })
-}
-
-// TODO: to be finished
-export function putRequest (req) {
-  return fetch(config.heroku_host.concat('/request/').concat(requestId), {
-    method: 'PUT',
-
-  });
 }
 
 export function postUserAuth (username, password) {

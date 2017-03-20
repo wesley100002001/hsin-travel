@@ -1,34 +1,39 @@
 <div class="container">
   <div class="row">
     <h1 class="padding-down">需求列表</h1>
-    <p>
-      <button class="btn btn-success" ng-show="!requestsCtrl.editable" ng-click="requestsCtrl.createRequest()">新增</button>
-    </p>
+    <button class="btn btn-success" ng-show="!requestsCtrl.editable" ng-click="requestsCtrl.createRequest()">新增</button>
+    <div class="form-group form-inline pull-right">
+      <span class="glyphicon glyphicon-search"></span>
+      <input type="text" class="form-control" placeholder="請輸入團名" ng-model="requestsCtrl.searchText"
+             ng-change="requestsCtrl.search()">
+    </div>
     <table class="table table-striped">
       <tr>
         <th>團名</th>
-        <th>公司</th>
-        <th>會社</th>
+        <th>地區</th>
+        <th>公司名稱</th>
         <th>出發日期</th>
         <th>需求發起人</th>
-        <th>建立日期</th>
+        <th>最後修改日期</th>
       </tr>
-      <tr ng-repeat="req in requestsCtrl.requests">
+      <tr ng-repeat="req in requestsCtrl.currentRequests | limitTo: requestsCtrl.pageSize">
         <td><a ui-sref="request({requestId: '{{req.id}}'})">{{req.title}}</a></td>
         <td>{{req.region}}</td>
-        <td></td>
+        <td>{{req.clientName}}</td>
         <td>{{req.startsOn}}</td>
         <td>{{req.creator.username}}</td>
-        <td>{{req.createdAt}}</td>
+        <td>{{req.updatedAt}}</td>
       </tr>
     </table>
-    <!-- <uib-pagination
+    <ul
+      uib-pagination
       class="pagination-sm"
-      total-items="orders.list.length"
-      items-per-page="orders.pageSize"
-      max-size="orders.maxSize"
+      total-items="requestsCtrl.requests.length"
+      items-per-page="requestsCtrl.pageSize"
+      max-size="requestsCtrl.maxSize"
       boundary-links="true"
-      ng-model="orders.currentPage">
-    </uib-pagination> -->
+      ng-model="requestsCtrl.currentPage"
+      ng-change="requestsCtrl.changePage()">
+    </ul> 
   </div>
 </div>

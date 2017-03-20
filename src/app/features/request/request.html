@@ -22,6 +22,12 @@
                       required>
               </div>
               <div class="form-group">
+                <label for="client">公司</label>
+                <input class="form-control" name="client" type="text" 
+                      ng-model="requestCtrl.newPkg.clientName" placeholder="請輸入公司名稱"
+                      required>
+              </div>
+              <div class="form-group">
                 <label for="people">人數</label>
                 <input class="form-control" name="people" type="text" placeholder="團員人數"
                        ng-model="requestCtrl.newPkg.peopleNote" required>
@@ -40,8 +46,9 @@
                   uib-datepicker-popup="yyyy-MM-dd"
                   show-button-bar="false"
                   ng-model="requestCtrl.newPkg.startsOn"
-                  max-date="requestCtrl.timeOption.max"
+                  datepicker-options="requestCtrl.timeOption"
                   is-open="requestCtrl.startOpened" close-text="Close" 
+                  ng-change="requestCtrl.changeDate(this)"
                   readonly required>
                   <span class="input-group-btn">
                     <button type="button" class="btn btn-default"
@@ -59,8 +66,9 @@
                   uib-datepicker-popup="yyyy-MM-dd"
                   show-button-bar="false"
                   ng-model="requestCtrl.newPkg.endsOn"
-                  max-date="requestCtrl.timeOption.max"
+                  datepicker-options="requestCtrl.timeOption"
                   is-open="requestCtrl.endOpened" close-text="Close" 
+                  ng-change="requestCtrl.changeDate(this)"
                   readonly required>
                   <span class="input-group-btn">
                     <button type="button" class="btn btn-default"
@@ -69,12 +77,17 @@
                     </button>
                   </span>
                 </div>
+                <div class="text-danger" ng-show="reqForm.$error.date">
+                  <i class="glyphicon glyphicon-exclamation-sign"></i>
+                  開始日期要於結束日期之前
+                </div>
               </div>
             </div>
             <div class="col-md-8">
               <div class="form-group">
                 <label for="description">詳細內容</label>
-                <textarea id="description" class="form-control" rows="15" ng-model="requestCtrl.tourPackage.description" required></textarea>
+                <textarea id="description" class="form-control" rows="15" 
+                          ng-model="requestCtrl.newPkg.description" required></textarea>
               </div>
             </div>
           </div>
@@ -90,15 +103,13 @@
               <th>飯店</th>
               <th>入住日期</th>
               <th>退房日期</th>
-              <th>房型</th>
-              <th>數量</th>
+              <th>房間</th>
             </tr>
             <tr ng-repeat="acco in requestCtrl.newAccommodation">
               <td>{{acco.hotelName}}</td>
               <td>{{acco.checkinAt}}</td>
               <td>{{acco.checkoutAt}}</td>
-              <td>{{acco.roomType}}</td>
-              <td>{{acco.quantity}}</td>
+              <td><span ng-repeat="room in acco.rooms">{{room.numRooms}}&nbsp;{{room.type}}&nbsp;&nbsp;&nbsp;</span></td>
             </tr>
           </table>
           <button class="btn btn-success" ng-click="requestCtrl.addAccommodation()">
@@ -161,6 +172,12 @@
       </div>
     </div>
     <div class="col-sm-9 col-md-9 scrollable">
+      <div ng-show="requestCtrl.isCreated === 'success'" class="alert alert-success" role="alert">
+        <strong>更新成功</strong>
+      </div>
+      <div ng-show="requestCtrl.isCreated === 'fail'" class="alert alert-danger" role="alert">
+        <strong>更新失敗</strong>
+      </div>
       <h1 ng-show="!requestCtrl.pkgEditable">
         {{requestCtrl.tourPackage.title}}
         <small>{{requestCtrl.tourPackage.startsOn}}～{{requestCtrl.tourPackage.endsOn}}</small>
@@ -197,7 +214,7 @@
         </div>
         <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
           <div class="card-block">
-            {{requestCtrl.tourPackage.description}}
+            <pre>{{requestCtrl.tourPackage.description}}</pre>
           </div>
         </div>
       </div>
@@ -210,15 +227,13 @@
             <th>退房日期</th>
             <th>飯店</th>
             <th>房型</th>
-            <th>數量</th>
             <th ng-show="requestCtrl.editable"></th>
           </tr>
           <tr ng-repeat="acco in requestCtrl.tourPackage.accommodations track by $index">
             <td>{{acco.checkinAt}}</td>
             <td>{{acco.checkoutAt}}</td>
-            <td>{{acco.room.hotel.name}}</td>
-            <td>{{acco.room.type}}</td>
-            <td>{{acco.quantity}}</td>
+            <td>{{acco.rooms[0].room.hotel.name}}</td>
+            <td><span ng-repeat="room in acco.rooms">{{room.numRooms}}&nbsp;{{room.room.type}}&nbsp;&nbsp;&nbsp;</span></td>
             <td ng-show="requestCtrl.editable">
               <a href ng-click="requestCtrl.removeAccommodation(acco.requestId, acco.id)">
                 <span class="glyphicon glyphicon-trash"></span>
@@ -227,7 +242,7 @@
           </tr>
           <tr ng-show="requestCtrl.editable">
             <td>
-              <a ui-sref="request.hotels">
+              <a href ng-click="requestCtrl.addAccommodation()">
                 <span class="glyphicon glyphicon-plus-sign"></span>
               </a>
             </td>

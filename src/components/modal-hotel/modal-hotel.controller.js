@@ -18,7 +18,8 @@ export default class HotelController {
     this.startOpened = false;
     this.endOpened = false;
     this.timeOption = {
-      max: moment().subtract(1, 'days').format()
+      minDate: new Date(this.timeframe.startsOn),
+      maxDate: new Date(this.timeframe.endsOn)
     };
 
     this.fetchHotel($stateParams.hotelId);
@@ -27,7 +28,8 @@ export default class HotelController {
       this.fetchAccommodation($stateParams.accoId);
     }
 
-    this.accommodation = {};
+    this.fares = [];
+    this.selectedRooms = [];
   }
 
   mapStateToThis(state) {
@@ -36,9 +38,10 @@ export default class HotelController {
     return {
       breakfast: state.hotel_info.breakfast,
       extraBed: state.hotel_info.extraBed,
-      fare: state.hotel_info.fare,
+      fareRef: state.hotel_info.fare,
       name: state.hotel_info.name,
-      rooms: state.hotel_info.rooms
+      rooms: state.hotel_info.rooms,
+      timeframe: state.timeframe
     };
   }
 
@@ -67,24 +70,109 @@ export default class HotelController {
     this.fetchFare(this.accommodation.roomId, timeFrame);
   }
 
+  changeDate (scope) {
+    scope.hotelForm.$setValidity('date', !moment(this.accommodation.checkinAt).isAfter(this.accommodation.checkoutAt));
+  }
+
+  showFareInput () {
+    this.fareInputVisible = true;
+    this.fareInput = {};
+  }
+
+  cancelAddFare () {
+    this.fareInputVisible = false;
+    delete this.fareInput;
+  }
+
+  submitFare () {
+    this.fares.push({
+      price: this.fareInput.price,
+      amount: this.fareInput.amount
+    });
+    this.fareInputVisible = false;
+    delete this.fareInput;
+  }
+
+  showRoomInput () {
+    this.roomInputVisible = true;
+    this.roomInput = {};
+  }
+
+  cancelAddRoom () {
+    this.roomInputVisible = false;
+    delete this.roomInput;
+  }
+
+  submitRoom () {
+    var roomObj = Object.assign({}, this.roomInput.room, {
+      amount: this.roomInput.amount
+    });
+    this.selectedRooms.push(roomObj);
+    this.roomInputVisible = false;
+    delete this.roomInput;
+  }
+
   confirm () {
-    if (!this.accommodation.roomId || !this.accommodation.checkinAt || !this.accommodation.checkoutAt || !this.accommodation.quantity) {
+    if (!this.accommodation.checkinAt || !this.accommodation.checkoutAt || this.fares.length < 0) {
       alert('資料輸入不完全');
       return;
     }
-    this.accommodation.checkinAt = moment(this.accommodation.checkinAt).format('YYYY-MM-DD');
-    this.accommodation.checkoutAt = moment(this.accommodation.checkoutAt).format('YYYY-MM-DD');
     if (this.requestId === '0') {
-      this.accommodation.roomType = this.rooms.find(room => {
-        return room.roomId = this.accommodation.roomId;
-      }).type;
-      this.accommodation.hotelName = this.name;
-      this.createAccommodation(this.accommodation);
+      this.createAccommodation(this.sanitizeTempAcco());
       this.clearAccommodation();
     } else {
-      this.submitAccommodation(this.requestId, this.accommodation);
+      this.submitAccommodation(this.requestId, this.sanitizeAcco());
     }
+    
     this.uibModal.close();
+  }
+
+  sanitizeTempAcco () { 
+    // Request is not yet created
+    var reqObj = {
+      checkinAt: moment(this.accommodation.checkinAt).format('YYYY-MM-DD'),
+      checkoutAt: moment(this.accommodation.checkoutAt).format('YYYY-MM-DD'),
+      rooms: [],
+      fares: []
+    };
+    reqObj.rooms = this.selectedRooms.map(room => {
+      return {
+        roomId: room.id,
+        numRooms: room.amount,
+        type: room.type
+      };
+    });
+    reqObj.fares = this.fares.map(fare => {
+      return {
+        amount: fare.price,
+        multiplier: fare.amount
+      };
+    });
+    reqObj.hotelName = this.name;
+    return reqObj;
+  }
+
+  sanitizeAcco () {
+    // Request is created
+    var reqObj = {
+      checkinAt: moment(this.accommodation.checkinAt).format('YYYY-MM-DD'),
+      checkoutAt: moment(this.accommodation.checkoutAt).format('YYYY-MM-DD'),
+      rooms: [],
+      fares: []
+    };
+    reqObj.rooms = this.selectedRooms.map(room => {
+      return {
+        roomId: room.id,
+        numRooms: room.amount
+      };
+    });
+    reqObj.fares = this.fares.map(fare => {
+      return {
+        amount: fare.price,
+        multiplier: fare.amount
+      };
+    });
+    return reqObj;
   }
 
   cancel () {
