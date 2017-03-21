@@ -98,6 +98,31 @@ export default class RequestController {
     我是新增 / 編輯的分隔線
   */
 
+  getFareSum (fares) {
+    return fares.map(fare => {
+      return fare.amount * fare.multiplier;
+    }).reduce((sum, cur) => {
+      return sum + cur;
+    });
+  }
+
+  getTotalCost () {
+    if (!this.tourPackage.accommodations) {
+      return 0;
+    }
+    var feeSum = this.fee.length > 0 ? this.fee.map(f => {
+      return f.amount;
+    }).reduce((sum, cur) => {
+      return sum + cur;
+    }) : 0;
+    var fareSum = this.tourPackage.accommodations.length > 0 ? this.tourPackage.accommodations.map(acco => {
+      return this.getFareSum(acco.fares);
+    }).reduce((sum, cur) => {
+      return sum + cur;
+    }) : 0;
+    return feeSum + fareSum;
+  }
+
   // 一個 Request 裡應該要有一個 Conversation Array 來存所有的留言
   leaveComment (region) {
     if (!!this.newComment) {

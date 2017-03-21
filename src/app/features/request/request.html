@@ -185,7 +185,7 @@
                 ng-show="requestCtrl.editable">編輯</button>
       </h1>
       <h5 ng-show="!requestCtrl.pkgEditable">{{requestCtrl.tourPackage.serialNo}}</h5>
-      <h3 ng-show="!requestCtrl.pkgEditable">人數：{{requestCtrl.tourPackage.peopleNote}}</h3>
+      <h4 ng-show="!requestCtrl.pkgEditable">人數：{{requestCtrl.tourPackage.peopleNote}}</h4>
       <div ng-show="requestCtrl.pkgEditable">
         <h3>
           團名：<input type="text" class="form-control" ng-model="requestCtrl.tempPkg.title">
@@ -227,6 +227,7 @@
             <th>退房日期</th>
             <th>飯店</th>
             <th>房型</th>
+            <th>價錢</th>
             <th ng-show="requestCtrl.editable"></th>
           </tr>
           <tr ng-repeat="acco in requestCtrl.tourPackage.accommodations track by $index">
@@ -234,6 +235,7 @@
             <td>{{acco.checkoutAt}}</td>
             <td>{{acco.rooms[0].room.hotel.name}}</td>
             <td><span ng-repeat="room in acco.rooms">{{room.numRooms}}&nbsp;{{room.room.type}}&nbsp;&nbsp;&nbsp;</span></td>
+            <td>{{requestCtrl.getFareSum(acco.fares)}}</td>
             <td ng-show="requestCtrl.editable">
               <a href ng-click="requestCtrl.removeAccommodation(acco.requestId, acco.id)">
                 <span class="glyphicon glyphicon-trash"></span>
@@ -246,6 +248,7 @@
                 <span class="glyphicon glyphicon-plus-sign"></span>
               </a>
             </td>
+            <td></td>
             <td></td>
             <td></td>
             <td></td>
@@ -285,6 +288,9 @@
           <span class="glyphicon glyphicon-remove"></span>
         </button>
       </div>
+      <hr>
+      <h3>總計</h3>
+      <h4>$&nbsp;{{requestCtrl.getTotalCost()}}</h4>
     </div>
   </div>
 </div>
