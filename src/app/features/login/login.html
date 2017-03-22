@@ -18,11 +18,13 @@
       <div ng-show="loginCtrl.failed" class="alert alert-danger" role="alert">
         <strong>登入失敗：</strong>請檢查帳號密碼是否正確。
       </div>
-      <div class="text-center">
-        <img name="loading" ng-show="loginCtrl.logging" ng-src="{{loginCtrl.loading}}" />
-      </div>
     </div>
     <div class="col-md-4">
+    </div>
+  </div>
+  <div class="row" ng-show="loginCtrl.logging">
+    <div class="col-md-2 col-md-offset-5">
+      <div class="loader"></div>
     </div>
   </div>
 </div>

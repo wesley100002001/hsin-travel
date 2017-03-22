@@ -1,4 +1,3 @@
-import loading from '../../../assets/imgs/loadingAnimation.gif';
 import * as LoginActions from '../../actions/login';
 import * as RouterActions from 'redux-ui-router';
 
@@ -12,8 +11,6 @@ export default class LoginController {
     if (!!localStorage.getItem('token') && !!localStorage.getItem('username')) {
       this.stateGo('requests');
     }
-
-    this.loading = loading;
   }
 
   mapStateToThis (state) {

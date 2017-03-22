@@ -1,4 +1,4 @@
-import './login.css';
+import './login.less';
 
 import angular from 'angular';
 import uirouter from 'angular-ui-router';
