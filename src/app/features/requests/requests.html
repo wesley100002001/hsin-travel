@@ -1,5 +1,10 @@
 <div class="container">
-  <div class="row">
+  <div class="row" ng-show="requestsCtrl.isLoading">
+      <div class="col-md-2 col-md-offset-5">
+        <div class="loader"></div>
+      </div>
+    </div>
+  <div class="row" ng-show="!requestsCtrl.isLoading">
     <h1 class="padding-down">需求列表</h1>
     <button class="btn btn-success" ng-show="!requestsCtrl.editable" ng-click="requestsCtrl.createRequest()">新增</button>
     <div class="form-group form-inline pull-right">
@@ -7,12 +12,7 @@
       <input type="text" class="form-control" placeholder="請輸入團名" ng-model="requestsCtrl.searchText"
              ng-change="requestsCtrl.search()">
     </div>
-    <div class="row" ng-show="requestsCtrl.isLoading">
-      <div class="col-md-2 col-md-offset-5">
-        <div class="loader"></div>
-      </div>
-    </div>
-    <table class="table table-striped" ng-show="!requestsCtrl.isLoading">
+    <table class="table table-striped">
       <tr>
         <th>團名</th>
         <th>地區</th>
