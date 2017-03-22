@@ -39,6 +39,7 @@ export default class HotelController {
       breakfast: state.hotel_info.breakfast,
       extraBed: state.hotel_info.extraBed,
       fareRef: state.hotel_info.fare,
+      isLoading: state.isLoading,
       name: state.hotel_info.name,
       rooms: state.hotel_info.rooms,
       timeframe: state.timeframe

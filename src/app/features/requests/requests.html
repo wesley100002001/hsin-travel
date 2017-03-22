@@ -1,12 +1,14 @@
 <div class="container">
   <div class="row" ng-show="requestsCtrl.isLoading">
-      <div class="col-md-2 col-md-offset-5">
-        <div class="loader"></div>
-      </div>
+    <div class="col-md-2 col-md-offset-5">
+      <div class="loader"></div>
     </div>
+  </div>
   <div class="row" ng-show="!requestsCtrl.isLoading">
     <h1 class="padding-down">需求列表</h1>
-    <button class="btn btn-success" ng-show="!requestsCtrl.editable" ng-click="requestsCtrl.createRequest()">新增</button>
+    <button class="btn btn-success" ng-show="!requestsCtrl.editable" ng-click="requestsCtrl.createRequest()">
+      <span class="glyphicon glyphicon-plus"></span> 新增
+    </button>
     <div class="form-group form-inline pull-right">
       <span class="glyphicon glyphicon-search"></span>
       <input type="text" class="form-control" placeholder="請輸入團名" ng-model="requestsCtrl.searchText"

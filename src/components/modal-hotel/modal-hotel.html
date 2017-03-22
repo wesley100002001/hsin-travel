@@ -2,20 +2,20 @@
   <label>{{hotelCtrl.name}}</label>
 </div>
 <div class="modal-body">
+  <div class="row" ng-show="hotelCtrl.isLoading">
+    <div class="col-md-2 col-md-offset-5">
+      <div class="loader"></div>
+    </div>
+  </div>
   <div class="row">
     <div class="col-md-6">
-      <div class="form-group">
-        <h4 class="padding-down">飯店資訊</h4>
-        早餐：{{hotelCtrl.breakfast}}<br>
-        Extra Bed：{{hotelCtrl.extraBed}}
-      </div>
-      <h4 class="padding-down">選擇房型、日期</h4>
+      <h4>房間</h4>
       <div ng-repeat="room in hotelCtrl.selectedRooms">
         <h4>{{room.type}}&nbsp;x&nbsp;{{room.amount}}間</h4>
       </div>
       <div class="padding-down">
         <button class="btn btn-success" ng-show="!hotelCtrl.roomInputVisible" ng-click="hotelCtrl.showRoomInput()">
-          <span class="glyphicon glyphicon-plus"></span> 新增房型
+          <span class="glyphicon glyphicon-plus"></span> 新增訂房
         </button>
         <div class="form-group" ng-show="hotelCtrl.roomInputVisible">
           <label for="room">房型選擇</label>
@@ -35,6 +35,12 @@
           </button>
         </div>
       </div>
+      <div class="form-group">
+        <h4 class="padding-down">其它項目</h4>
+        早餐：{{hotelCtrl.breakfast}}<br>
+        Extra Bed：{{hotelCtrl.extraBed}}
+      </div>
+      <h4 class="padding-down">選擇日期</h4>
       <form name="hotelForm" novalidate>
         <div class="form-group">
           <label for="start_date">入住日期</label>
@@ -110,10 +116,10 @@
           <div class="input-group">
             <span class="input-group-addon">$</span>
             <input type="number" class="form-control" ng-model="hotelCtrl.fareInput.price"
-                    placeholder="請輸入房間價錢">
+                   placeholder="請輸入房間價錢">
           </div>
           <input type="number" class="form-control" ng-model="hotelCtrl.fareInput.amount"
-                  placeholder="請輸入數量">
+                 placeholder="請輸入數量">
         </form>
         <button class="btn btn-success">
           <span class="glyphicon glyphicon-ok" ng-click="hotelCtrl.submitFare()"></span>

@@ -113,15 +113,19 @@
             </tr>
           </table>
           <button class="btn btn-success" ng-click="requestCtrl.addAccommodation()">
-            <span class="glyphicon glyphicon-plus"></span> 新增住宿
+            <span class="glyphicon glyphicon-plus"></span> 新增
           </button>
           <span class="help-block">若無法確定房型，可以直接於上方詳細內容輸入</span>
         </div>
       </div>
       <div class="text-center">
-        <button class="btn btn-default" ng-click="requestCtrl.stateGo('requests')">取消</button>
-        <button class="btn btn-primary" ng-click="requestCtrl.confirm()" 
-                ng-disabled="!reqForm.$valid" >確認</button>
+        <button class="btn btn-danger" ng-click="requestCtrl.stateGo('requests')">
+          <span class="glyphicon glyphicon-remove"></span> 取消
+        </button>
+        <button class="btn btn-success" ng-click="requestCtrl.confirm()" 
+                ng-disabled="!reqForm.$valid" >
+          <span class="glyphicon glyphicon-saved"></span> 新增
+        </button>
       </div>
     </form>
   </div>
@@ -159,7 +163,9 @@
           <label for="comment">留言</label>
           <textarea class="form-control" rows="2" id="comment" ng-model="requestCtrl.newComment"></textarea>
         </div>
-        <button class="btn btn-success" ng-click="requestCtrl.leaveComment('Taiwan')">送出</button>
+        <button class="btn btn-success" ng-click="requestCtrl.leaveComment('Taiwan')">
+          <span class="glyphicon glyphicon-share-alt"></span> 送出
+        </button>
       </div>
       <div ng-show="requestCtrl.channel === 'Japan'">
         <p ng-show="requestCtrl.japanLogs < 1" class="text-center">
@@ -173,7 +179,9 @@
           <label for="comment">留言</label>
           <textarea class="form-control" rows="2" id="comment" ng-model="requestCtrl.newComment"></textarea>
         </div>
-        <button class="btn btn-success" ng-click="requestCtrl.leaveComment('Japan')">送出</button>
+        <button class="btn btn-success" ng-click="requestCtrl.leaveComment('Japan')">
+          <span class="glyphicon glyphicon-share-alt"></span> 送出
+        </button>
       </div>
     </div>
     <div class="col-sm-9 col-md-9 scrollable">
@@ -186,8 +194,9 @@
       <h1 ng-show="!requestCtrl.pkgEditable">
         {{requestCtrl.tourPackage.title}}
         <small>{{requestCtrl.tourPackage.startsOn}}～{{requestCtrl.tourPackage.endsOn}}</small>
-        <button class="btn btn-primary pull-right" ng-click="requestCtrl.onEditPkg()"
-                ng-show="requestCtrl.editable">編輯</button>
+        <button class="btn btn-primary pull-right" ng-click="requestCtrl.onEditPkg()" ng-show="requestCtrl.editable">
+          <span class="glyphicon glyphicon-pencil"></span> 編輯
+        </button>
       </h1>
       <h5 ng-show="!requestCtrl.pkgEditable">{{requestCtrl.tourPackage.serialNo}}</h5>
       <h4 ng-show="!requestCtrl.pkgEditable">人數：{{requestCtrl.tourPackage.peopleNote}}</h4>
@@ -226,7 +235,7 @@
       <hr ng-show="!!requestCtrl.tourPackage.description">
       <div>
         <h3>住宿</h3>
-        <table class="table git-table">
+        <table class="table git-table" ng-show="requestCtrl.tourPackage.accommodations > 0">
           <tr>
             <th>入住日期</th>
             <th>退房日期</th>
@@ -247,19 +256,10 @@
               </a>
             </td>
           </tr>
-          <tr ng-show="requestCtrl.editable">
-            <td>
-              <a href ng-click="requestCtrl.addAccommodation()">
-                <span class="glyphicon glyphicon-plus-sign"></span>
-              </a>
-            </td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
         </table>
+        <button class="btn btn-success" ng-show="requestCtrl.editable" ng-click="requestCtrl.addAccommodation()">
+          <span class="glyphicon glyphicon-plus"></span> 新增
+        </button>
       </div>
       <hr>
       <h3>其它費用</h3>
@@ -273,9 +273,9 @@
           <td>{{item.amount}}</td>
         </tr>
       </table>
-      <a href ng-show="!requestCtrl.feeInputVisible && requestCtrl.editable" ng-click="requestCtrl.showFeeInput()">
-        <span class="glyphicon glyphicon-plus-sign"></span>
-      </a>
+      <button class="btn btn-success" ng-show="!requestCtrl.feeInputVisible && requestCtrl.editable" ng-click="requestCtrl.showFeeInput()">
+        <span class="glyphicon glyphicon-plus"></span> 新增
+      </button>
       <div ng-show="requestCtrl.feeInputVisible">
         <form class="form-inline padding-down">
           項目&nbsp;&nbsp;
