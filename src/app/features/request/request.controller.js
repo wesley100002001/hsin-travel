@@ -33,7 +33,7 @@ export default class RequestController {
         serialNo: '－－Ｈ'
       };
     } else {
-      this.fetchRequest(this.requestId);
+      this.loadRequestPage(this.requestId);
       this.fetchJPConversation(this.requestId);
       this.fetchTWConversation(this.requestId);
       this.fee = [];
@@ -49,6 +49,7 @@ export default class RequestController {
       token: state.login,
       orders: state.orders,
       isCreated: state.request.isCreated,
+      isLoading: state.isLoading,
       japanLogs: state.request.japan,
       taiwanLogs: state.request.taiwan,
       tempPkg: state.request.tempPkg,

@@ -1,4 +1,5 @@
 require('es6-promise').polyfill();
+import * as common from './common';
 import * as restful from '../lib/restful';
 
 export const ADD_JP_COMMENT = 'ADD_JP_COMMENT';
@@ -14,6 +15,24 @@ export const SUBMIT_REQUEST = 'SUBMIT_REQUEST';
 export const SWITCH_CHANNEL = 'SWITCH_CHANNEL';
 export const UPDATE_REQUEST = 'UPDATE_REQUEST';
 export const VERIFY_CREATED_REQUEST = 'VERIFY_CREATED_REQUEST';
+
+export function loadRequestPage (requestId) {
+  return dispatch => {
+    return new Promise((resolve, reject) => {
+      resolve(dispatch(common.startLoading()));
+    }).then(response => {
+      return new Promise((resolve, reject) => {
+        resolve(dispatch(fetchRequest(requestId)));
+      });
+    }).then(response => {
+      return new Promise((resolve, reject) => {
+        resolve(dispatch(common.finishLoading()));
+      });
+    }).catch(err => {
+      console.log(err);
+    });
+  };
+}
 
 export function fetchOrders (token) {
   return {
