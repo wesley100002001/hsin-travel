@@ -22,7 +22,7 @@ export default class RequestsController {
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), combinedActions)(this);
     $scope.$on('$destroy', unsubscribe);
 
-    this.fetchRequests();
+    this.loadRequestsPage();
     // $scope.pageable = ActModel.activities.length > $scope.pageSize;
   }
 
@@ -32,7 +32,8 @@ export default class RequestsController {
     return {
       requests: state.requests,
       currentRequests: this.filter('filter')(state.requests, this.searchText).slice((this.currentPage - 1) * this.pageSize),
-      isLoggedIn: state.login.isLoggedIn
+      isLoggedIn: state.login.isLoggedIn,
+      isLoading: state.isLoading
     };
   }
 

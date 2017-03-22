@@ -3,6 +3,7 @@ import { router } from 'redux-ui-router';
 
 import * as common from '../lib/common';
 
+import { FINISH_LOADING, START_LOADING } from '../actions/common';
 import { LOGIN_FAILED, SET_LOGGED_IN, SET_LOGGING } from '../actions/login';
 import { FETCH_REQUESTS } from '../actions/requests';
 import { ADD_ITEM, ADD_REQUEST, ADD_JP_COMMENT, ADD_TW_COMMENT, ADD_KNOCKING_ACCO, FETCH_JP_CONVERSATION, FETCH_TW_CONVERSATION, FETCH_REQUEST,
@@ -205,11 +206,25 @@ function navbar (state = [], action) {
   }
 }
 
+function isLoading (state = false, action) {
+  switch (action.type) {
+    case START_LOADING:
+    return action.payload;
+
+    case FINISH_LOADING:
+    return action.payload;
+
+    default:
+    return state;
+  }
+}
+
 let appReducer = combineReducers({
   accommodation,
   channel,
   hotel_info,
   hotels,
+  isLoading,
   login,
   orders,
   navbar,
