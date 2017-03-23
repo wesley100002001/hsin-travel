@@ -6,10 +6,11 @@ export const LOGIN_FAILED = 'LOGIN_FAILED';
 export const SET_LOGGED_IN = 'SET_LOGGED_IN';
 export const SET_LOGGING = 'SET_LOGGING';
 
-export function setLoggedIn (username, token, region) {
-  localStorage.setItem('token', token);
-  localStorage.setItem('username', username);
-  localStorage.setItem('region', region);
+export function setLoggedIn (loginItem) {
+  localStorage.setItem('token', loginItem.token);
+  localStorage.setItem('username', loginItem.username);
+  localStorage.setItem('region', loginItem.region);
+  localStorage.setItem('scope', JSON.stringify(loginItem.scope));
   return {
     type: SET_LOGGED_IN
   };
@@ -40,9 +41,15 @@ export function login (username, password) {
     }).then(response => {
       return restful.postUserAuth(username, password);
     }).then(response => {
+      console.log(response);
       if (!!response.id_token) {
         Promise.all([
-          dispatch(setLoggedIn(username, response.id_token, response.region)),
+          dispatch(setLoggedIn({
+            username: username,
+            token: response.id_token,
+            region: response.region,
+            scope: response.scope
+          })),
           dispatch(stateGo('requests'))
         ]);
       }
