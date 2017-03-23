@@ -96,6 +96,33 @@ export function getRequests () {
   });
 }
 
+export function getComments (requestId) {
+  var token = localStorage.getItem('token');
+  return fetch(config.heroku_host.concat('/request/').concat(requestId).concat('/comments'), {
+    method: 'GET',
+    headers: {
+      'Authorization': 'Bearer ' + token
+    }
+  }).then(response => {
+    return response.json();
+  });
+}
+
+export function postComment (requestId, comment) {
+  var token = localStorage.getItem('token');
+  return fetch(config.heroku_host.concat('/request/').concat(requestId).concat('/comment'), {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer ' + token
+    },
+    body: JSON.stringify({
+      content: comment
+    })
+  }).then(response => {
+    return response.json();
+  });
+}
+
 export function getMockTWConversation (requestId) {
   return new Promise(function (resolve, reject) {
     var conversation = [
