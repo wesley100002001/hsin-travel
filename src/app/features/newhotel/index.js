@@ -1,17 +1,17 @@
-import './requests.less';
+import './newhotel.less';
 
 import angular from 'angular';
 import uirouter from 'angular-ui-router';
 import uibootstrap from 'angular-ui-bootstrap';
 
-import routing from './requests.routes';
+import routing from './newhotel.routes';
 import FooterController from '../../../components/footer/footer.controller';
-import RequestsController from './requests.controller';
+import NewHotelController from './newhotel.controller';
 import NavbarController from '../../../components/navbar/navbar.controller';
 
-export default angular.module('app.requests', [uibootstrap, uirouter])
+export default angular.module('app.newhotel', [uibootstrap, uirouter])
   .config(routing)
-  .controller('RequestsController', RequestsController)
+  .controller('NewHotelController', NewHotelController)
   .controller('NavbarController', NavbarController)
   .controller('FooterController', FooterController)
   .name;

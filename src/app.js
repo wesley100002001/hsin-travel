@@ -10,10 +10,11 @@ import ngReduxUiRouter from 'redux-ui-router';
 import 'angular-translate';
 
 import login from './app/features/login';
+import newhotel from './app/features/newhotel';
 import request from './app/features/request';
 import requests from './app/features/requests';
 import { routes } from './app.config';
 
-angular.module('app', [firebase, uirouter, login, request, requests, ngRedux,
+angular.module('app', [firebase, uirouter, login, newhotel, request, requests, ngRedux,
   ngReduxUiRouter, 'pascalprecht.translate'])
   .config(routes);

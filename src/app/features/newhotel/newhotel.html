@@ -1,0 +1,98 @@
+<div class="container">
+  <div class="row">
+    <h1 class="padding-down">新增飯店</h1>
+    <div class="col-sm-6 col-md-6">
+      <label for="hotelname"><h4>飯店名稱</h4></label>
+      <input type="text" name="hotelname" class="form-control" ng-model="newhotelCtrl.name">
+      <label for="extrabed"><h4>Extra Bed</h4></label>
+      <table class="table git-table" ng-show="newhotelCtrl.extrabed.length > 0">
+        <tr>
+          <th>Type</th>
+          <th>Label</th>
+          <th>Price</th>
+          <th>Note</th>
+        </tr>
+        <tr ng-repeat="item in newhotelCtrl.extrabed track by $index">
+          <td>{{item.type}}</td>
+          <td>{{item.label}}</td>
+          <td>{{item.price}}</td>
+          <td>{{item.note}}</td>
+        </tr>
+      </table>
+      <div>
+        <button class="btn btn-success" ng-show="!newhotelCtrl.extrabedInputVisible" ng-click="newhotelCtrl.showExtrabedInput()">
+          <span class="glyphicon glyphicon-plus"></span> 新增
+        </button>
+      </div>
+      <div ng-show="newhotelCtrl.extrabedInputVisible">
+        <form class="padding-down">
+          <label for="extra-type">Type</label>
+          <input type="text" name="extra-type" class="form-control" ng-model="newhotelCtrl.extrabedInput.type">
+          <label for="extra-label">Label</label>
+          <input type="text" class="form-control" ng-model="newhotelCtrl.extrabedInput.label">
+          <label for="extra-price">Price</label>
+          <div class="input-group" name="extra-price">
+            <span class="input-group-addon">$</span>
+            <input type="number" class="form-control" ng-model="newhotelCtrl.extrabedInput.price">
+          </div>
+          <label for="extra-note">Note</label>
+          <input type="text" name="extra-note" class="form-control" ng-model="newhotelCtrl.extrabedInput.note">
+        </form>
+        <button class="btn btn-success" ng-click="newhotelCtrl.submitExtrabed()">
+          <span class="glyphicon glyphicon-ok" ></span>
+        </button>
+        <button class="btn btn-danger" ng-click="newhotelCtrl.cancelAddExtrabed()">
+          <span class="glyphicon glyphicon-remove"></span>
+        </button>
+      </div>
+      <label for="breakfast"><h4>Breakfast</h4></label>
+      <table class="table git-table" ng-show="newhotelCtrl.breakfast.length > 0">
+        <tr>
+          <th>Type</th>
+          <th>Label</th>
+          <th>Price</th>
+          <th>Note</th>
+        </tr>
+        <tr ng-repeat="item in newhotelCtrl.breakfast track by $index">
+          <td>{{item.type}}</td>
+          <td>{{item.label}}</td>
+          <td>{{item.price}}</td>
+          <td>{{item.note}}</td>
+        </tr>
+      </table>
+      <div>
+        <button class="btn btn-success" ng-show="!newhotelCtrl.breakfastInputVisible" ng-click="newhotelCtrl.showBreakfastInput()">
+          <span class="glyphicon glyphicon-plus"></span> 新增
+        </button>
+      </div>
+      <div ng-show="newhotelCtrl.breakfastInputVisible">
+        <form class="padding-down">
+          <label for="extra-type">Type</label>
+          <input type="text" name="extra-type" class="form-control" ng-model="newhotelCtrl.breakfastInput.type">
+          <label for="extra-label">Label</label>
+          <input type="text" class="form-control" ng-model="newhotelCtrl.breakfastInput.label">
+          <label for="extra-price">Price</label>
+          <div class="input-group" name="extra-price">
+            <span class="input-group-addon">$</span>
+            <input type="number" class="form-control" ng-model="newhotelCtrl.breakfastInput.price">
+          </div>
+          <label for="extra-note">Note</label>
+          <input type="text" name="extra-note" class="form-control" ng-model="newhotelCtrl.breakfastInput.note">
+        </form>
+        <button class="btn btn-success" ng-click="newhotelCtrl.submitBreakfast($event)">
+          <span class="glyphicon glyphicon-ok"></span>
+        </button>
+        <button class="btn btn-danger" ng-click="newhotelCtrl.cancelAddBreakfast()">
+          <span class="glyphicon glyphicon-remove"></span>
+        </button>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-6">
+    </div>
+  </div>
+  <div class="text-center">
+    <button class="btn btn-primary" ng-click="newhotelCtrl.confirm()">
+      <span class="glyphicon glyphicon-saved"></span> 確認
+    </button>
+  </div>
+</div>
