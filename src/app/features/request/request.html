@@ -152,6 +152,15 @@
         <h3>行程討論</h3>
       </div>
       <div ng-show="requestCtrl.channel === 'Taiwan'">
+        <div class="form-group">
+          <label for="comment">留言</label>
+          <textarea class="form-control" rows="2" id="comment" ng-model="requestCtrl.newComment"></textarea>
+        </div>
+        <div class="padding-down">
+          <button class="btn btn-success" ng-click="requestCtrl.leaveComment('Taiwan')">
+            <span class="glyphicon glyphicon-share-alt"></span> 送出
+          </button>
+        </div>
         <p ng-show="requestCtrl.taiwanLogs < 1" class="text-center">
           目前沒有任何留言唷！
         </p>
@@ -159,29 +168,24 @@
           <p><span>{{com.id}}:</span><span class="pull-right">{{com.timestamp}}</span></p>
           <p class="comment">{{com.comment}}</p>
         </div>
+      </div>
+      <div ng-show="requestCtrl.channel === 'Japan'">
         <div class="form-group">
           <label for="comment">留言</label>
           <textarea class="form-control" rows="2" id="comment" ng-model="requestCtrl.newComment"></textarea>
         </div>
-        <button class="btn btn-success" ng-click="requestCtrl.leaveComment('Taiwan')">
-          <span class="glyphicon glyphicon-share-alt"></span> 送出
-        </button>
-      </div>
-      <div ng-show="requestCtrl.channel === 'Japan'">
+        <div class="padding-down">
+          <button class="btn btn-success" ng-click="requestCtrl.leaveComment('Japan')">
+            <span class="glyphicon glyphicon-share-alt"></span> 送出
+          </button>
+        </div>
         <p ng-show="requestCtrl.japanLogs < 1" class="text-center">
           目前沒有任何留言唷！
         </p>
-        <div ng-repeat="com in requestCtrl.japanLogs">
-          <p><span>{{com.id}}:</span><span class="pull-right">{{com.timestamp}}</span></p>
-          <p class="comment">{{com.comment}}</p>
+        <div ng-repeat="log in requestCtrl.japanLogs">
+          <p><span>{{log.actor.username}}:</span><span class="pull-right">{{requestCtrl.showJPDateWithHour(log.createdAt)}}</span></p>
+          <p class="comment">{{log.content}}</p>
         </div>
-        <div class="form-group">
-          <label for="comment">留言</label>
-          <textarea class="form-control" rows="2" id="comment" ng-model="requestCtrl.newComment"></textarea>
-        </div>
-        <button class="btn btn-success" ng-click="requestCtrl.leaveComment('Japan')">
-          <span class="glyphicon glyphicon-share-alt"></span> 送出
-        </button>
       </div>
     </div>
     <div class="col-sm-9 col-md-9 scrollable">

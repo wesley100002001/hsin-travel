@@ -1,4 +1,5 @@
 import moment from 'moment';
+import * as common from '../../lib/common';
 import * as RequestActions from '../../actions/request';
 import * as RouterActions from 'redux-ui-router';
 
@@ -48,8 +49,8 @@ export default class RequestController {
       orders: state.orders,
       isCreated: state.request.isCreated,
       isLoading: state.isLoading,
-      japanLogs: state.request.japan,
-      taiwanLogs: state.request.taiwan,
+      japanLogs: state.request.japan.payload,
+      taiwanLogs: state.request.taiwan.payload,
       tempPkg: state.request.tempPkg,
       newAccommodation: state.new_accommodation
     };
@@ -66,6 +67,10 @@ export default class RequestController {
     $event.stopPropagation();
     this.endOpened = !this.endOpened;
   };
+
+  showJPDateWithHour (timestamp) {
+    return common.getJPDateWithHour(timestamp);
+  }
 
   confirm () {
     this.newPkg.startsOn = moment(this.newPkg.startsOn).format('YYYY-MM-DD');
@@ -133,11 +138,7 @@ export default class RequestController {
           timestamp: moment()
         });
       } else {
-        this.addJPComment({
-          id: this.userID,
-          comment: this.newComment,
-          timestamp: moment()
-        });
+        this.addJPComment(this.requestId, this.newComment);
       }
       this.newComment = '';
     }

@@ -61,12 +61,20 @@ export function addTWComment (comment) {
   };
 }
 
-export function addJPComment (comment) {
-  return {
-    type: ADD_JP_COMMENT,
-    payload: new Promise((resolve, reject) => {
-      resolve(comment);
-    })
+export function addJPComment (requestId, comment) {
+  return dispatch => {
+    return restful.postComment(requestId, comment)
+    .then(response => {
+      if (response.statusCode >= 400) {
+        throw response;
+      }
+      return new Promise((resolve, reject) => {
+        resolve(dispatch(fetchJPConversation(requestId)));
+      });
+    }).catch(err => {
+      console.log(err);
+      // dispatch(verifyCreatedRequest('fail'));
+    });
   };
 }
 
@@ -138,7 +146,7 @@ export function removeAccommodation (requestId, accoId) {
 export function fetchJPConversation (requestId) {
   return {
     type: FETCH_JP_CONVERSATION,
-    payload: restful.getMockJPConversation(requestId)
+    payload: restful.getComments(requestId)
       .then(response => {
         return response;
       })
