@@ -30,3 +30,11 @@ export function fetchRequests () {
       })
   };
 }
+
+export function checkScope (scope) {
+  return dispatch => {
+    return new Promise((resolve, reject) => {
+      resolve(dispatch(common.getAuthority(scope)));
+    });
+  }
+}

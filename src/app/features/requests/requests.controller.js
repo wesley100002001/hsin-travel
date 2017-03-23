@@ -13,8 +13,6 @@ export default class RequestsController {
     }
 
     this.filter = $filter;
-    this.userID = localStorage.getItem('username');
-    this.editable = this.userID === 'usert';
     this.pageSize = PAGE_SIZE;
     this.maxSize = MAX_SIZE;
     this.currentPage = 1;
@@ -22,6 +20,7 @@ export default class RequestsController {
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), combinedActions)(this);
     $scope.$on('$destroy', unsubscribe);
 
+    this.checkScope('issueRequests');
     this.loadRequestsPage();
     // $scope.pageable = ActModel.activities.length > $scope.pageSize;
   }
@@ -30,6 +29,7 @@ export default class RequestsController {
     console.log('requests');
     console.log(state);
     return {
+      creatable: state.authority.issueRequests,
       requests: state.requests,
       currentRequests: this.filter('filter')(state.requests, this.searchText).slice((this.currentPage - 1) * this.pageSize),
       isLoggedIn: state.login.isLoggedIn,

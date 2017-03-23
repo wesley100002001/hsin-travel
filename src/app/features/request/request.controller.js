@@ -1,5 +1,4 @@
 import moment from 'moment';
-import loading from '../../../assets/imgs/loading.gif';
 import * as RequestActions from '../../actions/request';
 import * as RouterActions from 'redux-ui-router';
 
@@ -11,15 +10,12 @@ export default class RequestController {
       this.stateGo('login');
     }
 
-    this.userID = localStorage.getItem('username');
-    this.editable = this.userID === 'usert';
     this.requestId = $stateParams.requestId;
     this.isNew = this.requestId === '0';
 
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), combinedActions)(this);
     $scope.$on('$destroy', unsubscribe);
 
-    this.loading = loading;
     this.startOpened = false;
     this.endOpened = false;
 
@@ -33,6 +29,7 @@ export default class RequestController {
         serialNo: '－－Ｈ'
       };
     } else {
+      this.checkScope('handleRequests');
       this.loadRequestPage(this.requestId);
       this.fetchJPConversation(this.requestId);
       this.fetchTWConversation(this.requestId);
@@ -44,6 +41,7 @@ export default class RequestController {
     console.log('request');
     console.log(state);
     return {
+      editable: state.authority.handleRequests,
       channel: state.channel,
       tourPackage: state.tour_package,
       token: state.login,

@@ -34,6 +34,14 @@ export function loadRequestPage (requestId) {
   };
 }
 
+export function checkScope (scope) {
+  return dispatch => {
+    return new Promise((resolve, reject) => {
+      resolve(dispatch(common.getAuthority(scope)));
+    });
+  }
+}
+
 export function fetchOrders (token) {
   return {
     type: FETCH_ORDERS,

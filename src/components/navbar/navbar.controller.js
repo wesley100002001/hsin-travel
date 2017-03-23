@@ -24,6 +24,8 @@ export default class NavbarController {
     // TODO: maybe should use redux-persist to handle these
     localStorage.removeItem('token');
     localStorage.removeItem('username');
+    localStorage.removeItem('region');
+    localStorage.removeItem('scope');
     this.stateGo('login');
   }
 

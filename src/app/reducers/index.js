@@ -3,7 +3,7 @@ import { router } from 'redux-ui-router';
 
 import * as common from '../lib/common';
 
-import { FINISH_LOADING, START_LOADING } from '../actions/common';
+import { AUTHORIZE_HANDLE_REQUESTS, AUTHORIZE_ISSUE_REQUESTS, FINISH_LOADING, START_LOADING } from '../actions/common';
 import { LOGIN_FAILED, SET_LOGGED_IN, SET_LOGGING } from '../actions/login';
 import { FETCH_REQUESTS } from '../actions/requests';
 import { ADD_ITEM, ADD_REQUEST, ADD_JP_COMMENT, ADD_TW_COMMENT, ADD_KNOCKING_ACCO, FETCH_JP_CONVERSATION, FETCH_TW_CONVERSATION, FETCH_REQUEST,
@@ -15,6 +15,23 @@ import { ADD_ACCO, CLEAR_ACCO, FETCH_ACCO, FETCH_FARE, FETCH_HOTEL, FETCH_HOTEL_
 
 const FULFILLED = '_FULFILLED';
 const PENDING = '_PENDING';
+
+function authority (state = { handleRequests: false, issueRequests: false }, action) {
+  switch (action.type) {
+    case AUTHORIZE_HANDLE_REQUESTS:
+    return Object.assign({}, state, {
+      handleRequests: action.payload
+    });
+
+    case AUTHORIZE_ISSUE_REQUESTS:
+    return Object.assign({}, state, {
+      issueRequests: action.payload
+    });
+
+    default:
+    return state;
+  }
+}
 
 function login (state = {}, action) {
   switch (action.type) {
@@ -221,6 +238,7 @@ function isLoading (state = false, action) {
 
 let appReducer = combineReducers({
   accommodation,
+  authority,
   channel,
   hotel_info,
   hotels,
