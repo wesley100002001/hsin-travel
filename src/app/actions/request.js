@@ -121,8 +121,6 @@ export function submitRequest (req) {
   };
 }
 
-
-
 export function changeAlertStatus (status) {
   return {
     type: CHANGE_ALERT_STATUS,
