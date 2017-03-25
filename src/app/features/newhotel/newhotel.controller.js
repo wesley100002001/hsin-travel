@@ -1,5 +1,5 @@
 import moment from 'moment';
-import * as NewHotelActions from '../../actions/requests';
+import * as NewHotelActions from '../../actions/newhotel';
 import * as RouterActions from 'redux-ui-router';
 
 const combinedActions = Object.assign({}, NewHotelActions, RouterActions);
@@ -13,21 +13,16 @@ export default class NewHotelController {
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), combinedActions)(this);
     $scope.$on('$destroy', unsubscribe);
 
+    this.clearStatus();
     this.extrabed = [];
     this.breakfast = [];
-    // this.checkScope('issueRequests');
-    // this.loadRequestsPage();
   }
 
   mapStateToThis (state) {
     console.log('newhotel');
     console.log(state);
     return {
-      // creatable: state.authority.issueRequests,
-      // requests: state.requests,
-      // currentRequests: this.filter('filter')(state.requests, this.searchText).slice((this.currentPage - 1) * this.pageSize),
-      // isLoggedIn: state.login.isLoggedIn,
-      // isLoading: state.isLoading
+      submitStatus: state.newhotelstatus
     };
   }
 
@@ -73,6 +68,15 @@ export default class NewHotelController {
   cancelAddBreakfast () {
     this.extrabedInputVisible = false;
     delete this.extrabedInput;
+  }
+
+  confirm () {
+    var reqObj = {
+      name: this.name,
+      extraBed: this.extrabed,
+      breakfast: this.breakfast
+    };
+    this.submitHotel(reqObj);
   }
 }
 

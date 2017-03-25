@@ -197,7 +197,6 @@ export function getAccommodation (accoId) {
 
 export function postAccommodation (requestId, acco) {
   var token = localStorage.getItem('token');
-  console.log(JSON.stringify(acco));
   return fetch(config.heroku_host.concat('/request/').concat(requestId).concat('/accommodation'), {
     method: 'POST',
     headers: {
@@ -218,6 +217,19 @@ export function deleteAccommodation (requestId, accoId) {
     headers: {
       'Authorization': 'Bearer ' + token
     }
+  }).then(response => {
+    return response.json();
+  });
+}
+
+export function postHotel (hotel) {
+  var token = localStorage.getItem('token');
+  return fetch(config.heroku_host.concat('/hotel'), {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer ' + token
+    },
+    body: JSON.stringify(hotel)
   }).then(response => {
     return response.json();
   });

@@ -12,11 +12,14 @@ export default class NavbarController {
 
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), combinedActions)(this);
     $scope.$on('$destroy', unsubscribe);
+
+    this.checkScope('addAssets');
   }
 
   mapStateToThis (state) {
     return {
-      notifications: state.navbar
+      notifications: state.navbar,
+      assetAddable: state.authority.addAssets
     };
   }
 
