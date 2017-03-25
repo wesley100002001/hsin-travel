@@ -27,7 +27,7 @@ export default class HotelController {
     if (!this.accoId === 0) {
       this.fetchAccommodation($stateParams.accoId);
     }
-
+    
     this.fares = [];
     this.selectedRooms = [];
   }

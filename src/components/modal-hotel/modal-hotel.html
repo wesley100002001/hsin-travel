@@ -35,11 +35,19 @@
           </button>
         </div>
       </div>
+      <hr>
       <div class="form-group">
         <h4 class="padding-down">其它項目</h4>
-        早餐：{{hotelCtrl.breakfast}}<br>
-        Extra Bed：{{hotelCtrl.extraBed}}
+        <h5>早餐</h5>
+        <div ng-repeat="item in hotelCtrl.breakfast">
+          <span>{{item.label}}：$&nbsp;{{item.price}}&nbsp;{{item.note}}</span>
+        </div>
+        <h5>Extra Bed</h5>
+        <div ng-repeat="item in hotelCtrl.extraBed">
+          <span>$&nbsp;{{item.price}}（{{item.note}}）</span>
+        </div>
       </div>
+      <hr>
       <h4 class="padding-down">選擇日期</h4>
       <form name="hotelForm" novalidate>
         <div class="form-group">
@@ -116,7 +124,7 @@
           <div class="input-group">
             <span class="input-group-addon">$</span>
             <input type="number" class="form-control" ng-model="hotelCtrl.fareInput.price"
-                   placeholder="請輸入房間價錢">
+                   placeholder="請輸入價錢">
           </div>
           <input type="number" class="form-control" ng-model="hotelCtrl.fareInput.amount"
                  placeholder="請輸入數量">
