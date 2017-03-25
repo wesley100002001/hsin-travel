@@ -6,7 +6,7 @@ import * as common from '../lib/common';
 import { AUTHORIZE_ADD_ASSETS, AUTHORIZE_HANDLE_REQUESTS, AUTHORIZE_ISSUE_REQUESTS, FINISH_LOADING, START_LOADING } from '../actions/common';
 import { LOGIN_FAILED, SET_LOGGED_IN, SET_LOGGING } from '../actions/login';
 import { FETCH_REQUESTS } from '../actions/requests';
-import { ADD_ITEM, ADD_REQUEST, ADD_JP_COMMENT, ADD_TW_COMMENT, ADD_KNOCKING_ACCO, FETCH_JP_CONVERSATION, FETCH_TW_CONVERSATION, FETCH_REQUEST,
+import { ADD_ITEM, ADD_REQUEST, ADD_JP_COMMENT, ADD_TW_COMMENT, ADD_KNOCKING_ACCO, CHANGE_ALERT_STATUS, FETCH_JP_CONVERSATION, FETCH_TW_CONVERSATION, FETCH_REQUEST,
   FETCH_ORDERS, REMOVE_ACCOMMODATION, SWITCH_CHANNEL, CLEAR_REQUEST, VERIFY_CREATED_REQUEST,
   UPDATE_REQUEST, SET_BOUND_TIME_FRAME } from '../actions/request';
 import { FETCH_HOTELS } from '../actions/hotels';
@@ -94,7 +94,7 @@ function new_accommodation (state = [], action) {
   }
 }
 
-function request (state = { taiwan: [], japan: [], titleEditable: false, peopleEditable: false, tempTitle: null, tempPeople: null, items: [], isCreated: null }, action) {
+function request (state = { taiwan: [], japan: [], titleEditable: false, peopleEditable: false, tempTitle: null, tempPeople: null, items: [], isCreated: null, isUpdated: null }, action) {
   switch (action.type) {
     case `${ADD_JP_COMMENT}${FULFILLED}`:
     return Object.assign({}, state, {
@@ -125,6 +125,11 @@ function request (state = { taiwan: [], japan: [], titleEditable: false, peopleE
     case VERIFY_CREATED_REQUEST:
     return Object.assign({}, state, {
       isCreated: action.payload
+    });
+
+    case CHANGE_ALERT_STATUS:
+    return Object.assign({}, state, {
+      isUpdated: action.payload
     });
 
     default:

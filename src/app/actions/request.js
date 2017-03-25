@@ -4,6 +4,7 @@ import * as restful from '../lib/restful';
 
 export const ADD_JP_COMMENT = 'ADD_JP_COMMENT';
 export const ADD_TW_COMMENT = 'ADD_TW_COMMENT';
+export const CHANGE_ALERT_STATUS = 'CHANGE_ALERT_STATUS';
 export const CLEAR_REQUEST = 'CLEAR_REQUEST';
 export const FETCH_JP_CONVERSATION = 'FETCH_JP_CONVERSATION';
 export const FETCH_TW_CONVERSATION = 'FETCH_TW_CONVERSATION';
@@ -88,6 +89,16 @@ export function fetchRequest (requestId) {
   };
 }
 
+export function clearRequestPage () {
+  return dispatch => {
+    Promise.all([
+      dispatch(changeAlertStatus(null)),
+      dispatch(verifyCreatedRequest(null)),
+      clearRequest(clearRequest())
+    ]);
+  };
+}
+
 export function clearRequest () {
   return {
     type: CLEAR_REQUEST,
@@ -109,6 +120,8 @@ export function submitRequest (req) {
     });
   };
 }
+
+
 
 export function changeAlertStatus (status) {
   return {
@@ -181,10 +194,10 @@ export function updateRequest (requestId, patchObj) {
         resolve(dispatch(fetchRequest(requestId)));
       });
     }).then(response => {
-      dispatch(verifyCreatedRequest('success'));
+      dispatch(changeAlertStatus('success'));
     }).catch(err => {
       console.log(err);
-      dispatch(verifyCreatedRequest('fail'));
+      dispatch(changeAlertStatus('fail'));
     });
   };
 }

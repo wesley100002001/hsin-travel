@@ -24,8 +24,8 @@ export default class RequestController {
       minDate: new Date()
     };
 
+    this.clearRequestPage();
     if (this.isNew) {
-      this.clearRequest();
       this.newPkg = {
         serialNo: '－－Ｈ'
       };
@@ -48,6 +48,7 @@ export default class RequestController {
       token: state.login,
       orders: state.orders,
       isCreated: state.request.isCreated,
+      isUpdated: state.request.isUpdated,
       isLoading: state.isLoading,
       japanLogs: state.request.japan.payload,
       taiwanLogs: state.request.taiwan.payload,
