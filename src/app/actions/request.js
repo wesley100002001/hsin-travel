@@ -144,14 +144,14 @@ export function removeAccommodation (requestId, accoId) {
       if (response.statusCode >= 400) {
         throw response;
       }
-      return new Promise((resolve, reject) => {
-        resolve(dispatch(fetchRequest(requestId)));
-      });
-    // }).then(response => {
-    //   dispatch(addJPComment('successfully removed accommodation'));
+      Promise.all([
+        dispatch(fetchRequest(requestId)),
+        dispatch(changeAlertStatus('success')),
+        dispatch(fetchJPConversation(requestId))
+      ]);
     }).catch(err => {
       console.log(err);
-      // dispatch(verifyCreatedRequest('fail'));
+      dispatch(changeAlertStatus('fail'))
     });
   };
 }
