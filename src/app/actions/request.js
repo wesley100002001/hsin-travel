@@ -6,8 +6,8 @@ export const ADD_JP_COMMENT = 'ADD_JP_COMMENT';
 export const ADD_TW_COMMENT = 'ADD_TW_COMMENT';
 export const CHANGE_ALERT_STATUS = 'CHANGE_ALERT_STATUS';
 export const CLEAR_REQUEST = 'CLEAR_REQUEST';
-export const FETCH_JP_CONVERSATION = 'FETCH_JP_CONVERSATION';
-export const FETCH_TW_CONVERSATION = 'FETCH_TW_CONVERSATION';
+export const FETCH_COMMENTS = 'FETCH_COMMENTS';
+export const FETCH_INTERNAL_COMMENTS = 'FETCH_INTERNAL_COMMENTS';
 export const FETCH_ORDERS = 'FETCH_ORDERS';
 export const FETCH_REQUEST = 'FETCH_REQUEST';
 export const REMOVE_ACCOMMODATION = 'REMOVE_ACCOMMODATION';
@@ -53,12 +53,20 @@ export function fetchOrders (token) {
   }
 }
 
-export function addTWComment (comment) {
-  return {
-    type: ADD_TW_COMMENT,
-    payload: new Promise((resolve, reject) => {
-      resolve(comment);
-    })
+export function addTWComment (requestId, comment) {
+  return dispatch => {
+    return restful.postInternalComment(requestId, comment)
+    .then(response => {
+      if (response.statusCode >= 400) {
+        throw response;
+      }
+      return new Promise((resolve, reject) => {
+        resolve(dispatch(fetchTWComments(requestId)));
+      });
+    }).catch(err => {
+      console.log(err);
+      // dispatch(verifyCreatedRequest('fail'));
+    });
   };
 }
 
@@ -70,7 +78,7 @@ export function addJPComment (requestId, comment) {
         throw response;
       }
       return new Promise((resolve, reject) => {
-        resolve(dispatch(fetchJPConversation(requestId)));
+        resolve(dispatch(fetchJPComments(requestId)));
       });
     }).catch(err => {
       console.log(err);
@@ -154,9 +162,9 @@ export function removeAccommodation (requestId, accoId) {
   };
 }
 
-export function fetchJPConversation (requestId) {
+export function fetchJPComments (requestId) {
   return {
-    type: FETCH_JP_CONVERSATION,
+    type: FETCH_COMMENTS,
     payload: restful.getComments(requestId)
       .then(response => {
         return response;
@@ -164,10 +172,10 @@ export function fetchJPConversation (requestId) {
   };
 }
 
-export function fetchTWConversation (requestId) {
+export function fetchTWComments (requestId) {
   return {
-    type: FETCH_TW_CONVERSATION,
-    payload: restful.getMockTWConversation(requestId)
+    type: FETCH_INTERNAL_COMMENTS,
+    payload: restful.getInternalComments(requestId)
       .then(response => {
         return response;
       })

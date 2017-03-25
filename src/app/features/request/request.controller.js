@@ -32,8 +32,8 @@ export default class RequestController {
     } else {
       this.checkScope('handleRequests');
       this.loadRequestPage(this.requestId);
-      this.fetchJPConversation(this.requestId);
-      this.fetchTWConversation(this.requestId);
+      this.fetchJPComments(this.requestId);
+      this.fetchTWComments(this.requestId);
       this.fee = [];
     }
   }
@@ -128,16 +128,11 @@ export default class RequestController {
     return feeSum + fareSum;
   }
 
-  // 一個 Request 裡應該要有一個 Conversation Array 來存所有的留言
   leaveComment (region) {
     if (!!this.newComment) {
       // FIXME: should reduce code redundency here
       if (region === 'Taiwan') {
-        this.addTWComment({
-          id: this.userID,
-          comment: this.newComment,
-          timestamp: moment()
-        });
+        this.addTWComment(this.requestId, this.newComment);
       } else {
         this.addJPComment(this.requestId, this.newComment);
       }

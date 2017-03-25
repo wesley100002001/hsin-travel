@@ -6,7 +6,7 @@ import * as common from '../lib/common';
 import { AUTHORIZE_ADD_ASSETS, AUTHORIZE_HANDLE_REQUESTS, AUTHORIZE_ISSUE_REQUESTS, FINISH_LOADING, START_LOADING } from '../actions/common';
 import { LOGIN_FAILED, SET_LOGGED_IN, SET_LOGGING } from '../actions/login';
 import { FETCH_REQUESTS } from '../actions/requests';
-import { ADD_ITEM, ADD_REQUEST, ADD_JP_COMMENT, ADD_TW_COMMENT, ADD_KNOCKING_ACCO, CHANGE_ALERT_STATUS, FETCH_JP_CONVERSATION, FETCH_TW_CONVERSATION, FETCH_REQUEST,
+import { ADD_ITEM, ADD_REQUEST, ADD_JP_COMMENT, ADD_TW_COMMENT, ADD_KNOCKING_ACCO, CHANGE_ALERT_STATUS, FETCH_COMMENTS, FETCH_INTERNAL_COMMENTS, FETCH_REQUEST,
   FETCH_ORDERS, REMOVE_ACCOMMODATION, SWITCH_CHANNEL, CLEAR_REQUEST, VERIFY_CREATED_REQUEST,
   UPDATE_REQUEST, SET_BOUND_TIME_FRAME } from '../actions/request';
 import { FETCH_HOTELS } from '../actions/hotels';
@@ -112,12 +112,12 @@ function request (state = { taiwan: [], japan: [], titleEditable: false, peopleE
       ]
     });
 
-    case `${FETCH_JP_CONVERSATION}${FULFILLED}`:
+    case `${FETCH_COMMENTS}${FULFILLED}`:
     return Object.assign({}, state, {
       japan: action.payload
     });
 
-    case `${FETCH_TW_CONVERSATION}${FULFILLED}`:
+    case `${FETCH_INTERNAL_COMMENTS}${FULFILLED}`:
     return Object.assign({}, state, {
       taiwan: action.payload
     });

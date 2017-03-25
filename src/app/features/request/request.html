@@ -164,9 +164,9 @@
         <p ng-show="requestCtrl.taiwanLogs < 1" class="text-center">
           目前沒有任何留言唷！
         </p>
-        <div ng-repeat="com in requestCtrl.taiwanLogs">
-          <p><span>{{com.id}}:</span><span class="pull-right">{{com.timestamp}}</span></p>
-          <p class="comment">{{com.comment}}</p>
+        <div ng-repeat="log in requestCtrl.taiwanLogs">
+          <p><span>{{log.actor.username}}:</span><span class="pull-right">{{requestCtrl.showJPDateWithHour(log.createdAt)}}</span></p>
+          <p class="comment">{{log.content}}</p>
         </div>
       </div>
       <div ng-show="requestCtrl.channel === 'Japan'">
