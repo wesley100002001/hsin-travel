@@ -1,8 +1,57 @@
 {
-  "Chinese": "中文",
-  "Japanese": "日本語",
-  "Language": "語言(日文)",
-  "Login": "登入(日文)",
-  "Requests": "需求列表(日文)",
-  "NewHotel": "新增飯店(日文)"
+  "login": {
+    "Account": "ログイン名",
+    "Hsin-Ia": "新亞旅行社",
+    "Login": "ログイン",
+    "Password": "パスワード"
+  },
+  "navbar": {
+    "Chinese": "中文",
+    "Japanese": "日本語",
+    "Language": "言語",
+    "Logout": "ログアウト",
+    "NewHotel": "新增飯店(日文)",
+    "Requests": "全報告書一覧"
+  },
+  "requests": {
+    "Requests": "全報告書一覧",
+    "Create": "報告書を作成する",
+    "Add": "追加",
+    "Title": "標題",
+    "Region": "地方",
+    "Company": "会社",
+    "StartAt": "出発日",
+    "Creator": "作成者",
+    "LastUpdateAt": "修正日",
+    "PleaseEnterTitle": "ツアーNOを入れてください",
+    "PrevPage": "前のページ",
+    "NextPage": "次のページ",
+    "FirstPage": "先頭へ",
+    "LastPage": "末尾へ"
+  },
+  "request": {
+    "CreateRequest": "報告書を作成する",
+    "BasicInfo": "報告書を作成する内容入力",
+    "Title": "標題",
+    "PleaseEnterTitle": "ツアーNOを入れてください",
+    "People": "参加人数",
+    "SerialNumber": "ツアーNO.",
+    "StartAt": "出国日",
+    "EndAt": "帰国日",
+    "Content": "内容",
+    "Accommodation": "宿泊",
+    "Hotel": "ホテル名",
+    "CheckInAt": "チェックイン",
+    "CheckOutAt": "チェックアウト",
+    "RoomType": "部屋スタイル",
+    "RoomAmount": "部屋数",
+    "Add": "追加",
+    "Cancel": "キャンセル",
+    "Confirm": "確認",
+    "Taiwan": "台湾側",
+    "Japan": "日本側",
+    "Comment": "コメント",
+    "Submit": "書き込む",
+    "Fee": "その他の費用"
+  }
 }

@@ -1,8 +1,57 @@
 {
-  "Chinese": "中文",
-  "Japanese": "日本語",
-  "Language": "語言",
-  "Login": "登入",
-  "Requests": "需求列表",
-  "NewHotel": "新增飯店"
+  "login": {
+    "Account": "帳號",
+    "Hsin-Ia": "新亞旅行社",
+    "Login": "登入",
+    "Password": "密碼"
+  },
+  "navbar": {
+    "Chinese": "中文",
+    "Japanese": "日本語",
+    "Language": "語言",
+    "NewHotel": "新增飯店",
+    "Requests": "需求列表"
+  },
+  "requests": {
+    "Requests": "需求列表",
+    "Create": "新增",
+    "Title": "團名",
+    "Add": "新增",
+    "Region": "地區",
+    "Company": "公司",
+    "StartAt": "出發日期",
+    "Creator": "建立者",
+    "LastUpdateAt": "最後修改日期",
+    "PleaseEnterTitle": "請輸入團名",
+    "PrevPage": "上一頁",
+    "NextPage": "下一頁",
+    "FirstPage": "第一頁",
+    "LastPage": "最末頁"
+  },
+  "request": {
+    "CreateRequest": "新增需求",
+    "BasicInfo": "基本資訊",
+    "Title": "團名",
+    "PleaseEnterTitle": "請輸入團名",
+    "PrevPage": "上一頁",
+    "People": "團員人數",
+    "SerialNumber": "旅行團編號",
+    "StartAt": "出發日期",
+    "EndAt": "回程日期",
+    "Content": "詳細內容",
+    "Accommodation": "住宿",
+    "Hotel": "飯店",
+    "CheckInAt": "入住日期",
+    "CheckOutAt": "退房日期",
+    "RoomType": "房型",
+    "RoomAmount": "數量",
+    "Add": "新增",
+    "Cancel": "取消",
+    "Confirm": "確認",
+    "Taiwan": "台方",
+    "Japan": "日方",
+    "Comment": "留言",
+    "Submit": "送出",
+    "Fee": "其它費用"
+  }
 }
