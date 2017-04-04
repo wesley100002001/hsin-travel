@@ -17,7 +17,7 @@ export function routes($urlRouterProvider, $locationProvider,
 
   $translateProvider.translations('tw', tw);
   $translateProvider.translations('jp', jp);
-  $translateProvider.preferredLanguage('tw');
+  $translateProvider.preferredLanguage('jp');
 
   $ngReduxProvider.createStoreWith(appReducer, ['ngUiRouterMiddleware',
     thunk, promiseMiddleware()]);
