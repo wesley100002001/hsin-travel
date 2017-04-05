@@ -207,6 +207,7 @@ export function getFare (roomId, timeFrame) {
   });
 }
 
+// FIXME
 export function getAccommodation (accoId) {
   return new Promise(function (resolve, reject) {
     var acco = {
@@ -236,9 +237,56 @@ export function postAccommodation (requestId, acco) {
   });
 }
 
+export function putAccommodation (requestId, accoId, acco) {
+  var token = localStorage.getItem('token');
+  return fetch(config.heroku_host.concat('/request/').concat(requestId).concat('/accommodation/').concat(accoId), {
+    method: 'PUT',
+    headers: {
+      'Authorization': 'Bearer ' + token
+    },
+    body: JSON.stringify(acco)
+  }).then(response => {
+    console.log(response);
+    return response.json();
+  });
+}
+
 export function deleteAccommodation (requestId, accoId) {
   var token = localStorage.getItem('token');
   var fetchUrl = config.heroku_host.concat('/request/').concat(requestId).concat('/accommodation/').concat(accoId);
+  return fetch(fetchUrl, {
+    method: 'DELETE',
+    headers: {
+      'Authorization': 'Bearer ' + token
+    }
+  }).then(response => {
+    return response.json();
+  });
+}
+
+export function postAccommodationRoom (requestId, accoId, room) {
+  var token = localStorage.getItem('token');
+  var fetchUrl = config.heroku_host
+    .concat('/request/').concat(requestId)
+    .concat('/accommodation/').concat(accoId)
+    .concat('/room');
+  return fetch(fetchUrl, {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer ' + token
+    },
+    body: JSON.stringify(room)
+  }).then(response => {
+    return response.json();
+  });
+}
+
+export function deleteAccommodationRoom (requestId, accoId, roomId) {
+  var token = localStorage.getItem('token');
+  var fetchUrl = config.heroku_host
+    .concat('/request/').concat(requestId)
+    .concat('/accommodation/').concat(accoId)
+    .concat('/room/').concat(roomId);
   return fetch(fetchUrl, {
     method: 'DELETE',
     headers: {

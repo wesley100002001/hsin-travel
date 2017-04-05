@@ -153,7 +153,8 @@ export function removeAccommodation (requestId, accoId) {
       Promise.all([
         dispatch(fetchRequest(requestId)),
         dispatch(changeAlertStatus('success')),
-        dispatch(fetchJPConversation(requestId))
+        dispatch(fetchJPComments(requestId)),
+        dispatch(fetchTWComments(requestId))
       ]);
     }).catch(err => {
       console.log(err);

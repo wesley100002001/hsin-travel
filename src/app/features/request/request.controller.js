@@ -103,7 +103,18 @@ export default class RequestController {
     我是新增 / 編輯的分隔線
   */
 
+  composeLog (logObj) {
+    if (logObj.type === 'common' || logObj.type === 'internal') {
+      return logObj.content.msg;
+    } else {
+      return '修改了需求。'
+    }
+  }
+
   getFareSum (fares) {
+    if (fares.length === 0) {
+      return 0;
+    }
     return fares.map(fare => {
       return fare.amount * fare.multiplier;
     }).reduce((sum, cur) => {
@@ -129,21 +140,25 @@ export default class RequestController {
   }
 
   leaveComment (region) {
-    if (!!this.newComment) {
-      // FIXME: should reduce code redundency here
-      if (region === 'Taiwan') {
-        this.addTWComment(this.requestId, this.newComment);
-      } else {
-        this.addJPComment(this.requestId, this.newComment);
-      }
-      this.newComment = '';
+    if (!this.newComment) {
+      alert('請輸入留言');
+      return;
     }
+    var comment = {
+      msg: this.newComment
+    };
+    if (region === 'Taiwan') {
+      this.addTWComment(this.requestId, comment);
+    } else {
+      this.addJPComment(this.requestId, comment);
+    }
+    this.newComment = '';
   }
 
-  editAccommodation (acco) {
-    this.stateGo('request.accommodation', {
-      hotelId: acco.hotelId,
-      accoId: acco.accoId
+  editAccommodation (hotelId, accoId) {
+    this.stateGo('request.hotel', {
+      hotelId: hotelId,
+      accoId: accoId
     });
   }
 

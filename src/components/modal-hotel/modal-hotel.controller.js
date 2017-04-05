@@ -1,19 +1,22 @@
-import ambassador from '../../assets/imgs/ambassador.jpg';
 import moment from 'moment';
 import * as HotelActions from '../../app/actions/hotel';
 
 export default class HotelController {
   constructor ($scope, $ngRedux, $uibModalInstance, $stateParams) {
+    this.uibModal = $uibModalInstance;
+    this.hotelId = $stateParams.hotelId;
+    this.requestId = $stateParams.requestId;
+    this.accoId = $stateParams.accoId;
+
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this),
       HotelActions)(this);
     $scope.$on('$destroy', unsubscribe);
 
-    this.uibModal = $uibModalInstance;
-    this.hotelId = $stateParams.hotelId;
-    this.requestId = $stateParams.requestId;
-
-    this.cover = ambassador;
     this.isOneDay = false;
+    this.isNew = this.accoId == 0;
+    if (!this.isNew) {
+      this.dateEditable = false;
+    }
 
     this.startOpened = false;
     this.endOpened = false;
@@ -22,6 +25,7 @@ export default class HotelController {
       maxDate: new Date(this.timeframe.endsOn)
     };
 
+    // this.fetchRequest($stateParams.requestId);
     this.fetchHotel($stateParams.hotelId);
     this.fetchHotelRooms($stateParams.hotelId);
     if (!this.accoId === 0) {
@@ -35,15 +39,31 @@ export default class HotelController {
   mapStateToThis(state) {
     console.log('modal-hotel');
     console.log(state);
-    return {
+    var accommodation = state.tour_package.accommodations.find((element, index) => {
+      return element.id == this.accoId;
+    });
+    var stateObj = {
       breakfast: state.hotel_info.breakfast,
       extraBed: state.hotel_info.extraBed,
       fareRef: state.hotel_info.fare,
       isLoading: state.isLoading,
       name: state.hotel_info.name,
       rooms: state.hotel_info.rooms,
-      timeframe: state.timeframe
+      timeframe: state.timeframe,
     };
+    if (!!accommodation) {
+      stateObj.checkinAt = new Date(accommodation.checkinAt);
+      stateObj.checkoutAt = new Date(accommodation.checkoutAt);
+      stateObj.fares = accommodation.fares;
+      stateObj.selectedRooms = accommodation.rooms.map(room => {
+        return {
+          roomId: room.id,
+          numRooms: room.numRooms,
+          type: room.room.type
+        };
+      });
+    }
+    return stateObj;
   }
 
   startOpen ($event) {
@@ -59,20 +79,20 @@ export default class HotelController {
   };
 
   checkPrice () {
-    if (!this.accommodation.roomId || !this.accommodation.checkinAt || !this.accommodation.checkoutAt) {
+    if (!this.accommodation.roomId || !this.checkinAt || !this.checkoutAt) {
       alert('資料輸入不完全');
       return;
     }
-    var duration = moment(this.accommodation.checkoutAt).diff(moment(this.accommodation.checkinAt), 'days');
+    var duration = moment(this.checkoutAt).diff(moment(this.checkinAt), 'days');
     var timeFrame = [];
     for (var i = 0; i <= duration; i++) {
-      timeFrame.push(moment(this.accommodation.checkinAt).add(i, 'days').format('YYYY-MM-DD'));
+      timeFrame.push(moment(this.checkinAt).add(i, 'days').format('YYYY-MM-DD'));
     }
     this.fetchFare(this.accommodation.roomId, timeFrame);
   }
 
   changeDate (scope) {
-    scope.hotelForm.$setValidity('date', !moment(this.accommodation.checkinAt).isAfter(this.accommodation.checkoutAt));
+    scope.hotelForm.$setValidity('date', !moment(this.checkinAt).isAfter(this.checkoutAt));
   }
 
   showFareInput () {
@@ -87,11 +107,24 @@ export default class HotelController {
 
   submitFare () {
     this.fares.push({
-      price: this.fareInput.price,
-      amount: this.fareInput.amount
+      amount: this.fareInput.amount,
+      multiplier: this.fareInput.multiplier
     });
     this.fareInputVisible = false;
     delete this.fareInput;
+  }
+
+  // FIXME: should pass fareId rather than index
+  removeFare (index) {
+    this.fares.splice(index, 1);
+    var accoObj = {
+      fares: this.fares
+    };
+    this.updateAccommodation(this.requestId, this.accoId, accoObj);
+  }
+
+  removeFareByIndex (index) {
+    this.fares.splice(index, 1);
   }
 
   showRoomInput () {
@@ -105,16 +138,54 @@ export default class HotelController {
   }
 
   submitRoom () {
-    var roomObj = Object.assign({}, this.roomInput.room, {
-      amount: this.roomInput.amount
-    });
-    this.selectedRooms.push(roomObj);
+    if (this.accoId == 0) {
+      var roomObj = Object.assign({}, this.roomInput.room, {
+        numRooms: this.roomInput.numRooms
+      });
+      this.selectedRooms.push(roomObj);
+    } else {
+      var roomObj = {
+        numRooms: this.roomInput.numRooms,
+        roomId: this.roomInput.room.id
+      };
+      this.createAccommodationRoom(this.requestId, this.accoId, roomObj);
+    }
     this.roomInputVisible = false;
     delete this.roomInput;
   }
 
+  removeRoom (room) {
+    if (this.accoId == 0) {
+      this.selectedRooms = this.selectedRooms.filter(element => {
+        return room.id != element.id;
+      });
+    } else {
+      this.removeAccommodationRoom(this.requestId, this.accoId, room.roomId);
+    }
+  }
+
+  removeRoomByIndex (index) {
+    this.selectedRooms.splice(index, 1);
+  }
+
+  onEditDate () {
+    this.dateEditable = true;
+  }
+
+  offEditDate () {
+    this.dateEditable = false;
+  }
+
+  submitDate () {
+    var reqObj = {
+      checkinAt: moment(this.checkinAt).format('YYYY-MM-DD'),
+      checkoutAt: moment(this.checkoutAt).format('YYYY-MM-DD')
+    };
+    this.updateAccommodation(this.requestId, this.accoId, reqObj);
+  }
+
   confirm () {
-    if (!this.accommodation.checkinAt || !this.accommodation.checkoutAt || this.fares.length < 0) {
+    if (!this.checkinAt || !this.checkoutAt || this.fares.length < 0) {
       alert('資料輸入不完全');
       return;
     }
@@ -131,22 +202,22 @@ export default class HotelController {
   sanitizeTempAcco () { 
     // Request is not yet created
     var reqObj = {
-      checkinAt: moment(this.accommodation.checkinAt).format('YYYY-MM-DD'),
-      checkoutAt: moment(this.accommodation.checkoutAt).format('YYYY-MM-DD'),
+      checkinAt: moment(this.checkinAt).format('YYYY-MM-DD'),
+      checkoutAt: moment(this.checkoutAt).format('YYYY-MM-DD'),
       rooms: [],
       fares: []
     };
     reqObj.rooms = this.selectedRooms.map(room => {
       return {
         roomId: room.id,
-        numRooms: room.amount,
+        numRooms: room.numRooms,
         type: room.type
       };
     });
     reqObj.fares = this.fares.map(fare => {
       return {
-        amount: fare.price,
-        multiplier: fare.amount
+        amount: fare.amount,
+        multiplier: fare.multiplier
       };
     });
     reqObj.hotelName = this.name;
@@ -156,21 +227,21 @@ export default class HotelController {
   sanitizeAcco () {
     // Request is created
     var reqObj = {
-      checkinAt: moment(this.accommodation.checkinAt).format('YYYY-MM-DD'),
-      checkoutAt: moment(this.accommodation.checkoutAt).format('YYYY-MM-DD'),
+      checkinAt: moment(this.checkinAt).format('YYYY-MM-DD'),
+      checkoutAt: moment(this.checkoutAt).format('YYYY-MM-DD'),
       rooms: [],
       fares: []
     };
     reqObj.rooms = this.selectedRooms.map(room => {
       return {
         roomId: room.id,
-        numRooms: room.amount
+        numRooms: room.numRooms
       };
     });
     reqObj.fares = this.fares.map(fare => {
       return {
-        amount: fare.price,
-        multiplier: fare.amount
+        amount: fare.amount,
+        multiplier: fare.multiplier
       };
     });
     return reqObj;

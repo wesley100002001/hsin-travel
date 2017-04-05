@@ -5,18 +5,18 @@
     <div class="col-md-4">
       <div class="signin">
         <form>
-          <h2 class="signin-heading">【新亞旅遊資訊系統】</h2>
+          <h2 class="signin-heading">{{ 'login.Hsin-Ia' | translate }}</h2>
           <input id="username" name="username" type="text"
-            class="form-control" maxlength="50" placeholder="帳號"
+            class="form-control" maxlength="50" placeholder="{{ 'login.Account' | translate }}"
             ng-model="loginCtrl.username" autofocus>
           <input id="password" name="password" type="password"
-            class="form-control" maxlength="50" placeholder="密碼"
+            class="form-control" maxlength="50" placeholder="{{ 'login.Password' | translate }}"
             ng-model="loginCtrl.password">
-          <button class="btn btn-danger btn-block" ng-click="loginCtrl.verifyUser()" translate>Login</button>
+          <button class="btn btn-danger btn-block" ng-click="loginCtrl.verifyUser()" translate>{{ 'login.Login' | translate }}</button>
         </form>
       </div>
       <div ng-show="loginCtrl.failed" class="alert alert-danger" role="alert">
-        <strong>登入失敗：</strong>請檢查帳號密碼是否正確。
+        <strong>{{ 'login.LoginFail' | translate }}：</strong>{{ 'login.PleaseCheckAccountPassword' | translate }}
       </div>
     </div>
     <div class="col-md-4">

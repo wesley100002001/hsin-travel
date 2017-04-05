@@ -8,7 +8,7 @@ export const FETCH_ACCO = 'FETCH_ACCO';
 export const FETCH_FARE = 'FETCH_FARE';
 export const FETCH_HOTEL = 'FETCH_HOTEL';
 export const FETCH_HOTEL_ROOMS = 'FETCH_HOTEL_ROOMS';
-export const PATCH_ACCO = 'PATCH_ACCO';
+export const UPDATE_ACCO = 'UPDATE_ACCO';
 
 export function fetchHotel (hotelId) {
   return {
@@ -67,6 +67,17 @@ export function submitAccommodation (requestId, acco) {
   };
 }
 
+export function updateAccommodation (requestId, accoId, acco) {
+  return dispatch => {
+    return restful.putAccommodation(requestId, accoId, acco)
+    .then(response => {
+      dispatch(fetchRequest(requestId));
+    }).catch(err => {
+      console.log(err);
+    });
+  };
+}
+
 export function clearAccommodation () {
   return {
     type: CLEAR_ACCO,
@@ -78,5 +89,27 @@ export function createAccommodation (acco) {
   return {
     type: ADD_ACCO,
     payload: acco
+  };
+}
+
+export function createAccommodationRoom (requestId, accoId, room) {
+  return dispatch => {
+    return restful.postAccommodationRoom(requestId, accoId, room)
+    .then(response => {
+      dispatch(fetchRequest(requestId));
+    }).catch(err => {
+      console.log(err);
+    })
+  };
+}
+
+export function removeAccommodationRoom (requestId, accoId, roomId) {
+  return dispatch => {
+    return restful.deleteAccommodationRoom(requestId, accoId, roomId)
+    .then(response => {
+      dispatch(fetchRequest(requestId));
+    }).catch(err => {
+      console.log(err);
+    });
   };
 }

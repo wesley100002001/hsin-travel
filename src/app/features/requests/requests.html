@@ -5,23 +5,23 @@
     </div>
   </div>
   <div class="row" ng-show="!requestsCtrl.isLoading">
-    <h1 class="padding-down">需求列表</h1>
+    <h1 class="padding-down">{{ 'requests.Requests' | translate }}</h1>
     <div class="form-group form-inline">
       <span class="glyphicon glyphicon-search"></span>
-      <input type="text" class="form-control" placeholder="請輸入團名" ng-model="requestsCtrl.searchText"
+      <input type="text" class="form-control" placeholder="{{ 'requests.PleaseEnterTitle' | translate }}" ng-model="requestsCtrl.searchText"
              ng-change="requestsCtrl.search()">
       <button class="btn btn-success pull-right" ng-show="requestsCtrl.creatable" ng-click="requestsCtrl.createRequest()">
-        <span class="glyphicon glyphicon-plus"></span> 新增
+        <span class="glyphicon glyphicon-plus"></span> {{ 'requests.Add' | translate }}
       </button>
     </div>
     <table class="table git-table">
       <tr>
-        <th>團名</th>
-        <th>地區</th>
-        <th>公司名稱</th>
-        <th>出發日期</th>
-        <th>需求發起人</th>
-        <th>最後修改日期</th>
+        <th>{{ 'requests.Title' | translate }}</th>
+        <th>{{ 'requests.Region' | translate }}</th>
+        <th>{{ 'requests.Company' | translate }}</th>
+        <th>{{ 'requests.StartAt' | translate }}</th>
+        <th>{{ 'requests.Creator' | translate }}</th>
+        <th>{{ 'requests.LastUpdateAt' | translate }}</th>
       </tr>
       <tr ng-repeat="req in requestsCtrl.currentRequests | limitTo: requestsCtrl.pageSize">
         <td><a ui-sref="request({requestId: '{{req.id}}'})">{{req.title}}</a></td>
@@ -39,6 +39,10 @@
       items-per-page="requestsCtrl.pageSize"
       max-size="requestsCtrl.maxSize"
       boundary-links="true"
+      first-text="{{ 'requests.FirstPage' | translate }}"
+      last-text="{{ 'requests.LastPage' | translate }}"
+      next-text="{{ 'requests.NextPage' | translate }}"
+      previous-text="{{ 'requests.PrevPage' | translate }}"
       ng-model="requestsCtrl.currentPage"
       ng-change="requestsCtrl.changePage()">
     </ul> 

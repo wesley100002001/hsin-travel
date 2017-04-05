@@ -5,12 +5,15 @@
     "Login": "ログイン",
     "Password": "パスワード"
   },
+  "hotel": {
+    "Edit": "編集します"
+  },
   "navbar": {
     "Chinese": "中文",
     "Japanese": "日本語",
     "Language": "言語",
     "Logout": "ログアウト",
-    "NewHotel": "新增飯店(日文)",
+    "CreateHotel": "新增飯店(日文)",
     "Requests": "全報告書一覧"
   },
   "requests": {
@@ -52,6 +55,8 @@
     "Japan": "日本側",
     "Comment": "コメント",
     "Submit": "書き込む",
-    "Fee": "その他の費用"
+    "Fee": "その他の費用",
+    "Edit": "編集します",
+    "Price": "価格"
   }
 }

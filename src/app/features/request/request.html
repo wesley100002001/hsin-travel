@@ -1,45 +1,45 @@
 <div class="container" ng-show="requestCtrl.isNew">
   <div class="row">
     <div ng-show="requestCtrl.isCreated === 'success'" class="alert alert-success" role="alert">
-      <strong>新增成功</strong>
+      <strong>{{ 'request.CreateSuccess' | translate }}</strong>
     </div>
     <div ng-show="requestCtrl.isCreated === 'fail'" class="alert alert-danger" role="alert">
-      <strong>新增失敗</strong>
+      <strong>{{ 'request.CreateFail' | translate }}</strong>
     </div>
     <form name="reqForm" novalidate>
-      <h1 class="padding-down">新增需求</h1>
+      <h1 class="padding-down">{{ 'request.CreateRequest' | translate }}</h1>
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">基本資訊</h3>
+          <h3 class="panel-title">{{ 'request.BasicInfo' | translate }}</h3>
         </div>
         <div class="panel-body">
           <div class="row">
             <div class="col-md-4">
               <div class="form-group">
-                <label for="title">團名</label>
+                <label for="title">{{ 'request.Title' | translate }}</label>
                 <input class="form-control" name="title" type="text" 
-                      ng-model="requestCtrl.newPkg.title" placeholder="請輸入團名"
+                      ng-model="requestCtrl.newPkg.title" placeholder="{{ 'request.PleaseEnterTitle' | translate }}"
                       required>
               </div>
               <div class="form-group">
-                <label for="client">公司</label>
+                <label for="client">{{ 'request.Company' | translate }}</label>
                 <input class="form-control" name="client" type="text" 
-                      ng-model="requestCtrl.newPkg.clientName" placeholder="請輸入公司名稱"
+                      ng-model="requestCtrl.newPkg.clientName" placeholder="{{ 'request.PleaseEnterCompany' | translate }}"
                       required>
               </div>
               <div class="form-group">
-                <label for="people">人數</label>
-                <input class="form-control" name="people" type="text" placeholder="團員人數"
+                <label for="people">{{ 'request.People' | translate }}</label>
+                <input class="form-control" name="people" type="text" placeholder="{{ 'request.PleaseEnterPeople' | translate }}"
                        ng-model="requestCtrl.newPkg.peopleNote" required>
                 <span class="help-block">例：30名＋1T/C</span>
               </div>
               <div class="form-group">
-                <label for="serialNo">旅行團編號</label>
-                <input class="form-control" name="serialNo" type="text" placeholder="請輸入編號"
+                <label for="serialNo">{{ 'request.SerialNumber' | translate }}</label>
+                <input class="form-control" name="serialNo" type="text" placeholder="{{ 'request.PleaseEnterSerialNumber' | translate }}"
                        ng-model="requestCtrl.newPkg.serialNo" required>
               </div>
               <div class="form-group">
-                <label for="start_date">開始日期</label>
+                <label for="start_date">{{ 'request.StartAt' | translate }}</label>
                 <div class="input-group">
                   <input type="text" class="form-control"
                   id="start_date" name="start_date"
@@ -59,7 +59,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="end_date">結束日期</label>
+                <label for="end_date">{{ 'request.EndAt' | translate }}</label>
                 <div class="input-group">
                   <input type="text" class="form-control"
                   id="end_date" name="end_date"
@@ -79,13 +79,13 @@
                 </div>
                 <div class="text-danger" ng-show="reqForm.$error.date">
                   <i class="glyphicon glyphicon-exclamation-sign"></i>
-                  開始日期要於結束日期之前
+                  {{ 'request.StartAtBeforeEndAt' | translate }}
                 </div>
               </div>
             </div>
             <div class="col-md-8">
               <div class="form-group">
-                <label for="description">詳細內容</label>
+                <label for="description">{{ 'request.Content' | translate }}</label>
                 <textarea id="description" class="form-control" rows="15" 
                           ng-model="requestCtrl.newPkg.description" required></textarea>
               </div>
@@ -95,15 +95,15 @@
       </div>
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">住宿</h3>
+          <h3 class="panel-title">{{ 'request.Accommodation' | translate }}</h3>
         </div>
         <div class="panel-body">
           <table class="table git-table">
             <tr>
-              <th>飯店</th>
-              <th>入住日期</th>
-              <th>退房日期</th>
-              <th>房間</th>
+              <th>{{ 'request.Hotel' | translate }}</th>
+              <th>{{ 'request.CheckInAt' | translate }}</th>
+              <th>{{ 'request.CheckOutAt' | translate }}</th>
+              <th>{{ 'request.RoomType' | translate }}</th>
             </tr>
             <tr ng-repeat="acco in requestCtrl.newAccommodation">
               <td>{{acco.hotelName}}</td>
@@ -113,18 +113,18 @@
             </tr>
           </table>
           <button class="btn btn-success" ng-click="requestCtrl.addAccommodation()">
-            <span class="glyphicon glyphicon-plus"></span> 新增
+            <span class="glyphicon glyphicon-plus"></span> {{ 'request.Add' | translate }}
           </button>
-          <span class="help-block">若無法確定房型，可以直接於上方詳細內容輸入</span>
+          <span class="help-block">{{ 'request.IfCannotConfirmRoomType' | translate }}</span>
         </div>
       </div>
       <div class="text-center">
         <button class="btn btn-danger" ng-click="requestCtrl.stateGo('requests')">
-          <span class="glyphicon glyphicon-remove"></span> 取消
+          <span class="glyphicon glyphicon-remove"></span> {{ 'request.Cancel' | translate }}
         </button>
         <button class="btn btn-success" ng-click="requestCtrl.confirm()" 
                 ng-disabled="!reqForm.$valid" >
-          <span class="glyphicon glyphicon-saved"></span> 新增
+          <span class="glyphicon glyphicon-saved"></span> {{ 'request.Add' | translate }}
         </button>
       </div>
     </form>
@@ -142,16 +142,17 @@
       <button class="btn-tab"
               ng-show="requestCtrl.editable"
               ng-class="{'btn-tab-chosen': requestCtrl.channel === 'Taiwan'}"
-              ng-click="requestCtrl.switchChannel('Taiwan')">台方討論</button>
+              ng-click="requestCtrl.switchChannel('Taiwan')">{{ 'request.Taiwan' | translate }}</button>
       <button class="btn-tab"
               ng-show="requestCtrl.editable"
               ng-class="{'btn-tab-chosen': requestCtrl.channel === 'Japan'}"
-              ng-click="requestCtrl.switchChannel('Japan')">日方討論</button>
+              ng-click="requestCtrl.switchChannel('Japan')">{{ 'request.Japan' | translate }}</button>
       <hr ng-show="requestCtrl.editable">
       <div class="btn-tab" ng-show="!requestCtrl.editable">
-        <h3>行程討論</h3>
+        <h3>{{ 'request.Comment' | translate }}</h3>
       </div>
       <div ng-show="requestCtrl.channel === 'Taiwan'">
+        <!--這個區塊故意不翻譯-->
         <div class="form-group">
           <label for="comment">留言</label>
           <textarea class="form-control" rows="2" id="comment" ng-model="requestCtrl.newComment"></textarea>
@@ -165,54 +166,56 @@
           目前沒有任何留言唷！
         </p>
         <div ng-repeat="log in requestCtrl.taiwanLogs">
-          <p><span>{{log.actor.username}}:</span><span class="pull-right">{{requestCtrl.showJPDateWithHour(log.createdAt)}}</span></p>
-          <p class="comment">{{log.content}}</p>
+          <div class="log-username"><span class="glyphicon glyphicon-user"></span>&nbsp;{{log.actor.username}}</div>
+          <div class="log-time"><span class="glyphicon glyphicon-time"></span>&nbsp;<span>{{requestCtrl.showJPDateWithHour(log.createdAt)}}</span></div>
+          <p class="comment">{{requestCtrl.composeLog(log)}}</p>
         </div>
       </div>
       <div ng-show="requestCtrl.channel === 'Japan'">
         <div class="form-group">
-          <label for="comment">留言</label>
+          <label for="comment">{{ 'request.Comment' | translate }}</label>
           <textarea class="form-control" rows="2" id="comment" ng-model="requestCtrl.newComment"></textarea>
         </div>
         <div class="padding-down">
           <button class="btn btn-success" ng-click="requestCtrl.leaveComment('Japan')">
-            <span class="glyphicon glyphicon-share-alt"></span> 送出
+            <span class="glyphicon glyphicon-share-alt"></span> {{ 'request.Submit' | translate }}
           </button>
         </div>
         <p ng-show="requestCtrl.japanLogs < 1" class="text-center">
-          目前沒有任何留言唷！
+          {{ 'request.NoComments' | translate }}
         </p>
         <div ng-repeat="log in requestCtrl.japanLogs">
-          <p><span>{{log.actor.username}}:</span><span class="pull-right">{{requestCtrl.showJPDateWithHour(log.createdAt)}}</span></p>
-          <p class="comment">{{log.content}}</p>
+          <div class="log-username"><span class="glyphicon glyphicon-user"></span>&nbsp;{{log.actor.username}}</div>
+          <div class="log-time"><span class="glyphicon glyphicon-time"></span>&nbsp;<span>{{requestCtrl.showJPDateWithHour(log.createdAt)}}</span></div>
+          <p class="comment">{{requestCtrl.composeLog(log)}}</p>
         </div>
       </div>
     </div>
     <div class="col-sm-9 col-md-9 scrollable">
       <div ng-show="requestCtrl.isUpdated === 'success'" class="alert alert-success" role="alert">
-        <strong>更新成功</strong>
+        <strong>{{ 'request.UpdateSuccess' | translate }}</strong>
       </div>
       <div ng-show="requestCtrl.isUpdated === 'fail'" class="alert alert-danger" role="alert">
-        <strong>更新失敗</strong>
+        <strong>{{ 'request.UpdateFail' | translate }}</strong>
       </div>
       <h1 ng-show="!requestCtrl.pkgEditable">
         {{requestCtrl.tourPackage.title}}
         <small>{{requestCtrl.tourPackage.startsOn}}～{{requestCtrl.tourPackage.endsOn}}</small>
         <button class="btn btn-primary pull-right" ng-click="requestCtrl.onEditPkg()" ng-show="requestCtrl.editable">
-          <span class="glyphicon glyphicon-pencil"></span> 編輯
+          <span class="glyphicon glyphicon-pencil"></span> {{ 'request.Edit' | translate }}
         </button>
       </h1>
       <h5 ng-show="!requestCtrl.pkgEditable">{{requestCtrl.tourPackage.serialNo}}</h5>
-      <h4 ng-show="!requestCtrl.pkgEditable">人數：{{requestCtrl.tourPackage.peopleNote}}</h4>
+      <h4 ng-show="!requestCtrl.pkgEditable">{{ 'request.People' | translate }}：{{requestCtrl.tourPackage.peopleNote}}</h4>
       <div ng-show="requestCtrl.pkgEditable">
         <h3>
-          團名：<input type="text" class="form-control" ng-model="requestCtrl.tempPkg.title">
+          {{ 'request.Title' | translate }}：<input type="text" class="form-control" ng-model="requestCtrl.tempPkg.title">
         </h3>
         <h3>
-          旅行團編號：<input type="text" class="form-control" ng-model="requestCtrl.tempPkg.serialNo">
+          {{ 'request.SerialNumber' | translate }}：<input type="text" class="form-control" ng-model="requestCtrl.tempPkg.serialNo">
         </h3>
         <h3>
-          人數：<input type="text" class="form-control" ng-model="requestCtrl.tempPkg.peopleNote">
+          {{ 'request.People' | translate }}：<input type="text" class="form-control" ng-model="requestCtrl.tempPkg.peopleNote">
         </h3>
         <button class="btn btn-success" ng-click="requestCtrl.submitPkg()">
           <span class="glyphicon glyphicon-ok"></span>
@@ -226,7 +229,7 @@
         <div class="card-header" role="tab" id="headingOne">
           <h3 class="mb-0">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              詳細內容&nbsp;<small><span class="glyphicon glyphicon-triangle-bottom"></span></small>
+              {{ 'request.Content' | translate }}&nbsp;<small><span class="glyphicon glyphicon-triangle-bottom"></span></small>
             </a>
           </h3>
         </div>
@@ -238,14 +241,14 @@
       </div>
       <hr ng-show="!!requestCtrl.tourPackage.description">
       <div>
-        <h3>住宿</h3>
+        <h3>{{ 'request.Accommodation' | translate }}</h3>
         <table class="table git-table" ng-show="requestCtrl.tourPackage.accommodations.length > 0">
           <tr>
-            <th>入住日期</th>
-            <th>退房日期</th>
-            <th>飯店</th>
-            <th>房型</th>
-            <th>價錢</th>
+            <th>{{ 'request.CheckInAt' | translate }}</th>
+            <th>{{ 'request.CheckOutAt' | translate }}</th>
+            <th>{{ 'request.Hotel' | translate }}</th>
+            <th>{{ 'request.RoomType' | translate }}</th>
+            <th>{{ 'request.Price' | translate }}</th>
             <th ng-show="requestCtrl.editable"></th>
           </tr>
           <tr ng-repeat="acco in requestCtrl.tourPackage.accommodations track by $index">
@@ -255,22 +258,25 @@
             <td><span ng-repeat="room in acco.rooms">{{room.numRooms}}&nbsp;{{room.room.type}}&nbsp;&nbsp;&nbsp;</span></td>
             <td>{{requestCtrl.getFareSum(acco.fares)}}</td>
             <td ng-show="requestCtrl.editable">
+              <a href ng-click="requestCtrl.editAccommodation(acco.rooms[0].room.hotelId, acco.id)">
+                <span class="glyphicon glyphicon-pencil"></span>
+              </a>&nbsp;
               <a href ng-click="requestCtrl.removeAccommodation(acco.requestId, acco.id)">
                 <span class="glyphicon glyphicon-trash"></span>
-              </a>
+              </a>&nbsp;
             </td>
           </tr>
         </table>
         <button class="btn btn-success" ng-show="requestCtrl.editable" ng-click="requestCtrl.addAccommodation()">
-          <span class="glyphicon glyphicon-plus"></span> 新增
+          <span class="glyphicon glyphicon-plus"></span> {{ 'request.Add' | translate }}
         </button>
       </div>
       <hr>
-      <h3>其它費用</h3>
+      <h3>{{ 'request.Fee' | translate }}</h3>
       <table class="table git-table" ng-show="requestCtrl.fee.length > 0">
         <tr>
-          <th>項目</th>
-          <th>金額</th>
+          <th>{{ 'request.FeeTitle' | translate }}</th>
+          <th>{{ 'request.FeePrice' | translate }}</th>
         </tr>
         <tr ng-repeat="item in requestCtrl.fee track by $index">
           <td>{{item.title}}</td>
@@ -278,13 +284,13 @@
         </tr>
       </table>
       <button class="btn btn-success" ng-show="!requestCtrl.feeInputVisible && requestCtrl.editable" ng-click="requestCtrl.showFeeInput()">
-        <span class="glyphicon glyphicon-plus"></span> 新增
+        <span class="glyphicon glyphicon-plus"></span> {{ 'request.Add' | translate }}
       </button>
       <div ng-show="requestCtrl.feeInputVisible">
         <form class="form-inline padding-down">
-          項目&nbsp;&nbsp;
+          {{ 'request.FeeTitle' | translate }}&nbsp;&nbsp;
           <input type="text" class="form-control" ng-model="requestCtrl.feeInput.title">
-          &nbsp;金額&nbsp;&nbsp;
+          &nbsp;{{ 'request.FeePrice' | translate }}&nbsp;&nbsp;
           <div class="input-group">
             <span class="input-group-addon">$</span>
             <input type="number" class="form-control" ng-model="requestCtrl.feeInput.amount" aria-label="Amount (to the nearest dollar)">
@@ -298,7 +304,7 @@
         </button>
       </div>
       <hr>
-      <h3>總計</h3>
+      <h3>{{ 'request.Total' | translate }}</h3>
       <h4>$&nbsp;{{requestCtrl.getTotalCost()}}</h4>
     </div>
   </div>
