@@ -104,6 +104,7 @@ export function createAccommodationRoom (requestId, accoId, room) {
 }
 
 export function removeAccommodationRoom (requestId, accoId, roomId) {
+  console.log(roomId);
   return dispatch => {
     return restful.deleteAccommodationRoom(requestId, accoId, roomId)
     .then(response => {

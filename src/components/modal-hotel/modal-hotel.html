@@ -20,7 +20,7 @@
           <td>{{room.type}}</td>
           <td>{{room.numRooms}}</td>
           <td>
-            <a href ng-click="hotelCtrl.removeRoom($index)" ng-show="hotelCtrl.accoId > 0">
+            <a href ng-click="hotelCtrl.removeRoom(room.roomId)" ng-show="hotelCtrl.accoId > 0">
               <span class="glyphicon glyphicon-trash"></span>
             </a>
             <a href ng-click="hotelCtrl.removeRoomByIndex($index)" ng-show="hotelCtrl.accoId == 0">
@@ -66,7 +66,7 @@
       <hr>
       <h4 class="padding-down">
         選擇日期
-        <button class="btn btn-primary pull-right" ng-click="hotelCtrl.onEditDate()" ng-show="!hotelCtrl.dateEditable">
+        <button class="btn btn-primary pull-right" ng-click="hotelCtrl.onEditDate()" ng-show="!hotelCtrl.dateEditable && !hotelCtrl.isNew">
           <span class="glyphicon glyphicon-pencil"></span> {{ 'hotel.Edit' | translate }}
         </button>
       </h4>
@@ -115,7 +115,7 @@
             開始日期要於結束日期之前
           </div>
         </div>
-        <div ng-show="hotelCtrl.dateEditable">
+        <div ng-show="hotelCtrl.dateEditable && !hotelCtrl.isNew">
           <button class="btn btn-success" ng-click="hotelCtrl.submitDate()">
             <span class="glyphicon glyphicon-ok"></span>
           </button>

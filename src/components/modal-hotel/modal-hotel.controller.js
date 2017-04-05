@@ -14,9 +14,8 @@ export default class HotelController {
 
     this.isOneDay = false;
     this.isNew = this.accoId == 0;
-    if (!this.isNew) {
-      this.dateEditable = false;
-    }
+    // Default 可以編輯 for new Acco；Defaut 不能編輯 for old Acco
+    this.dateEditable = this.isNew ? null : false;
 
     this.startOpened = false;
     this.endOpened = false;
@@ -39,7 +38,7 @@ export default class HotelController {
   mapStateToThis(state) {
     console.log('modal-hotel');
     console.log(state);
-    var accommodation = (this.requestId > 0 && this.accoId > 0) ? 
+    var accommodation = (!!state.tour_package.accommodations && state.tour_package.accommodations.length > 0) ? 
       state.tour_package.accommodations.find((element, index) => {
         return element.id == this.accoId;
       }) : null;
@@ -156,14 +155,8 @@ export default class HotelController {
     delete this.roomInput;
   }
 
-  removeRoom (room) {
-    if (this.accoId == 0) {
-      this.selectedRooms = this.selectedRooms.filter(element => {
-        return room.id != element.id;
-      });
-    } else {
-      this.removeAccommodationRoom(this.requestId, this.accoId, room.roomId);
-    }
+  removeRoom (roomId) {
+    this.removeAccommodationRoom(this.requestId, this.accoId, roomId);
   }
 
   removeRoomByIndex (index) {
@@ -184,6 +177,7 @@ export default class HotelController {
       checkoutAt: moment(this.checkoutAt).format('YYYY-MM-DD')
     };
     this.updateAccommodation(this.requestId, this.accoId, reqObj);
+    this.dateEditable = false;
   }
 
   confirm () {
