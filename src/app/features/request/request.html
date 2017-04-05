@@ -16,30 +16,30 @@
           <div class="row">
             <div class="col-md-4">
               <div class="form-group">
-                <label for="title">{{ 'request.Title' | translate }}</label>
+                <label for="title" class="mandatory">{{ 'request.Title' | translate }}</label>
                 <input class="form-control" name="title" type="text" 
                       ng-model="requestCtrl.newPkg.title" placeholder="{{ 'request.PleaseEnterTitle' | translate }}"
                       required>
               </div>
               <div class="form-group">
-                <label for="client">{{ 'request.Company' | translate }}</label>
-                <input class="form-control" name="client" type="text" 
+                <label for="company" class="mandatory">{{ 'request.Company' | translate }}</label>
+                <input class="form-control" name="company" type="text" 
                       ng-model="requestCtrl.newPkg.clientName" placeholder="{{ 'request.PleaseEnterCompany' | translate }}"
                       required>
               </div>
               <div class="form-group">
-                <label for="people">{{ 'request.People' | translate }}</label>
+                <label for="people" class="mandatory">{{ 'request.People' | translate }}</label>
                 <input class="form-control" name="people" type="text" placeholder="{{ 'request.PleaseEnterPeople' | translate }}"
                        ng-model="requestCtrl.newPkg.peopleNote" required>
                 <span class="help-block">例：30名＋1T/C</span>
               </div>
               <div class="form-group">
-                <label for="serialNo">{{ 'request.SerialNumber' | translate }}</label>
+                <label for="serialNo" class="mandatory">{{ 'request.SerialNumber' | translate }}</label>
                 <input class="form-control" name="serialNo" type="text" placeholder="{{ 'request.PleaseEnterSerialNumber' | translate }}"
                        ng-model="requestCtrl.newPkg.serialNo" required>
               </div>
               <div class="form-group">
-                <label for="start_date">{{ 'request.StartAt' | translate }}</label>
+                <label for="start_date" class="mandatory">{{ 'request.StartAt' | translate }}</label>
                 <div class="input-group">
                   <input type="text" class="form-control"
                   id="start_date" name="start_date"
@@ -59,7 +59,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="end_date">{{ 'request.EndAt' | translate }}</label>
+                <label for="end_date" class="mandatory">{{ 'request.EndAt' | translate }}</label>
                 <div class="input-group">
                   <input type="text" class="form-control"
                   id="end_date" name="end_date"
@@ -87,7 +87,7 @@
               <div class="form-group">
                 <label for="description">{{ 'request.Content' | translate }}</label>
                 <textarea id="description" class="form-control" rows="15" 
-                          ng-model="requestCtrl.newPkg.description" required></textarea>
+                          ng-model="requestCtrl.newPkg.description"></textarea>
               </div>
             </div>
           </div>
