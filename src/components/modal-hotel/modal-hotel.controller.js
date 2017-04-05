@@ -39,9 +39,11 @@ export default class HotelController {
   mapStateToThis(state) {
     console.log('modal-hotel');
     console.log(state);
-    var accommodation = state.tour_package.accommodations.find((element, index) => {
-      return element.id == this.accoId;
-    });
+    var accommodation = (this.requestId > 0 && this.accoId > 0) ? 
+      state.tour_package.accommodations.find((element, index) => {
+        return element.id == this.accoId;
+      }) : null;
+    
     var stateObj = {
       breakfast: state.hotel_info.breakfast,
       extraBed: state.hotel_info.extraBed,
