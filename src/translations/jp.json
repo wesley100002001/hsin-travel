@@ -36,6 +36,7 @@
     "CreateRequest": "報告書を作成する",
     "BasicInfo": "報告書を作成する内容入力",
     "Title": "標題",
+    "Company": "会社",
     "PleaseEnterTitle": "ツアーNOを入れてください",
     "People": "参加人数",
     "SerialNumber": "ツアーNO.",
