@@ -14,6 +14,20 @@
         <span class="glyphicon glyphicon-plus"></span> {{ 'requests.Add' | translate }}
       </button>
     </div>
+    <ul
+      uib-pagination
+      class="pagination-sm"
+      total-items="requestsCtrl.requests.length"
+      items-per-page="requestsCtrl.pageSize"
+      max-size="requestsCtrl.maxSize"
+      boundary-links="true"
+      first-text="{{ 'requests.FirstPage' | translate }}"
+      last-text="{{ 'requests.LastPage' | translate }}"
+      next-text="{{ 'requests.NextPage' | translate }}"
+      previous-text="{{ 'requests.PrevPage' | translate }}"
+      ng-model="requestsCtrl.currentPage"
+      ng-change="requestsCtrl.changePage()">
+    </ul> 
     <table class="table git-table">
       <tr>
         <th>{{ 'requests.Title' | translate }}</th>
@@ -32,19 +46,5 @@
         <td>{{req.updatedAt}}</td>
       </tr>
     </table>
-    <ul
-      uib-pagination
-      class="pagination-sm"
-      total-items="requestsCtrl.requests.length"
-      items-per-page="requestsCtrl.pageSize"
-      max-size="requestsCtrl.maxSize"
-      boundary-links="true"
-      first-text="{{ 'requests.FirstPage' | translate }}"
-      last-text="{{ 'requests.LastPage' | translate }}"
-      next-text="{{ 'requests.NextPage' | translate }}"
-      previous-text="{{ 'requests.PrevPage' | translate }}"
-      ng-model="requestsCtrl.currentPage"
-      ng-change="requestsCtrl.changePage()">
-    </ul> 
   </div>
 </div>
