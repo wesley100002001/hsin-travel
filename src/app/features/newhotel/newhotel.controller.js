@@ -52,9 +52,7 @@ export default class NewHotelController {
     this.breakfastInput = {};
   }
 
-  submitBreakfast ($event) {
-    $event.preventDefault();
-    $event.stopPropagation();
+  submitBreakfast () {
     this.breakfast.push({
       type: this.breakfastInput.type,
       label: this.breakfastInput.label,
@@ -66,7 +64,7 @@ export default class NewHotelController {
   }
 
   cancelAddBreakfast () {
-    this.extrabedInputVisible = false;
+    this.breakfastInputVisible = false;
     delete this.extrabedInput;
   }
 
