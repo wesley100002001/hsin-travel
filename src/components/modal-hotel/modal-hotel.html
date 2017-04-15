@@ -35,18 +35,19 @@
         </button>
         <div class="form-group" ng-show="hotelCtrl.roomInputVisible">
           <label for="room">房型選擇</label>
-          <form class="form-inline padding-down">
+          <form name="roomForm" class="form-inline padding-down">
             <select name="room" class="form-control" ng-model="hotelCtrl.roomInput.room"
-                    ng-options="room.type for room in hotelCtrl.rooms">
+                    ng-options="room.type for room in hotelCtrl.rooms" required>
               <!--<option disabled selected value>請選擇房型</option>-->
               <!--<option ng-repeat="room in hotelCtrl.rooms" value="room">{{room.type}}</option>-->
             </select>
-            <input type="text" class="form-control" ng-model="hotelCtrl.roomInput.numRooms" placeholder="請輸入數量">
+            <input type="text" class="form-control" ng-model="hotelCtrl.roomInput.numRooms" 
+                   placeholder="請輸入數量" required>
           </form>
           <button class="btn btn-danger" ng-click="hotelCtrl.cancelAddRoom()">
             <span class="glyphicon glyphicon-remove"></span>
           </button>
-          <button class="btn btn-success" ng-click="hotelCtrl.submitRoom()">
+          <button class="btn btn-success" ng-click="hotelCtrl.submitRoom()" ng-disabled="!roomForm.$valid">
             <span class="glyphicon glyphicon-ok"></span>
           </button>
         </div>
