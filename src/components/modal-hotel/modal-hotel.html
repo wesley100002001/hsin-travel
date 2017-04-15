@@ -167,16 +167,16 @@
         <span class="glyphicon glyphicon-plus"></span> 新增價錢
       </button>
       <div ng-show="hotelCtrl.fareInputVisible">
-        <form class="form-inline padding-down">
+        <form name="fareForm" class="form-inline padding-down">
           <div class="input-group">
             <span class="input-group-addon">$</span>
             <input type="number" class="form-control" ng-model="hotelCtrl.fareInput.amount"
-                   placeholder="請輸入價錢">
+                   placeholder="請輸入價錢" required>
           </div>
           <input type="number" class="form-control" ng-model="hotelCtrl.fareInput.multiplier"
-                 placeholder="請輸入數量">
+                 placeholder="請輸入數量" required>
         </form>
-        <button class="btn btn-success" ng-click="hotelCtrl.submitFare()">
+        <button class="btn btn-success" ng-click="hotelCtrl.submitFare()" ng-disabled="!fareForm.$valid">
           <span class="glyphicon glyphicon-ok"></span>
         </button>
         <button class="btn btn-danger" ng-click="hotelCtrl.cancelAddFare()">
