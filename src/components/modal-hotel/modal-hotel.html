@@ -43,11 +43,11 @@
             </select>
             <input type="text" class="form-control" ng-model="hotelCtrl.roomInput.numRooms" placeholder="請輸入數量">
           </form>
-          <button class="btn btn-success" ng-click="hotelCtrl.submitRoom()">
-            <span class="glyphicon glyphicon-ok"></span>
-          </button>
           <button class="btn btn-danger" ng-click="hotelCtrl.cancelAddRoom()">
             <span class="glyphicon glyphicon-remove"></span>
+          </button>
+          <button class="btn btn-success" ng-click="hotelCtrl.submitRoom()">
+            <span class="glyphicon glyphicon-ok"></span>
           </button>
         </div>
       </div>
@@ -176,11 +176,11 @@
           <input type="number" class="form-control" ng-model="hotelCtrl.fareInput.multiplier"
                  placeholder="請輸入數量" required>
         </form>
-        <button class="btn btn-success" ng-click="hotelCtrl.submitFare()" ng-disabled="!fareForm.$valid">
-          <span class="glyphicon glyphicon-ok"></span>
-        </button>
         <button class="btn btn-danger" ng-click="hotelCtrl.cancelAddFare()">
           <span class="glyphicon glyphicon-remove"></span>
+        </button>
+        <button class="btn btn-success" ng-click="hotelCtrl.submitFare()" ng-disabled="!fareForm.$valid">
+          <span class="glyphicon glyphicon-ok"></span>
         </button>
       </div>
     </div>
