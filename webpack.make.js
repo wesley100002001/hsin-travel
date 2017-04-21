@@ -76,6 +76,7 @@ module.exports = function makeWebpackConfig (options) {
   }
   if (PRODUCTION) {
     config.output.publicPath = 'https://wesley100002001.github.io/hsin-travel/';
+    config.output.filename = '[name].[hash].js';
   }
 
   /**
