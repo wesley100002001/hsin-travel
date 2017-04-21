@@ -9,11 +9,11 @@
   </div>
   <div class="row">
     <div class="col-md-6">
-      <h4 class="mandatory">房間</h4>
+      <h4 class="mandatory">{{ 'hotel.Room' | translate }}</h4>
       <table class="table git-table" ng-show="hotelCtrl.selectedRooms.length > 0">
         <tr>
-          <th>房型</th>
-          <th>數量</th>
+          <th>{{ 'hotel.RoomType' | translate }}</th>
+          <th>{{ 'hotel.RoomAmount' | translate }}</th>
           <th></th>
         </tr>
         <tr ng-repeat="room in hotelCtrl.selectedRooms track by $index">
@@ -31,7 +31,7 @@
       </table>
       <div class="padding-down">
         <button class="btn btn-success" ng-show="!hotelCtrl.roomInputVisible" ng-click="hotelCtrl.showRoomInput()">
-          <span class="glyphicon glyphicon-plus"></span> 新增訂房
+          <span class="glyphicon glyphicon-plus"></span> {{ 'hotel.Add' | translate }}
         </button>
         <div class="form-group" ng-show="hotelCtrl.roomInputVisible">
           <label for="room">房型選擇</label>
@@ -54,8 +54,8 @@
       </div>
       <hr>
       <div class="form-group">
-        <h4 class="padding-down">其它項目</h4>
-        <h5>早餐</h5>
+        <h4 class="padding-down">{{ 'hotel.OtherItem' | translate }}</h4>
+        <h5>{{ 'hotel.Breakfast' | translate }}</h5>
         <div ng-repeat="item in hotelCtrl.breakfast">
           <span>{{item.label}}：$&nbsp;{{item.price}}&nbsp;{{item.note}}</span>
         </div>
@@ -66,14 +66,14 @@
       </div>
       <hr>
       <h4 class="padding-down">
-        選擇日期
+        {{ 'hotel.ChooseDate' | translate }}
         <button class="btn btn-primary pull-right" ng-click="hotelCtrl.onEditDate()" ng-show="!hotelCtrl.dateEditable && !hotelCtrl.isNew">
           <span class="glyphicon glyphicon-pencil"></span> {{ 'hotel.Edit' | translate }}
         </button>
       </h4>
       <form name="hotelForm" novalidate>
         <div class="form-group">
-          <label for="start_date" class="mandatory">入住日期</label>
+          <label for="start_date" class="mandatory">{{ 'hotel.CheckInAt' | translate }}</label>
           <div class="input-group">
             <input type="text" class="form-control"
             id="start_date" name="start_date"
@@ -93,7 +93,7 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="end_date" class="mandatory">退房日期</label>
+          <label for="end_date" class="mandatory">{{ 'hotel.CheckOutAt' | translate }}</label>
           <div class="input-group">
             <input type="text" class="form-control"
             id="end_date" name="end_date"
@@ -113,7 +113,7 @@
           </div>
           <div class="text-danger" ng-show="hotelForm.$error.date">
             <i class="glyphicon glyphicon-exclamation-sign"></i>
-            開始日期要於結束日期之前
+            {{ 'hotel.StartAtBeforeEndAt' | translate }}
           </div>
         </div>
         <div ng-show="hotelCtrl.dateEditable && !hotelCtrl.isNew">
@@ -144,11 +144,11 @@
       </div>-->
     </div>
     <div class="col-md-6">
-      <h4 class="mandatory">價錢</h4>
+      <h4 class="mandatory">{{ 'hotel.Fare' | translate }}</h4>
       <table class="table git-table" ng-show="hotelCtrl.fares.length > 0">
         <tr>
-          <th>價格</th>
-          <th>數量</th>
+          <th>{{ 'hotel.Price' | translate }}</th>
+          <th>{{ 'hotel.Amount' | translate }}</th>
           <th></th>
         </tr>
         <tr ng-repeat="fare in hotelCtrl.fares track by $index">
@@ -165,17 +165,17 @@
         </tr>
       </table>
       <button class="btn btn-success" ng-show="!hotelCtrl.fareInputVisible" ng-click="hotelCtrl.showFareInput()">
-        <span class="glyphicon glyphicon-plus"></span> 新增價錢
+        <span class="glyphicon glyphicon-plus"></span> {{ 'hotel.Add' | translate }}
       </button>
       <div ng-show="hotelCtrl.fareInputVisible">
         <form name="fareForm" class="form-inline padding-down">
           <div class="input-group">
             <span class="input-group-addon">$</span>
             <input type="number" class="form-control" ng-model="hotelCtrl.fareInput.amount"
-                   placeholder="請輸入價錢" required>
+                   placeholder="{{ 'hotel.PleaseEnterAmount' | translate }}" required>
           </div>
           <input type="number" class="form-control" ng-model="hotelCtrl.fareInput.multiplier"
-                 placeholder="請輸入數量" required>
+                 placeholder="{{ 'hotel.PleaseEnterMultiplier' | translate }}" required>
         </form>
         <button class="btn btn-danger" ng-click="hotelCtrl.cancelAddFare()">
           <span class="glyphicon glyphicon-remove"></span>
@@ -190,15 +190,15 @@
 <div class="modal-footer">
   <div ng-show="hotelCtrl.isNew">
     <button class="btn btn-danger" ng-click="hotelCtrl.cancel()">
-      取消
+      {{ 'hotel.Cancel' | translate }}
     </button>
     <button class="btn btn-primary" ng-click="hotelCtrl.confirm()">
-      確認
+      {{ 'hotel.Confirm' | translate }}
     </button>
   </div>
   <div ng-show="!hotelCtrl.isNew">
     <button class="btn btn-default" ng-click="hotelCtrl.cancel()">
-      完成
+      {{ 'hotel.Finish' | translate }}
     </button>
   </div>
 </div>
