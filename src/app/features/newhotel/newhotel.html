@@ -1,11 +1,5 @@
 <div class="container">
   <div class="row">
-    <div ng-show="newhotelCtrl.submitStatus === 'success'" class="alert alert-success" role="alert">
-      <strong>新增成功</strong>
-    </div>
-    <div ng-show="newhotelCtrl.submitStatus === 'fail'" class="alert alert-danger" role="alert">
-      <strong>新增失敗</strong>
-    </div>
     <h1 class="padding-down">新增飯店</h1>
     <div class="col-sm-6 col-md-6">
       <label for="hotelname"><h4>飯店名稱</h4></label>
@@ -85,20 +79,37 @@
           <label for="extra-note">Note</label>
           <input type="text" name="extra-note" class="form-control" ng-model="newhotelCtrl.breakfastInput.note">
         </form>
-        <button class="btn btn-success" ng-click="newhotelCtrl.submitBreakfast($event)">
-          <span class="glyphicon glyphicon-ok"></span>
-        </button>
-        <button class="btn btn-danger" ng-click="newhotelCtrl.cancelAddBreakfast()">
-          <span class="glyphicon glyphicon-remove"></span>
-        </button>
+        <div class="form-group">
+          <button class="btn btn-success" ng-click="newhotelCtrl.submitBreakfast($event)">
+            <span class="glyphicon glyphicon-ok"></span>
+          </button>
+          <button class="btn btn-danger" ng-click="newhotelCtrl.cancelAddBreakfast()">
+            <span class="glyphicon glyphicon-remove"></span>
+          </button>
+        </div>
       </div>
     </div>
     <div class="col-sm-6 col-md-6">
     </div>
   </div>
-  <div class="text-center">
+  <div class="text-center padding-down">
     <button class="btn btn-primary" ng-click="newhotelCtrl.confirm()">
       <span class="glyphicon glyphicon-saved"></span> 確認
     </button>
   </div>
+  <div ng-show="newhotelCtrl.submitStatus === 'success'" class="alert alert-success" role="alert">
+    <strong>新增成功</strong>
+  </div>
+  <div ng-show="newhotelCtrl.submitStatus === 'fail'" class="alert alert-danger" role="alert">
+    <strong>新增失敗</strong>
+  </div>
+  <hr>
+  <table name="rooms" class="table git-table">
+    <tr>
+      <th>飯店名稱</th>
+    </tr>
+    <tr ng-repeat="hotel in newhotelCtrl.hotels">
+      <td>{{hotel.name}}</td>
+    </tr>
+  </table>
 </div>

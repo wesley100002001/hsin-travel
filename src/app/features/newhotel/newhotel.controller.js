@@ -13,20 +13,24 @@ export default class NewHotelController {
     const unsubscribe = $ngRedux.connect(this.mapStateToThis.bind(this), combinedActions)(this);
     $scope.$on('$destroy', unsubscribe);
 
+    this.fetchHotels();
     this.clearStatus();
     this.extrabed = [];
     this.breakfast = [];
+    this.name = '';
   }
 
   mapStateToThis (state) {
     console.log('newhotel');
     console.log(state);
     return {
-      submitStatus: state.newhotelstatus
+      hotels: state.newhotel.hotels,
+      submitStatus: state.newhotel.status
     };
   }
 
   showExtrabedInput () {
+    this.clearStatus();
     this.extrabedInputVisible = true;
     this.extrabedInput = {};
   }
@@ -48,6 +52,7 @@ export default class NewHotelController {
   }
 
   showBreakfastInput () {
+    this.clearStatus();
     this.breakfastInputVisible = true;
     this.breakfastInput = {};
   }
@@ -75,6 +80,9 @@ export default class NewHotelController {
       breakfast: this.breakfast
     };
     this.submitHotel(reqObj);
+    this.extrabed = [];
+    this.breakfast = [];
+    this.name = '';
   }
 }
 

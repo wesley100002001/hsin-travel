@@ -1,8 +1,20 @@
 import * as restful from '../lib/restful';
 
+import { FETCH_HOTELS } from './hotels';
+
 export const CLEAR_SUBMIT_HOTEL_STATUS = 'CLEAR_SUBMIT_HOTEL_STATUS';
 export const SUCCEED_SUBMIT_HOTEL = 'SUCCEED_SUBMIT_HOTEL';
 export const FAIL_SUBMIT_HOTEL = 'FAIL_SUBMIT_HOTEL';
+
+export function fetchHotels () {
+  return {
+    type: FETCH_HOTELS,
+    payload: restful.getHotels()
+      .then(response => {
+        return response.payload;
+      })
+  };
+}
 
 function succeedSubmitHotel () {
   return {
@@ -32,7 +44,10 @@ export function submitHotel (hotel) {
       if (response.statusCode >= 400) {
         throw response;
       }
-      dispatch(succeedSubmitHotel());
+      Promise.all([
+        dispatch(succeedSubmitHotel()),
+        dispatch(fetchHotels())
+      ]);
     }).catch(err => {
       dispatch(failSubmitHotel());
       console.log(err);

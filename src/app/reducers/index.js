@@ -248,16 +248,27 @@ function isLoading (state = false, action) {
   }
 }
 
-function newhotelstatus (state = null, action) {
+function newhotel (state = { status: null }, action) {
   switch (action.type) {
+    case `${FETCH_HOTELS}${FULFILLED}`:
+    return Object.assign({}, state, {
+      hotels: action.payload
+    });
+    
     case SUCCEED_SUBMIT_HOTEL:
-    return action.payload;
+    return Object.assign({}, state, {
+      status: action.payload
+    });
 
     case FAIL_SUBMIT_HOTEL:
-    return action.payload;
+    return Object.assign({}, state, {
+      status: action.payload
+    });
 
     case CLEAR_SUBMIT_HOTEL_STATUS:
-    return action.payload;
+    return Object.assign({}, state, {
+      status: action.payload
+    });
 
     default:
     return state;
@@ -311,7 +322,7 @@ let appReducer = combineReducers({
   orders,
   navbar,
   new_accommodation,
-  newhotelstatus,
+  newhotel,
   newroom,
   request,
   requests,

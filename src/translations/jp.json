@@ -25,8 +25,8 @@
     "Japanese": "日本語",
     "Language": "言語",
     "Logout": "ログアウト",
-    "CreateHotel": "新增飯店(日文)",
-    "CreateRoom": "新增房型(日文)",
+    "CreateHotel": "新增飯店",
+    "CreateRoom": "新增房型",
     "Requests": "全報告書一覧"
   },
   "requests": {
