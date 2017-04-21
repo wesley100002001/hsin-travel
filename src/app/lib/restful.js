@@ -34,6 +34,19 @@ export function getHotel (hotelId) {
   });
 }
 
+export function postHotel (hotel) {
+  var token = localStorage.getItem('token');
+  return fetch(config.heroku_host.concat('/hotel'), {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer ' + token
+    },
+    body: JSON.stringify(hotel)
+  }).then(response => {
+    return response.json();
+  });
+}
+
 export function getHotelRooms (hotelId) {
   var token = localStorage.getItem('token');
   return fetch(config.heroku_host.concat('/rooms?hotelId=').concat(hotelId), {
@@ -41,6 +54,19 @@ export function getHotelRooms (hotelId) {
     headers: {
       'Authorization': 'Bearer ' + token
     }
+  }).then(response => {
+    return response.json();
+  });
+}
+
+export function postHotelRoom (hotelId, room) {
+  var token = localStorage.getItem('token');
+  return fetch(config.heroku_host.concat('/hotel/').concat(hotelId).concat('/room'), {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer ' + token
+    },
+    body: JSON.stringify(room)
   }).then(response => {
     return response.json();
   });
@@ -297,15 +323,3 @@ export function deleteAccommodationRoom (requestId, accoId, roomId) {
   });
 }
 
-export function postHotel (hotel) {
-  var token = localStorage.getItem('token');
-  return fetch(config.heroku_host.concat('/hotel'), {
-    method: 'POST',
-    headers: {
-      'Authorization': 'Bearer ' + token
-    },
-    body: JSON.stringify(hotel)
-  }).then(response => {
-    return response.json();
-  });
-}

@@ -13,6 +13,7 @@ import { FETCH_HOTELS } from '../actions/hotels';
 import { FETCH_NOTIFICATIONS } from '../actions/navbar';
 import { ADD_ACCO, CLEAR_ACCO, FETCH_ACCO, FETCH_FARE, FETCH_HOTEL, FETCH_HOTEL_ROOMS, PATCH_ACCO } from '../actions/hotel';
 import { CLEAR_SUBMIT_HOTEL_STATUS, SUCCEED_SUBMIT_HOTEL, FAIL_SUBMIT_HOTEL } from '../actions/newhotel';
+import { CLEAR_SUBMIT_HOTEL_ROOM_STATUS, SUCCEED_SUBMIT_HOTEL_ROOM, FAIL_SUBMIT_HOTEL_ROOM } from '../actions/newroom';
 
 const FULFILLED = '_FULFILLED';
 const PENDING = '_PENDING';
@@ -263,6 +264,42 @@ function newhotelstatus (state = null, action) {
   }
 }
 
+function newroom (state = { status: null }, action) {
+  switch (action.type) {
+    case `${FETCH_HOTELS}${FULFILLED}`:
+    return Object.assign({}, state, {
+      hotels: action.payload
+    });
+
+    case `${FETCH_HOTEL_ROOMS}${FULFILLED}`:
+    return Object.assign({}, state, {
+      hotelrooms: action.payload
+    });
+
+    case SUCCEED_SUBMIT_HOTEL_ROOM:
+    return Object.assign({}, state, {
+      hotelrooms: [],
+      status: action.payload
+    });
+
+    case FAIL_SUBMIT_HOTEL_ROOM:
+    return Object.assign({}, state, {
+      hotelrooms: [],
+      status: action.payload
+    });
+
+    case CLEAR_SUBMIT_HOTEL_ROOM_STATUS:
+    return Object.assign({}, state, {
+      hotelrooms: [],
+      status: action.payload
+    });
+
+
+    default:
+    return state;
+  }
+}
+
 let appReducer = combineReducers({
   accommodation,
   authority,
@@ -275,6 +312,7 @@ let appReducer = combineReducers({
   navbar,
   new_accommodation,
   newhotelstatus,
+  newroom,
   request,
   requests,
   router,

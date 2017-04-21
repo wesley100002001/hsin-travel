@@ -6,7 +6,19 @@
     "Password": "密碼"
   },
   "hotel": {
-    "Edit": "編輯"
+    "Add": "新增",
+    "Cancel": "取消",
+    "Confirm": "確認",
+    "Edit": "編輯",
+    "CheckInAt": "入住日期",
+    "CheckOutAt": "退房日期",
+    "Room": "房間",
+    "RoomType": "房型",
+    "RoomAmount": "數量"
+  },
+  "hotels": {
+    "Cancel": "取消",
+    "Hotel": "飯店"
   },
   "navbar": {
     "Chinese": "中文",
@@ -14,6 +26,7 @@
     "Language": "語言",
     "Logout": "登出",
     "CreateHotel": "新增飯店",
+    "CreateRoom": "新增房型",
     "Requests": "需求列表"
   },
   "requests": {

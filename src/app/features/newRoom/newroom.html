@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <h1 class="padding-down">新增房型</h1>
+    <div class="col-md-6 col-sm-6">
+      <form name="newroomForm" class="padding-down">
+        <div class="form-group">
+          <label for="hotels">選擇飯店</label>
+          <select name="hotels" class="form-control" ng-model="newroomCtrl.selectedHotel"
+                ng-change="newroomCtrl.selectHotel()"
+                ng-options="hotel.name for hotel in newroomCtrl.hotels" required>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="rooms">目前已有的房型</label>
+          <table name="rooms" class="table git-table">
+            <tr>
+              <th>房型名稱</th>
+            </tr>
+            <tr ng-repeat="room in newroomCtrl.hotelrooms">
+              <td>{{room.type}}</td>
+            </tr>
+          </table>
+        </div>
+        <div class="form-group">
+          <label for="room">選擇要新增的房型</label>
+          <select name="room" class="form-control" ng-model="newroomCtrl.roomToCreate" 
+                  ng-options="type for type in newroomCtrl.roomTypes" required>
+            <!--<option value="SWB (Room Only)">SWB (Room Only)</option>
+            <option value="TWN (Room Only)">TWN (Room Only)</option>
+            <option value="DBL">DBL</option>
+            <option value="DBL">TWN</option>-->
+          </select>
+        </div>
+        <button class="btn btn-success" ng-click="newroomCtrl.submitNewRoom()" ng-disabled="!newroomForm.$valid">
+          <span class="glyphicon glyphicon-ok"></span> 新增
+        </button>
+      </form>
+      
+      <div ng-show="newroomCtrl.submitStatus === 'success'" class="alert alert-success" role="alert">
+        <strong>新增成功</strong>
+      </div>
+      <div ng-show="newroomCtrl.submitStatus === 'fail'" class="alert alert-danger" role="alert">
+        <strong>新增失敗</strong>
+      </div>
+    </div>
+  </div>
+</div>

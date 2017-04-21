@@ -7,6 +7,7 @@
       <ul class="nav navbar-nav" ng-show="navbarCtrl.isLoggedIn">
         <li ui-sref-active="active"><a ui-sref="requests" translate>{{ 'navbar.Requests' | translate }}</a></li>
         <li ui-sref-active="active" ng-show="navbarCtrl.assetAddable"><a ui-sref="newhotel" translate>{{ 'navbar.CreateHotel' | translate }}</a></li>
+        <li ui-sref-active="active" ng-show="navbarCtrl.assetAddable"><a ui-sref="newroom" translate>{{ 'navbar.CreateRoom' | translate }}</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right" ng-show="navbarCtrl.isLoggedIn">
         <li class="dropdown">
