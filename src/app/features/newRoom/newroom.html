@@ -10,7 +10,7 @@
                 ng-options="hotel.name for hotel in newroomCtrl.hotels" required>
           </select>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-show="!!newroomCtrl.hotelrooms && newroomCtrl.hotelrooms.length > 0">
           <label for="rooms">目前已有的房型</label>
           <table name="rooms" class="table git-table">
             <tr>
@@ -20,6 +20,9 @@
               <td>{{room.type}}</td>
             </tr>
           </table>
+        </div>
+        <div class="form-group">
+          <label ng-show="!newroomCtrl.hotelrooms || newroomCtrl.hotelrooms.length == 0">目前無任何房型</label>
         </div>
         <div class="form-group">
           <label for="room">選擇要新增的房型</label>
