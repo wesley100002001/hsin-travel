@@ -84,6 +84,10 @@
               </div>
             </div>
             <div class="col-md-8">
+              <div class="pull-right">
+                <label class="mandatory">有</label>
+                <label>為必填欄位</label>
+              </div>
               <div class="form-group">
                 <label for="description">{{ 'request.Content' | translate }}</label>
                 <textarea id="description" class="form-control" rows="15" 
@@ -287,16 +291,20 @@
         <span class="glyphicon glyphicon-plus"></span> {{ 'request.Add' | translate }}
       </button>
       <div ng-show="requestCtrl.feeInputVisible">
-        <form class="form-inline padding-down">
+        <form name="feeForm" class="form-inline padding-down">
           {{ 'request.FeeTitle' | translate }}&nbsp;&nbsp;
-          <input type="text" class="form-control" ng-model="requestCtrl.feeInput.title">
+          <input type="text" class="form-control" ng-model="requestCtrl.feeInput.title" required>
           &nbsp;{{ 'request.FeePrice' | translate }}&nbsp;&nbsp;
-          <div class="input-group">
+          <div class="input-group" ng-class="{'has-error': feeForm.feeInputAmount.$error.number}">
             <span class="input-group-addon">$</span>
-            <input type="number" class="form-control" ng-model="requestCtrl.feeInput.amount" aria-label="Amount (to the nearest dollar)">
+            <input type="number" name="feeInputAmount" class="form-control" ng-model="requestCtrl.feeInput.amount" aria-label="Amount (to the nearest dollar)" required>
           </div>
         </form>
-        <button class="btn btn-success" ng-click="requestCtrl.submitFee()">
+        <div class="text-danger" ng-show="feeForm.feeInputAmount.$error.number">
+          <i class="glyphicon glyphicon-exclamation-sign"></i>
+          {{ 'request.PleaseEnterNumber' | translate }}
+        </div>
+        <button class="btn btn-success" ng-click="requestCtrl.submitFee()" ng-disabled="!feeForm.$valid">
           <span class="glyphicon glyphicon-ok"></span>
         </button>
         <button class="btn btn-danger" ng-click="requestCtrl.cancelAddFee()">
