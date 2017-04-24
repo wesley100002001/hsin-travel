@@ -84,6 +84,10 @@ export default class NewHotelController {
     this.breakfast = [];
     this.name = '';
   }
+
+  remove (hotelId) {
+    this.removeHotel(hotelId);
+  }
 }
 
 NewHotelController.$inject = ['$stateParams', '$ngRedux', '$scope'];

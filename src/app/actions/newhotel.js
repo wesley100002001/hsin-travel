@@ -51,6 +51,20 @@ export function submitHotel (hotel) {
     }).catch(err => {
       dispatch(failSubmitHotel());
       console.log(err);
-    })
+    });
+  }
+}
+
+export function removeHotel (hotelId) {
+  return dispatch => {
+    return restful.deleteHotel(hotelId)
+    .then(response => {
+      if (response.statusCode >= 400) {
+        throw response;
+      }
+      dispatch(fetchHotels());
+    }).catch(err => {
+      console.log(err);
+    });
   }
 }

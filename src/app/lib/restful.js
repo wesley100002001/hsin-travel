@@ -47,6 +47,18 @@ export function postHotel (hotel) {
   });
 }
 
+export function deleteHotel (hotelId) {
+  var token = localStorage.getItem('token');
+  return fetch(config.heroku_host.concat('/hotel/').concat(hotelId), {
+    method: 'DELETE',
+    headers: {
+      'Authorization': 'Bearer ' + token
+    }
+  }).then(response => {
+    return response.json();
+  });
+}
+
 export function getHotelRooms (hotelId) {
   var token = localStorage.getItem('token');
   return fetch(config.heroku_host.concat('/rooms?hotelId=').concat(hotelId), {

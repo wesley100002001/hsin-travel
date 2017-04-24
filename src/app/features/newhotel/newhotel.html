@@ -107,9 +107,15 @@
   <table name="rooms" class="table git-table">
     <tr>
       <th>飯店名稱</th>
+      <th></th>
     </tr>
     <tr ng-repeat="hotel in newhotelCtrl.hotels">
       <td>{{hotel.name}}</td>
+      <td>
+        <a href ng-click="newhotelCtrl.remove(hotel.id)">
+          <span class="glyphicon glyphicon-trash"></span>
+        </a>
+      </td>
     </tr>
   </table>
 </div>
